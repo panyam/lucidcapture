@@ -35,12 +35,9 @@ win.__lucidCaptureInjected = true
 
 let recording = false
 let stepCount = 0
-let periodicTimer: ReturnType<typeof setInterval> | null = null
 let scrollDebounceTimer: ReturnType<typeof setTimeout> | null = null
 let lastScrollY = 0
-let lastCaptureTime = 0
 
-const PERIODIC_INTERVAL_MS = 2000
 const SCROLL_DEBOUNCE_MS = 500
 const MIN_SCROLL_DELTA = 100
 
@@ -67,18 +64,12 @@ function startCapture() {
   recording = true
   stepCount = 0
   lastScrollY = window.scrollY
-  lastCaptureTime = Date.now()
 
   document.addEventListener('click', handleClick, true)
   document.addEventListener('scroll', handleScroll, true)
 
-  // Periodic capture — baseline screenshots every N seconds
-  periodicTimer = setInterval(() => {
-    if (!recording) return
-    // Skip if we captured recently (e.g., a click or scroll just happened)
-    if (Date.now() - lastCaptureTime < 1500) return
-    emitStep('periodic')
-  }, PERIODIC_INTERVAL_MS)
+  // Periodic capture is handled by the background service worker
+  // Content script only handles user interaction events (clicks, scrolls)
 
   showRecordingIndicator()
 }
@@ -90,7 +81,6 @@ function stopCapture() {
   document.removeEventListener('scroll', handleScroll, true)
   navObserver.disconnect()
 
-  if (periodicTimer) { clearInterval(periodicTimer); periodicTimer = null }
   if (scrollDebounceTimer) { clearTimeout(scrollDebounceTimer); scrollDebounceTimer = null }
 
   // Allow re-injection after full cleanup
@@ -128,7 +118,6 @@ function handleClick(event: MouseEvent) {
     },
   }
 
-  lastCaptureTime = Date.now()
   chrome.runtime.sendMessage({ type: 'STEP_CAPTURED', step })
 }
 

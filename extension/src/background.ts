@@ -2,6 +2,10 @@ import type { RecordingSession, CapturedStep, Message, StateResponse } from './t
 
 let session: RecordingSession | null = null
 let injectedTabs = new Set<number>()
+let periodicTimer: ReturnType<typeof setInterval> | null = null
+let lastCaptureTime = 0
+
+const PERIODIC_INTERVAL_MS = 2000
 
 // Expose for Playwright testing
 ;(globalThis as any).__lucid = {
@@ -9,6 +13,8 @@ let injectedTabs = new Set<number>()
   stopRecording: () => stopRecording(),
   getSession: () => session,
 }
+
+// ── Message handling ──
 
 chrome.runtime.onMessage.addListener(
   (msg: Message, sender, sendResponse: (resp: unknown) => void) => {
@@ -31,45 +37,72 @@ chrome.runtime.onMessage.addListener(
   },
 )
 
-// ── Cross-tab recording ──
-// When the user switches tabs during recording, inject the content script
-// into the new active tab so we capture events there too.
+// ── Cross-tab tracking ──
+// The background is the controller — it survives tab/page changes.
+// Content scripts only capture user interactions (clicks, scrolls).
+// The background handles periodic screenshots and tab lifecycle.
 
 chrome.tabs.onActivated.addListener(async (activeInfo) => {
   if (!session || session.state !== 'recording') return
   await ensureContentScript(activeInfo.tabId)
+  // Capture screenshot on tab switch
+  capturePeriodicStep('navigation')
 })
 
-// Also handle new windows
 chrome.windows.onFocusChanged.addListener(async (windowId) => {
   if (!session || session.state !== 'recording') return
   if (windowId === chrome.windows.WINDOW_ID_NONE) return
   const [tab] = await chrome.tabs.query({ active: true, windowId })
   if (tab?.id) {
     await ensureContentScript(tab.id)
+    capturePeriodicStep('navigation')
   }
 })
 
+// Detect URL changes within a tab (SPA navigation or full page load)
+chrome.tabs.onUpdated.addListener(async (tabId, changeInfo) => {
+  if (!session || session.state !== 'recording') return
+  if (!changeInfo.url) return
+
+  // Only care about the active tab
+  const [activeTab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true })
+  if (activeTab?.id !== tabId) return
+
+  // Re-inject content script (page navigated, old script is dead)
+  injectedTabs.delete(tabId)
+  // Wait for page to settle before injecting
+  setTimeout(() => {
+    if (session?.state === 'recording') {
+      injectAndStart(tabId)
+      capturePeriodicStep('navigation')
+    }
+  }, 500)
+})
+
+// ── Content script injection ──
+
 async function ensureContentScript(tabId: number) {
+  // Try to ping existing content script
   if (injectedTabs.has(tabId)) {
-    // Already injected — just make sure it's recording
     try {
       await chrome.tabs.sendMessage(tabId, { type: 'START_RECORDING' })
+      return
     } catch {
-      // Tab may have navigated — re-inject
+      // Content script died (page navigated) — re-inject
       injectedTabs.delete(tabId)
-      await injectAndStart(tabId)
     }
-    return
   }
   await injectAndStart(tabId)
 }
 
 async function injectAndStart(tabId: number) {
   try {
-    // Skip chrome:// and extension pages
     const tab = await chrome.tabs.get(tabId)
-    if (!tab.url || tab.url.startsWith('chrome://') || tab.url.startsWith('chrome-extension://')) return
+    if (!tab.url ||
+        tab.url.startsWith('chrome://') ||
+        tab.url.startsWith('chrome-extension://') ||
+        tab.url.startsWith('about:') ||
+        tab.url.startsWith('edge://')) return
 
     await chrome.scripting.executeScript({
       target: { tabId },
@@ -78,7 +111,7 @@ async function injectAndStart(tabId: number) {
     injectedTabs.add(tabId)
     await chrome.tabs.sendMessage(tabId, { type: 'START_RECORDING' })
   } catch (err) {
-    console.warn(`Failed to inject content script into tab ${tabId}:`, err)
+    console.warn(`[lucid] Failed to inject into tab ${tabId}:`, err)
   }
 }
 
@@ -92,6 +125,7 @@ async function startRecording(tabId?: number) {
     startedAt: Date.now(),
   }
   injectedTabs.clear()
+  lastCaptureTime = Date.now()
 
   if (!tabId) {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
@@ -102,14 +136,42 @@ async function startRecording(tabId?: number) {
     await injectAndStart(tabId)
   }
 
+  // Background-driven periodic capture — survives tab/page changes
+  periodicTimer = setInterval(() => {
+    if (!session || session.state !== 'recording') return
+    // Skip if we captured recently (click/scroll/navigation just happened)
+    if (Date.now() - lastCaptureTime < 1500) return
+    capturePeriodicStep('periodic')
+  }, PERIODIC_INTERVAL_MS)
+
   chrome.action.setBadgeText({ text: 'REC' })
   chrome.action.setBadgeBackgroundColor({ color: '#ba1a1a' })
 }
 
-async function handleStep(step: CapturedStep) {
+async function capturePeriodicStep(type: 'periodic' | 'navigation') {
   if (!session || session.state !== 'recording') return
 
-  // Take screenshot of the currently active tab (not necessarily the tab that sent the event)
+  // Get active tab info for URL and viewport
+  let url = ''
+  let viewportWidth = 0
+  let viewportHeight = 0
+  try {
+    const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true })
+    url = tab?.url ?? ''
+    viewportWidth = tab?.width ?? 0
+    viewportHeight = tab?.height ?? 0
+  } catch { /* no active tab */ }
+
+  const step: CapturedStep = {
+    id: crypto.randomUUID(),
+    type,
+    timestamp: Date.now(),
+    url,
+    viewportWidth,
+    viewportHeight,
+  }
+
+  // Take screenshot
   try {
     const dataUrl = await chrome.tabs.captureVisibleTab(null as unknown as number, {
       format: 'jpeg',
@@ -117,9 +179,30 @@ async function handleStep(step: CapturedStep) {
     })
     step.screenshot = dataUrl
   } catch (err) {
-    console.warn('Screenshot capture failed:', err)
+    console.warn('[lucid] Periodic screenshot failed:', err)
+    return // Don't add a step with no screenshot
   }
 
+  lastCaptureTime = Date.now()
+  session.steps.push(step)
+  chrome.action.setBadgeText({ text: String(session.steps.length) })
+}
+
+async function handleStep(step: CapturedStep) {
+  if (!session || session.state !== 'recording') return
+
+  // Take screenshot of the currently visible tab
+  try {
+    const dataUrl = await chrome.tabs.captureVisibleTab(null as unknown as number, {
+      format: 'jpeg',
+      quality: 70,
+    })
+    step.screenshot = dataUrl
+  } catch (err) {
+    console.warn('[lucid] Screenshot capture failed:', err)
+  }
+
+  lastCaptureTime = Date.now()
   session.steps.push(step)
   chrome.action.setBadgeText({ text: String(session.steps.length) })
 }
@@ -127,6 +210,9 @@ async function handleStep(step: CapturedStep) {
 async function stopRecording() {
   if (!session) return
   session.state = 'idle'
+
+  // Stop periodic capture
+  if (periodicTimer) { clearInterval(periodicTimer); periodicTimer = null }
 
   // Tell all injected tabs to stop
   for (const tabId of injectedTabs) {

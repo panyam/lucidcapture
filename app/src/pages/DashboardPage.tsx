@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState, useRef } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { SideNav } from '../components/shared/SideNav'
 import { MaterialIcon } from '../components/shared/MaterialIcon'
@@ -23,8 +23,33 @@ function timeAgo(iso: string): string {
 }
 
 export function DashboardPage() {
-  const { projects, loading, loadProjects, createProject } = useArcadeStore()
+  const { projects, loading, loadProjects, createProject, deleteProject } = useArcadeStore()
   const navigate = useNavigate()
+  const [menuOpenId, setMenuOpenId] = useState<string | null>(null)
+  const menuRef = useRef<HTMLDivElement>(null)
+
+  // Close menu on outside click
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+        setMenuOpenId(null)
+      }
+    }
+    document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [])
+
+  async function handleDuplicate(arcade: typeof projects[0]) {
+    const newProject = await createProject(`${arcade.title} (Copy)`)
+    navigate(`/editor/${newProject.id}`)
+  }
+
+  async function handleDelete(id: string) {
+    if (confirm('Delete this arcade? This cannot be undone.')) {
+      await deleteProject(id)
+      setMenuOpenId(null)
+    }
+  }
 
   useEffect(() => {
     loadProjects()
@@ -97,12 +122,57 @@ export function DashboardPage() {
                         <span className="text-xs font-semibold">{timeAgo(arcade.updatedAt)}</span>
                       </div>
                     </div>
-                    <button
-                      className="opacity-0 group-hover:opacity-100 transition-opacity text-slate-400 hover:text-slate-600"
-                      onClick={(e) => e.preventDefault()}
-                    >
-                      <MaterialIcon icon="more_vert" size="20px" />
-                    </button>
+                    <div className="relative" ref={menuOpenId === arcade.id ? menuRef : undefined}>
+                      <button
+                        className="opacity-0 group-hover:opacity-100 transition-opacity text-slate-400 hover:text-slate-600"
+                        onClick={(e) => {
+                          e.preventDefault()
+                          e.stopPropagation()
+                          setMenuOpenId(menuOpenId === arcade.id ? null : arcade.id)
+                        }}
+                      >
+                        <MaterialIcon icon="more_vert" size="20px" />
+                      </button>
+                      {menuOpenId === arcade.id && (
+                        <div className="absolute right-0 bottom-8 bg-surface-container-lowest rounded-xl shadow-[0_16px_48px_-4px_rgba(20,27,43,0.15)] py-1 z-50 min-w-[160px]">
+                          <button
+                            className="w-full text-left px-4 py-2.5 text-sm font-medium text-on-background hover:bg-surface-container-low flex items-center gap-3 transition-colors"
+                            onClick={(e) => {
+                              e.preventDefault()
+                              e.stopPropagation()
+                              setMenuOpenId(null)
+                              navigate(`/editor/${arcade.id}`)
+                            }}
+                          >
+                            <MaterialIcon icon="edit" size="18px" />
+                            Edit
+                          </button>
+                          <button
+                            className="w-full text-left px-4 py-2.5 text-sm font-medium text-on-background hover:bg-surface-container-low flex items-center gap-3 transition-colors"
+                            onClick={(e) => {
+                              e.preventDefault()
+                              e.stopPropagation()
+                              setMenuOpenId(null)
+                              handleDuplicate(arcade)
+                            }}
+                          >
+                            <MaterialIcon icon="content_copy" size="18px" />
+                            Duplicate
+                          </button>
+                          <button
+                            className="w-full text-left px-4 py-2.5 text-sm font-medium text-error hover:bg-error-container/30 flex items-center gap-3 transition-colors"
+                            onClick={(e) => {
+                              e.preventDefault()
+                              e.stopPropagation()
+                              handleDelete(arcade.id)
+                            }}
+                          >
+                            <MaterialIcon icon="delete" size="18px" />
+                            Delete
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </Link>

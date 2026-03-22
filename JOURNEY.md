@@ -125,11 +125,35 @@ The app is **"Lucid Capture"** — an Arcade.software clone for creating cinemat
 - **Key limitation:** Chrome Web Store API V1 deprecated, sunset October 2026
 - Trader vs non-trader: pick **non-trader** for demo/side projects (avoids EU DSA business obligations)
 
-**13. Key Learnings So Far**
+**13. Firefox + Cross-Browser Support**
+- Added `browser_specific_settings.gecko.id` to manifest for Firefox compatibility
+- Added `background.scripts` alongside `service_worker` — Chrome ignores `scripts`, Firefox ignores `service_worker`
+- Firefox loads extensions via `about:debugging` → "Load Temporary Add-on" → select `manifest.json`
+- Corporate MDM (Jamf) blocked extension loading on both Chrome and Chrome Canary via `ExtensionInstallBlocklist: ["*"]` in managed preferences
+- Workaround: used Chromium (`brew install --cask chromium`) which doesn't read Google's managed plists
+- Added extension icons (SVG → 16/48/128px PNGs via ImageMagick) and `make ext-zip` target
+
+**14. Debugging with Playwright (critical bugs found)**
+- Used Playwright's bundled Chromium with `--load-extension` flag to test the full flow programmatically — **bypasses MDM entirely** since Playwright downloads its own Chromium
+- **Bug 1: `startRecording()` never reached content script** — when called from popup, `sender.tab` is `undefined` (popup is not a tab). Fix: query active tab when `tabId` is not provided
+- **Bug 2: Content script injection path wrong** — was `'content.js'` but esbuild outputs to `'dist/content.js'`
+- **Bug 3: `chrome.storage.local` not accessible from web pages** — the React app at `localhost:5173` is a regular web page, not an extension page. `chrome.storage.local` is only accessible from extension contexts (content scripts, background, popup). Fix: content script reads storage and forwards data via `window.postMessage`
+- **Race condition in postMessage delivery** — content script on `/editor/import` page retries 5 times with 500ms intervals to handle React mount timing
+- Result: full capture→import→edit flow verified end-to-end with 3 automated clicks on example.com
+
+**15. Dashboard Three-Dots Menu**
+- Added dropdown menu on arcade cards: Edit, Duplicate, Delete
+- Delete confirms with browser dialog, removes project + all steps from IndexedDB
+- Duplicate creates new project with "(Copy)" suffix
+- Menu closes on outside click
+
+**16. Key Learnings So Far**
 - **Stitch MCP** gives structured design tokens + screen metadata but HTML is the deepest code output (no component tree)
 - **Stitch REST API** works with just `X-Goog-Api-Key` header — simpler than the MCP proxy setup
 - **Tailwind v4** migration: `@theme` CSS blocks replace `tailwind.config.js`, custom utilities use `@utility` directive
 - **Chrome Extension MV3:** `chrome.tabs.captureVisibleTab()` is the reliable screenshot method; `chrome.tabCapture` has restrictions in MV3 (video capture may only work from popup context)
-- **Extension ↔ App transfer:** `chrome.storage.local` as shared buffer works well, need `unlimitedStorage` permission for large recordings
+- **Extension ↔ Web App transfer:** `chrome.storage.local` is NOT accessible from regular web pages. Content scripts are the bridge — they have access to both `chrome.*` APIs and the page's `window.postMessage`
+- **Playwright for extension testing:** use bundled Chromium with `--load-extension`, expose test hooks on `globalThis.__lucid` for direct function calls from service worker `evaluate()`
+- **Corporate MDM blocks all Chrome variants** (stable + canary) via `com.google.chrome` plist. Chromium and Brave use different plist domains and are unaffected
 - **pnpm** everywhere (not npm) — per project convention
 - **Deterministic scripts > LLM calls** — the stitch-sync pipeline is pure shell/curl/jq, no AI in the loop

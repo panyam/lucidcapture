@@ -1,5 +1,8 @@
 runtime: nodejs22
 
+automatic_scaling:
+  max_instances: 2
+
 handlers:
   # Privacy policy
   - url: /privacy.html

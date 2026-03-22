@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, useCallback, useRef } from 'react'
 import { useParams, Link } from 'react-router'
 import { MaterialIcon } from '../components/shared/MaterialIcon'
+import { Timeline } from '../components/editor/Timeline'
 import { useArcadeStore } from '../stores/arcade.store'
 
 export function PlayerPage() {
@@ -242,8 +243,19 @@ export function PlayerPage() {
         </div>
       </div>
 
-      {/* Bottom controls — fades in/out */}
+      {/* Bottom controls + timeline — fades in/out */}
       <div className={`fixed bottom-0 left-0 right-0 z-50 transition-opacity duration-500 ${showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+        {currentSteps.length > 1 && (
+          <div className="px-8 mb-2">
+            <Timeline
+              steps={currentSteps}
+              currentIndex={stepIndex}
+              playing={playing}
+              onSelectStep={(i) => { setStepIndex(i); setFinished(false) }}
+              variant="player"
+            />
+          </div>
+        )}
         <div className="flex items-center justify-center gap-4 pb-6">
           <button
             className="text-white/60 hover:text-white transition-colors disabled:opacity-30"

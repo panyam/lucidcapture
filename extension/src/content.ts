@@ -172,7 +172,6 @@ function emitStep(type: 'scroll' | 'periodic' | 'navigation') {
   if (!recording) return
 
   stepCount++
-  lastCaptureTime = Date.now()
 
   const step: CapturedStep = {
     id: crypto.randomUUID(),

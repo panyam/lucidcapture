@@ -7,27 +7,32 @@ interface TimelineProps {
   currentIndex: number
   playing: boolean
   onSelectStep: (index: number) => void
-  onDeleteStep: () => void
+  onDeleteStep?: () => void
+  variant?: 'editor' | 'player'
 }
 
-export function Timeline({ steps, currentIndex, playing, onSelectStep, onDeleteStep }: TimelineProps) {
+export function Timeline({ steps, currentIndex, playing, onSelectStep, onDeleteStep, variant = 'editor' }: TimelineProps) {
+  const isPlayer = variant === 'player'
+
   return (
-    <div className="mt-6 bg-surface-container-low rounded-xl p-4">
-      <div className="flex items-center justify-between mb-3">
-        <h3 className="text-xs font-bold text-slate-500 uppercase tracking-widest">
-          Timeline — {steps.length} steps
-        </h3>
-        {steps[currentIndex] && (
-          <button
-            className="text-xs font-semibold text-error hover:text-error/80 transition-colors flex items-center gap-1"
-            onClick={onDeleteStep}
-            title="Delete current step (Del)"
-          >
-            <MaterialIcon icon="delete" size="14px" />
-            Delete Step
-          </button>
-        )}
-      </div>
+    <div className={`shrink-0 p-4 ${isPlayer ? 'bg-white/5 rounded-xl' : 'mt-auto bg-surface-container-low rounded-xl'}`}>
+      {!isPlayer && (
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="text-xs font-bold text-slate-500 uppercase tracking-widest">
+            Timeline — {steps.length} steps
+          </h3>
+          {steps[currentIndex] && onDeleteStep && (
+            <button
+              className="text-xs font-semibold text-error hover:text-error/80 transition-colors flex items-center gap-1"
+              onClick={onDeleteStep}
+              title="Delete current step (Del)"
+            >
+              <MaterialIcon icon="delete" size="14px" />
+              Delete Step
+            </button>
+          )}
+        </div>
+      )}
       <div className="flex gap-1.5 overflow-x-auto pb-1">
         {steps.map((step, i) => (
           <TimelineThumb

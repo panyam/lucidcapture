@@ -9,6 +9,9 @@
     "storage",
     "scripting"
   ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
   "background": {
     "scripts": ["dist/background.js"],
     "service_worker": "dist/background.js"

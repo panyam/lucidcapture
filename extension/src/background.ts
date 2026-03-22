@@ -43,26 +43,37 @@ chrome.runtime.onMessage.addListener(
 // The background handles periodic screenshots and tab lifecycle.
 
 chrome.tabs.onActivated.addListener(async (activeInfo) => {
+  console.log('[lucid] Tab activated:', activeInfo.tabId, 'recording:', session?.state)
   if (!session || session.state !== 'recording') return
   await ensureContentScript(activeInfo.tabId)
-  // Capture screenshot on tab switch
   capturePeriodicStep('navigation')
 })
 
 chrome.windows.onFocusChanged.addListener(async (windowId) => {
+  console.log('[lucid] Window focus changed:', windowId, 'recording:', session?.state)
   if (!session || session.state !== 'recording') return
   if (windowId === chrome.windows.WINDOW_ID_NONE) return
   const [tab] = await chrome.tabs.query({ active: true, windowId })
   if (tab?.id) {
+    console.log('[lucid] Active tab in new window:', tab.id, tab.url)
     await ensureContentScript(tab.id)
     capturePeriodicStep('navigation')
   }
 })
 
 // Detect URL changes within a tab (SPA navigation or full page load)
-chrome.tabs.onUpdated.addListener(async (tabId, changeInfo) => {
+chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   if (!session || session.state !== 'recording') return
-  if (!changeInfo.url) return
+
+  // Handle both URL changes and page load completion
+  if (changeInfo.url) {
+    console.log('[lucid] Tab URL changed:', tabId, changeInfo.url)
+  }
+  if (changeInfo.status === 'complete') {
+    console.log('[lucid] Tab load complete:', tabId, tab.url)
+  }
+
+  if (!changeInfo.url && changeInfo.status !== 'complete') return
 
   // Only care about the active tab
   const [activeTab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true })

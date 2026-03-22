@@ -50,6 +50,11 @@ cd app && pnpm install && pnpm run dev   # http://localhost:5173
 - **Extension content script injection**: esbuild outputs to `dist/`, so scripting.executeScript must reference `'dist/content.js'`, not `'content.js'`
 - **Corporate MDM (Jamf)**: blocks Chrome + Canary extension loading via `com.google.chrome` plist. Use Chromium or Brave instead — they use different plist domains
 - **Playwright extension testing**: use Playwright's bundled Chromium with `--load-extension` flag (bypasses MDM). Expose test hooks on `globalThis.__lucid` for service worker evaluate()
+- **Extension context invalidation**: when the extension is reloaded, old content scripts in open tabs throw "Extension context invalidated". Content script checks `chrome.runtime?.id` before every message and self-destructs if invalid
+- **Content script double-injection**: guard with `window.__lucidCaptureInjected` flag. Reset to `false` on `stopCapture()` so re-injection works for new sessions
+- **Cross-tab recording requires `host_permissions`**: `activeTab` only grants access on user click of extension icon. `"host_permissions": ["<all_urls>"]` is needed for `scripting.executeScript` on tabs the user switches to during recording
+- **Background is the recording controller**: periodic timer, tab/window lifecycle, screenshots all owned by the service worker. Content scripts are dumb event reporters (clicks, scrolls) — they die on page navigation and get re-injected
+- **Hotspot animation**: 2.5s `cubic-bezier(0.25, 0.1, 0.25, 1)` transition on `left`/`top` for smooth gliding between steps. Disabled during drag in edit mode
 
 ## Architecture
 See [ARCHITECTURE.md](ARCHITECTURE.md) for design decisions and component hierarchy.

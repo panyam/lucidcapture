@@ -21,15 +21,29 @@ export function EditorCanvas({ step, stepIndex, editMode, playing, onMoveHotspot
     return () => { if (screenshotUrl) URL.revokeObjectURL(screenshotUrl) }
   }, [screenshotUrl])
 
+  // Detect the image's natural aspect ratio so we can match the container
+  const [aspectRatio, setAspectRatio] = useState<number | null>(null)
+
+  function handleImageLoad(e: React.SyntheticEvent<HTMLImageElement>) {
+    const img = e.currentTarget
+    if (img.naturalWidth && img.naturalHeight) {
+      setAspectRatio(img.naturalWidth / img.naturalHeight)
+    }
+  }
+
   return (
-    <div className={`relative w-full max-w-4xl aspect-video bg-inverse-surface rounded-2xl shadow-[0_48px_80px_-4px_rgba(20,27,43,0.12)] overflow-hidden ${editMode ? 'cursor-crosshair' : 'cursor-default'}`}>
+    <div
+      className={`relative w-full max-w-5xl bg-inverse-surface rounded-2xl shadow-[0_48px_80px_-4px_rgba(20,27,43,0.12)] overflow-hidden ${editMode ? 'cursor-crosshair' : 'cursor-default'}`}
+      style={aspectRatio ? { aspectRatio: `${aspectRatio}` } : { aspectRatio: '16/9' }}
+    >
       {screenshotUrl ? (
         <>
           <img
             src={screenshotUrl}
             alt={`Step ${stepIndex + 1}`}
-            className="w-full h-full object-contain pointer-events-none select-none"
+            className="w-full h-full object-fill pointer-events-none select-none"
             draggable={false}
+            onLoad={handleImageLoad}
           />
           {step?.clickTarget && (
             <DraggableHotspot
@@ -83,8 +97,12 @@ function DraggableHotspot({ step, playing, editMode, onDrop }: {
   useEffect(() => {
     if (!dragging) return
 
+    function getCanvasEl() {
+      return containerRef.current?.closest('[class*="rounded-2xl"]') as HTMLElement | null
+    }
+
     function handleMouseMove(e: MouseEvent) {
-      const canvas = containerRef.current?.closest('.aspect-video')
+      const canvas = getCanvasEl()
       if (!canvas) return
       const rect = canvas.getBoundingClientRect()
       setDragPos({
@@ -94,7 +112,7 @@ function DraggableHotspot({ step, playing, editMode, onDrop }: {
     }
 
     function handleMouseUp(e: MouseEvent) {
-      const canvas = containerRef.current?.closest('.aspect-video')
+      const canvas = getCanvasEl()
       if (!canvas) { setDragging(false); setDragPos(null); return }
       const rect = canvas.getBoundingClientRect()
       const finalX = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width))
@@ -129,7 +147,6 @@ function DraggableHotspot({ step, playing, editMode, onDrop }: {
         }`}>
           <div className={`w-5 h-5 rounded-full bg-primary/80 transition-transform ${dragging ? 'scale-110' : ''}`} />
         </div>
-        {/* Tooltip — hidden during drag and play */}
         {!playing && !dragging && (
           <div className="absolute -top-14 left-1/2 -translate-x-1/2 glass-panel ghost-border rounded-lg px-3 py-2 whitespace-nowrap">
             {step.annotation?.title ? (
@@ -144,7 +161,6 @@ function DraggableHotspot({ step, playing, editMode, onDrop }: {
             )}
           </div>
         )}
-        {/* Coordinates during drag */}
         {dragging && (
           <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-[10px] font-mono px-2 py-0.5 rounded whitespace-nowrap">
             {(x * 100).toFixed(0)}%, {(y * 100).toFixed(0)}%

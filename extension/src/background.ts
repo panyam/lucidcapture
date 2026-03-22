@@ -1,8 +1,9 @@
 import type { RecordingSession, CapturedStep, Message, StateResponse } from './types'
 
 let session: RecordingSession | null = null
+let injectedTabs = new Set<number>()
 
-// Expose for Playwright testing — service worker evaluate() can call these
+// Expose for Playwright testing
 ;(globalThis as any).__lucid = {
   startRecording: () => startRecording(),
   stopRecording: () => stopRecording(),
@@ -24,11 +25,64 @@ chrome.runtime.onMessage.addListener(
       }
       sendResponse(resp)
     } else if (msg.type === 'STEP_CAPTURED') {
-      handleStep(msg.step, sender.tab?.id)
+      handleStep(msg.step)
     }
     return true
   },
 )
+
+// ── Cross-tab recording ──
+// When the user switches tabs during recording, inject the content script
+// into the new active tab so we capture events there too.
+
+chrome.tabs.onActivated.addListener(async (activeInfo) => {
+  if (!session || session.state !== 'recording') return
+  await ensureContentScript(activeInfo.tabId)
+})
+
+// Also handle new windows
+chrome.windows.onFocusChanged.addListener(async (windowId) => {
+  if (!session || session.state !== 'recording') return
+  if (windowId === chrome.windows.WINDOW_ID_NONE) return
+  const [tab] = await chrome.tabs.query({ active: true, windowId })
+  if (tab?.id) {
+    await ensureContentScript(tab.id)
+  }
+})
+
+async function ensureContentScript(tabId: number) {
+  if (injectedTabs.has(tabId)) {
+    // Already injected — just make sure it's recording
+    try {
+      await chrome.tabs.sendMessage(tabId, { type: 'START_RECORDING' })
+    } catch {
+      // Tab may have navigated — re-inject
+      injectedTabs.delete(tabId)
+      await injectAndStart(tabId)
+    }
+    return
+  }
+  await injectAndStart(tabId)
+}
+
+async function injectAndStart(tabId: number) {
+  try {
+    // Skip chrome:// and extension pages
+    const tab = await chrome.tabs.get(tabId)
+    if (!tab.url || tab.url.startsWith('chrome://') || tab.url.startsWith('chrome-extension://')) return
+
+    await chrome.scripting.executeScript({
+      target: { tabId },
+      files: ['dist/content.js'],
+    })
+    injectedTabs.add(tabId)
+    await chrome.tabs.sendMessage(tabId, { type: 'START_RECORDING' })
+  } catch (err) {
+    console.warn(`Failed to inject content script into tab ${tabId}:`, err)
+  }
+}
+
+// ── Recording lifecycle ──
 
 async function startRecording(tabId?: number) {
   session = {
@@ -37,34 +91,25 @@ async function startRecording(tabId?: number) {
     steps: [],
     startedAt: Date.now(),
   }
+  injectedTabs.clear()
 
-  // If no tabId provided (e.g. message came from popup), query the active tab
   if (!tabId) {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
     tabId = tab?.id
   }
 
   if (tabId) {
-    try {
-      await chrome.tabs.sendMessage(tabId, { type: 'START_RECORDING' })
-    } catch {
-      // Content script not injected — inject it first
-      await chrome.scripting.executeScript({
-        target: { tabId },
-        files: ['dist/content.js'],
-      })
-      await chrome.tabs.sendMessage(tabId, { type: 'START_RECORDING' })
-    }
+    await injectAndStart(tabId)
   }
 
   chrome.action.setBadgeText({ text: 'REC' })
   chrome.action.setBadgeBackgroundColor({ color: '#ba1a1a' })
 }
 
-async function handleStep(step: CapturedStep, _tabId?: number) {
+async function handleStep(step: CapturedStep) {
   if (!session || session.state !== 'recording') return
 
-  // Take screenshot
+  // Take screenshot of the currently active tab (not necessarily the tab that sent the event)
   try {
     const dataUrl = await chrome.tabs.captureVisibleTab(null as unknown as number, {
       format: 'jpeg',
@@ -83,17 +128,17 @@ async function stopRecording() {
   if (!session) return
   session.state = 'idle'
 
-  // Tell content script to stop
-  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
-  if (tab?.id) {
+  // Tell all injected tabs to stop
+  for (const tabId of injectedTabs) {
     try {
-      await chrome.tabs.sendMessage(tab.id, { type: 'STOP_RECORDING' })
+      await chrome.tabs.sendMessage(tabId, { type: 'STOP_RECORDING' })
     } catch {
-      // Tab may have navigated
+      // Tab may have closed or navigated
     }
   }
+  injectedTabs.clear()
 
-  // Store for the React app to pick up
+  // Store for the React app
   await chrome.storage.local.set({
     pendingSession: {
       id: session.id,
@@ -103,12 +148,7 @@ async function stopRecording() {
   })
 
   chrome.action.setBadgeText({ text: '' })
-
-  // Save to storage — the content script on the editor page will read it
   session = null
 
-  // Open the editor import page
-  // The content script (injected via <all_urls>) will detect this URL
-  // and forward the pendingSession from chrome.storage.local via postMessage
   chrome.tabs.create({ url: 'http://localhost:5173/editor/import' })
 }

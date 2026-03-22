@@ -10,6 +10,7 @@ export function PlayerPage() {
   const [playing, setPlaying] = useState(false)
   const [showControls, setShowControls] = useState(true)
   const [finished, setFinished] = useState(false)
+  const [aspectRatio, setAspectRatio] = useState<number | null>(null)
   const playTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const controlsTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
@@ -164,13 +165,22 @@ export function PlayerPage() {
 
       {/* Main canvas */}
       <div className="flex-1 flex items-center justify-center p-8">
-        <div className="relative w-full max-w-5xl aspect-video rounded-2xl overflow-hidden shadow-2xl">
+        <div
+          className="relative w-full max-w-5xl rounded-2xl overflow-hidden shadow-2xl"
+          style={aspectRatio ? { aspectRatio: `${aspectRatio}` } : { aspectRatio: '16/9' }}
+        >
           {screenshotUrl && (
             <img
               src={screenshotUrl}
               alt={`Step ${stepIndex + 1}`}
-              className="w-full h-full object-contain bg-black"
+              className="w-full h-full object-fill"
               draggable={false}
+              onLoad={(e) => {
+                const img = e.currentTarget
+                if (img.naturalWidth && img.naturalHeight) {
+                  setAspectRatio(img.naturalWidth / img.naturalHeight)
+                }
+              }}
             />
           )}
 

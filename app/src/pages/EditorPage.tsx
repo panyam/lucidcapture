@@ -1,5 +1,5 @@
 import { useEffect, useCallback, useState, useRef } from 'react'
-import { useParams, useNavigate } from 'react-router'
+import { useParams, useNavigate, Link } from 'react-router'
 import { SideNav } from '../components/shared/SideNav'
 import { EditorCanvas } from '../components/editor/EditorCanvas'
 import { PlaybackControls } from '../components/editor/PlaybackControls'
@@ -179,18 +179,29 @@ export function EditorPage() {
             <span className="text-xs font-semibold text-slate-400 bg-surface-container-high px-3 py-1 rounded-full">
               {currentSteps.length} steps
             </span>
-            <button
-              className={`ml-auto text-xs font-semibold px-4 py-1.5 rounded-full transition-colors flex items-center gap-1.5 ${
-                editMode
-                  ? 'bg-primary text-on-primary'
-                  : 'bg-surface-container-high text-slate-500 hover:bg-surface-container-highest'
-              }`}
-              onClick={() => setEditMode((m) => !m)}
-              title="Toggle edit mode (E)"
-            >
-              <MaterialIcon icon={editMode ? 'edit' : 'visibility'} size="14px" />
-              {editMode ? 'Editing' : 'Viewing'}
-            </button>
+            <div className="ml-auto flex items-center gap-2">
+              <button
+                className={`text-xs font-semibold px-4 py-1.5 rounded-full transition-colors flex items-center gap-1.5 ${
+                  editMode
+                    ? 'bg-primary text-on-primary'
+                    : 'bg-surface-container-high text-slate-500 hover:bg-surface-container-highest'
+                }`}
+                onClick={() => setEditMode((m) => !m)}
+                title="Toggle edit mode (E)"
+              >
+                <MaterialIcon icon={editMode ? 'edit' : 'visibility'} size="14px" />
+                {editMode ? 'Editing' : 'Viewing'}
+              </button>
+              {currentSteps.length > 0 && (
+                <Link
+                  to={`/play/${id}`}
+                  className="text-xs font-semibold px-4 py-1.5 rounded-full bg-gradient-to-r from-primary to-primary-container text-on-primary flex items-center gap-1.5 hover:shadow-lg transition-shadow"
+                >
+                  <MaterialIcon icon="play_arrow" filled size="14px" />
+                  Preview
+                </Link>
+              )}
+            </div>
           </div>
         )}
 

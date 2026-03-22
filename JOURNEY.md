@@ -155,7 +155,20 @@ The app is **"Lucid Capture"** — an Arcade.software clone for creating cinemat
 - **Result:** Structure JSON files are diffable, resilient to styling-only changes, and catch real structural additions/removals/reorderings
 - **Recommendation for Stitch team:** Expose a component/element tree API alongside the rendered HTML. Even a list of "sections" with their types and bounding boxes would be far more useful for design-to-code change tracking than screenshots or flat HTML.
 
-**18. Key Learnings So Far**
+**18. Player Page + Bidirectional Stitch Sync**
+- Built a full-screen **Player page** (`/play/:id`) — immersive demo playback with:
+  - Dark cinematic background, auto-hiding controls, progress bar
+  - Hotspot-click-to-advance interaction (the core Arcade experience)
+  - "Demo complete" overlay with Replay and Back to Dashboard
+  - Edit button linking to the editor
+  - Keyboard: Space (play/pause), arrows (nav), Escape (stop)
+- **Navigation flow updated:** Dashboard card → Player (view demo) → Edit button → Editor
+  - Previously: Dashboard → Editor (wrong — users want to view first, edit second)
+- **Stitch MCP write-back:** Used `edit_screens` to update Dashboard (Flow) navigation links, and `generate_screen_from_text` to create a Player screen design in Stitch
+  - This demonstrates **bidirectional design sync**: not just pulling designs from Stitch, but pushing our implementation decisions back to update the design source of truth
+  - The Stitch project now reflects the actual app flow (Dashboard → Player → Editor)
+
+**19. Key Learnings So Far**
 - **Stitch MCP** gives structured design tokens + screen metadata but HTML is the deepest code output (no component tree)
 - **Stitch REST API** works with just `X-Goog-Api-Key` header — simpler than the MCP proxy setup
 - **Tailwind v4** migration: `@theme` CSS blocks replace `tailwind.config.js`, custom utilities use `@utility` directive

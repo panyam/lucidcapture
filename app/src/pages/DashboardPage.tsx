@@ -91,7 +91,7 @@ export function DashboardPage() {
             {projects.map((arcade) => (
               <Link
                 key={arcade.id}
-                to={`/editor/${arcade.id}`}
+                to={`/play/${arcade.id}`}
                 className="group relative bg-surface-container-lowest rounded-xl p-3 shadow-[0_32px_64px_-4px_rgba(20,27,43,0.04)] hover:shadow-[0_48px_80px_-4px_rgba(20,27,43,0.08)] transition-all duration-300"
               >
                 <div className="aspect-video rounded-lg overflow-hidden relative mb-4 bg-surface-container-high">

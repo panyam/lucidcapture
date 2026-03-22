@@ -133,6 +133,24 @@ For privacy questions, open an issue at: https://github.com/panyam/lucidcapture/
 
 Recommended size: 1280x800 or 640x400 (Chrome Web Store accepts both)
 
+## ⚠ Future Update: Server-Side Storage
+
+When we add a backend (e.g. App Engine on `lucidcapture` GCP project), the following
+store listing fields MUST be updated before submitting that version:
+
+| Field | What changes |
+|-------|-------------|
+| **Privacy policy** | Must disclose: data sent to server, where stored, retention, who can access. Screenshots may contain PII from recorded 3P sites — call this out. |
+| **Data use certification** | Re-certify — will be transmitting user content (screenshots, URLs, click data) to our server |
+| **storage justification** | Update from "temporary transfer" to also mention server sync |
+| **host permissions justification** | Add our server domain (e.g. `lucidcapture.appspot.com`) and explain it's for saving/loading projects |
+| **Data collection disclosure** | Change from "no data transmitted" to list exactly what is sent and why |
+| **Remote code** | Should still be "none" — server sends data (JSON/images), not executable JS. Only update if we ever load scripts dynamically from our server. |
+
+**Rule of thumb:** "remote code" = loading JS/WASM to execute. Sending screenshots/JSON to an API is "data transmission", not remote code.
+
+Update `docs/privacy.html` and re-deploy via `make gh-pages` before submitting the server-enabled version.
+
 ## Approval Checklist
 - [x] Manifest V3 (required since 2024)
 - [x] All permissions have justifications

@@ -1,22 +1,7 @@
 import { getUniqueSelector, getElementLabel } from './capture/selectors'
 import type { CapturedStep, Message } from './types'
 
-let recording = false
-let stepCount = 0
-let periodicTimer: ReturnType<typeof setInterval> | null = null
-let scrollDebounceTimer: ReturnType<typeof setTimeout> | null = null
-let lastScrollY = 0
-let lastCaptureTime = 0
-
-const PERIODIC_INTERVAL_MS = 2000 // Capture every 2 seconds
-const SCROLL_DEBOUNCE_MS = 500   // Wait 500ms after scroll settles
-const MIN_SCROLL_DELTA = 100     // Minimum scroll distance to trigger capture
-
-// ── Import bridge ──
-
-if (window.location.href.includes('/editor/import')) {
-  forwardPendingSession()
-}
+// ── Import bridge (always runs, even on re-injection) ──
 
 async function forwardPendingSession() {
   for (let i = 0; i < 5; i++) {
@@ -36,6 +21,28 @@ async function forwardPendingSession() {
     await new Promise((r) => setTimeout(r, 500))
   }
 }
+
+if (window.location.href.includes('/editor/import')) {
+  forwardPendingSession()
+}
+
+// ── Guard against double-injection ──
+// If already injected, the message listener + event handlers from the
+// first injection are still active. Skip re-registration.
+const win = window as unknown as Window & { __lucidCaptureInjected?: boolean }
+if (!win.__lucidCaptureInjected) {
+win.__lucidCaptureInjected = true
+
+let recording = false
+let stepCount = 0
+let periodicTimer: ReturnType<typeof setInterval> | null = null
+let scrollDebounceTimer: ReturnType<typeof setTimeout> | null = null
+let lastScrollY = 0
+let lastCaptureTime = 0
+
+const PERIODIC_INTERVAL_MS = 2000
+const SCROLL_DEBOUNCE_MS = 500
+const MIN_SCROLL_DELTA = 100
 
 // ── Message handler ──
 
@@ -81,9 +88,13 @@ function stopCapture() {
 
   document.removeEventListener('click', handleClick, true)
   document.removeEventListener('scroll', handleScroll, true)
+  navObserver.disconnect()
 
   if (periodicTimer) { clearInterval(periodicTimer); periodicTimer = null }
   if (scrollDebounceTimer) { clearTimeout(scrollDebounceTimer); scrollDebounceTimer = null }
+
+  // Allow re-injection after full cleanup
+  win.__lucidCaptureInjected = false
 
   removeRecordingIndicator()
 }
@@ -293,3 +304,5 @@ function removeRecordingIndicator() {
   document.querySelector('[data-lucid-capture="styles"]')?.remove()
   document.querySelectorAll('[data-lucid-capture]').forEach(el => el.remove())
 }
+
+} // end of if (!__lucidCaptureInjected)

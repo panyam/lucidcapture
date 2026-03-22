@@ -7,15 +7,18 @@ export interface ClickTarget {
   label: string
 }
 
+export type StepType = 'click' | 'scroll' | 'periodic' | 'navigation'
+
 export interface CapturedStep {
   id: string
-  type: 'click' | 'scroll' | 'input'
+  type: StepType
   timestamp: number
   url: string
   viewportWidth: number
   viewportHeight: number
   screenshot?: string // base64 data URI (filled by background)
   clickTarget?: ClickTarget
+  scrollY?: number // scroll position at capture
 }
 
 export interface RecordingSession {

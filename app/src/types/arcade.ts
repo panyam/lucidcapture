@@ -9,7 +9,7 @@ export interface ArcadeProject {
   privacy: 'public' | 'private' | 'passcode'
 }
 
-export type StepType = 'click' | 'scroll' | 'input'
+export type StepType = 'click' | 'scroll' | 'input' | 'periodic' | 'navigation'
 export type StepTransition = 'fade' | 'slide' | 'none'
 
 export interface ClickTarget {

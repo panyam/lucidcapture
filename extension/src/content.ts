@@ -3,14 +3,22 @@ import type { CapturedStep, Message } from './types'
 
 let recording = false
 let stepCount = 0
+let periodicTimer: ReturnType<typeof setInterval> | null = null
+let scrollDebounceTimer: ReturnType<typeof setTimeout> | null = null
+let lastScrollY = 0
+let lastCaptureTime = 0
 
-// If we're on the editor import page, forward pendingSession from chrome.storage
+const PERIODIC_INTERVAL_MS = 2000 // Capture every 2 seconds
+const SCROLL_DEBOUNCE_MS = 500   // Wait 500ms after scroll settles
+const MIN_SCROLL_DELTA = 100     // Minimum scroll distance to trigger capture
+
+// ── Import bridge ──
+
 if (window.location.href.includes('/editor/import')) {
   forwardPendingSession()
 }
 
 async function forwardPendingSession() {
-  // Retry several times to handle React mount timing
   for (let i = 0; i < 5; i++) {
     try {
       const result = await chrome.storage.local.get('pendingSession')
@@ -19,7 +27,6 @@ async function forwardPendingSession() {
           { type: 'LUCID_CAPTURE_IMPORT', session: result.pendingSession },
           '*',
         )
-        // Clear after sending
         await chrome.storage.local.remove('pendingSession')
         return
       }
@@ -30,18 +37,15 @@ async function forwardPendingSession() {
   }
 }
 
+// ── Message handler ──
+
 chrome.runtime.onMessage.addListener(
   (msg: Message, _sender, sendResponse: (resp: unknown) => void) => {
     if (msg.type === 'START_RECORDING') {
-      recording = true
-      stepCount = 0
-      document.addEventListener('click', handleClick, true)
-      showRecordingIndicator()
+      startCapture()
       sendResponse({ ok: true })
     } else if (msg.type === 'STOP_RECORDING') {
-      recording = false
-      document.removeEventListener('click', handleClick, true)
-      removeRecordingIndicator()
+      stopCapture()
       sendResponse({ ok: true })
     } else if (msg.type === 'PING') {
       sendResponse({ ok: true, recording })
@@ -50,12 +54,46 @@ chrome.runtime.onMessage.addListener(
   },
 )
 
+// ── Capture lifecycle ──
+
+function startCapture() {
+  recording = true
+  stepCount = 0
+  lastScrollY = window.scrollY
+  lastCaptureTime = Date.now()
+
+  document.addEventListener('click', handleClick, true)
+  document.addEventListener('scroll', handleScroll, true)
+
+  // Periodic capture — baseline screenshots every N seconds
+  periodicTimer = setInterval(() => {
+    if (!recording) return
+    // Skip if we captured recently (e.g., a click or scroll just happened)
+    if (Date.now() - lastCaptureTime < 1500) return
+    emitStep('periodic')
+  }, PERIODIC_INTERVAL_MS)
+
+  showRecordingIndicator()
+}
+
+function stopCapture() {
+  recording = false
+
+  document.removeEventListener('click', handleClick, true)
+  document.removeEventListener('scroll', handleScroll, true)
+
+  if (periodicTimer) { clearInterval(periodicTimer); periodicTimer = null }
+  if (scrollDebounceTimer) { clearTimeout(scrollDebounceTimer); scrollDebounceTimer = null }
+
+  removeRecordingIndicator()
+}
+
+// ── Event handlers ──
+
 function handleClick(event: MouseEvent) {
   if (!recording) return
 
   const el = event.target as Element
-
-  // Ignore clicks on our own overlay elements
   if ((el as HTMLElement).closest?.('[data-lucid-capture]')) return
 
   const x = event.clientX / window.innerWidth
@@ -71,16 +109,63 @@ function handleClick(event: MouseEvent) {
     url: window.location.href,
     viewportWidth: window.innerWidth,
     viewportHeight: window.innerHeight,
+    scrollY: window.scrollY,
     clickTarget: {
-      x,
-      y,
+      x, y,
       selector: getUniqueSelector(el),
       label: getElementLabel(el),
     },
   }
 
+  lastCaptureTime = Date.now()
   chrome.runtime.sendMessage({ type: 'STEP_CAPTURED', step })
 }
+
+function handleScroll() {
+  if (!recording) return
+
+  // Debounce — wait for scroll to settle
+  if (scrollDebounceTimer) clearTimeout(scrollDebounceTimer)
+
+  scrollDebounceTimer = setTimeout(() => {
+    const delta = Math.abs(window.scrollY - lastScrollY)
+    if (delta >= MIN_SCROLL_DELTA) {
+      lastScrollY = window.scrollY
+      emitStep('scroll')
+    }
+  }, SCROLL_DEBOUNCE_MS)
+}
+
+function emitStep(type: 'scroll' | 'periodic' | 'navigation') {
+  if (!recording) return
+
+  stepCount++
+  lastCaptureTime = Date.now()
+
+  const step: CapturedStep = {
+    id: crypto.randomUUID(),
+    type,
+    timestamp: Date.now(),
+    url: window.location.href,
+    viewportWidth: window.innerWidth,
+    viewportHeight: window.innerHeight,
+    scrollY: window.scrollY,
+  }
+
+  chrome.runtime.sendMessage({ type: 'STEP_CAPTURED', step })
+}
+
+// Detect page navigation (SPA or full reload)
+let lastUrl = window.location.href
+const navObserver = new MutationObserver(() => {
+  if (!recording) return
+  if (window.location.href !== lastUrl) {
+    lastUrl = window.location.href
+    // Small delay to let the new page render
+    setTimeout(() => emitStep('navigation'), 300)
+  }
+})
+navObserver.observe(document.body, { childList: true, subtree: true })
 
 // ── Visual Feedback ──
 
@@ -103,7 +188,6 @@ function showClickRipple(clientX: number, clientY: number, count: number) {
   })
   document.body.appendChild(ripple)
 
-  // Step number badge
   const badge = document.createElement('div')
   badge.setAttribute('data-lucid-capture', 'badge')
   badge.textContent = String(count)
@@ -130,7 +214,6 @@ function showClickRipple(clientX: number, clientY: number, count: number) {
   })
   document.body.appendChild(badge)
 
-  // Animate in
   requestAnimationFrame(() => {
     ripple.style.width = '40px'
     ripple.style.height = '40px'
@@ -138,7 +221,6 @@ function showClickRipple(clientX: number, clientY: number, count: number) {
     badge.style.transform = 'scale(1)'
   })
 
-  // Fade out ripple, keep badge for a bit
   setTimeout(() => {
     ripple.style.opacity = '0'
     ripple.style.width = '60px'
@@ -188,7 +270,6 @@ function showRecordingIndicator() {
     animation: 'lucid-pulse 1s infinite',
   })
 
-  // Inject keyframes
   const style = document.createElement('style')
   style.setAttribute('data-lucid-capture', 'styles')
   style.textContent = `
@@ -210,6 +291,5 @@ function showRecordingIndicator() {
 function removeRecordingIndicator() {
   document.getElementById('lucid-capture-indicator')?.remove()
   document.querySelector('[data-lucid-capture="styles"]')?.remove()
-  // Clean up any remaining ripples/badges
   document.querySelectorAll('[data-lucid-capture]').forEach(el => el.remove())
 }

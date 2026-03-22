@@ -1,5 +1,16 @@
 import { MaterialIcon } from '../shared/MaterialIcon'
-import type { ArcadeStep, StepTransition } from '../../types/arcade'
+import type { ArcadeStep, StepTransition, StepType } from '../../types/arcade'
+
+function stepTypeIcon(type: StepType): string {
+  switch (type) {
+    case 'click': return 'ads_click'
+    case 'scroll': return 'swipe_up'
+    case 'periodic': return 'timer'
+    case 'navigation': return 'open_in_browser'
+    case 'input': return 'keyboard'
+    default: return 'circle'
+  }
+}
 
 interface ToolSidebarProps {
   step: ArcadeStep | undefined
@@ -37,7 +48,7 @@ function StepInfo({ step, stepIndex }: { step: ArcadeStep; stepIndex: number }) 
       <div className="space-y-1.5">
         <div className="flex items-center gap-2 text-sm">
           <MaterialIcon
-            icon={step.type === 'click' ? 'ads_click' : step.type === 'scroll' ? 'swipe_up' : 'keyboard'}
+            icon={stepTypeIcon(step.type)}
             size="16px"
             className="text-primary"
           />

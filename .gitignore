@@ -6,3 +6,6 @@ dist/
 .env
 .env.*
 .mcp.json
+tests/screenshots/
+tests/debug_dashboard.png
+.venv/

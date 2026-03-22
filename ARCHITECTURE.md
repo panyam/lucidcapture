@@ -10,20 +10,27 @@ An Arcade.software clone — creates interactive product demos from screen recor
 - **State:** Zustand stores
 - **Storage:** Dexie.js (IndexedDB) — no backend
 - **Routing:** React Router v7
-- **Pages:** Landing (`/`), Dashboard (`/dashboard`), Editor (`/editor/:id`), Import (`/editor/import`)
+- **Pages:** Landing (`/`), Dashboard (`/dashboard`), Editor (`/editor/:id`), Player (`/play/:id`)
 
 ### 2. Chrome Extension (`extension/`)
 - **Build:** TypeScript + esbuild (sourcemaps, iife format)
 - **Manifest V3** with Firefox compatibility (`background.scripts` + `service_worker`)
-- **Content script** (`content.ts`): injected into all pages via `<all_urls>`, captures clicks with viewport-ratio coordinates + CSS selector + element label. Shows visual feedback (ripple, step badge, recording indicator)
+- **Content script** (`content.ts`): captures clicks with coordinates + CSS selector + element label. Shows visual feedback (ripple, step badge, recording indicator)
 - **Background service worker** (`background.ts`): orchestrates recording session, calls `chrome.tabs.captureVisibleTab()` for JPEG screenshots at 70% quality
 - **Popup** (`popup/`): start/stop recording UI with step counter
-- **Data transfer:** content script on `/editor/import` reads `chrome.storage.local` and forwards via `window.postMessage` to the React app (web pages cannot access `chrome.storage.local` directly)
+- **Data transfer:** content script on `/editor/import` reads `chrome.storage.local` and forwards via `window.postMessage`
 
 ### 3. Static HTML Compiler (`app/src/lib/compiler/`) — planned
-- Follows the slyds pattern (see `~/projects/slyds`): flatten includes → inline assets as base64 → single HTML file
+- Follows the slyds pattern (see `~/projects/slyds`): inline assets as base64 → single HTML file
 - Player engine (JS) embedded in output handles step navigation, hotspot clicks, keyboard shortcuts
 - Output works from `file://` with zero external dependencies
+
+## User Flow
+```
+Landing Page → Dashboard → Player (view demo) → Editor (modify) → Player (preview)
+                  ↓                                    ↑
+             Create New ──── Extension captures ───────┘
+```
 
 ## Extension → App Data Flow
 ```
@@ -47,16 +54,18 @@ React app (EditorPage)
 ## Design System Pipeline
 ```
 Google Stitch (design tool)
-    ↓ ./stitch-sync/sync.sh
+    ↓ ./stitch-sync/sync.sh          (pull)
+    ↓ mcp edit_screens/generate      (push)
 stitch-sync/ (local structured data)
     ├── design-tokens.json    → drives Tailwind @theme colors
     ├── design-system.md      → design rules & component guidelines
     ├── screen-manifest.json  → screen index for change detection
+    ├── structure/            → diffable HTML outlines (JSON)
     ├── html/                 → reference HTML per screen
     └── screenshots/          → visual reference PNGs
 ```
 
-Design changes are tracked via `git diff stitch-sync/` after re-syncing.
+Design changes tracked via `git diff stitch-sync/` + `/design-sync` skill.
 
 ## Data Model (IndexedDB)
 ```
@@ -71,14 +80,16 @@ Indexes: `projects` on `updatedAt, title`; `steps` compound index `[projectId+or
 ## Component Hierarchy
 ```
 <App>
-  <TopNav />                    — shared across all pages
-  <LandingPage>                 — marketing: hero, features, CTA
+  <TopNav />                          — shared (hidden on Player)
+  <LandingPage>                       — marketing: hero, features, CTA
   <DashboardPage>
-    <SideNav />                 — workspace sidebar
-    <ArcadeGrid>                — card grid with three-dots menu (Edit/Duplicate/Delete)
+    <SideNav />                       — workspace sidebar
+    <ArcadeGrid>                      — card grid, three-dots menu, links to Player
+  <PlayerPage>                        — full-screen playback, hotspot-click-to-advance
   <EditorPage>
     <SideNav />
-    <EditorCanvas>              — screenshot + hotspot overlays
-    <Timeline />                — step segments, clickable
-    <ToolSidebar />             — step info, annotations, timing
+    <EditorCanvas>                    — screenshot + draggable hotspot, edit/view mode
+    <PlaybackControls>                — play/pause/prev/next/first/last
+    <Timeline>                        — screenshot thumbnails, step numbers, durations
+    <ToolSidebar>                     — step info, annotations, timing, shortcuts
 ```

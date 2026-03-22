@@ -1,22 +1,22 @@
 {
   "screens": [
     {
-      "id": "dcc5a7cdbcb444c48ccf661ef295aa3c",
-      "title": "Dashboard",
-      "deviceType": "DESKTOP",
-      "width": "2560",
-      "height": "2192",
-      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzcyOTg3NTczYWMzMzRkMWRiNmFiYTQ1ZjJiYmY1MzU3EgsSBxDUr6LfnQsYAZIBIwoKcHJvamVjdF9pZBIVQhM5NTIyNjYwODc3MDA1MTkxNzc0&filename=&opi=89354086",
-      "screenshotUrl": "https://lh3.googleusercontent.com/aida/ADBb0uipqzQ5sADoB6WPqVTI9F-gUQwOyJ9MB2QMT2J8Di4t2dSaWLKZtWtJr2bl0nmHPhWRkc2RcvobrbWEgCiy0GiGVO3Etx4NIeayZdzg8axyIzuEBjTow4LHGPLFPI7wtdHzvKg5IhuM42odBvxEpgnYtUJmC3oP_JDmS7R9nxmO6KLMdXXsd7Y-8kFTJyjtJAAm81J5P6BIzQgw3f-4m8AKy2osqZcEFa8KULbt30HnhVKJCmCuuK6J-1c"
-    },
-    {
-      "id": "41601ba1d0664a99b83cfa9b178c3c4b",
-      "title": "Editor",
+      "id": "0aee0fd55864486aa2a81298a09c0ee4",
+      "title": "Share Modal",
       "deviceType": "DESKTOP",
       "width": "2560",
       "height": "2048",
-      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzNkMWUyYzc0OGRiMzRjYTBiOTAwZDljZDU4ZDU0NDU5EgsSBxDUr6LfnQsYAZIBIwoKcHJvamVjdF9pZBIVQhM5NTIyNjYwODc3MDA1MTkxNzc0&filename=&opi=89354086",
-      "screenshotUrl": "https://lh3.googleusercontent.com/aida/ADBb0uh7dTW-4dNqO2c-5CloOvNJA9XxyRdISabBzJHW5v9sHmJoAPudOclapgMJQZbwwwP0PKzHs3eKGJI9bLahYLsFDksu0vz9mpffM8HTPkHnttwa015fZyxHjoEvku_1DUva4dmYf2-asOl1BBPdWQ9wIyDe1PlrbBedtZ8NuSPiKKZ-59umhXLxMS1KDeZSkoenpdTwiC6eaIIMxUi4i_inGCZLorWhs8xltlHmDp2twfV7eKiQrVVraL4"
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sX2QwNDA2ODYwZjEyYTQ0OGU4NzZiMDAzMGZlZTY2NGQ5EgsSBxDUr6LfnQsYAZIBIwoKcHJvamVjdF9pZBIVQhM5NTIyNjYwODc3MDA1MTkxNzc0&filename=&opi=89354086",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/ADBb0uhEMHdeI8NJRhsM9s5ZQyoPt4a8uD5AS-EXe0xBvct3fMYQWkNnZvxvVrOB-fPr2h3toQcKtza_lPCQc0a1knxfNgPkijcLk1gPzKJKd_y7TPx8ke4c5g4WUzO-oJrVv-yQU5E14RV9tbC84h38e54nyh9R0fWavw9pyMEqVRSspSObbbwsakXXu2qQ2U0fE-FfcKIisZ-sf8TpKdj58eWBda0RPu4x8r-5vd4WUTzQAsOg6VoZA9pvMbs"
+    },
+    {
+      "id": "cbf1ede0bcdd43398d9d9f7c8ab43eda",
+      "title": "Arcade Player (Playback)",
+      "deviceType": "DESKTOP",
+      "width": "2560",
+      "height": "2048",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzViNWMzMGZlYWM4NzQ1YTNhOWI0NTkwM2VlYjZhZWI0EgsSBxDUr6LfnQsYAZIBIwoKcHJvamVjdF9pZBIVQhM5NTIyNjYwODc3MDA1MTkxNzc0&filename=&opi=96797242",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/ADBb0uhEm1RAchW33-pgr9vKrmjeJx_xKAtpFlY3JIWPI3m55wjbNCjq36D-YycCbpfpIoXlrxrcK2HEn6Q88lvw1EgGx3dXA-0AhwQdmdpyH_rU9vi-dXBAueqZBNZ8d1cAwfX0d4QksZQJi7XBh4cdrQXYfoAXQqA7livSbDmANzAwxdEZzTBhGBOJV3OniN19kkAsZogv72Qi4JSh7stWo0sXDVCOVkbaFlT4Ey1bX3BDFlggc1OU8fMCXw"
     },
     {
       "id": "5d639881f7444f008a14b8d448696b55",
@@ -26,6 +26,42 @@
       "height": "0",
       "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sX2FmNmViZDkwYTU3ZDQyYzI5MGI2YzE4ZDhkNTllZmU3EgsSBxDUr6LfnQsYAZIBIwoKcHJvamVjdF9pZBIVQhM5NTIyNjYwODc3MDA1MTkxNzc0&filename=&opi=89354086",
       "screenshotUrl": null
+    },
+    {
+      "id": "714e8a45f148464aa184d115e7fdf08f",
+      "title": "Dashboard (Flow)",
+      "deviceType": "DESKTOP",
+      "width": "2560",
+      "height": "2192",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzk3ZmZkYzUzZGZjYTQzNjQ4ZTQwZjQ3NWMxOWRkODNlEgsSBxDUr6LfnQsYAZIBIwoKcHJvamVjdF9pZBIVQhM5NTIyNjYwODc3MDA1MTkxNzc0&filename=&opi=89354086",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/ADBb0ug77W0gD0c29XYcV6K5Rblu7Wt2XqDcBS5my4_U4TrgBLinkTJLsUWTbQqxaymPUq2Eqr8ZqNnTnCLNqxghpaD2fB0zVgd4b2lL6cz2iadIN_643OBHkh3QnQUCEIFsopAeI2aYlt40YfYQhnO2HwY6vHWnYJpjpbaXUhBn3_eR6YgPq473JllRdaoz-0EMqdR63jQGnbsSK2ffBD3LQjX0x2n3txcp40DPLIjPbsws3GrfkikSZk9ufg"
+    },
+    {
+      "id": "3a7f7b22fefa4ef5bedae38aa19e625a",
+      "title": "Editor (Flow)",
+      "deviceType": "DESKTOP",
+      "width": "2560",
+      "height": "2048",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sX2RjZGFhMmYzMzA3ZTRjMTA4NzY0MDk4YTUxZjdlM2Y3EgsSBxDUr6LfnQsYAZIBIwoKcHJvamVjdF9pZBIVQhM5NTIyNjYwODc3MDA1MTkxNzc0&filename=&opi=89354086",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/ADBb0ujz7irXre16dfd_2__x21WeFSvt-J386XyakMvPfm838tQODiqJF5OuNStS16mkjVokU5TtsWSdeas99c5hZpY-j26uFNBcv48xGmYrf4uVUWCSBNKHkfV4mnCpWJVE9xwNovNFPoQwkO5VAYHPQAlXp88lmTTM7pWOh--FVtKY0mBe26LdGD9rtGvKjwtsNm3YUShdRtEJHhiXiBCaKfT4ckMMVj6oduWlRd-ip3b_NTfBEHmAxEerhyc"
+    },
+    {
+      "id": "dcc5a7cdbcb444c48ccf661ef295aa3c",
+      "title": "Dashboard",
+      "deviceType": "DESKTOP",
+      "width": "2560",
+      "height": "2192",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzcyOTg3NTczYWMzMzRkMWRiNmFiYTQ1ZjJiYmY1MzU3EgsSBxDUr6LfnQsYAZIBIwoKcHJvamVjdF9pZBIVQhM5NTIyNjYwODc3MDA1MTkxNzc0&filename=&opi=89354086",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/ADBb0uipqzQ5sADoB6WPqVTI9F-gUQwOyJ9MB2QMT2J8Di4t2dSaWLKZtWtJr2bl0nmHPhWRkc2RcvobrbWEgCiy0GiGVO3Etx4NIeayZdzg8axyIzuEBjTow4LHGPLFPI7wtdHzvKg5IhuM42odBvxEpgnYtUJmC3oP_JDmS7R9nxmO6KLMdXXsd7Y-8kFTJyjtJAAm81J5P6BIzQgw3f-4m8AKy2osqZcEFa8KULbt30HnhVKJCmCuuK6J-1c"
+    },
+    {
+      "id": "f012cf2a192f4f7a907cd3875a27f2e5",
+      "title": "Arcade Player (View Only)",
+      "deviceType": "DESKTOP",
+      "width": "2560",
+      "height": "2048",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzM1NzY4NjBhYTUxYjQxZDViMWU5YmYzOTJiMmU2ODU1EgsSBxDUr6LfnQsYAZIBIwoKcHJvamVjdF9pZBIVQhM5NTIyNjYwODc3MDA1MTkxNzc0&filename=&opi=96797242",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/ADBb0ujvucUBRYT7Eso_ymUWjTLiE-yjm4h2Fz7vqXnWxR1RxDdGYBoTaSVoFobCj5XyLe3jrC2CtcZUPTuYsMjh39VEaRDKJccUYn3i7gCkxQub5k4OqDrmRtEXdza6Ki2uPF_bdEYS3bYsHsZRw4jRYmZGRYNpb5nDJlpgpxQBEJQ2ErLSVNmAszvLf2FXw-OCsMjqzOJEMvd0a4xOYwEUaW0dvs9Ys7Z70zrhrNrrHoJmX-jnRYjfcJvSx2Q"
     },
     {
       "id": "60a853b82f0e47569bd3b8fc5313295c",
@@ -55,6 +91,15 @@
       "screenshotUrl": "https://lh3.googleusercontent.com/aida/ADBb0uhUBqqSDxuNVQDxlSvaRmlfIzrYzxoIeBntGUTB3tMoJ019tgichW2lOrK2-97q5gUqpYAW6tfAFN37WjNR2Nqr2JsOJuWWlIYdJWq_HgqoIlT91s-tRCbXRGc3KB4bHv6LuBiJP0V060uVUTyaMscVklcMNQNk12P1QjGW6darPm1RFdJOxvbrR7J8QqJm3gPpjvV2ueqBNHniILk_a66eB6TePYHcFiTmItEEy7NHtRGw61F1-ngeM_8"
     },
     {
+      "id": "e0c62e39df2549e291699bcb58a9c8a2",
+      "title": "Arcade Details",
+      "deviceType": "DESKTOP",
+      "width": "2560",
+      "height": "2388",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzFkYjY2OTQ1NDIyZDQ4ZWFhNzYxYWMxZjRkMjY1MzNhEgsSBxDUr6LfnQsYAZIBIwoKcHJvamVjdF9pZBIVQhM5NTIyNjYwODc3MDA1MTkxNzc0&filename=&opi=89354086",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/ADBb0uhI4J5hHtDJMJQ2us0VOAcQ-TsNZneg0QQon7AyAZD4ga6QUlqtNdexGnV8ApDEoufZUyvCuMko4Bc0p_2C2bgUQHMEH5j49G4q-RW6OduCMPGnmC69Lf0KrMtSuhntHiDzyB_e7BrsCGczhsJNOinwuszoaYx10O3o4GrIRUAUactuRHLuk5eu-CHfRR7a2gJ8GNn49uDEZmFkiS4SmmygWPAlcdJ-Bd-IKXMglHunyjVmsTiv2cin-g"
+    },
+    {
       "id": "ccfddda1e8a64f54a93bf268c4013406",
       "title": "Editor (Grid View)",
       "deviceType": "DESKTOP",
@@ -64,42 +109,33 @@
       "screenshotUrl": "https://lh3.googleusercontent.com/aida/ADBb0ugYZdaT62FOfWoRrzCHqzwRz1zR7EcxbPRoxO8Ok9N9V-rXwvORKnE-d8T8cE5j_fdSk2loNpzDTtXt0OiEa6piUscHF7Psx8qMXLV7OL4AOg8AcwjXHk3gvHfjxDPJCT7kzPE8Te0nxwbQW9D7NQmG48MN9DS_XLfbfw_45UBUcZIY6EL0HE6QaPlAgIrqNK5JTaPN0_w6LDsfJ0qXSM8SBh-t93L6U1icvufCe5lqW8DBlUxLKw2FHA"
     },
     {
-      "id": "714e8a45f148464aa184d115e7fdf08f",
-      "title": "Dashboard (Flow)",
-      "deviceType": "DESKTOP",
-      "width": "2560",
-      "height": "2192",
-      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzk3ZmZkYzUzZGZjYTQzNjQ4ZTQwZjQ3NWMxOWRkODNlEgsSBxDUr6LfnQsYAZIBIwoKcHJvamVjdF9pZBIVQhM5NTIyNjYwODc3MDA1MTkxNzc0&filename=&opi=89354086",
-      "screenshotUrl": "https://lh3.googleusercontent.com/aida/ADBb0ug77W0gD0c29XYcV6K5Rblu7Wt2XqDcBS5my4_U4TrgBLinkTJLsUWTbQqxaymPUq2Eqr8ZqNnTnCLNqxghpaD2fB0zVgd4b2lL6cz2iadIN_643OBHkh3QnQUCEIFsopAeI2aYlt40YfYQhnO2HwY6vHWnYJpjpbaXUhBn3_eR6YgPq473JllRdaoz-0EMqdR63jQGnbsSK2ffBD3LQjX0x2n3txcp40DPLIjPbsws3GrfkikSZk9ufg"
-    },
-    {
       "id": "beed1bd8cc5e4721a7058880463e9f01",
       "title": "Editor",
       "deviceType": "MOBILE",
       "width": "390",
       "height": "884",
-      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzc0ZmVhZjJiNGI3NDQwZTRhZTIwOTM5MzVhNDdkZWQ5EgsSBxDUr6LfnQsYAZIBIwoKcHJvamVjdF9pZBIVQhM5NTIyNjYwODc3MDA1MTkxNzc0&filename=&opi=89354086",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzBkZjYwN2VmNzc1MzRjZTg5ODY5Y2Y4ZTRlMWYwNWQzEgsSBxDUr6LfnQsYAZIBIwoKcHJvamVjdF9pZBIVQhM5NTIyNjYwODc3MDA1MTkxNzc0&filename=&opi=89354086",
       "screenshotUrl": null
     },
     {
-      "id": "0aee0fd55864486aa2a81298a09c0ee4",
-      "title": "Share Modal",
+      "id": "3e8f5cc7cfb34b91935e0de674fea046",
+      "title": "Dashboard (Flow)",
       "deviceType": "DESKTOP",
       "width": "2560",
-      "height": "2048",
-      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sX2QwNDA2ODYwZjEyYTQ0OGU4NzZiMDAzMGZlZTY2NGQ5EgsSBxDUr6LfnQsYAZIBIwoKcHJvamVjdF9pZBIVQhM5NTIyNjYwODc3MDA1MTkxNzc0&filename=&opi=89354086",
-      "screenshotUrl": "https://lh3.googleusercontent.com/aida/ADBb0uhEMHdeI8NJRhsM9s5ZQyoPt4a8uD5AS-EXe0xBvct3fMYQWkNnZvxvVrOB-fPr2h3toQcKtza_lPCQc0a1knxfNgPkijcLk1gPzKJKd_y7TPx8ke4c5g4WUzO-oJrVv-yQU5E14RV9tbC84h38e54nyh9R0fWavw9pyMEqVRSspSObbbwsakXXu2qQ2U0fE-FfcKIisZ-sf8TpKdj58eWBda0RPu4x8r-5vd4WUTzQAsOg6VoZA9pvMbs"
+      "height": "2192",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzJkMTQ2NWEwYjUwNDRiNjc4ZjVmYjZkYzgwYTVlZDBmEgsSBxDUr6LfnQsYAZIBIwoKcHJvamVjdF9pZBIVQhM5NTIyNjYwODc3MDA1MTkxNzc0&filename=&opi=96797242",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/ADBb0ujZB2qyl3bAjPcWvCwwsFKeRoFvtJsW-uo_m_FuZsHjs9MResZP0QWnMQpGL_9zC1XmyY5ZkDfl-qNHe6fo-fwNJmd8jNenD5_YibKA5nbhIvOHXsrzOeRD-dzSGf6lQFVsz2fJRi5_2ihEwmb3vaiJ_Kkv2v9_2Qdr21yxo4fvQomSpBAKoXXxg7Z7JhJPUVXeZehmqRb9y1C35glnrypRY1l3tQ-IY6zQuiiBoCdP13GVF80P9iN70_4"
     },
     {
-      "id": "3a7f7b22fefa4ef5bedae38aa19e625a",
-      "title": "Editor (Flow)",
+      "id": "41601ba1d0664a99b83cfa9b178c3c4b",
+      "title": "Editor",
       "deviceType": "DESKTOP",
       "width": "2560",
       "height": "2048",
-      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sX2RjZGFhMmYzMzA3ZTRjMTA4NzY0MDk4YTUxZjdlM2Y3EgsSBxDUr6LfnQsYAZIBIwoKcHJvamVjdF9pZBIVQhM5NTIyNjYwODc3MDA1MTkxNzc0&filename=&opi=89354086",
-      "screenshotUrl": "https://lh3.googleusercontent.com/aida/ADBb0ujz7irXre16dfd_2__x21WeFSvt-J386XyakMvPfm838tQODiqJF5OuNStS16mkjVokU5TtsWSdeas99c5hZpY-j26uFNBcv48xGmYrf4uVUWCSBNKHkfV4mnCpWJVE9xwNovNFPoQwkO5VAYHPQAlXp88lmTTM7pWOh--FVtKY0mBe26LdGD9rtGvKjwtsNm3YUShdRtEJHhiXiBCaKfT4ckMMVj6oduWlRd-ip3b_NTfBEHmAxEerhyc"
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzNkMWUyYzc0OGRiMzRjYTBiOTAwZDljZDU4ZDU0NDU5EgsSBxDUr6LfnQsYAZIBIwoKcHJvamVjdF9pZBIVQhM5NTIyNjYwODc3MDA1MTkxNzc0&filename=&opi=89354086",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/ADBb0uh7dTW-4dNqO2c-5CloOvNJA9XxyRdISabBzJHW5v9sHmJoAPudOclapgMJQZbwwwP0PKzHs3eKGJI9bLahYLsFDksu0vz9mpffM8HTPkHnttwa015fZyxHjoEvku_1DUva4dmYf2-asOl1BBPdWQ9wIyDe1PlrbBedtZ8NuSPiKKZ-59umhXLxMS1KDeZSkoenpdTwiC6eaIIMxUi4i_inGCZLorWhs8xltlHmDp2twfV7eKiQrVVraL4"
     }
   ],
-  "syncedAt": "2026-03-22T07:05:49Z",
+  "syncedAt": "2026-03-22T08:41:16Z",
   "projectId": "9522660877005191774"
 }

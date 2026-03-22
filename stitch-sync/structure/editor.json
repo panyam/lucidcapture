@@ -183,60 +183,93 @@
       "flex-1",
       "flex",
       "flex-col",
-      "bg-surface",
-      "relative"
+      "bg-surface-container-low"
     ]
   },
   {
     "type": "comment",
-    "text": "Video Preview Stage",
+    "text": "Header for the list view",
     "depth": 4
   },
   {
-    "type": "div",
+    "type": "h1",
+    "depth": 6,
+    "text": "Recorded Arcades"
+  },
+  {
+    "type": "button",
+    "depth": 5,
     "layout": [
-      "flex-1",
+      "bg-primary",
+      "rounded-lg",
+      "shadow-lg",
+      "shadow-xl",
       "flex"
     ],
+    "text": "add\n      Create New"
+  },
+  {
+    "type": "comment",
+    "text": "Arcades List",
     "depth": 4
   },
   {
     "type": "div",
     "layout": [
-      "relative",
-      "aspect-video",
-      "rounded-2xl",
-      "shadow-",
-      "bg-on-background"
+      "flex",
+      "flex-col"
     ],
     "depth": 5
   },
   {
-    "type": "img",
+    "type": "comment",
+    "text": "List Item 1 (With active dropdown simulation)",
     "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-white",
+      "rounded-xl",
+      "flex",
+      "shadow-sm",
+      "shadow-md",
+      "shadow",
+      "relative"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "rounded-lg",
+      "bg-slate-200",
+      "flex-shrink-0"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "img",
+    "depth": 8,
+    "alt": "Onboarding Flow thumbnail"
+  },
+  {
+    "type": "h4",
+    "depth": 8,
+    "text": "Onboarding Flow"
+  },
+  {
+    "type": "button",
+    "depth": 8,
+    "layout": [
+      "bg-surface-container-high",
+      "rounded-full"
+    ],
+    "text": "more_vert"
   },
   {
     "type": "comment",
-    "text": "Interactive Hotspot Overlay (Example)",
-    "depth": 6
-  },
-  {
-    "type": "div",
-    "layout": [
-      "absolute",
-      "bg-primary",
-      "rounded-full"
-    ],
-    "depth": 8
-  },
-  {
-    "type": "div",
-    "layout": [
-      "bg-primary",
-      "rounded-full",
-      "shadow-lg",
-      "flex"
-    ],
+    "text": "Dropdown Menu",
     "depth": 8
   },
   {
@@ -244,219 +277,127 @@
     "layout": [
       "absolute",
       "bg-white",
-      "shadow-2xl",
-      "rounded-xl"
-    ],
-    "depth": 7
-  },
-  {
-    "type": "comment",
-    "text": "Floating Annotations",
-    "depth": 6
-  },
-  {
-    "type": "comment",
-    "text": "Video Controls Overlay (Glassmorphism)",
-    "depth": 6
-  },
-  {
-    "type": "div",
-    "layout": [
-      "absolute",
-      "rounded-full",
-      "flex",
+      "rounded-xl",
       "shadow-2xl"
     ],
+    "depth": 8
+  },
+  {
+    "type": "button",
+    "depth": 9,
+    "layout": [
+      "flex",
+      "bg-primary"
+    ],
+    "text": "edit\n              Edit"
+  },
+  {
+    "type": "button",
+    "depth": 9,
+    "layout": [
+      "flex",
+      "bg-primary"
+    ],
+    "text": "content_copy\n              Duplicate"
+  },
+  {
+    "type": "button",
+    "depth": 9,
+    "layout": [
+      "flex",
+      "bg-error"
+    ],
+    "text": "delete\n              Delete"
+  },
+  {
+    "type": "comment",
+    "text": "List Item 2",
     "depth": 6
   },
   {
     "type": "div",
     "layout": [
-      "bg-primary",
-      "rounded-full",
-      "flex"
+      "bg-white",
+      "rounded-xl",
+      "flex",
+      "shadow-sm",
+      "shadow-md",
+      "shadow"
     ],
-    "depth": 7
-  },
-  {
-    "type": "comment",
-    "text": "Timeline",
-    "depth": 4
+    "depth": 6
   },
   {
     "type": "div",
     "layout": [
-      "bg-surface-container-low",
-      "flex",
-      "flex-col"
+      "rounded-lg",
+      "bg-slate-200",
+      "flex-shrink-0"
     ],
-    "depth": 4
+    "depth": 7
+  },
+  {
+    "type": "img",
+    "depth": 8,
+    "alt": "New Feature Demo thumbnail"
   },
   {
     "type": "h4",
-    "depth": 6,
-    "text": "Timeline"
+    "depth": 8,
+    "text": "New Feature Demo"
   },
   {
     "type": "button",
     "depth": 7,
     "layout": [
-      "rounded-lg",
-      "bg-surface-container-high"
-    ],
-    "text": "zoom_in"
-  },
-  {
-    "type": "button",
-    "depth": 7,
-    "layout": [
-      "rounded-lg",
-      "bg-surface-container-high"
-    ],
-    "text": "zoom_out"
-  },
-  {
-    "type": "div",
-    "layout": [
-      "relative",
       "bg-surface-container-high",
+      "rounded-full"
+    ],
+    "text": "more_vert"
+  },
+  {
+    "type": "comment",
+    "text": "List Item 3",
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-white",
       "rounded-xl",
-      "shadow-inner"
-    ],
-    "depth": 5
-  },
-  {
-    "type": "comment",
-    "text": "Timeline Tracks",
-    "depth": 6
-  },
-  {
-    "type": "comment",
-    "text": "Time Markers",
-    "depth": 6
-  },
-  {
-    "type": "div",
-    "layout": [
-      "absolute",
-      "flex"
-    ],
-    "depth": 6
-  },
-  {
-    "type": "div",
-    "layout": [
-      "bg-outline-variant",
       "flex",
-      "flex-col"
-    ],
-    "depth": 7
-  },
-  {
-    "type": "div",
-    "layout": [
-      "bg-outline-variant",
-      "flex",
-      "flex-col"
-    ],
-    "depth": 7
-  },
-  {
-    "type": "div",
-    "layout": [
-      "bg-outline-variant",
-      "flex",
-      "flex-col"
-    ],
-    "depth": 7
-  },
-  {
-    "type": "div",
-    "layout": [
-      "bg-outline-variant",
-      "flex",
-      "flex-col"
-    ],
-    "depth": 7
-  },
-  {
-    "type": "div",
-    "layout": [
-      "bg-outline-variant",
-      "flex",
-      "flex-col"
-    ],
-    "depth": 7
-  },
-  {
-    "type": "div",
-    "layout": [
-      "bg-outline-variant",
-      "flex",
-      "flex-col"
-    ],
-    "depth": 7
-  },
-  {
-    "type": "comment",
-    "text": "Steps / Segments",
-    "depth": 6
-  },
-  {
-    "type": "div",
-    "layout": [
-      "absolute",
-      "bg-secondary",
-      "rounded-lg",
-      "flex",
+      "shadow-sm",
       "shadow-md",
-      "bg-secondary"
+      "shadow"
     ],
     "depth": 6
   },
   {
     "type": "div",
     "layout": [
-      "absolute",
-      "bg-secondary-container",
       "rounded-lg",
-      "flex",
-      "shadow-md"
-    ],
-    "depth": 6
-  },
-  {
-    "type": "div",
-    "layout": [
-      "absolute",
-      "bg-tertiary",
-      "rounded-lg",
-      "flex",
-      "shadow-md"
-    ],
-    "depth": 6
-  },
-  {
-    "type": "comment",
-    "text": "Playhead",
-    "depth": 6
-  },
-  {
-    "type": "div",
-    "layout": [
-      "absolute",
-      "bg-primary-container"
-    ],
-    "depth": 6
-  },
-  {
-    "type": "div",
-    "layout": [
-      "absolute",
-      "bg-primary-container",
-      "rounded-sm"
+      "bg-slate-200",
+      "flex-shrink-0"
     ],
     "depth": 7
+  },
+  {
+    "type": "img",
+    "depth": 8,
+    "alt": "Bug Report: Navigation thumbnail"
+  },
+  {
+    "type": "h4",
+    "depth": 8,
+    "text": "Bug Report: Navigation"
+  },
+  {
+    "type": "button",
+    "depth": 7,
+    "layout": [
+      "bg-surface-container-high",
+      "rounded-full"
+    ],
+    "text": "more_vert"
   },
   {
     "type": "comment",

@@ -6,6 +6,7 @@ import type { CapturedStep, Message } from './types'
 async function forwardPendingSession() {
   for (let i = 0; i < 5; i++) {
     try {
+      if (!chrome.runtime?.id) return // Context invalidated
       const result = await chrome.storage.local.get('pendingSession')
       if (result.pendingSession) {
         window.postMessage(
@@ -16,7 +17,7 @@ async function forwardPendingSession() {
         return
       }
     } catch {
-      // Storage not available
+      return // Context invalidated or storage not available
     }
     await new Promise((r) => setTimeout(r, 500))
   }
@@ -41,22 +42,53 @@ let lastScrollY = 0
 const SCROLL_DEBOUNCE_MS = 500
 const MIN_SCROLL_DELTA = 100
 
+/**
+ * Safely send a message to the background. If the extension context
+ * has been invalidated (extension reloaded/updated), clean up gracefully.
+ */
+function safeSendMessage(msg: Message) {
+  try {
+    if (!chrome.runtime?.id) {
+      // Extension context invalidated — clean up
+      selfDestruct()
+      return
+    }
+    chrome.runtime.sendMessage(msg)
+  } catch {
+    selfDestruct()
+  }
+}
+
+function selfDestruct() {
+  recording = false
+  document.removeEventListener('click', handleClick, true)
+  document.removeEventListener('scroll', handleScroll, true)
+  if (scrollDebounceTimer) clearTimeout(scrollDebounceTimer)
+  removeRecordingIndicator()
+  win.__lucidCaptureInjected = false
+}
+
 // ── Message handler ──
 
-chrome.runtime.onMessage.addListener(
-  (msg: Message, _sender, sendResponse: (resp: unknown) => void) => {
-    if (msg.type === 'START_RECORDING') {
-      startCapture()
-      sendResponse({ ok: true })
-    } else if (msg.type === 'STOP_RECORDING') {
-      stopCapture()
-      sendResponse({ ok: true })
-    } else if (msg.type === 'PING') {
-      sendResponse({ ok: true, recording })
-    }
-    return true
-  },
-)
+try {
+  chrome.runtime.onMessage.addListener(
+    (msg: Message, _sender, sendResponse: (resp: unknown) => void) => {
+      if (msg.type === 'START_RECORDING') {
+        startCapture()
+        sendResponse({ ok: true })
+      } else if (msg.type === 'STOP_RECORDING') {
+        stopCapture()
+        sendResponse({ ok: true })
+      } else if (msg.type === 'PING') {
+        sendResponse({ ok: true, recording })
+      }
+      return true
+    },
+  )
+} catch {
+  // Extension context already invalidated at injection time
+  selfDestruct()
+}
 
 // ── Capture lifecycle ──
 
@@ -118,7 +150,7 @@ function handleClick(event: MouseEvent) {
     },
   }
 
-  chrome.runtime.sendMessage({ type: 'STEP_CAPTURED', step })
+  safeSendMessage({ type: 'STEP_CAPTURED', step })
 }
 
 function handleScroll() {
@@ -152,7 +184,7 @@ function emitStep(type: 'scroll' | 'periodic' | 'navigation') {
     scrollY: window.scrollY,
   }
 
-  chrome.runtime.sendMessage({ type: 'STEP_CAPTURED', step })
+  safeSendMessage({ type: 'STEP_CAPTURED', step })
 }
 
 // Detect page navigation (SPA or full reload)

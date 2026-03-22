@@ -50,11 +50,7 @@ export async function getSteps(projectId: string): Promise<ArcadeStep[]> {
 export async function addStep(step: ArcadeStep): Promise<void> {
   await db.transaction('rw', db.projects, db.steps, async () => {
     await db.steps.add(step)
-    const count = await db.steps.where('projectId').equals(step.projectId).count()
-    await db.projects.update(step.projectId, {
-      stepCount: count,
-      updatedAt: now(),
-    })
+    await recalcProjectStats(step.projectId)
   })
 }
 
@@ -65,11 +61,16 @@ export async function updateStep(id: string, updates: Partial<ArcadeStep>): Prom
 export async function deleteStep(id: string, projectId: string): Promise<void> {
   await db.transaction('rw', db.projects, db.steps, async () => {
     await db.steps.delete(id)
-    const count = await db.steps.where('projectId').equals(projectId).count()
-    await db.projects.update(projectId, {
-      stepCount: count,
-      updatedAt: now(),
-    })
+    await recalcProjectStats(projectId)
+  })
+}
+
+async function recalcProjectStats(projectId: string): Promise<void> {
+  const steps = await db.steps.where('projectId').equals(projectId).toArray()
+  await db.projects.update(projectId, {
+    stepCount: steps.length,
+    totalDuration: steps.reduce((sum, s) => sum + (s.duration || 0), 0),
+    updatedAt: now(),
   })
 }
 

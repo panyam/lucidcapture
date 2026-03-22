@@ -71,12 +71,19 @@ export const useArcadeStore = create<ArcadeState>((set, get) => ({
     await arcadeDb.addStep(step)
     const { currentProject } = get()
     if (currentProject && step.projectId === currentProject.id) {
-      set((s) => ({
-        currentSteps: [...s.currentSteps, step].sort((a, b) => a.order - b.order),
-        currentProject: s.currentProject
-          ? { ...s.currentProject, stepCount: s.currentProject.stepCount + 1 }
-          : null,
-      }))
+      set((s) => {
+        const newSteps = [...s.currentSteps, step].sort((a, b) => a.order - b.order)
+        return {
+          currentSteps: newSteps,
+          currentProject: s.currentProject
+            ? {
+                ...s.currentProject,
+                stepCount: newSteps.length,
+                totalDuration: newSteps.reduce((sum, s) => sum + (s.duration || 0), 0),
+              }
+            : null,
+        }
+      })
     }
   },
 
@@ -94,12 +101,19 @@ export const useArcadeStore = create<ArcadeState>((set, get) => ({
     const step = currentSteps.find((s) => s.id === id)
     if (!step) return
     await arcadeDb.deleteStep(id, step.projectId)
-    set((s) => ({
-      currentSteps: s.currentSteps.filter((s) => s.id !== id),
-      currentProject:
-        s.currentProject?.id === step.projectId
-          ? { ...s.currentProject, stepCount: Math.max(0, s.currentProject.stepCount - 1) }
-          : s.currentProject,
-    }))
+    set((s) => {
+      const newSteps = s.currentSteps.filter((s) => s.id !== id)
+      return {
+        currentSteps: newSteps,
+        currentProject:
+          s.currentProject?.id === step.projectId
+            ? {
+                ...s.currentProject,
+                stepCount: newSteps.length,
+                totalDuration: newSteps.reduce((sum, s) => sum + (s.duration || 0), 0),
+              }
+            : s.currentProject,
+      }
+    })
   },
 }))

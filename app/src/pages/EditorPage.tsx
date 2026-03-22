@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router'
 import { SideNav } from '../components/shared/SideNav'
 import { MaterialIcon } from '../components/shared/MaterialIcon'
 import { useArcadeStore } from '../stores/arcade.store'
-import { getPendingSession, clearPendingSession, convertExtensionSteps } from '../lib/capture/bridge'
+import { waitForPendingSession, convertExtensionSteps } from '../lib/capture/bridge'
 
 export function EditorPage() {
   const { id } = useParams()
@@ -19,14 +19,15 @@ export function EditorPage() {
 
     async function importFromExtension() {
       setImporting(true)
-      const session = await getPendingSession()
+
+      // Wait for extension to deliver data via postMessage (up to 10s)
+      const session = await waitForPendingSession(10000)
       if (!session || session.steps.length === 0) {
         setImporting(false)
         navigate('/dashboard')
         return
       }
 
-      // Create a new project for the imported steps
       const project = await createProject('Imported Arcade')
       const steps = await convertExtensionSteps(project.id, session.steps)
 
@@ -35,7 +36,6 @@ export function EditorPage() {
         await addStep(step)
       }
 
-      await clearPendingSession()
       setImporting(false)
       if (!cancelled) navigate(`/editor/${project.id}`, { replace: true })
     }

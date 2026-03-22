@@ -1,37 +1,5 @@
 import type { ArcadeStep } from '../../types/arcade'
 
-/**
- * Check chrome.storage.local for a pending capture session
- * from the Chrome extension. Returns null if none found or
- * if running outside an extension context.
- */
-export async function getPendingSession(): Promise<{
-  id: string
-  steps: ExtensionStep[]
-  capturedAt: number
-} | null> {
-  try {
-    // chrome.storage may not exist if extension isn't installed
-    if (typeof chrome === 'undefined' || !chrome.storage?.local) {
-      return null
-    }
-    const result = await chrome.storage.local.get('pendingSession')
-    return (result.pendingSession as { id: string; steps: ExtensionStep[]; capturedAt: number }) ?? null
-  } catch {
-    return null
-  }
-}
-
-export async function clearPendingSession(): Promise<void> {
-  try {
-    if (typeof chrome !== 'undefined' && chrome.storage?.local) {
-      await chrome.storage.local.remove('pendingSession')
-    }
-  } catch {
-    // Not in extension context
-  }
-}
-
 interface ExtensionStep {
   id: string
   type: 'click' | 'scroll' | 'input'
@@ -46,6 +14,64 @@ interface ExtensionStep {
     selector: string
     label: string
   }
+}
+
+interface PendingSession {
+  id: string
+  steps: ExtensionStep[]
+  capturedAt: number
+}
+
+/**
+ * Wait for the extension to post session data via window.postMessage.
+ * The extension injects a content script into the /editor/import page
+ * that posts { type: 'LUCID_CAPTURE_IMPORT', session: {...} }.
+ *
+ * Falls back to chrome.storage.local if available (extension context).
+ * Returns null after timeout if no data arrives.
+ */
+export function waitForPendingSession(timeoutMs = 10000): Promise<PendingSession | null> {
+  return new Promise((resolve) => {
+    let resolved = false
+
+    // Method 1: Listen for postMessage from extension content script
+    function handleMessage(event: MessageEvent) {
+      if (event.data?.type === 'LUCID_CAPTURE_IMPORT' && event.data.session) {
+        if (resolved) return
+        resolved = true
+        window.removeEventListener('message', handleMessage)
+        resolve(event.data.session as PendingSession)
+      }
+    }
+    window.addEventListener('message', handleMessage)
+
+    // Method 2: Try chrome.storage.local (works if page is in extension context)
+    ;(async () => {
+      try {
+        if (typeof chrome !== 'undefined' && chrome.storage?.local) {
+          const result = await chrome.storage.local.get('pendingSession')
+          const ps = result.pendingSession as PendingSession | undefined
+          if (ps && ps.steps?.length > 0 && !resolved) {
+            resolved = true
+            window.removeEventListener('message', handleMessage)
+            await chrome.storage.local.remove('pendingSession')
+            resolve(ps)
+          }
+        }
+      } catch {
+        // Not in extension context
+      }
+    })()
+
+    // Timeout
+    setTimeout(() => {
+      if (!resolved) {
+        resolved = true
+        window.removeEventListener('message', handleMessage)
+        resolve(null)
+      }
+    }, timeoutMs)
+  })
 }
 
 /**
@@ -63,7 +89,6 @@ export async function convertExtensionSteps(
         const res = await fetch(es.screenshot)
         screenshot = await res.blob()
       } else {
-        // Create a tiny placeholder blob
         screenshot = new Blob([''], { type: 'image/jpeg' })
       }
 
@@ -74,7 +99,7 @@ export async function convertExtensionSteps(
         type: es.type,
         screenshot,
         clickTarget: es.clickTarget,
-        duration: 3000, // default 3s per step
+        duration: 3000,
         transition: 'fade' as const,
         url: es.url,
         viewportWidth: es.viewportWidth,

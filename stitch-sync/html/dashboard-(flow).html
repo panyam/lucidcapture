@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lucid Capture - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Balig+Script&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-high": "#e1e8fd",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#c1e8ff",
+                        "outline-variant": "#c5c5d9",
+                        "outline": "#757687",
+                        "secondary-container": "#4b67f3",
+                        "inverse-on-surface": "#edf0ff",
+                        "on-secondary-container": "#fffbff",
+                        "surface-container-low": "#f1f3ff",
+                        "primary-container": "#2142e7",
+                        "surface-bright": "#f9f9ff",
+                        "surface-tint": "#2949ec",
+                        "secondary-fixed-dim": "#bac3ff",
+                        "on-secondary-fixed": "#00105a",
+                        "on-tertiary-container": "#91d9ff",
+                        "on-background": "#141b2b",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#444656",
+                        "primary-fixed": "#dee0ff",
+                        "secondary-fixed": "#dee0ff",
+                        "surface-dim": "#d3daef",
+                        "inverse-surface": "#293040",
+                        "secondary": "#2d4bd9",
+                        "tertiary-container": "#006080",
+                        "tertiary-fixed-dim": "#73d1ff",
+                        "surface": "#f9f9ff",
+                        "surface-variant": "#dce2f7",
+                        "inverse-primary": "#bbc3ff",
+                        "tertiary": "#00475f",
+                        "background": "#f9f9ff",
+                        "on-primary-container": "#c7cdff",
+                        "on-primary-fixed-variant": "#002ccd",
+                        "on-secondary-fixed-variant": "#0531c5",
+                        "primary": "#0029c0",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#001e2b",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#000f5d",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#dce2f7",
+                        "on-surface": "#141b2b",
+                        "surface-container": "#e9edff",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#bbc3ff",
+                        "on-tertiary-fixed-variant": "#004d67"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"],
+                        "script": ["Balig Script"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "1rem", "xl": "1.25rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-background antialiased overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="bg-white/70 backdrop-blur-xl sticky top-0 z-50 shadow-[0_32px_64px_-4px_rgba(20,27,43,0.04)]">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-[1920px] mx-auto">
+<div class="flex items-center gap-12">
+<span class="text-2xl font-black tracking-tighter text-blue-800">Lucid Capture</span>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-500 font-medium hover:text-blue-600 transition-colors" href="#">Explore</a>
+<a class="text-slate-500 font-medium hover:text-blue-600 transition-colors" href="#">Community</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<button class="bg-gradient-to-r from-primary to-primary-container text-on-primary px-6 py-2.5 rounded-full font-semibold text-sm shadow-lg hover:shadow-primary/20 transition-all active:scale-95 duration-200 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">videocam</span>
+                    Record New
+                </button>
+<div class="h-10 w-10 rounded-full bg-surface-container-highest overflow-hidden cursor-pointer border-2 border-transparent hover:border-primary transition-all">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="Close up professional headshot of a person" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEqniGe22aVGPbdgJdR51XhRlcbIjO1NHpmC1Rf-5H-MqfkpSTkD9AobWZGzE47ZBipIOPL-fx1rKCiFpEcjxPnWAYjZeG9Z8KY8UMG92nOdQGlAZN4jCHEWwBWLDy4zZWSiWaVbKbl0m84F5CjSQ_5RPNEVhd9mN_ZCD7_buV2akfFg7UrIfoQbIvSd5BEXDhMm7X8ELdHBd4z4tb76AG53bh_4YzDp4uWT_jwrdIaPT7Pea_O7nrBYeCYIXhQMW9-6QQXXffyIM"/>
+</div>
+</div>
+</div>
+</header>
+<div class="flex min-h-screen">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 pt-20 bg-slate-50 flex flex-col gap-2 px-4 py-6 z-40">
+<div class="mb-8 px-2 flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white font-bold">W</div>
+<div>
+<p class="text-lg font-bold text-slate-900 leading-tight">Workspace</p>
+<p class="text-xs text-slate-500">Pro Plan</p>
+</div>
+</div>
+<div class="space-y-1">
+<a class="bg-white text-blue-700 font-semibold shadow-sm rounded-xl flex items-center gap-3 px-4 py-3 transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="video_library">video_library</span>
+<span>My Arcades</span>
+</a>
+<a class="text-slate-500 font-medium hover:bg-slate-100 rounded-xl flex items-center gap-3 px-4 py-3 transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Shared</span>
+</a>
+<a class="text-slate-500 font-medium hover:bg-slate-100 rounded-xl flex items-center gap-3 px-4 py-3 transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</div>
+<div class="mt-auto p-4 bg-surface-container-high rounded-xl">
+<p class="text-xs font-bold text-primary mb-2 uppercase tracking-widest">Growth</p>
+<p class="text-sm font-medium text-slate-700 mb-4">Unlock team features and advanced analytics.</p>
+<button class="w-full bg-primary text-white text-xs font-bold py-2 rounded-lg hover:bg-blue-700 transition-colors">Upgrade to Team</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 flex-1 p-12 bg-surface">
+<header class="mb-12">
+<div class="flex items-end gap-3 mb-2">
+<h1 class="text-5xl font-black tracking-tighter text-on-background">My Arcades</h1>
+<span class="font-script text-primary text-2xl rotate-[-5deg] mb-2">curated</span>
+</div>
+<p class="text-slate-500 max-w-xl">Manage and organize your interactive product demos. Use the grid below to view recent activity and insights.</p>
+</header>
+<!-- Bento Grid Layout for Arcades -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Arcade Card 1 -->
+<div class="group relative bg-surface-container-lowest rounded-xl p-3 shadow-[0_32px_64px_-4px_rgba(20,27,43,0.04)] hover:shadow-[0_48px_80px_-4px_rgba(20,27,43,0.08)] transition-all duration-300 cursor-pointer" onclick="window.location.href='{{DATA:SCREEN:SCREEN_5}}'">
+<div class="aspect-video rounded-lg overflow-hidden relative mb-4">
+<img alt="Arcade thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="SaaS dashboard analytics screen screenshot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoVdFp5mHxOuI1fref6_Cjx6f-bac5jhb3TwMWRsUD6KidoORjg25JP0GKW5P0Vk9i9gT78CZ46XwC4lRDgc7JLGcQ4ZOIHhMTUmZrEAj73XSJAuJio1DOdgPKBbATovC_yfJ2fvzQyg5h5nHu6ZLTQw_vmiIc7ymWxtDbR_RBCdAG_2UCdJAhFeGtmRQNyvtvsOUEvi5qK_Z1W_XcsEMhIMhZMbQb03u7WnHVmD0EF-ZOcycjJeAcfizeLUxPsBd-BgfAF9PNaWw"/>
+<div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-5xl" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+</div>
+<div class="absolute bottom-3 right-3 glass-panel px-2 py-1 rounded text-[10px] font-bold text-on-background">02:45</div>
+</div>
+<div class="px-2 pb-2">
+<h3 class="text-lg font-bold text-on-background mb-1">Onboarding Flow</h3>
+<div class="flex items-center justify-between mt-4">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1.5 text-slate-500">
+<span class="material-symbols-outlined text-sm">visibility</span>
+<span class="text-xs font-semibold">1.2k</span>
+</div>
+<div class="flex items-center gap-1.5 text-slate-500">
+<span class="material-symbols-outlined text-sm">edit_calendar</span>
+<span class="text-xs font-semibold">2d ago</span>
+</div>
+</div>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Arcade Card 2 -->
+<div class="group relative bg-surface-container-lowest rounded-xl p-3 shadow-[0_32px_64px_-4px_rgba(20,27,43,0.04)] hover:shadow-[0_48px_80px_-4px_rgba(20,27,43,0.08)] transition-all duration-300">
+<div class="aspect-video rounded-lg overflow-hidden relative mb-4">
+<img alt="Arcade thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Modern mobile app interface design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfwwRhVFxT1SLt7ikkGurcuB8OMy11VHhfo17W_a30j7cvz9iuDBWlTyJNlQGrCtPB2_Bm3vVTcRkPb1WNyuKqkbkDG53gBTHM565uMSxprs_69fJ-8XxUIjUHtZR6ZVjA2Bwaf6X4Y86NWN0DpAXjRBbbQoS27HNqvSD5gQEAc4t1JPN-g3W_sB37PmkT5R4KOhUf8O15SX-iCeyGxWJjFCxv36tVObWsGERRqg21Vdb0ca2sH3BOcCf3V-Wkhetm1ie-_pbP71w"/>
+<div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-5xl" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+</div>
+<div class="absolute bottom-3 right-3 glass-panel px-2 py-1 rounded text-[10px] font-bold text-on-background">01:12</div>
+</div>
+<div class="px-2 pb-2">
+<h3 class="text-lg font-bold text-on-background mb-1">New Feature Demo</h3>
+<div class="flex items-center justify-between mt-4">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1.5 text-slate-500">
+<span class="material-symbols-outlined text-sm">visibility</span>
+<span class="text-xs font-semibold">856</span>
+</div>
+<div class="flex items-center gap-1.5 text-slate-500">
+<span class="material-symbols-outlined text-sm">edit_calendar</span>
+<span class="text-xs font-semibold">5h ago</span>
+</div>
+</div>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Arcade Card 3 -->
+<div class="group relative bg-surface-container-lowest rounded-xl p-3 shadow-[0_32px_64px_-4px_rgba(20,27,43,0.04)] hover:shadow-[0_48px_80px_-4px_rgba(20,27,43,0.08)] transition-all duration-300">
+<div class="aspect-video rounded-lg overflow-hidden relative mb-4">
+<img alt="Arcade thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Collaboration software workspace view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAm_v-D8ypc0zs34XypIX7DOZFE2Y56rf2RX5xc9RGJHlVtjEfy_fe-UAT0XKeB19HfWIEEfM8T5cVVNhgn_vcyOOWEs0GWd9NVk75kox6s2Grsm6NyTQvWaYN8sby6wnWc82WsStLZKWgUfO-Bh_sHd2b9UYusY4pVbug-upqAEks2dEeZFTuTvIjllD2i5QJz5EyMmhAtAvxtHat_BWaiu3AAEa67VB-5ap4YHj-t7vjJ7iGXE1vQnPOTEGSN6AwGiBeMCk7gzdo"/>
+<div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-5xl" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+</div>
+<div class="absolute bottom-3 right-3 glass-panel px-2 py-1 rounded text-[10px] font-bold text-on-background">05:20</div>
+</div>
+<div class="px-2 pb-2">
+<h3 class="text-lg font-bold text-on-background mb-1">Enterprise Pitch Deck</h3>
+<div class="flex items-center justify-between mt-4">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1.5 text-slate-500">
+<span class="material-symbols-outlined text-sm">visibility</span>
+<span class="text-xs font-semibold">3.4k</span>
+</div>
+<div class="flex items-center gap-1.5 text-slate-500">
+<span class="material-symbols-outlined text-sm">edit_calendar</span>
+<span class="text-xs font-semibold">1w ago</span>
+</div>
+</div>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Arcade Card 4 -->
+<div class="group relative bg-surface-container-lowest rounded-xl p-3 shadow-[0_32px_64px_-4px_rgba(20,27,43,0.04)] hover:shadow-[0_48px_80px_-4px_rgba(20,27,43,0.08)] transition-all duration-300">
+<div class="aspect-video rounded-lg overflow-hidden relative mb-4">
+<img alt="Arcade thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Developer tools and code editor interface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADvZRMiG3puByey9nQFh0GoSK6nBK7iYLi0_6XuW0Yuqh_BFd3FxlD59bY91HOHq9vEPbhIBmlrGkDfaCLxF15waG2U5fMdJ9oiXbDDD8NrAlXQDVmXZwJCRpHuQV1MAY3Hh0ivJqOvxzz_Mn1x-3Gq09T48zcq_Tn7d5yXj2vUFjLt6jDoaKeydJcoTL8roRbmw02xbbN-en1lD9VB7gKw7qY5aNq0Az36eCJ9SjuGPhRau-k9ZSl8X3mHK5v0KwIEFRkK3XvmzM"/>
+<div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-5xl" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+</div>
+<div class="absolute bottom-3 right-3 glass-panel px-2 py-1 rounded text-[10px] font-bold text-on-background">00:45</div>
+</div>
+<div class="px-2 pb-2">
+<h3 class="text-lg font-bold text-on-background mb-1">Bug Report #402</h3>
+<div class="flex items-center justify-between mt-4">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1.5 text-slate-500">
+<span class="material-symbols-outlined text-sm">visibility</span>
+<span class="text-xs font-semibold">42</span>
+</div>
+<div class="flex items-center gap-1.5 text-slate-500">
+<span class="material-symbols-outlined text-sm">edit_calendar</span>
+<span class="text-xs font-semibold">12m ago</span>
+</div>
+</div>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Create New Card (Asymmetric Layout element) -->
+<div class="group border-2 border-dashed border-outline-variant/50 rounded-xl flex flex-col items-center justify-center p-8 hover:border-primary/50 transition-all cursor-pointer bg-slate-50/50">
+<div class="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow mb-4">
+<span class="material-symbols-outlined text-primary text-3xl">add</span>
+</div>
+<p class="font-bold text-on-surface">Create New Arcade</p>
+<p class="text-sm text-slate-400 text-center mt-2 px-6">Start a new recording from scratch or import a video file.</p>
+</div>
+<!-- Recent Insight Bento Box -->
+<div class="lg:col-span-1 bg-gradient-to-br from-tertiary-container to-on-tertiary-fixed-variant rounded-xl p-6 text-on-tertiary relative overflow-hidden shadow-xl">
+<div class="relative z-10">
+<span class="label-sm bg-white/20 px-2 py-1 rounded text-[10px] uppercase font-black tracking-widest inline-block mb-4">Weekly Insight</span>
+<h4 class="text-2xl font-bold leading-tight mb-2">Growth is up by 24%</h4>
+<p class="text-sm text-tertiary-fixed/80 mb-6">Your demo "Onboarding Flow" is performing exceptionally well this week.</p>
+<button class="text-xs font-bold flex items-center gap-2 hover:gap-3 transition-all">
+                            View Analytics
+                            <span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</div>
+<div class="absolute -right-8 -bottom-8 w-48 h-48 bg-white/5 rounded-full blur-3xl"></div>
+</div>
+</div>
+</main>
+</div>
+<!-- Floating Action Button for Quick Record (Mobile Only) -->
+<button class="md:hidden fixed bottom-8 right-8 w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center z-50 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">videocam</span>
+</button>
+</body></html>

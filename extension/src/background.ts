@@ -2,6 +2,13 @@ import type { RecordingSession, CapturedStep, Message, StateResponse } from './t
 
 let session: RecordingSession | null = null
 
+// Expose for Playwright testing — service worker evaluate() can call these
+;(globalThis as any).__lucid = {
+  startRecording: () => startRecording(),
+  stopRecording: () => stopRecording(),
+  getSession: () => session,
+}
+
 chrome.runtime.onMessage.addListener(
   (msg: Message, sender, sendResponse: (resp: unknown) => void) => {
     if (msg.type === 'START_RECORDING') {
@@ -31,6 +38,12 @@ async function startRecording(tabId?: number) {
     startedAt: Date.now(),
   }
 
+  // If no tabId provided (e.g. message came from popup), query the active tab
+  if (!tabId) {
+    const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
+    tabId = tab?.id
+  }
+
   if (tabId) {
     try {
       await chrome.tabs.sendMessage(tabId, { type: 'START_RECORDING' })
@@ -38,7 +51,7 @@ async function startRecording(tabId?: number) {
       // Content script not injected — inject it first
       await chrome.scripting.executeScript({
         target: { tabId },
-        files: ['content.js'],
+        files: ['dist/content.js'],
       })
       await chrome.tabs.sendMessage(tabId, { type: 'START_RECORDING' })
     }
@@ -91,7 +104,11 @@ async function stopRecording() {
 
   chrome.action.setBadgeText({ text: '' })
 
-  // Open the editor import page
-  chrome.tabs.create({ url: 'http://localhost:5173/editor/import' })
+  // Save to storage — the content script on the editor page will read it
   session = null
+
+  // Open the editor import page
+  // The content script (injected via <all_urls>) will detect this URL
+  // and forward the pendingSession from chrome.storage.local via postMessage
+  chrome.tabs.create({ url: 'http://localhost:5173/editor/import' })
 }

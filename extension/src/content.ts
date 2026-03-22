@@ -4,6 +4,32 @@ import type { CapturedStep, Message } from './types'
 let recording = false
 let stepCount = 0
 
+// If we're on the editor import page, forward pendingSession from chrome.storage
+if (window.location.href.includes('/editor/import')) {
+  forwardPendingSession()
+}
+
+async function forwardPendingSession() {
+  // Retry several times to handle React mount timing
+  for (let i = 0; i < 5; i++) {
+    try {
+      const result = await chrome.storage.local.get('pendingSession')
+      if (result.pendingSession) {
+        window.postMessage(
+          { type: 'LUCID_CAPTURE_IMPORT', session: result.pendingSession },
+          '*',
+        )
+        // Clear after sending
+        await chrome.storage.local.remove('pendingSession')
+        return
+      }
+    } catch {
+      // Storage not available
+    }
+    await new Promise((r) => setTimeout(r, 500))
+  }
+}
+
 chrome.runtime.onMessage.addListener(
   (msg: Message, _sender, sendResponse: (resp: unknown) => void) => {
     if (msg.type === 'START_RECORDING') {

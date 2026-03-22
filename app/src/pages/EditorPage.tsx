@@ -1,61 +1,147 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useCallback, useState, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router'
 import { SideNav } from '../components/shared/SideNav'
+import { EditorCanvas } from '../components/editor/EditorCanvas'
+import { PlaybackControls } from '../components/editor/PlaybackControls'
+import { Timeline } from '../components/editor/Timeline'
+import { ToolSidebar } from '../components/editor/ToolSidebar'
 import { MaterialIcon } from '../components/shared/MaterialIcon'
 import { useArcadeStore } from '../stores/arcade.store'
 import { waitForPendingSession, convertExtensionSteps } from '../lib/capture/bridge'
+import type { StepTransition } from '../types/arcade'
 
 export function EditorPage() {
   const { id } = useParams()
   const navigate = useNavigate()
-  const { currentProject, currentSteps, loadProject, createProject, addStep } = useArcadeStore()
-  const [currentStepIndex, setCurrentStepIndex] = useState(0)
+  const {
+    currentProject, currentSteps, loadProject, createProject,
+    addStep, updateStep, deleteStep, updateProject,
+  } = useArcadeStore()
+  const [stepIndex, setStepIndex] = useState(0)
   const [importing, setImporting] = useState(false)
+  const [playing, setPlaying] = useState(false)
+  const playTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  // Import from extension if landing on /editor/import
+  const currentStep = currentSteps[stepIndex]
+
+  // ── Import from extension ──
   useEffect(() => {
     if (id !== 'import') return
     let cancelled = false
-
-    async function importFromExtension() {
+    async function run() {
       setImporting(true)
-
-      // Wait for extension to deliver data via postMessage (up to 10s)
       const session = await waitForPendingSession(10000)
       if (!session || session.steps.length === 0) {
         setImporting(false)
         navigate('/dashboard')
         return
       }
-
       const project = await createProject('Imported Arcade')
       const steps = await convertExtensionSteps(project.id, session.steps)
-
       for (const step of steps) {
         if (cancelled) return
         await addStep(step)
       }
-
       setImporting(false)
       if (!cancelled) navigate(`/editor/${project.id}`, { replace: true })
     }
-
-    importFromExtension()
+    run()
     return () => { cancelled = true }
   }, [id, navigate, createProject, addStep])
 
-  // Load existing project
+  // ── Load project ──
   useEffect(() => {
     if (id && id !== 'new' && id !== 'import') {
       loadProject(id)
+      setStepIndex(0)
+      setPlaying(false)
     }
   }, [id, loadProject])
 
-  const currentStep = currentSteps[currentStepIndex]
-  const screenshotUrl = useMemo(() => {
-    if (!currentStep?.screenshot) return null
-    return URL.createObjectURL(currentStep.screenshot)
-  }, [currentStep])
+  // ── Clamp index ──
+  useEffect(() => {
+    if (stepIndex >= currentSteps.length && currentSteps.length > 0) {
+      setStepIndex(currentSteps.length - 1)
+    }
+  }, [currentSteps.length, stepIndex])
+
+  // ── Playback ──
+  const stopPlaying = useCallback(() => {
+    setPlaying(false)
+    if (playTimerRef.current) clearTimeout(playTimerRef.current)
+    playTimerRef.current = null
+  }, [])
+
+  useEffect(() => {
+    if (!playing) return
+    if (stepIndex >= currentSteps.length - 1) { stopPlaying(); return }
+    playTimerRef.current = setTimeout(
+      () => setStepIndex((i) => i + 1),
+      currentStep?.duration ?? 3000,
+    )
+    return () => { if (playTimerRef.current) clearTimeout(playTimerRef.current) }
+  }, [playing, stepIndex, currentStep?.duration, currentSteps.length, stopPlaying])
+
+  const togglePlay = useCallback(() => {
+    if (playing) { stopPlaying(); return }
+    if (stepIndex >= currentSteps.length - 1) setStepIndex(0)
+    setPlaying(true)
+  }, [playing, stepIndex, currentSteps.length, stopPlaying])
+
+  // ── Keyboard shortcuts ──
+  useEffect(() => {
+    function handleKey(e: KeyboardEvent) {
+      const tag = (e.target as HTMLElement).tagName
+      if (tag === 'INPUT' || tag === 'TEXTAREA') return
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault(); setStepIndex((i) => Math.min(currentSteps.length - 1, i + 1))
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault(); setStepIndex((i) => Math.max(0, i - 1))
+      } else if (e.key === ' ') {
+        e.preventDefault(); togglePlay()
+      } else if ((e.key === 'Delete' || e.key === 'Backspace') && !e.metaKey && currentStep) {
+        e.preventDefault(); handleDeleteStep()
+      }
+    }
+    window.addEventListener('keydown', handleKey)
+    return () => window.removeEventListener('keydown', handleKey)
+  }, [currentSteps.length, currentStep, togglePlay])
+
+  // ── Step actions ──
+  function handleDeleteStep() {
+    if (!currentStep || !confirm(`Delete step ${stepIndex + 1}?`)) return
+    stopPlaying()
+    deleteStep(currentStep.id)
+  }
+
+  function handleCanvasClick(x: number, y: number) {
+    if (!currentStep) return
+    updateStep(currentStep.id, {
+      clickTarget: {
+        x, y,
+        selector: currentStep.clickTarget?.selector ?? '',
+        label: currentStep.clickTarget?.label ?? `Step ${stepIndex + 1}`,
+      },
+    })
+  }
+
+  function handleAnnotationChange(field: 'title' | 'body', value: string) {
+    if (!currentStep) return
+    const annotation = currentStep.annotation ?? { title: '', body: '', position: { x: 0.5, y: 0.3 } }
+    updateStep(currentStep.id, { annotation: { ...annotation, [field]: value } })
+  }
+
+  function handleDurationChange(seconds: number) {
+    if (!currentStep) return
+    updateStep(currentStep.id, { duration: Math.max(500, seconds * 1000) })
+  }
+
+  function handleTransitionChange(transition: StepTransition) {
+    if (!currentStep) return
+    updateStep(currentStep.id, { transition })
+  }
+
+  // ── Rendering ──
 
   if (importing) {
     return (
@@ -68,177 +154,73 @@ export function EditorPage() {
     )
   }
 
+  const emptyMessage = id === 'new'
+    ? 'Use the Chrome extension to capture steps'
+    : currentSteps.length === 0
+      ? 'No steps captured yet'
+      : `Editing ${currentProject?.title ?? 'arcade'}`
+
   return (
     <div className="flex min-h-screen">
       <SideNav />
       <main className="ml-64 flex-1 flex flex-col bg-surface">
-        {/* Editor Canvas */}
-        <div className="flex-1 p-8 flex flex-col">
-          {/* Video Preview Stage */}
-          <div className="flex-1 flex items-center justify-center">
-            <div className="relative w-full max-w-4xl aspect-video bg-inverse-surface rounded-2xl shadow-[0_48px_80px_-4px_rgba(20,27,43,0.12)] overflow-hidden">
-              {screenshotUrl ? (
-                <>
-                  <img src={screenshotUrl} alt={`Step ${currentStepIndex + 1}`} className="w-full h-full object-contain" />
-                  {/* Hotspot overlay */}
-                  {currentStep?.clickTarget && (
-                    <div
-                      className="absolute"
-                      style={{
-                        left: `${currentStep.clickTarget.x * 100}%`,
-                        top: `${currentStep.clickTarget.y * 100}%`,
-                        transform: 'translate(-50%, -50%)',
-                      }}
-                    >
-                      <div className="relative group cursor-pointer">
-                        <div className="w-8 h-8 rounded-full bg-primary/80 animate-pulse" />
-                        <div className="absolute -top-12 left-1/2 -translate-x-1/2 glass-panel ghost-border rounded-lg px-3 py-2 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                          <p className="text-xs font-semibold text-on-background">{currentStep.clickTarget.label}</p>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </>
-              ) : (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center text-inverse-on-surface">
-                    <MaterialIcon icon="smart_display" size="64px" />
-                    <p className="mt-4 text-sm font-medium opacity-70">
-                      {id === 'new'
-                        ? 'Use the Chrome extension to capture steps'
-                        : currentSteps.length === 0
-                          ? 'No steps captured yet'
-                          : `Editing ${currentProject?.title ?? 'arcade'}`}
-                    </p>
-                  </div>
-                </div>
-              )}
-
-              {/* Floating Controls */}
-              {currentSteps.length > 0 && (
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 glass-panel ghost-border rounded-full px-6 py-3 flex items-center gap-6">
-                  <button
-                    className="text-on-background/60 hover:text-on-background transition-colors disabled:opacity-30"
-                    disabled={currentStepIndex === 0}
-                    onClick={() => setCurrentStepIndex((i) => Math.max(0, i - 1))}
-                  >
-                    <MaterialIcon icon="skip_previous" size="20px" />
-                  </button>
-                  <button className="w-10 h-10 rounded-full bg-gradient-to-r from-primary to-primary-container flex items-center justify-center text-white shadow-lg">
-                    <MaterialIcon icon="play_arrow" filled size="24px" />
-                  </button>
-                  <button
-                    className="text-on-background/60 hover:text-on-background transition-colors disabled:opacity-30"
-                    disabled={currentStepIndex >= currentSteps.length - 1}
-                    onClick={() => setCurrentStepIndex((i) => Math.min(currentSteps.length - 1, i + 1))}
-                  >
-                    <MaterialIcon icon="skip_next" size="20px" />
-                  </button>
-                  <span className="text-xs font-semibold text-on-background/60">
-                    {currentStepIndex + 1} / {currentSteps.length}
-                  </span>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Timeline */}
-          <div className="mt-6 bg-surface-container-low rounded-xl p-4">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-xs font-bold text-slate-500 uppercase tracking-widest">
-                Timeline — {currentSteps.length} steps
-              </h3>
-            </div>
-            <div className="h-12 bg-surface-container-high rounded-lg relative overflow-hidden flex">
-              {currentSteps.map((step, i) => (
-                <button
-                  key={step.id}
-                  className={`h-full flex-1 transition-colors ${
-                    i === currentStepIndex
-                      ? 'bg-primary/40'
-                      : 'bg-secondary/20 hover:bg-secondary/30'
-                  } ${i > 0 ? 'ml-0.5' : ''} rounded-sm`}
-                  onClick={() => setCurrentStepIndex(i)}
-                  title={step.clickTarget?.label ?? `Step ${i + 1}`}
-                />
-              ))}
-              {currentSteps.length === 0 && (
-                <div className="flex items-center justify-center w-full text-xs text-slate-400 font-semibold">
-                  No steps yet
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </main>
-
-      {/* Tool Sidebar */}
-      <aside className="w-80 bg-surface-container-lowest p-6 flex flex-col gap-8 overflow-y-auto">
-        <h2 className="text-lg font-bold text-on-background">Editor Tools</h2>
-
-        {/* Current Step Info */}
-        {currentStep && (
-          <div>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Current Step</p>
-            <div className="space-y-2 text-sm">
-              <p className="text-on-background font-semibold">{currentStep.clickTarget?.label ?? `Step ${currentStepIndex + 1}`}</p>
-              <p className="text-slate-500 text-xs truncate">{currentStep.url}</p>
-              <p className="text-slate-400 text-xs">Type: {currentStep.type}</p>
-            </div>
+        {/* Title bar */}
+        {currentProject && (
+          <div className="px-8 pt-6 pb-2 flex items-center gap-4">
+            <input
+              type="text"
+              value={currentProject.title}
+              onChange={(e) => updateProject(currentProject.id, { title: e.target.value })}
+              className="text-2xl font-black tracking-tight text-on-background bg-transparent focus:outline-none focus:bg-surface-container-low rounded-lg px-2 py-1 -ml-2 transition-colors"
+            />
+            <span className="text-xs font-semibold text-slate-400 bg-surface-container-high px-3 py-1 rounded-full">
+              {currentSteps.length} steps
+            </span>
           </div>
         )}
 
-        {/* Annotations */}
-        <div>
-          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Annotations</p>
-          <div className="space-y-3">
-            <div>
-              <label className="text-xs font-semibold text-slate-500 mb-1 block">Step Title</label>
-              <input
-                type="text"
-                placeholder="e.g., Click the dashboard"
-                className="w-full bg-surface-container-low rounded-lg px-4 py-2.5 text-sm text-on-background placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 border-b-2 border-transparent focus:border-primary transition-all"
+        <div className="flex-1 p-8 pt-2 flex flex-col">
+          {/* Canvas + controls wrapper */}
+          <div className="flex-1 flex items-center justify-center">
+            <div className="relative w-full max-w-4xl">
+              <EditorCanvas
+                step={currentStep}
+                stepIndex={stepIndex}
+                totalSteps={currentSteps.length}
+                playing={playing}
+                onClickCanvas={handleCanvasClick}
+                emptyMessage={emptyMessage}
               />
-            </div>
-            <div>
-              <label className="text-xs font-semibold text-slate-500 mb-1 block">Text Content</label>
-              <textarea
-                placeholder="Add a description..."
-                rows={3}
-                className="w-full bg-surface-container-low rounded-lg px-4 py-2.5 text-sm text-on-background placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 border-b-2 border-transparent focus:border-primary transition-all resize-none"
+              <PlaybackControls
+                stepIndex={stepIndex}
+                totalSteps={currentSteps.length}
+                playing={playing}
+                onFirst={() => { setStepIndex(0); stopPlaying() }}
+                onPrev={() => { setStepIndex((i) => Math.max(0, i - 1)); stopPlaying() }}
+                onNext={() => { setStepIndex((i) => Math.min(currentSteps.length - 1, i + 1)); stopPlaying() }}
+                onLast={() => { setStepIndex(currentSteps.length - 1); stopPlaying() }}
+                onTogglePlay={togglePlay}
               />
             </div>
           </div>
-        </div>
 
-        {/* Timing */}
-        <div>
-          <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Timing &amp; Transitions</p>
-          <div className="space-y-3">
-            <div>
-              <label className="text-xs font-semibold text-slate-500 mb-1 block">Step Duration (s)</label>
-              <input
-                type="number"
-                defaultValue={3}
-                min={0.5}
-                step={0.5}
-                className="w-full bg-surface-container-low rounded-lg px-4 py-2.5 text-sm text-on-background focus:outline-none focus:ring-2 focus:ring-primary/20 border-b-2 border-transparent focus:border-primary transition-all"
-              />
-            </div>
-          </div>
+          <Timeline
+            steps={currentSteps}
+            currentIndex={stepIndex}
+            playing={playing}
+            onSelectStep={(i) => { setStepIndex(i); stopPlaying() }}
+            onDeleteStep={handleDeleteStep}
+          />
         </div>
+      </main>
 
-        {/* Pro Tip */}
-        <div className="bg-gradient-to-br from-primary-fixed to-primary-fixed-dim rounded-xl p-5">
-          <div className="flex items-center gap-2 mb-2">
-            <MaterialIcon icon="lightbulb" className="text-primary" size="18px" />
-            <p className="text-xs font-bold text-primary uppercase tracking-widest">Pro Tip</p>
-          </div>
-          <p className="text-sm text-on-primary-fixed leading-relaxed">
-            Install the Chrome extension, click <strong>Start Recording</strong>, interact with any site, then click <strong>Stop</strong> to import steps here.
-          </p>
-        </div>
-      </aside>
+      <ToolSidebar
+        step={currentStep}
+        stepIndex={stepIndex}
+        onAnnotationChange={handleAnnotationChange}
+        onDurationChange={handleDurationChange}
+        onTransitionChange={handleTransitionChange}
+      />
     </div>
   )
 }

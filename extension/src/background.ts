@@ -247,5 +247,7 @@ async function stopRecording() {
   chrome.action.setBadgeText({ text: '' })
   session = null
 
-  chrome.tabs.create({ url: 'http://localhost:5173/editor/import' })
+  // Use the app URL — defaults to localhost for dev, override for production
+  const APP_URL = 'http://localhost:5173'
+  chrome.tabs.create({ url: `${APP_URL}/editor/import` })
 }

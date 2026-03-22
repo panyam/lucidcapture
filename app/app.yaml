@@ -1,0 +1,21 @@
+runtime: nodejs22
+
+handlers:
+  # Privacy policy
+  - url: /privacy.html
+    static_files: dist/privacy.html
+    upload: dist/privacy.html
+
+  # Static assets (JS, CSS, images)
+  - url: /assets
+    static_dir: dist/assets
+
+  # Favicon
+  - url: /favicon.svg
+    static_files: dist/favicon.svg
+    upload: dist/favicon.svg
+
+  # All other routes → index.html (SPA routing)
+  - url: /.*
+    static_files: dist/index.html
+    upload: dist/index.html

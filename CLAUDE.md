@@ -24,7 +24,8 @@ cd app && pnpm install && pnpm run dev   # http://localhost:5173
 | `cd extension && pnpm run watch` | Watch mode for extension dev |
 | `make ext` | Build extension (shortcut) |
 | `make ext-zip` | Build + zip for Chrome Web Store upload |
-| `make gh-pages` | Deploy docs/ to GitHub Pages |
+| `make deploy` | Build + deploy to App Engine (lucidcapture.appspot.com) |
+| `make gh-pages` | Deploy privacy policy to GitHub Pages |
 | `make install` | Install all dependencies (app + extension) |
 
 ## Design System

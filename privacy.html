@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lucid Capture — Privacy Policy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;900&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; color: #141b2b; background: #f9f9ff; line-height: 1.7; }
+    .container { max-width: 720px; margin: 0 auto; padding: 80px 24px; }
+    h1 { font-size: 2.5rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 8px; }
+    h2 { font-size: 1.25rem; font-weight: 900; margin: 2rem 0 0.75rem; color: #0029c0; }
+    p, li { font-size: 0.95rem; color: #444656; margin-bottom: 0.75rem; }
+    ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+    .subtitle { color: #757687; font-size: 0.875rem; margin-bottom: 3rem; }
+    strong { color: #141b2b; }
+    a { color: #0029c0; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .badge { display: inline-block; background: #dee0ff; color: #000f5d; font-size: 0.75rem; font-weight: 600; padding: 4px 12px; border-radius: 9999px; margin-bottom: 2rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="badge">Privacy Policy</div>
+    <h1>Lucid Capture</h1>
+    <p class="subtitle">Effective Date: March 21, 2026</p>
+
+    <h2>Overview</h2>
+    <p>Lucid Capture is a browser extension that captures screenshots and click interactions on web pages to create interactive demos. We are committed to user privacy and transparency.</p>
+
+    <h2>Data Collection</h2>
+    <p>Lucid Capture does <strong>NOT</strong> collect, transmit, or store any user data on external servers. Specifically:</p>
+    <ul>
+      <li>No personal information is collected</li>
+      <li>No browsing history is tracked</li>
+      <li>No analytics or telemetry data is sent anywhere</li>
+      <li>No cookies are set</li>
+      <li>No third-party services are contacted</li>
+    </ul>
+
+    <h2>Data Storage</h2>
+    <p>All captured data (screenshots, click coordinates, step metadata) is stored exclusively in your browser's local storage (IndexedDB and chrome.storage.local). This data never leaves your device unless you explicitly export and share it yourself.</p>
+
+    <h2>Permissions Explained</h2>
+    <ul>
+      <li><strong>activeTab:</strong> Required to capture screenshots of the currently active tab during recording</li>
+      <li><strong>tabs:</strong> Required to identify the active tab for screenshot capture and to open the editor tab</li>
+      <li><strong>storage:</strong> Required to temporarily transfer captured steps from the extension to the editor</li>
+      <li><strong>scripting:</strong> Required to inject the click-capture script into pages during recording</li>
+    </ul>
+
+    <h2>Data Sharing</h2>
+    <p>We do not share any data with third parties. There is no server component. The extension operates entirely within your browser.</p>
+
+    <h2>Data Deletion</h2>
+    <p>All locally stored data can be deleted by:</p>
+    <ul>
+      <li>Removing captured projects from the Lucid Capture editor</li>
+      <li>Uninstalling the extension (clears all chrome.storage.local data)</li>
+      <li>Clearing your browser's IndexedDB storage</li>
+    </ul>
+
+    <h2>Changes to This Policy</h2>
+    <p>Any changes to this privacy policy will be reflected in an updated version of the extension and this document.</p>
+
+    <h2>Contact</h2>
+    <p>For privacy questions, open an issue at: <a href="https://github.com/panyam/lucidcapture/issues">github.com/panyam/lucidcapture/issues</a></p>
+  </div>
+</body>
+</html>

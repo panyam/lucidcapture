@@ -36,7 +36,7 @@ gh-pages:
 		git add -A && \
 		git commit -m "Deploy to GitHub Pages" && \
 		git branch -M gh-pages && \
-		git remote add origin git@github.com:panyam/lucidcapture.git && \
+		git remote add origin git@panyam-github:panyam/lucidcapture.git && \
 		git push -f origin gh-pages
 	@rm -rf /tmp/lucid-gh-pages
 	@echo "Deployed! Privacy policy at: https://panyam.github.io/lucidcapture/privacy.html"

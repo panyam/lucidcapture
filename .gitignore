@@ -1,4 +1,5 @@
 node_modules/
+lucid-capture-extension.zip
 dist/
 .DS_Store
 *.local

@@ -2,16 +2,20 @@ import { getUniqueSelector, getElementLabel } from './capture/selectors'
 import type { CapturedStep, Message } from './types'
 
 let recording = false
+let stepCount = 0
 
 chrome.runtime.onMessage.addListener(
   (msg: Message, _sender, sendResponse: (resp: unknown) => void) => {
     if (msg.type === 'START_RECORDING') {
       recording = true
+      stepCount = 0
       document.addEventListener('click', handleClick, true)
+      showRecordingIndicator()
       sendResponse({ ok: true })
     } else if (msg.type === 'STOP_RECORDING') {
       recording = false
       document.removeEventListener('click', handleClick, true)
+      removeRecordingIndicator()
       sendResponse({ ok: true })
     } else if (msg.type === 'PING') {
       sendResponse({ ok: true, recording })
@@ -24,8 +28,15 @@ function handleClick(event: MouseEvent) {
   if (!recording) return
 
   const el = event.target as Element
+
+  // Ignore clicks on our own overlay elements
+  if ((el as HTMLElement).closest?.('[data-lucid-capture]')) return
+
   const x = event.clientX / window.innerWidth
   const y = event.clientY / window.innerHeight
+
+  stepCount++
+  showClickRipple(event.clientX, event.clientY, stepCount)
 
   const step: CapturedStep = {
     id: crypto.randomUUID(),
@@ -43,4 +54,136 @@ function handleClick(event: MouseEvent) {
   }
 
   chrome.runtime.sendMessage({ type: 'STEP_CAPTURED', step })
+}
+
+// ── Visual Feedback ──
+
+function showClickRipple(clientX: number, clientY: number, count: number) {
+  const ripple = document.createElement('div')
+  ripple.setAttribute('data-lucid-capture', 'ripple')
+  Object.assign(ripple.style, {
+    position: 'fixed',
+    left: `${clientX}px`,
+    top: `${clientY}px`,
+    width: '0',
+    height: '0',
+    borderRadius: '50%',
+    background: 'rgba(33, 66, 231, 0.3)',
+    border: '2px solid rgba(33, 66, 231, 0.7)',
+    transform: 'translate(-50%, -50%)',
+    pointerEvents: 'none',
+    zIndex: '2147483646',
+    transition: 'all 0.4s ease-out',
+  })
+  document.body.appendChild(ripple)
+
+  // Step number badge
+  const badge = document.createElement('div')
+  badge.setAttribute('data-lucid-capture', 'badge')
+  badge.textContent = String(count)
+  Object.assign(badge.style, {
+    position: 'fixed',
+    left: `${clientX + 16}px`,
+    top: `${clientY - 16}px`,
+    width: '24px',
+    height: '24px',
+    borderRadius: '50%',
+    background: '#2142e7',
+    color: 'white',
+    fontSize: '11px',
+    fontWeight: '800',
+    fontFamily: 'Inter, system-ui, sans-serif',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    pointerEvents: 'none',
+    zIndex: '2147483647',
+    opacity: '0',
+    transform: 'scale(0.5)',
+    transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+  })
+  document.body.appendChild(badge)
+
+  // Animate in
+  requestAnimationFrame(() => {
+    ripple.style.width = '40px'
+    ripple.style.height = '40px'
+    badge.style.opacity = '1'
+    badge.style.transform = 'scale(1)'
+  })
+
+  // Fade out ripple, keep badge for a bit
+  setTimeout(() => {
+    ripple.style.opacity = '0'
+    ripple.style.width = '60px'
+    ripple.style.height = '60px'
+    setTimeout(() => ripple.remove(), 400)
+  }, 300)
+
+  setTimeout(() => {
+    badge.style.opacity = '0'
+    badge.style.transform = 'scale(0.5)'
+    setTimeout(() => badge.remove(), 300)
+  }, 1500)
+}
+
+function showRecordingIndicator() {
+  removeRecordingIndicator()
+
+  const indicator = document.createElement('div')
+  indicator.id = 'lucid-capture-indicator'
+  indicator.setAttribute('data-lucid-capture', 'indicator')
+  Object.assign(indicator.style, {
+    position: 'fixed',
+    top: '12px',
+    right: '12px',
+    padding: '8px 16px',
+    borderRadius: '9999px',
+    background: 'rgba(0, 0, 0, 0.85)',
+    color: 'white',
+    fontSize: '12px',
+    fontWeight: '700',
+    fontFamily: 'Inter, system-ui, sans-serif',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    zIndex: '2147483647',
+    pointerEvents: 'none',
+    backdropFilter: 'blur(8px)',
+    boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+  })
+
+  const dot = document.createElement('div')
+  Object.assign(dot.style, {
+    width: '8px',
+    height: '8px',
+    borderRadius: '50%',
+    background: '#ff4444',
+    animation: 'lucid-pulse 1s infinite',
+  })
+
+  // Inject keyframes
+  const style = document.createElement('style')
+  style.setAttribute('data-lucid-capture', 'styles')
+  style.textContent = `
+    @keyframes lucid-pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+  `
+  document.head.appendChild(style)
+
+  const label = document.createElement('span')
+  label.textContent = 'Lucid Capture Recording'
+
+  indicator.appendChild(dot)
+  indicator.appendChild(label)
+  document.body.appendChild(indicator)
+}
+
+function removeRecordingIndicator() {
+  document.getElementById('lucid-capture-indicator')?.remove()
+  document.querySelector('[data-lucid-capture="styles"]')?.remove()
+  // Clean up any remaining ripples/badges
+  document.querySelectorAll('[data-lucid-capture]').forEach(el => el.remove())
 }

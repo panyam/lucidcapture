@@ -10,6 +10,7 @@
     "scripting"
   ],
   "background": {
+    "scripts": ["dist/background.js"],
     "service_worker": "dist/background.js"
   },
   "content_scripts": [
@@ -22,5 +23,10 @@
   "action": {
     "default_popup": "popup/popup.html",
     "default_title": "Lucid Capture"
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "lucid-capture@panyam.github.io"
+    }
   }
 }

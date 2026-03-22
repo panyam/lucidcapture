@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Lucid Capture",
+  "version": "0.1.0",
+  "description": "Capture interactive product demos from any website",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "dist/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["dist/content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "Lucid Capture"
+  }
+}

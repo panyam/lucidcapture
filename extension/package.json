@@ -1,0 +1,14 @@
+{
+  "name": "lucid-capture-extension",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "node build.mjs",
+    "watch": "node build.mjs --watch"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.1.38",
+    "esbuild": "^0.27.4",
+    "typescript": "^5.9.3"
+  }
+}

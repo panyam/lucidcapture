@@ -8,7 +8,7 @@ cd app && pnpm install && pnpm run dev   # http://localhost:5173
 
 ## Project Structure
 - `app/` — React + Vite + Tailwind (pnpm, not npm)
-- `extension/` — Chrome Extension (Manifest V3) — not yet built
+- `extension/` — Chrome Extension (Manifest V3, TypeScript + esbuild)
 - `stitch-sync/` — Design sync infrastructure (shell scripts, no LLM)
 - `tests/` — pytest + Playwright e2e tests — not yet built
 
@@ -19,6 +19,8 @@ cd app && pnpm install && pnpm run dev   # http://localhost:5173
 | `cd app && pnpm run build` | Production build |
 | `./stitch-sync/sync.sh all` | Sync designs from Stitch API |
 | `./stitch-sync/sync.sh manifest` | Sync just tokens + screen list |
+| `cd extension && pnpm run build` | Build Chrome extension → `dist/` |
+| `cd extension && pnpm run watch` | Watch mode for extension dev |
 
 ## Design System
 - Source of truth: `stitch-sync/design-tokens.json` and `stitch-sync/design-system.md`

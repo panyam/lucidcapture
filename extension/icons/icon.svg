@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <!-- Background circle with primary gradient -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0029C0"/>
+      <stop offset="100%" stop-color="#2142E7"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#bg)"/>
+
+  <!-- Stylized "play + capture" icon: a rounded rectangle (screen) with a play triangle -->
+  <!-- Screen outline -->
+  <rect x="28" y="34" width="72" height="50" rx="8" fill="none" stroke="white" stroke-width="4" opacity="0.9"/>
+
+  <!-- Play triangle -->
+  <path d="M54 48 L54 74 L76 61 Z" fill="white" opacity="0.95"/>
+
+  <!-- Recording dot (bottom right) -->
+  <circle cx="90" cy="94" r="7" fill="#FF4444"/>
+  <circle cx="90" cy="94" r="4" fill="white"/>
+
+  <!-- Capture crosshair lines (subtle) -->
+  <line x1="20" y1="59" x2="28" y2="59" stroke="white" stroke-width="2" opacity="0.4"/>
+  <line x1="100" y1="59" x2="108" y2="59" stroke="white" stroke-width="2" opacity="0.4"/>
+  <line x1="64" y1="26" x2="64" y2="34" stroke="white" stroke-width="2" opacity="0.4"/>
+  <line x1="64" y1="84" x2="64" y2="92" stroke="white" stroke-width="2" opacity="0.4"/>
+</svg>

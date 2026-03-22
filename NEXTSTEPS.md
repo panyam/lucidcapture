@@ -1,7 +1,7 @@
 # Next Steps
 
 ## Up Next
-- [ ] Enhanced capture: periodic screenshots (every 2-3s) + scroll-settle + navigation events, marked as "transition" vs "interaction" steps
+- [ ] Cross-tab/window recording — background service worker as controller (tab switches, URL changes, window focus changes all tracked without relying on content script persistence)
 - [ ] Phase 6: Static HTML Compiler — Export arcade as single self-contained HTML (slyds pattern)
 - [ ] Phase 7: Share Modal + Export — Download, copy link, embed code
 
@@ -12,6 +12,11 @@
 - [x] Phase 5: Editor Interactivity — Split components (EditorCanvas, PlaybackControls, Timeline, ToolSidebar), play/pause, annotations, timing, drag-to-reposition hotspots, edit/view mode toggle, timeline thumbnails
 - [x] Player page — Full-screen immersive playback at /play/:id with hotspot-click-to-advance, auto-hiding controls, progress bar, "Demo complete" overlay
 - [x] Navigation flow — Dashboard → Player → Edit → Editor → Preview → Player
+- [x] Hybrid capture — periodic screenshots (2s), scroll-settle, navigation events + click capture
+- [x] Aspect ratio fix — canvas matches screenshot dimensions, no black bars, hotspots aligned
+- [x] Content script injection guard — __lucidCaptureInjected flag prevents duplicate listeners
+- [x] Duration calculation — totalDuration computed from step durations, shown on dashboard cards
+- [x] Editor layout — left-aligned canvas, constrained timeline scroll
 - [x] Bidirectional Stitch sync — Used MCP edit_screens + generate_screen_from_text to push flow changes back to Stitch design
 - [x] Design sync skill — /design-sync audits uncommitted sync changes with structure diffing
 - [x] HTML structure extraction — extract-structure.sh parses HTML into diffable JSON outlines
@@ -24,7 +29,9 @@
 ## Backlog
 - [ ] Extension hot-reload during development
 - [ ] Editor Grid View (from Stitch design) — project picker mode in editor
+- [ ] Arcade Details page (from Stitch design) — metadata, analytics, download
 - [ ] Phase 2: Static Pages — Polish all screens to match Stitch screenshots exactly
 - [ ] Phase 8: Design Token Pipeline — Automated Stitch → Tailwind config generation scripts
 - [ ] Phase 9: Testing — pytest + Playwright e2e tests (framework set up, needs formal test suite)
 - [ ] Phase 10: Polish — Mobile editor, responsive, a11y, dark mode
+- [ ] Clean up redundant Stitch screens (delete duplicates via Stitch UI)

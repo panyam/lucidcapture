@@ -166,7 +166,7 @@ export function EditorPage() {
   return (
     <div className="flex min-h-screen">
       <SideNav />
-      <main className="ml-64 flex-1 flex flex-col bg-surface">
+      <main className="ml-64 flex-1 flex flex-col bg-surface min-w-0 overflow-hidden">
         {/* Title bar */}
         {currentProject && (
           <div className="px-8 pt-6 pb-2 flex items-center gap-4">
@@ -205,9 +205,9 @@ export function EditorPage() {
           </div>
         )}
 
-        <div className="flex-1 p-8 pt-2 flex flex-col">
+        <div className="flex-1 p-8 pt-2 flex flex-col min-w-0 overflow-hidden">
           {/* Canvas + controls wrapper */}
-          <div className="flex-1 flex items-center justify-center">
+          <div className="flex-1 flex items-start justify-start">
             <div className="relative w-full max-w-4xl">
               <EditorCanvas
                 step={currentStep}

@@ -10,7 +10,8 @@ cd app && pnpm install && pnpm run dev   # http://localhost:5173
 - `app/` — React + Vite + Tailwind (pnpm, not npm)
 - `extension/` — Chrome Extension (Manifest V3, TypeScript + esbuild)
 - `stitch-sync/` — Design sync infrastructure (shell scripts, no LLM)
-- `tests/` — pytest + Playwright e2e tests — not yet built
+- `tests/` — pytest + Playwright e2e tests
+- `docs/` — GitHub Pages (privacy policy)
 
 ## Key Commands
 | Command | What |
@@ -21,6 +22,10 @@ cd app && pnpm install && pnpm run dev   # http://localhost:5173
 | `./stitch-sync/sync.sh manifest` | Sync just tokens + screen list |
 | `cd extension && pnpm run build` | Build Chrome extension → `dist/` |
 | `cd extension && pnpm run watch` | Watch mode for extension dev |
+| `make ext` | Build extension (shortcut) |
+| `make ext-zip` | Build + zip for Chrome Web Store upload |
+| `make gh-pages` | Deploy docs/ to GitHub Pages |
+| `make install` | Install all dependencies (app + extension) |
 
 ## Design System
 - Source of truth: `stitch-sync/design-tokens.json` and `stitch-sync/design-system.md`
@@ -40,6 +45,11 @@ cd app && pnpm install && pnpm run dev   # http://localhost:5173
 - Stitch MCP is configured in user scope (`~/.claude.json`), not in the repo
 - `.mcp.json` is gitignored (contains API key when set at project scope)
 - Use `pnpm`, not `npm`
+- **Extension ↔ Web App data transfer**: `chrome.storage.local` is NOT accessible from regular web pages (only from extension contexts). The content script bridges this — it reads from `chrome.storage.local` and forwards via `window.postMessage`
+- **Extension `startRecording()`**: when called from popup, `sender.tab` is `undefined` — must query active tab explicitly
+- **Extension content script injection**: esbuild outputs to `dist/`, so scripting.executeScript must reference `'dist/content.js'`, not `'content.js'`
+- **Corporate MDM (Jamf)**: blocks Chrome + Canary extension loading via `com.google.chrome` plist. Use Chromium or Brave instead — they use different plist domains
+- **Playwright extension testing**: use Playwright's bundled Chromium with `--load-extension` flag (bypasses MDM). Expose test hooks on `globalThis.__lucid` for service worker evaluate()
 
 ## Architecture
 See [ARCHITECTURE.md](ARCHITECTURE.md) for design decisions and component hierarchy.

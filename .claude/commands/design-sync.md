@@ -1,48 +1,81 @@
-Sync designs from Stitch and audit what changed. Produce an actionable change report.
+Audit uncommitted Stitch sync changes against the last commit. Assumes `make sync` was already run.
+
+## Prerequisites
+The user has already run `make sync` which overwrote `stitch-sync/` with latest from Stitch API. This skill diffs those uncommitted changes against git HEAD to produce an actionable report.
 
 ## Steps
 
-1. **Run sync**: Execute `make sync` to pull latest from Stitch API
+1. **Check if there's anything to diff**: Run `git diff --stat -- stitch-sync/`. If empty, report "no changes since last commit" and stop.
 
-2. **Diff tokens**: Compare `stitch-sync/design-tokens.json` against git HEAD
-   - Extract just `namedColors` from both old and new, sort keys, and diff VALUES (ignore key reordering)
-   - Check `fonts`, `roundness`, `spacingScale`, `overrides` for actual value changes
-   - If any color values changed: list them and identify which Tailwind `@theme` vars in `app/src/index.css` need updating
+2. **Diff design tokens**: Compare `stitch-sync/design-tokens.json` against git HEAD
+   ```bash
+   git show HEAD:stitch-sync/design-tokens.json | jq -S '.namedColors' > /tmp/old_colors.json
+   jq -S '.namedColors' stitch-sync/design-tokens.json > /tmp/new_colors.json
+   diff /tmp/old_colors.json /tmp/new_colors.json
+   ```
+   - Also check `fonts`, `roundness`, `spacingScale`, `overrides` for value changes
+   - If any color values changed: list them and identify which `--color-*` vars in `app/src/index.css` need updating
 
-3. **Diff screen manifest**: Compare `stitch-sync/screen-manifest.json` against git HEAD
-   - List ADDED screens (new IDs not in old manifest)
-   - List REMOVED screens (old IDs not in new manifest)
-   - List RENAMED screens (same ID, different title)
-   - List RESIZED screens (same ID, different dimensions)
-   - For each new screen, read its screenshot to understand what it is
+3. **Diff screen manifest**: Compare screen lists
+   ```bash
+   git show HEAD:stitch-sync/screen-manifest.json | jq -r '.screens[] | "\(.id) \(.title)"' | sort > /tmp/old_screens.txt
+   jq -r '.screens[] | "\(.id) \(.title)"' stitch-sync/screen-manifest.json | sort > /tmp/new_screens.txt
+   comm -23 /tmp/old_screens.txt /tmp/new_screens.txt  # REMOVED
+   comm -13 /tmp/old_screens.txt /tmp/new_screens.txt  # ADDED
+   ```
+   - For each new screen: read its screenshot (PNG) to understand what it shows
+   - Check for renamed screens (same ID prefix, different title)
+   - Check for resized screens (same ID, different width/height)
 
-4. **Diff HTML**: For screens that existed before, diff the HTML files
+4. **Diff screenshots**: Compare file hashes to detect visual changes
+   ```bash
+   for f in stitch-sync/screenshots/*.png; do
+     name=$(basename "$f")
+     old_hash=$(git show "HEAD:stitch-sync/screenshots/$name" 2>/dev/null | md5 -q || echo "NEW")
+     new_hash=$(md5 -q "$f")
+     [ "$old_hash" != "$new_hash" ] && echo "CHANGED: $name"
+   done
+   ```
+   - For changed screenshots: read the new PNG to see what visually changed
+
+5. **Diff HTML**: For existing screens, diff their HTML files
+   ```bash
+   for f in stitch-sync/html/*.html; do
+     name=$(basename "$f")
+     git show "HEAD:stitch-sync/html/$name" 2>/dev/null | diff - "$f"
+   done
+   ```
    - Ignore whitespace-only changes
-   - Summarize structural changes (new elements, removed elements, changed classes)
-   - Flag any new `{{DATA:SCREEN:SCREEN_N}}` navigation links (Flow variants)
+   - Summarize structural changes (new elements, removed elements, changed classes/styles)
+   - Flag any new `{{DATA:SCREEN:SCREEN_N}}` navigation links
 
-5. **Produce change report** with three sections:
+6. **Produce change report**:
 
    ### No Action Needed
-   List changes that are cosmetic (key reordering, whitespace) or already handled in our code.
+   Changes that are cosmetic (key reordering, whitespace) or already handled.
 
    ### Code Changes Required
-   For each actionable change, specify:
+   For each actionable change:
    - What changed in the design
    - Which file(s) in `app/src/` need updating
-   - What the update would look like (brief description, not full code)
+   - What the update would look like (brief, not full code)
 
    ### New Screens to Implement
-   For each new screen, describe:
-   - What it shows (from screenshot analysis)
+   For each new screen:
+   - What it shows (from screenshot)
    - Suggested route and component name
    - Whether it's a variant of an existing screen or entirely new
 
-6. **Update NEXTSTEPS.md** with any new items from the change report (append to backlog, don't reorder existing items)
+   ### Screenshots Changed
+   For each visually changed screenshot, describe what's different.
+
+7. **Update NEXTSTEPS.md**: Append new items to backlog section. Don't reorder existing items.
 
 ## Rules
-- Do NOT make code changes — this skill is audit-only
-- Do NOT commit — just report. The user will decide what to act on
-- Use `jq` for JSON diffing, not eyeballing raw diffs
-- Always check actual VALUES, not just key ordering (Stitch API returns keys in random order)
-- Read screenshots of new screens to understand intent before suggesting implementation
+- Do NOT make code changes — audit only
+- Do NOT commit — just report
+- Do NOT run `make sync` — assume it was already run
+- Use `jq -S` for JSON comparison (Stitch API shuffles key order)
+- Use `md5 -q` for binary file comparison
+- Always read new/changed screenshots to understand visual intent
+- Compare against `git show HEAD:path` — this is the committed baseline

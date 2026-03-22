@@ -1,0 +1,484 @@
+[
+  {
+    "type": "comment",
+    "text": "TopNavBar",
+    "depth": 2
+  },
+  {
+    "type": "header",
+    "depth": 2,
+    "layout": [
+      "bg-white",
+      "sticky",
+      "shadow-"
+    ]
+  },
+  {
+    "type": "nav",
+    "depth": 5,
+    "layout": [
+      "flex"
+    ]
+  },
+  {
+    "type": "a",
+    "depth": 6,
+    "href": "#",
+    "text": "Explore"
+  },
+  {
+    "type": "a",
+    "depth": 6,
+    "href": "#",
+    "text": "Community"
+  },
+  {
+    "type": "button",
+    "depth": 5,
+    "layout": [
+      "bg-gradient-to-r",
+      "rounded-full",
+      "shadow-lg",
+      "shadow-primary",
+      "flex"
+    ],
+    "text": "videocam\n                    Record New"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "rounded-full",
+      "bg-surface-container-highest"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "img",
+    "depth": 6,
+    "alt": "User profile avatar"
+  },
+  {
+    "type": "comment",
+    "text": "SideNavBar",
+    "depth": 3
+  },
+  {
+    "type": "aside",
+    "depth": 3,
+    "layout": [
+      "fixed",
+      "bg-slate-50",
+      "flex",
+      "flex-col"
+    ]
+  },
+  {
+    "type": "div",
+    "layout": [
+      "rounded-xl",
+      "bg-primary",
+      "flex"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "a",
+    "depth": 5,
+    "layout": [
+      "bg-white",
+      "shadow-sm",
+      "rounded-xl",
+      "flex"
+    ],
+    "href": "#",
+    "text": "video_library\nMy Arcades"
+  },
+  {
+    "type": "a",
+    "depth": 5,
+    "layout": [
+      "bg-slate-100",
+      "rounded-xl",
+      "flex"
+    ],
+    "href": "#",
+    "text": "group\nShared"
+  },
+  {
+    "type": "a",
+    "depth": 5,
+    "layout": [
+      "bg-slate-100",
+      "rounded-xl",
+      "flex"
+    ],
+    "href": "#",
+    "text": "settings\nSettings"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-surface-container-high",
+      "rounded-xl"
+    ],
+    "depth": 4
+  },
+  {
+    "type": "button",
+    "depth": 5,
+    "layout": [
+      "bg-primary",
+      "rounded-lg",
+      "bg-blue-700"
+    ],
+    "text": "Upgrade to Team"
+  },
+  {
+    "type": "comment",
+    "text": "Main Content Area",
+    "depth": 3
+  },
+  {
+    "type": "main",
+    "depth": 3,
+    "layout": [
+      "flex-1",
+      "bg-surface"
+    ]
+  },
+  {
+    "type": "header",
+    "depth": 4
+  },
+  {
+    "type": "h1",
+    "depth": 6,
+    "text": "My Arcades"
+  },
+  {
+    "type": "comment",
+    "text": "Bento Grid Layout for Arcades",
+    "depth": 4
+  },
+  {
+    "type": "div",
+    "layout": [
+      "grid",
+      "grid-cols-1",
+      "grid-cols-2",
+      "grid-cols-3"
+    ],
+    "depth": 4
+  },
+  {
+    "type": "comment",
+    "text": "Arcade Card 1",
+    "depth": 5
+  },
+  {
+    "type": "div",
+    "layout": [
+      "relative",
+      "bg-surface-container-lowest",
+      "rounded-xl",
+      "shadow-",
+      "shadow-"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "div",
+    "layout": [
+      "aspect-video",
+      "rounded-lg",
+      "relative"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "img",
+    "depth": 7,
+    "alt": "Arcade thumbnail"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-black",
+      "flex"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "rounded"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "h3",
+    "depth": 7,
+    "text": "Onboarding Flow"
+  },
+  {
+    "type": "button",
+    "depth": 8,
+    "text": "more_vert"
+  },
+  {
+    "type": "comment",
+    "text": "Arcade Card 2",
+    "depth": 5
+  },
+  {
+    "type": "div",
+    "layout": [
+      "relative",
+      "bg-surface-container-lowest",
+      "rounded-xl",
+      "shadow-",
+      "shadow-"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "div",
+    "layout": [
+      "aspect-video",
+      "rounded-lg",
+      "relative"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "img",
+    "depth": 7,
+    "alt": "Arcade thumbnail"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-black",
+      "flex"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "rounded"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "h3",
+    "depth": 7,
+    "text": "New Feature Demo"
+  },
+  {
+    "type": "button",
+    "depth": 8,
+    "text": "more_vert"
+  },
+  {
+    "type": "comment",
+    "text": "Arcade Card 3",
+    "depth": 5
+  },
+  {
+    "type": "div",
+    "layout": [
+      "relative",
+      "bg-surface-container-lowest",
+      "rounded-xl",
+      "shadow-",
+      "shadow-"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "div",
+    "layout": [
+      "aspect-video",
+      "rounded-lg",
+      "relative"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "img",
+    "depth": 7,
+    "alt": "Arcade thumbnail"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-black",
+      "flex"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "rounded"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "h3",
+    "depth": 7,
+    "text": "Enterprise Pitch Deck"
+  },
+  {
+    "type": "button",
+    "depth": 8,
+    "text": "more_vert"
+  },
+  {
+    "type": "comment",
+    "text": "Arcade Card 4",
+    "depth": 5
+  },
+  {
+    "type": "div",
+    "layout": [
+      "relative",
+      "bg-surface-container-lowest",
+      "rounded-xl",
+      "shadow-",
+      "shadow-"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "div",
+    "layout": [
+      "aspect-video",
+      "rounded-lg",
+      "relative"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "img",
+    "depth": 7,
+    "alt": "Arcade thumbnail"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-black",
+      "flex"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "rounded"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "h3",
+    "depth": 7,
+    "text": "Bug Report #402"
+  },
+  {
+    "type": "button",
+    "depth": 8,
+    "text": "more_vert"
+  },
+  {
+    "type": "comment",
+    "text": "Create New Card (Asymmetric Layout element)",
+    "depth": 5
+  },
+  {
+    "type": "div",
+    "layout": [
+      "rounded-xl",
+      "flex",
+      "flex-col",
+      "bg-slate-50"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "div",
+    "layout": [
+      "rounded-full",
+      "bg-white",
+      "flex",
+      "shadow-sm",
+      "shadow-md",
+      "shadow"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "comment",
+    "text": "Recent Insight Bento Box",
+    "depth": 5
+  },
+  {
+    "type": "div",
+    "layout": [
+      "col-span-1",
+      "bg-gradient-to-br",
+      "fixed",
+      "rounded-xl",
+      "relative",
+      "shadow-xl"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "h4",
+    "depth": 7,
+    "text": "Growth is up by 24%"
+  },
+  {
+    "type": "button",
+    "depth": 7,
+    "layout": [
+      "flex"
+    ],
+    "text": "View Analytics\n                            arrow_forward"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-white",
+      "rounded-full"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "comment",
+    "text": "Floating Action Button for Quick Record (Mobile Only)",
+    "depth": 2
+  },
+  {
+    "type": "button",
+    "depth": 2,
+    "layout": [
+      "fixed",
+      "bg-primary",
+      "rounded-full",
+      "shadow-2xl",
+      "flex"
+    ],
+    "text": "videocam"
+  }
+]

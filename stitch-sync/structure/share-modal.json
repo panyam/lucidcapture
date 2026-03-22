@@ -1,0 +1,527 @@
+[
+  {
+    "type": "comment",
+    "text": "Background Content Mockup (Editor View)",
+    "depth": 2
+  },
+  {
+    "type": "div",
+    "layout": [
+      "fixed",
+      "flex",
+      "flex-col"
+    ],
+    "depth": 2
+  },
+  {
+    "type": "comment",
+    "text": "TopAppBar (Shared Component Logic)",
+    "depth": 3
+  },
+  {
+    "type": "header",
+    "depth": 3,
+    "layout": [
+      "bg-white",
+      "shadow-",
+      "sticky",
+      "flex"
+    ]
+  },
+  {
+    "type": "nav",
+    "depth": 5,
+    "layout": [
+      "flex"
+    ]
+  },
+  {
+    "type": "a",
+    "depth": 6,
+    "href": "#",
+    "text": "Explore"
+  },
+  {
+    "type": "a",
+    "depth": 6,
+    "href": "#",
+    "text": "Community"
+  },
+  {
+    "type": "button",
+    "depth": 5,
+    "layout": [
+      "bg-primary-container",
+      "rounded-full"
+    ],
+    "text": "Record New"
+  },
+  {
+    "type": "img",
+    "depth": 5,
+    "layout": [
+      "rounded-full"
+    ]
+  },
+  {
+    "type": "main",
+    "depth": 3,
+    "layout": [
+      "flex-1",
+      "flex"
+    ]
+  },
+  {
+    "type": "comment",
+    "text": "SideNavBar (Shared Component Logic)",
+    "depth": 4
+  },
+  {
+    "type": "aside",
+    "depth": 4,
+    "layout": [
+      "bg-slate-50",
+      "flex",
+      "flex-col",
+      "flex-shrink-0"
+    ]
+  },
+  {
+    "type": "h3",
+    "depth": 6,
+    "text": "Workspace"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex",
+      "flex-col"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "a",
+    "depth": 6,
+    "layout": [
+      "flex",
+      "bg-white",
+      "shadow-sm",
+      "rounded-xl"
+    ],
+    "href": "#",
+    "text": "video_library\nMy Arcades"
+  },
+  {
+    "type": "a",
+    "depth": 6,
+    "layout": [
+      "flex",
+      "bg-slate-100",
+      "rounded-xl"
+    ],
+    "href": "#",
+    "text": "group\nShared"
+  },
+  {
+    "type": "a",
+    "depth": 6,
+    "layout": [
+      "flex",
+      "bg-slate-100",
+      "rounded-xl"
+    ],
+    "href": "#",
+    "text": "settings\nSettings"
+  },
+  {
+    "type": "button",
+    "depth": 6,
+    "layout": [
+      "bg-surface-container-highest",
+      "fixed",
+      "rounded-xl"
+    ],
+    "text": "Upgrade to Team"
+  },
+  {
+    "type": "comment",
+    "text": "Main Editor Canvas (Blurred background)",
+    "depth": 4
+  },
+  {
+    "type": "section",
+    "depth": 4,
+    "layout": [
+      "flex-1",
+      "bg-surface-container-low"
+    ]
+  },
+  {
+    "type": "div",
+    "layout": [
+      "aspect-video",
+      "bg-white",
+      "rounded-xl",
+      "shadow-lg",
+      "flex",
+      "relative"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "img",
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "flex"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
+      "grid",
+      "grid-cols-3"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-white",
+      "rounded-xl",
+      "shadow-sm"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-white",
+      "rounded-xl",
+      "shadow-sm"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-white",
+      "rounded-xl",
+      "shadow-sm"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "comment",
+    "text": "Modal Overlay",
+    "depth": 2
+  },
+  {
+    "type": "div",
+    "layout": [
+      "fixed",
+      "flex",
+      "bg-on-background"
+    ],
+    "depth": 2
+  },
+  {
+    "type": "comment",
+    "text": "Share Modal Container",
+    "depth": 3
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-surface-container-lowest",
+      "rounded-xl",
+      "shadow-",
+      "flex",
+      "flex-col",
+      "flex-row"
+    ],
+    "depth": 3
+  },
+  {
+    "type": "comment",
+    "text": "Left Panel: Preview & Identity",
+    "depth": 4
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-surface-container-low",
+      "flex",
+      "flex-col"
+    ],
+    "depth": 4
+  },
+  {
+    "type": "h2",
+    "depth": 6,
+    "text": "Q3 Feature Onboarding.mp4"
+  },
+  {
+    "type": "comment",
+    "text": "Curated Thumbnail Card",
+    "depth": 5
+  },
+  {
+    "type": "div",
+    "layout": [
+      "relative",
+      "rounded-lg",
+      "shadow-xl",
+      "aspect-video",
+      "bg-surface"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "img",
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-gradient-to-t"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "flex"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "rounded-full",
+      "bg-white",
+      "flex"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "comment",
+    "text": "Export Options - Bento Style",
+    "depth": 5
+  },
+  {
+    "type": "h3",
+    "depth": 6,
+    "text": "Export Formats"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "grid",
+      "grid-cols-2"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "button",
+    "depth": 7,
+    "layout": [
+      "flex",
+      "flex-col",
+      "bg-white",
+      "rounded-lg",
+      "shadow-sm"
+    ],
+    "text": "movie\nVideo (4K)"
+  },
+  {
+    "type": "button",
+    "depth": 7,
+    "layout": [
+      "flex",
+      "flex-col",
+      "bg-white",
+      "rounded-lg",
+      "shadow-sm"
+    ],
+    "text": "gif\nGIF High-res"
+  },
+  {
+    "type": "comment",
+    "text": "Right Panel: Controls & Sharing",
+    "depth": 4
+  },
+  {
+    "type": "h1",
+    "depth": 7,
+    "text": "Ready to share?"
+  },
+  {
+    "type": "button",
+    "depth": 6,
+    "layout": [
+      "rounded-full",
+      "bg-surface-container",
+      "flex"
+    ],
+    "text": "close"
+  },
+  {
+    "type": "comment",
+    "text": "Section: Privacy",
+    "depth": 5
+  },
+  {
+    "type": "h3",
+    "depth": 7,
+    "text": "Privacy & Access"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "grid",
+      "grid-cols-3"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "input",
+    "depth": 8,
+    "layout": [
+      "absolute"
+    ],
+    "input_type": "radio"
+  },
+  {
+    "type": "input",
+    "depth": 8,
+    "layout": [
+      "absolute"
+    ],
+    "input_type": "radio"
+  },
+  {
+    "type": "input",
+    "depth": 8,
+    "layout": [
+      "absolute"
+    ],
+    "input_type": "radio"
+  },
+  {
+    "type": "comment",
+    "text": "Section: Sharing Methods",
+    "depth": 5
+  },
+  {
+    "type": "comment",
+    "text": "Copy Link",
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex-1",
+      "bg-surface-container-low",
+      "rounded-lg",
+      "flex"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "button",
+    "depth": 8,
+    "layout": [
+      "bg-primary",
+      "bg-primary-container",
+      "rounded-lg",
+      "shadow-lg",
+      "shadow-primary",
+      "flex"
+    ],
+    "text": "content_copy\nCopy"
+  },
+  {
+    "type": "comment",
+    "text": "Embed Code",
+    "depth": 6
+  },
+  {
+    "type": "button",
+    "depth": 8,
+    "text": "Embed Settings"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-inverse-surface",
+      "rounded-xl",
+      "relative"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-primary"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "button",
+    "depth": 8,
+    "layout": [
+      "absolute",
+      "bg-white",
+      "bg-white",
+      "rounded-md",
+      "flex"
+    ],
+    "text": "code"
+  },
+  {
+    "type": "comment",
+    "text": "Primary Action Footer",
+    "depth": 5
+  },
+  {
+    "type": "button",
+    "depth": 6,
+    "layout": [
+      "flex"
+    ],
+    "text": "settings\nAdvanced Settings"
+  },
+  {
+    "type": "button",
+    "depth": 7,
+    "layout": [
+      "rounded-full",
+      "bg-surface-container"
+    ],
+    "text": "Done"
+  },
+  {
+    "type": "button",
+    "depth": 7,
+    "layout": [
+      "bg-gradient-to-br",
+      "rounded-full",
+      "shadow-xl",
+      "shadow-primary"
+    ],
+    "text": "Download File"
+  },
+  {
+    "type": "comment",
+    "text": "Floating Action Buttons (Suppressed for this task per rules)",
+    "depth": 2
+  }
+]

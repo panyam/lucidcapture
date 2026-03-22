@@ -147,7 +147,15 @@ The app is **"Lucid Capture"** — an Arcade.software clone for creating cinemat
 - Duplicate creates new project with "(Copy)" suffix
 - Menu closes on outside click
 
-**16. Key Learnings So Far**
+**17. Stitch Deficiency: No Component Hierarchy**
+- Stitch API provides: design tokens (structured JSON), screen metadata (title, size, device type), HTML (flat rendered output), screenshots (PNG)
+- Stitch API does **NOT** provide: component tree, element hierarchy, semantic structure, diffable design representation
+- **Impact on change detection:** Screenshots are volatile (pixel-level styling changes produce false positives), and raw HTML diffs are noisy (Tailwind class reordering, whitespace). Neither is useful for answering "what structurally changed?"
+- **Our workaround:** Built `extract-structure.sh` — parses each HTML file into a lightweight JSON outline capturing semantic elements (header/nav/main/aside/section), headings with text, buttons with text, links with hrefs, layout classes (grid/flex patterns), and HTML comments (Stitch uses these as component markers like `<!-- TopNavBar -->`)
+- **Result:** Structure JSON files are diffable, resilient to styling-only changes, and catch real structural additions/removals/reorderings
+- **Recommendation for Stitch team:** Expose a component/element tree API alongside the rendered HTML. Even a list of "sections" with their types and bounding boxes would be far more useful for design-to-code change tracking than screenshots or flat HTML.
+
+**18. Key Learnings So Far**
 - **Stitch MCP** gives structured design tokens + screen metadata but HTML is the deepest code output (no component tree)
 - **Stitch REST API** works with just `X-Goog-Api-Key` header — simpler than the MCP proxy setup
 - **Tailwind v4** migration: `@theme` CSS blocks replace `tailwind.config.js`, custom utilities use `@utility` directive

@@ -1,0 +1,651 @@
+[
+  {
+    "type": "comment",
+    "text": "TopNavBar",
+    "depth": 2
+  },
+  {
+    "type": "header",
+    "depth": 2,
+    "layout": [
+      "bg-white",
+      "bg-slate-900",
+      "shadow-",
+      "sticky",
+      "flex"
+    ]
+  },
+  {
+    "type": "nav",
+    "depth": 4,
+    "layout": [
+      "flex"
+    ]
+  },
+  {
+    "type": "a",
+    "depth": 5,
+    "href": "#",
+    "text": "Explore"
+  },
+  {
+    "type": "a",
+    "depth": 5,
+    "href": "#",
+    "text": "Community"
+  },
+  {
+    "type": "button",
+    "depth": 4,
+    "layout": [
+      "bg-surface-container-highest",
+      "fixed",
+      "rounded-full",
+      "shadow-lg"
+    ],
+    "text": "Preview"
+  },
+  {
+    "type": "button",
+    "depth": 4,
+    "layout": [
+      "bg-gradient-to-br",
+      "rounded-full",
+      "shadow-xl",
+      "shadow-2xl"
+    ],
+    "text": "Share"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "rounded-full",
+      "bg-surface-container-high"
+    ],
+    "depth": 4
+  },
+  {
+    "type": "img",
+    "depth": 5,
+    "alt": "User profile avatar"
+  },
+  {
+    "type": "main",
+    "depth": 2,
+    "layout": [
+      "flex",
+      "flex-1"
+    ]
+  },
+  {
+    "type": "comment",
+    "text": "SideNavBar",
+    "depth": 3
+  },
+  {
+    "type": "aside",
+    "depth": 3,
+    "layout": [
+      "bg-slate-50",
+      "bg-slate-950",
+      "flex",
+      "flex-col",
+      "bg-slate-100",
+      "bg-slate-900"
+    ]
+  },
+  {
+    "type": "div",
+    "layout": [
+      "rounded-lg",
+      "bg-primary",
+      "flex"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "h3",
+    "depth": 7,
+    "text": "Workspace"
+  },
+  {
+    "type": "nav",
+    "depth": 4,
+    "layout": [
+      "flex",
+      "flex-col"
+    ]
+  },
+  {
+    "type": "a",
+    "depth": 5,
+    "layout": [
+      "flex",
+      "bg-white",
+      "bg-slate-900",
+      "shadow-sm",
+      "rounded-xl"
+    ],
+    "href": "#",
+    "text": "video_library\nMy Arcades"
+  },
+  {
+    "type": "a",
+    "depth": 5,
+    "layout": [
+      "flex",
+      "bg-slate-100",
+      "bg-slate-900",
+      "rounded-xl"
+    ],
+    "href": "#",
+    "text": "group\nShared"
+  },
+  {
+    "type": "a",
+    "depth": 5,
+    "layout": [
+      "flex",
+      "bg-slate-100",
+      "bg-slate-900",
+      "rounded-xl"
+    ],
+    "href": "#",
+    "text": "settings\nSettings"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "rounded-2xl",
+      "bg-primary-fixed",
+      "fixed"
+    ],
+    "depth": 4
+  },
+  {
+    "type": "button",
+    "depth": 5,
+    "layout": [
+      "bg-primary",
+      "rounded-lg"
+    ],
+    "text": "Upgrade to Team"
+  },
+  {
+    "type": "comment",
+    "text": "Main Editor Canvas",
+    "depth": 3
+  },
+  {
+    "type": "section",
+    "depth": 3,
+    "layout": [
+      "flex-1",
+      "flex",
+      "flex-col",
+      "bg-surface",
+      "relative"
+    ]
+  },
+  {
+    "type": "comment",
+    "text": "Video Preview Stage",
+    "depth": 4
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex-1",
+      "flex"
+    ],
+    "depth": 4
+  },
+  {
+    "type": "div",
+    "layout": [
+      "relative",
+      "aspect-video",
+      "rounded-2xl",
+      "shadow-",
+      "bg-on-background"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "img",
+    "depth": 6
+  },
+  {
+    "type": "comment",
+    "text": "Interactive Hotspot Overlay (Example)",
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-primary",
+      "rounded-full"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-primary",
+      "rounded-full",
+      "shadow-lg",
+      "flex"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-white",
+      "shadow-2xl",
+      "rounded-xl"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "comment",
+    "text": "Floating Annotations",
+    "depth": 6
+  },
+  {
+    "type": "comment",
+    "text": "Video Controls Overlay (Glassmorphism)",
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "rounded-full",
+      "flex",
+      "shadow-2xl"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-primary",
+      "rounded-full",
+      "flex"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "comment",
+    "text": "Timeline",
+    "depth": 4
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-surface-container-low",
+      "flex",
+      "flex-col"
+    ],
+    "depth": 4
+  },
+  {
+    "type": "h4",
+    "depth": 6,
+    "text": "Timeline"
+  },
+  {
+    "type": "button",
+    "depth": 7,
+    "layout": [
+      "rounded-lg",
+      "bg-surface-container-high"
+    ],
+    "text": "zoom_in"
+  },
+  {
+    "type": "button",
+    "depth": 7,
+    "layout": [
+      "rounded-lg",
+      "bg-surface-container-high"
+    ],
+    "text": "zoom_out"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "relative",
+      "bg-surface-container-high",
+      "rounded-xl",
+      "shadow-inner"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "comment",
+    "text": "Timeline Tracks",
+    "depth": 6
+  },
+  {
+    "type": "comment",
+    "text": "Time Markers",
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "flex"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-outline-variant",
+      "flex",
+      "flex-col"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-outline-variant",
+      "flex",
+      "flex-col"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-outline-variant",
+      "flex",
+      "flex-col"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-outline-variant",
+      "flex",
+      "flex-col"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-outline-variant",
+      "flex",
+      "flex-col"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-outline-variant",
+      "flex",
+      "flex-col"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "comment",
+    "text": "Steps / Segments",
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-secondary",
+      "rounded-lg",
+      "flex",
+      "shadow-md",
+      "bg-secondary"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-secondary-container",
+      "rounded-lg",
+      "flex",
+      "shadow-md"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-tertiary",
+      "rounded-lg",
+      "flex",
+      "shadow-md"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "comment",
+    "text": "Playhead",
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-primary-container"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-primary-container",
+      "rounded-sm"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "comment",
+    "text": "Tool Sidebar",
+    "depth": 3
+  },
+  {
+    "type": "aside",
+    "depth": 3,
+    "layout": [
+      "bg-surface-container-low",
+      "flex",
+      "flex-col"
+    ]
+  },
+  {
+    "type": "h2",
+    "depth": 5,
+    "text": "Editor Tools"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex",
+      "flex-col"
+    ],
+    "depth": 4
+  },
+  {
+    "type": "comment",
+    "text": "Action Group 1: Hotspots",
+    "depth": 5
+  },
+  {
+    "type": "section",
+    "depth": 5
+  },
+  {
+    "type": "h3",
+    "depth": 6,
+    "text": "Interactivity"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "grid",
+      "grid-cols-2"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "button",
+    "depth": 7,
+    "layout": [
+      "bg-surface",
+      "rounded-xl",
+      "flex",
+      "flex-col",
+      "bg-primary"
+    ],
+    "text": "ads_click\nHotspot"
+  },
+  {
+    "type": "button",
+    "depth": 7,
+    "layout": [
+      "bg-surface",
+      "rounded-xl",
+      "flex",
+      "flex-col",
+      "bg-primary"
+    ],
+    "text": "input\nInput Field"
+  },
+  {
+    "type": "comment",
+    "text": "Action Group 2: Annotations",
+    "depth": 5
+  },
+  {
+    "type": "section",
+    "depth": 5
+  },
+  {
+    "type": "h3",
+    "depth": 6,
+    "text": "Annotations"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex",
+      "flex-col"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-surface-container-lowest",
+      "rounded-xl"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "input",
+    "depth": 8,
+    "layout": [
+      "bg-surface-container-low"
+    ],
+    "input_type": "text"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-surface-container-lowest",
+      "rounded-xl"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "textarea",
+    "depth": 8,
+    "layout": [
+      "bg-surface-container-low"
+    ],
+    "text": "Hover over the main chart to see the breakdown of sales for this month."
+  },
+  {
+    "type": "comment",
+    "text": "Action Group 3: Timing",
+    "depth": 5
+  },
+  {
+    "type": "section",
+    "depth": 5
+  },
+  {
+    "type": "h3",
+    "depth": 6,
+    "text": "Timing & Transitions"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex",
+      "bg-surface",
+      "rounded-xl"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex",
+      "flex-col"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-primary-container",
+      "rounded-full",
+      "relative"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-white",
+      "rounded-full"
+    ],
+    "depth": 9
+  },
+  {
+    "type": "comment",
+    "text": "Pro Tip Contextual Card",
+    "depth": 4
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-gradient-to-br",
+      "rounded-2xl",
+      "relative"
+    ],
+    "depth": 5
+  }
+]

@@ -1,7 +1,7 @@
 Audit uncommitted Stitch sync changes against the last commit. Assumes `make sync` was already run.
 
 ## Prerequisites
-The user has already run `make sync` which overwrote `stitch-sync/` with latest from Stitch API. This skill diffs those uncommitted changes against git HEAD to produce an actionable report.
+The user has already run `make sync` which overwrote `stitch-sync/` with latest from Stitch API (including `structure/` JSON outlines). This skill diffs those uncommitted changes against git HEAD to produce an actionable report.
 
 ## Steps
 
@@ -27,47 +27,42 @@ The user has already run `make sync` which overwrote `stitch-sync/` with latest 
    - Check for renamed screens (same ID prefix, different title)
    - Check for resized screens (same ID, different width/height)
 
-4. **Diff screenshots**: Compare file hashes to detect visual changes
+4. **Diff structure outlines** (primary change detection — preferred over screenshot pixel comparison):
    ```bash
-   for f in stitch-sync/screenshots/*.png; do
+   for f in stitch-sync/structure/*.json; do
      name=$(basename "$f")
-     old_hash=$(git show "HEAD:stitch-sync/screenshots/$name" 2>/dev/null | md5 -q || echo "NEW")
-     new_hash=$(md5 -q "$f")
-     [ "$old_hash" != "$new_hash" ] && echo "CHANGED: $name"
+     if git show "HEAD:stitch-sync/structure/$name" >/dev/null 2>&1; then
+       git show "HEAD:stitch-sync/structure/$name" > /tmp/old_struct.json
+       changes=$(diff /tmp/old_struct.json "$f" | grep "^[<>]" | wc -l)
+       [ "$changes" -gt 0 ] && echo "CHANGED ($changes lines): $name"
+     else
+       echo "NEW: $name"
+     fi
    done
    ```
-   - For changed screenshots: read the new PNG to see what visually changed
+   - Structure files capture semantic elements, headings, buttons, layout classes, and HTML comments
+   - They are resilient to pixel/styling changes but catch structural additions/removals
+   - For changed structures: diff the old vs new JSON to identify what was added/removed/moved
+   - Flag structural changes that need code updates (new components, changed layouts, new buttons/links)
 
-5. **Diff HTML**: For existing screens, diff their HTML files
-   ```bash
-   for f in stitch-sync/html/*.html; do
-     name=$(basename "$f")
-     git show "HEAD:stitch-sync/html/$name" 2>/dev/null | diff - "$f"
-   done
-   ```
-   - Ignore whitespace-only changes
-   - Summarize structural changes (new elements, removed elements, changed classes/styles)
-   - Flag any new `{{DATA:SCREEN:SCREEN_N}}` navigation links
+5. **For new screens only**: Read their screenshots (PNG) to understand visual intent, since there's no old structure to diff against.
 
 6. **Produce change report**:
 
    ### No Action Needed
-   Changes that are cosmetic (key reordering, whitespace) or already handled.
+   Changes that are cosmetic (key reordering, whitespace, pixel-only styling) or already handled.
 
    ### Code Changes Required
    For each actionable change:
-   - What changed in the design
+   - What changed in the design (from structure diff)
    - Which file(s) in `app/src/` need updating
    - What the update would look like (brief, not full code)
 
    ### New Screens to Implement
    For each new screen:
-   - What it shows (from screenshot)
+   - What it shows (from screenshot + structure outline)
    - Suggested route and component name
    - Whether it's a variant of an existing screen or entirely new
-
-   ### Screenshots Changed
-   For each visually changed screenshot, describe what's different.
 
 7. **Update NEXTSTEPS.md**: Append new items to backlog section. Don't reorder existing items.
 
@@ -76,6 +71,7 @@ The user has already run `make sync` which overwrote `stitch-sync/` with latest 
 - Do NOT commit — just report
 - Do NOT run `make sync` — assume it was already run
 - Use `jq -S` for JSON comparison (Stitch API shuffles key order)
-- Use `md5 -q` for binary file comparison
-- Always read new/changed screenshots to understand visual intent
+- Prefer structure diffs (`stitch-sync/structure/`) over screenshot pixel diffs for change detection
+- Only read screenshots for NEW screens (no old structure to compare against)
 - Compare against `git show HEAD:path` — this is the committed baseline
+- Note: Stitch API does not provide component hierarchy — the structure extraction (`extract-structure.sh`) is our workaround, parsing semantic elements from the HTML

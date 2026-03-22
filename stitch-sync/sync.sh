@@ -7,6 +7,7 @@
 #   ./stitch-sync/sync.sh manifest         # just metadata + design tokens
 #   ./stitch-sync/sync.sh screens          # just HTML files
 #   ./stitch-sync/sync.sh screenshots      # just screenshots
+#   ./stitch-sync/sync.sh structure        # just structural outlines
 
 set -euo pipefail
 
@@ -107,15 +108,19 @@ case "${1:-all}" in
   manifest)    sync_manifest ;;
   screens)     sync_screens ;;
   screenshots) sync_screenshots ;;
+  structure)
+    "${SCRIPT_DIR}/extract-structure.sh"
+    ;;
   all)
     sync_manifest
     sync_screens
     sync_screenshots
+    "${SCRIPT_DIR}/extract-structure.sh"
     echo ""
     echo "Done. Run 'git diff stitch-sync/' to see what changed."
     ;;
   *)
-    echo "Usage: $0 [manifest|screens|screenshots|all]"
+    echo "Usage: $0 [manifest|screens|screenshots|structure|all]"
     exit 1
     ;;
 esac

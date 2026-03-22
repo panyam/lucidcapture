@@ -147,6 +147,7 @@ function KeyboardShortcuts() {
     ['Play / Pause', 'Space'],
     ['Previous step', '←'],
     ['Next step', '→'],
+    ['Toggle edit mode', 'E'],
     ['Delete step', 'Del'],
   ]
 

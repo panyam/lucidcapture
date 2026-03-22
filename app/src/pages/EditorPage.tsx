@@ -20,6 +20,7 @@ export function EditorPage() {
   const [stepIndex, setStepIndex] = useState(0)
   const [importing, setImporting] = useState(false)
   const [playing, setPlaying] = useState(false)
+  const [editMode, setEditMode] = useState(false)
   const playTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const currentStep = currentSteps[stepIndex]
@@ -99,6 +100,8 @@ export function EditorPage() {
         e.preventDefault(); setStepIndex((i) => Math.max(0, i - 1))
       } else if (e.key === ' ') {
         e.preventDefault(); togglePlay()
+      } else if (e.key === 'e' || e.key === 'E') {
+        e.preventDefault(); setEditMode((m) => !m)
       } else if ((e.key === 'Delete' || e.key === 'Backspace') && !e.metaKey && currentStep) {
         e.preventDefault(); handleDeleteStep()
       }
@@ -114,8 +117,8 @@ export function EditorPage() {
     deleteStep(currentStep.id)
   }
 
-  function handleCanvasClick(x: number, y: number) {
-    if (!currentStep) return
+  function handleMoveHotspot(x: number, y: number) {
+    if (!currentStep || !editMode) return
     updateStep(currentStep.id, {
       clickTarget: {
         x, y,
@@ -176,6 +179,18 @@ export function EditorPage() {
             <span className="text-xs font-semibold text-slate-400 bg-surface-container-high px-3 py-1 rounded-full">
               {currentSteps.length} steps
             </span>
+            <button
+              className={`ml-auto text-xs font-semibold px-4 py-1.5 rounded-full transition-colors flex items-center gap-1.5 ${
+                editMode
+                  ? 'bg-primary text-on-primary'
+                  : 'bg-surface-container-high text-slate-500 hover:bg-surface-container-highest'
+              }`}
+              onClick={() => setEditMode((m) => !m)}
+              title="Toggle edit mode (E)"
+            >
+              <MaterialIcon icon={editMode ? 'edit' : 'visibility'} size="14px" />
+              {editMode ? 'Editing' : 'Viewing'}
+            </button>
           </div>
         )}
 
@@ -186,9 +201,9 @@ export function EditorPage() {
               <EditorCanvas
                 step={currentStep}
                 stepIndex={stepIndex}
-                totalSteps={currentSteps.length}
+                editMode={editMode}
                 playing={playing}
-                onClickCanvas={handleCanvasClick}
+                onMoveHotspot={handleMoveHotspot}
                 emptyMessage={emptyMessage}
               />
               <PlaybackControls

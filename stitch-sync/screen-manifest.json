@@ -1,0 +1,51 @@
+{
+  "screens": [
+    {
+      "id": "dcc5a7cdbcb444c48ccf661ef295aa3c",
+      "title": "Dashboard",
+      "deviceType": "DESKTOP",
+      "width": "2560",
+      "height": "2192",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzcyOTg3NTczYWMzMzRkMWRiNmFiYTQ1ZjJiYmY1MzU3EgsSBxDUr6LfnQsYAZIBIwoKcHJvamVjdF9pZBIVQhM5NTIyNjYwODc3MDA1MTkxNzc0&filename=&opi=89354086",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/ADBb0uipqzQ5sADoB6WPqVTI9F-gUQwOyJ9MB2QMT2J8Di4t2dSaWLKZtWtJr2bl0nmHPhWRkc2RcvobrbWEgCiy0GiGVO3Etx4NIeayZdzg8axyIzuEBjTow4LHGPLFPI7wtdHzvKg5IhuM42odBvxEpgnYtUJmC3oP_JDmS7R9nxmO6KLMdXXsd7Y-8kFTJyjtJAAm81J5P6BIzQgw3f-4m8AKy2osqZcEFa8KULbt30HnhVKJCmCuuK6J-1c"
+    },
+    {
+      "id": "0aee0fd55864486aa2a81298a09c0ee4",
+      "title": "Share Modal",
+      "deviceType": "DESKTOP",
+      "width": "2560",
+      "height": "2048",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sX2QwNDA2ODYwZjEyYTQ0OGU4NzZiMDAzMGZlZTY2NGQ5EgsSBxDUr6LfnQsYAZIBIwoKcHJvamVjdF9pZBIVQhM5NTIyNjYwODc3MDA1MTkxNzc0&filename=&opi=89354086",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/ADBb0uhEMHdeI8NJRhsM9s5ZQyoPt4a8uD5AS-EXe0xBvct3fMYQWkNnZvxvVrOB-fPr2h3toQcKtza_lPCQc0a1knxfNgPkijcLk1gPzKJKd_y7TPx8ke4c5g4WUzO-oJrVv-yQU5E14RV9tbC84h38e54nyh9R0fWavw9pyMEqVRSspSObbbwsakXXu2qQ2U0fE-FfcKIisZ-sf8TpKdj58eWBda0RPu4x8r-5vd4WUTzQAsOg6VoZA9pvMbs"
+    },
+    {
+      "id": "6f3360aee2fd4868b116b54f2f5e3e3c",
+      "title": "Editor",
+      "deviceType": "DESKTOP",
+      "width": "2560",
+      "height": "2048",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzZkZDY4ZmEzYjdkMTQzMzI5NDM1YjI1NDY3ZjNkZTE2EgsSBxDUr6LfnQsYAZIBIwoKcHJvamVjdF9pZBIVQhM5NTIyNjYwODc3MDA1MTkxNzc0&filename=&opi=89354086",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/ADBb0uh3VnJPrWy8GAkplwxHWRWom5IDDRMIQ0w0JlCY_3HF9W3eSzlfZiydzw8k5qykmWtCJqisAV4Li4peXqLqSw9EhcxRN0S7-GpbGvys6pm8RqZHMNbYjZKFGBsWYlb4992RtSAxfhnHM5LnH-NiEE0m63Rhy9d_sk0axJqt8wNRqwf6ixYcDou2FPECZa3T5iDa7Zo_qg0EffRX6pfxuRCntQcmaSTphuc6Yg3chmAl3nSq7tQ0-Hoa"
+    },
+    {
+      "id": "beed1bd8cc5e4721a7058880463e9f01",
+      "title": "Editor",
+      "deviceType": "MOBILE",
+      "width": "390",
+      "height": "884",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzc5MWRmYzY5ODZhZDQ1ZWE4YzEzOWRlODNjYWQ3ZDNkEgsSBxDUr6LfnQsYAZIBIwoKcHJvamVjdF9pZBIVQhM5NTIyNjYwODc3MDA1MTkxNzc0&filename=&opi=89354086",
+      "screenshotUrl": null
+    },
+    {
+      "id": "60a853b82f0e47569bd3b8fc5313295c",
+      "title": "Landing Page",
+      "deviceType": "DESKTOP",
+      "width": "2560",
+      "height": "9896",
+      "htmlUrl": "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ7Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpaCiVodG1sXzZiZGUyNTFkZTQxMDQwZTJhNDE4ODRjNzNjNDYyOTY3EgsSBxDUr6LfnQsYAZIBIwoKcHJvamVjdF9pZBIVQhM5NTIyNjYwODc3MDA1MTkxNzc0&filename=&opi=89354086",
+      "screenshotUrl": "https://lh3.googleusercontent.com/aida/ADBb0ujkGVcJ9zQBNRCpIUqS0Flnwi2jA2lyj2SpnGRJuNk7q-97hLqoqnybPobDpHAyxPHwzczfjzYqztwebq_YWYQdFGzbZSo6pcs3gaSpTyEvTUfKNgAoYlBb8ElaP4F-0zDvz7nhVAqPvuNrNhQd1XNOUTRIHbINNRTn-g6_hmQlJCNvmTuFMaksDjH1fV-h2M3ElWtuST6QAG8U4ZKn9OiAq629X5gzpVJNTk4GKZHibdotTxLoP8n63g"
+    }
+  ],
+  "syncedAt": "2026-03-21T21:39:26Z",
+  "projectId": "9522660877005191774"
+}

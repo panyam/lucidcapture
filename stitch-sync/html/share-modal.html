@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Share &amp; Export - Lucid Capture</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-high": "#e1e8fd",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#c1e8ff",
+                        "outline-variant": "#c5c5d9",
+                        "outline": "#757687",
+                        "secondary-container": "#4b67f3",
+                        "inverse-on-surface": "#edf0ff",
+                        "on-secondary-container": "#fffbff",
+                        "surface-container-low": "#f1f3ff",
+                        "primary-container": "#2142e7",
+                        "surface-bright": "#f9f9ff",
+                        "surface-tint": "#2949ec",
+                        "secondary-fixed-dim": "#bac3ff",
+                        "on-secondary-fixed": "#00105a",
+                        "on-tertiary-container": "#91d9ff",
+                        "on-background": "#141b2b",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#444656",
+                        "primary-fixed": "#dee0ff",
+                        "secondary-fixed": "#dee0ff",
+                        "surface-dim": "#d3daef",
+                        "inverse-surface": "#293040",
+                        "secondary": "#2d4bd9",
+                        "tertiary-container": "#006080",
+                        "tertiary-fixed-dim": "#73d1ff",
+                        "surface": "#f9f9ff",
+                        "surface-variant": "#dce2f7",
+                        "inverse-primary": "#bbc3ff",
+                        "tertiary": "#00475f",
+                        "background": "#f9f9ff",
+                        "on-primary-container": "#c7cdff",
+                        "on-primary-fixed-variant": "#002ccd",
+                        "on-secondary-fixed-variant": "#0531c5",
+                        "primary": "#0029c0",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#001e2b",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#000f5d",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#dce2f7",
+                        "on-surface": "#141b2b",
+                        "surface-container": "#e9edff",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#bbc3ff",
+                        "on-tertiary-fixed-variant": "#004d67"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(249, 249, 255, 0.7);
+            backdrop-filter: blur(40px);
+        }
+        .ghost-border {
+            outline: 1px solid rgba(197, 197, 217, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-background min-h-screen">
+<!-- Background Content Mockup (Editor View) -->
+<div class="fixed inset-0 z-0 overflow-hidden flex flex-col">
+<!-- TopAppBar (Shared Component Logic) -->
+<header class="bg-white/70 backdrop-blur-xl shadow-[0_32px_64px_-4px_rgba(20,27,43,0.04)] sticky top-0 z-50 flex justify-between items-center w-full px-8 py-4 max-w-[1920px] mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black tracking-tighter text-blue-800">Lucid Capture</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-slate-500 font-medium hover:text-blue-600 transition-colors" href="#">Explore</a>
+<a class="text-slate-500 font-medium hover:text-blue-600 transition-colors" href="#">Community</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-primary-container text-white px-6 py-2.5 rounded-full font-bold text-sm transition-transform active:scale-90">Record New</button>
+<img class="w-10 h-10 rounded-full object-cover" data-alt="User profile avatar circle" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9GYKpyS_jMiwyAz7fyya_RhTV0_dkYVmH_c6JQX-iiSvmVwGW2MZvxW69KQBfrTwJi0XJSPn7tCgw2JvXqevS22CXRVZjUkEBfKPBIxj16NvvZjoU7_0e7YRKcaS8kBr2y9hsIyaoUzf_BdL1gF3wFoI2RklBUOvo0QA9pHfcdSuGvepU_-LjDNwKYKP4Mbd2xC5gJSTKQCAE5JW6dHL5j3Z1OH_W6Bzo9xv767ezUpAzyFu-9l1vNi8yItilHpqSdx9nrVfghMA"/>
+</div>
+</header>
+<main class="flex-1 flex overflow-hidden">
+<!-- SideNavBar (Shared Component Logic) -->
+<aside class="h-screen w-64 bg-slate-50 pt-6 px-4 flex flex-col gap-2 flex-shrink-0">
+<div class="mb-8 px-2">
+<h3 class="text-lg font-bold text-slate-900">Workspace</h3>
+<p class="text-xs text-slate-500">Pro Plan</p>
+</div>
+<div class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-4 py-3 bg-white text-blue-700 font-semibold shadow-sm rounded-xl transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="video_library">video_library</span>
+<span>My Arcades</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-100 rounded-xl transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Shared</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-500 hover:bg-slate-100 rounded-xl transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+</div>
+<div class="mt-auto mb-24 px-2">
+<button class="w-full bg-surface-container-highest text-on-primary-fixed-variant py-3 rounded-xl font-bold text-sm">Upgrade to Team</button>
+</div>
+</aside>
+<!-- Main Editor Canvas (Blurred background) -->
+<section class="flex-1 bg-surface-container-low p-8 overflow-y-auto">
+<div class="max-w-5xl mx-auto space-y-8 blur-sm">
+<div class="aspect-video bg-white rounded-xl shadow-lg flex items-center justify-center border-4 border-white overflow-hidden relative">
+<img class="w-full h-full object-cover opacity-80" data-alt="High fidelity software product screenshot placeholder" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHI5AFgNl4DmMI4brUF_KGHXIliIlUztnVQKaFXb4dehHgTsbQKzseoViX8tRTBgRaDWuIkoqtZXoXaKd-l8fmrLzgfMS-wh_7akDvXr0Y2Mhwk9Nm_KVooFURLaQYRnVOiq5PFJVRUfJc03MYrOjDIgsKjeTTUl_h_6y4nFfI9m5Z5xQ_4094Tnb56w2FH-Ci_tLPMEpBQluK5WI8Gr189AcLs-5LhCJRHzZsD0PYxleRvTZ0Zu_g9nfaBomEMkPK4poOrXVjzLs"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-primary" data-icon="play_circle">play_circle</span>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-6">
+<div class="h-32 bg-white rounded-xl shadow-sm"></div>
+<div class="h-32 bg-white rounded-xl shadow-sm"></div>
+<div class="h-32 bg-white rounded-xl shadow-sm"></div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Modal Overlay -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center bg-on-background/10 backdrop-blur-md p-4 md:p-8">
+<!-- Share Modal Container -->
+<div class="bg-surface-container-lowest w-full max-w-4xl max-h-[921px] rounded-xl shadow-[0_32px_64px_-4px_rgba(20,27,43,0.12)] overflow-hidden flex flex-col md:flex-row ghost-border">
+<!-- Left Panel: Preview & Identity -->
+<div class="w-full md:w-5/12 bg-surface-container-low p-8 flex flex-col border-r border-outline-variant/10">
+<div class="mb-8">
+<span class="text-[0.6875rem] font-bold tracking-widest text-primary uppercase block mb-2">Selected Recording</span>
+<h2 class="text-2xl font-bold text-on-background tracking-tight">Q3 Feature Onboarding.mp4</h2>
+</div>
+<!-- Curated Thumbnail Card -->
+<div class="relative group rounded-lg overflow-hidden shadow-xl mb-8 aspect-video bg-surface">
+<img class="w-full h-full object-cover" data-alt="Elegant abstract workspace UI preview" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWPmmGvSGkghKLcCvXPWBxVkgRZ8YqSRyErDHEwdgwyqEeBCbPfr1by1Gu0p63EIE-F1KgsyHB2QERLcXIRKjlUHkrSARqZ1kX41A1hfRyKZGKJ38bhJNXgoFYwot_yMMscVX2LJyEXVFOTVrBFl6HyGhd7kG793vo34AXGqQsapbTTUqy52ApFwOhnP1wWEylhyuuupcL4nN_40dq7dblnO4Wce5haFU4cBtKl59wq0Q41U4m6QwxfNVzIZnYTOjbrBo5julbDl4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-background/40 to-transparent"></div>
+<div class="absolute bottom-4 left-4 flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-sm" data-icon="schedule">schedule</span>
+</div>
+<span class="text-white text-xs font-medium">02:45</span>
+</div>
+</div>
+<!-- Export Options - Bento Style -->
+<div class="space-y-4">
+<h3 class="text-sm font-semibold text-on-surface">Export Formats</h3>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex flex-col items-center justify-center p-4 bg-white rounded-lg border-2 border-transparent hover:border-primary transition-all group shadow-sm">
+<span class="material-symbols-outlined text-primary mb-2 text-3xl" data-icon="movie">movie</span>
+<span class="text-xs font-bold text-on-surface">Video (4K)</span>
+</button>
+<button class="flex flex-col items-center justify-center p-4 bg-white rounded-lg border-2 border-transparent hover:border-primary transition-all group shadow-sm">
+<span class="material-symbols-outlined text-secondary mb-2 text-3xl" data-icon="gif">gif</span>
+<span class="text-xs font-bold text-on-surface">GIF High-res</span>
+</button>
+</div>
+</div>
+<div class="mt-auto pt-8">
+<p class="text-xs text-outline leading-relaxed italic">
+                        Tip: Exporting as a GIF is great for email newsletters and documentation.
+                    </p>
+</div>
+</div>
+<!-- Right Panel: Controls & Sharing -->
+<div class="flex-1 p-8 md:p-10 overflow-y-auto">
+<div class="flex justify-between items-start mb-10">
+<div>
+<h1 class="text-3xl font-bold tracking-tighter text-on-background mb-1">Ready to share?</h1>
+<p class="text-slate-500 text-sm">Distribute your recording with curated precision.</p>
+</div>
+<button class="w-10 h-10 rounded-full hover:bg-surface-container transition-colors flex items-center justify-center text-outline">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<!-- Section: Privacy -->
+<div class="mb-10">
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="lock_open">lock_open</span>
+<h3 class="text-xs font-bold tracking-widest text-on-surface uppercase">Privacy &amp; Access</h3>
+</div>
+<div class="grid grid-cols-3 gap-3">
+<label class="relative flex flex-col items-center p-4 bg-surface rounded-xl cursor-pointer hover:bg-surface-container-high transition-colors border border-outline-variant/10">
+<input checked="" class="absolute top-3 right-3 text-primary focus:ring-primary h-4 w-4" name="privacy" type="radio"/>
+<span class="material-symbols-outlined text-xl mb-1" data-icon="public">public</span>
+<span class="text-xs font-bold">Public</span>
+</label>
+<label class="relative flex flex-col items-center p-4 bg-surface rounded-xl cursor-pointer hover:bg-surface-container-high transition-colors border border-outline-variant/10">
+<input class="absolute top-3 right-3 text-primary focus:ring-primary h-4 w-4" name="privacy" type="radio"/>
+<span class="material-symbols-outlined text-xl mb-1" data-icon="visibility_off">visibility_off</span>
+<span class="text-xs font-bold">Private</span>
+</label>
+<label class="relative flex flex-col items-center p-4 bg-surface rounded-xl cursor-pointer hover:bg-surface-container-high transition-colors border border-outline-variant/10">
+<input class="absolute top-3 right-3 text-primary focus:ring-primary h-4 w-4" name="privacy" type="radio"/>
+<span class="material-symbols-outlined text-xl mb-1" data-icon="password">password</span>
+<span class="text-xs font-bold">Passcode</span>
+</label>
+</div>
+</div>
+<!-- Section: Sharing Methods -->
+<div class="space-y-8">
+<!-- Copy Link -->
+<div>
+<label class="block text-xs font-bold text-on-surface mb-3 tracking-widest uppercase">Copy Shareable Link</label>
+<div class="flex gap-2">
+<div class="flex-1 bg-surface-container-low rounded-lg px-4 py-3 flex items-center justify-between border border-outline-variant/20">
+<span class="text-sm text-primary truncate font-medium">https://lucid.app/v/q3-onboarding-2024-rev-A</span>
+<span class="material-symbols-outlined text-outline text-lg" data-icon="link">link</span>
+</div>
+<button class="bg-primary hover:bg-primary-container text-white px-6 py-3 rounded-lg font-bold text-sm shadow-lg shadow-primary/20 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="content_copy">content_copy</span>
+<span>Copy</span>
+</button>
+</div>
+</div>
+<!-- Embed Code -->
+<div>
+<div class="flex justify-between items-center mb-3">
+<label class="text-xs font-bold text-on-surface tracking-widest uppercase">Embed in Website</label>
+<button class="text-primary text-xs font-bold hover:underline">Embed Settings</button>
+</div>
+<div class="bg-inverse-surface rounded-xl p-5 relative group overflow-hidden">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<code class="text-xs text-inverse-on-surface block font-mono leading-relaxed overflow-x-auto whitespace-pre">
+&lt;div class="lucid-embed"&gt;
+  &lt;iframe src="https://lucid.app/embed/v3j9s1" 
+  width="100%" height="auto" frameborder="0" 
+  allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+                            </code>
+<button class="absolute top-4 right-4 bg-white/10 hover:bg-white/20 text-white w-8 h-8 rounded-md flex items-center justify-center transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="code">code</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Primary Action Footer -->
+<div class="mt-12 flex items-center justify-between border-t border-outline-variant/10 pt-8">
+<button class="text-slate-500 font-bold text-sm hover:text-on-background transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="settings">settings</span>
+<span>Advanced Settings</span>
+</button>
+<div class="flex gap-4">
+<button class="px-6 py-3 rounded-full text-sm font-bold text-primary hover:bg-surface-container transition-colors">Done</button>
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-8 py-3 rounded-full font-bold text-sm shadow-xl shadow-primary/30 transition-transform active:scale-95">Download File</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Action Buttons (Suppressed for this task per rules) -->
+</body></html>

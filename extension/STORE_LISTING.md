@@ -41,7 +41,47 @@ Productivity
 ## Language
 English
 
+## Store Icon
+Use `icons/icon128.png` (already generated)
+
+---
+
+## Privacy Practices Tab
+
+### Single Purpose Description
+Lucid Capture records user-initiated click interactions on web pages as screenshots to create step-by-step interactive product demos.
+
+### Permission Justifications
+
+**activeTab:**
+Required to capture a screenshot of the currently visible tab when the user clicks during a recording session. The extension calls `chrome.tabs.captureVisibleTab()` which requires activeTab permission. Screenshots are only taken while the user has explicitly started a recording session. No screenshots are taken in the background or without user action.
+
+**tabs:**
+Required to query the currently active tab ID so the extension can (1) send start/stop messages to the content script running in that tab, and (2) open a new tab pointing to the Lucid Capture editor when recording is complete. No tab URLs or browsing history are read, stored, or transmitted.
+
+**scripting:**
+Required to inject the click-capture content script into the active tab when the user starts recording. The injected script listens for click events to record their coordinates and the CSS selector of the clicked element. The script is only injected upon explicit user action (pressing "Start Recording") and is removed when recording stops. No scripts are injected without user consent.
+
+**storage:**
+Required to temporarily store captured step data (screenshots, click coordinates, page URLs) in `chrome.storage.local` so it can be transferred from the extension to the Lucid Capture web editor. Data is cleared immediately after the editor imports it. No data is synced to any server or cloud storage.
+
+**Host permissions:**
+This extension does not request broad host permissions. The content script uses `<all_urls>` in the manifest only so that the recording feature works on any website the user chooses to record. The content script does nothing unless the user explicitly starts a recording session.
+
+**Remote code:**
+This extension does NOT use any remote code. All JavaScript is bundled locally at build time using esbuild. No scripts are loaded from external servers. Source maps are included for verification.
+
+### Data Use Certification
+- [x] I certify that this extension's data usage complies with the Chrome Web Store Developer Program Policies
+- The extension does not collect or transmit personally identifiable information
+- The extension does not collect or transmit health, financial, authentication, personal communications, location, browsing history, or user activity data
+- All data remains local to the user's browser
+
+---
+
 ## Privacy Policy
+
+**Privacy Policy URL:** https://panyam.github.io/lucidcapture/privacy.html
 
 ### Lucid Capture Privacy Policy
 
@@ -63,7 +103,7 @@ All captured data (screenshots, click coordinates, step metadata) is stored excl
 
 **Permissions Explained:**
 - **activeTab:** Required to capture screenshots of the currently active tab during recording
-- **tabs:** Required to identify the active tab for screenshot capture
+- **tabs:** Required to identify the active tab for screenshot capture and to open the editor tab
 - **storage:** Required to temporarily transfer captured steps from the extension to the editor
 - **scripting:** Required to inject the click-capture script into pages during recording
 
@@ -82,6 +122,8 @@ Any changes to this privacy policy will be reflected in an updated version of th
 **Contact:**
 For privacy questions, open an issue at: https://github.com/panyam/lucidcapture/issues
 
+---
+
 ## Screenshots Needed
 1. **Popup UI** — showing the "Start Recording" state (280x280 or similar)
 2. **Recording in progress** — badge showing "REC" + step count on a sample website
@@ -91,14 +133,17 @@ For privacy questions, open an issue at: https://github.com/panyam/lucidcapture/
 
 Recommended size: 1280x800 or 640x400 (Chrome Web Store accepts both)
 
-## Store Icon
-Use `icons/icon128.png` (already generated)
-
 ## Approval Checklist
 - [x] Manifest V3 (required since 2024)
-- [x] All permissions have justifications in description
-- [x] Privacy policy hosted/accessible (add to GitHub repo README or Pages)
+- [x] All permissions have justifications
+- [x] Single purpose description provided
+- [x] Privacy practices tab fields filled
 - [x] No remote code execution (all JS bundled locally via esbuild)
-- [x] No minified code without source maps (sourcemaps included in build)
+- [x] Source maps included in build
+- [x] Data use certification ready
+- [ ] Contact email verified on Account tab
+- [ ] Privacy policy URL live (deploy via `make gh-pages`)
 - [ ] Screenshots taken (need to do after testing)
-- [ ] Privacy policy URL live (host on GitHub Pages or in repo)
+- [ ] Store icon uploaded (icons/icon128.png)
+- [ ] Language selected: English
+- [ ] Category selected: Productivity

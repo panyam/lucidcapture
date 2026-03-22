@@ -1,4 +1,4 @@
-.PHONY: dev build ext ext-watch ext-zip sync clean
+.PHONY: dev build ext ext-watch ext-zip sync clean gh-pages
 
 # App
 dev:
@@ -25,6 +25,22 @@ sync:
 sync-manifest:
 	./stitch-sync/sync.sh manifest
 
+# GitHub Pages (privacy policy + landing)
+gh-pages:
+	@echo "Deploying docs/ to gh-pages branch..."
+	@rm -rf /tmp/lucid-gh-pages
+	@cp -r docs /tmp/lucid-gh-pages
+	@cd /tmp/lucid-gh-pages && \
+		touch .nojekyll && \
+		git init && \
+		git add -A && \
+		git commit -m "Deploy to GitHub Pages" && \
+		git branch -M gh-pages && \
+		git remote add origin git@github.com:panyam/lucidcapture.git && \
+		git push -f origin gh-pages
+	@rm -rf /tmp/lucid-gh-pages
+	@echo "Deployed! Privacy policy at: https://panyam.github.io/lucidcapture/privacy.html"
+
 # Setup
 install:
 	cd app && pnpm install
@@ -32,4 +48,4 @@ install:
 
 # Clean
 clean:
-	rm -rf app/dist extension/dist
+	rm -rf app/dist extension/dist lucid-capture-extension.zip

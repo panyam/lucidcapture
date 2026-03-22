@@ -192,6 +192,7 @@ export function PlayerPage() {
               style={{
                 left: `${currentStep.clickTarget.x * 100}%`,
                 top: `${currentStep.clickTarget.y * 100}%`,
+                transition: 'left 2.5s cubic-bezier(0.25, 0.1, 0.25, 1), top 2.5s cubic-bezier(0.25, 0.1, 0.25, 1)',
                 transform: 'translate(-50%, -50%)',
               }}
               onClick={handleHotspotClick}

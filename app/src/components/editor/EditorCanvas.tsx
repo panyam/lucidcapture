@@ -134,7 +134,12 @@ function DraggableHotspot({ step, playing, editMode, onDrop }: {
     <div
       ref={containerRef}
       className={`absolute ${editMode ? 'pointer-events-auto cursor-grab' : 'pointer-events-none'} ${dragging ? 'cursor-grabbing z-50' : ''}`}
-      style={{ left: `${x * 100}%`, top: `${y * 100}%`, transform: 'translate(-50%, -50%)' }}
+      style={{
+        left: `${x * 100}%`,
+        top: `${y * 100}%`,
+        transform: 'translate(-50%, -50%)',
+        transition: dragging ? 'none' : 'left 2.5s cubic-bezier(0.25, 0.1, 0.25, 1), top 2.5s cubic-bezier(0.25, 0.1, 0.25, 1)',
+      }}
       onMouseDown={handleMouseDown}
     >
       <div className="relative">

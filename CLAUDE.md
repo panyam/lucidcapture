@@ -18,6 +18,7 @@ make run
 - `views/` — Go page handlers (GoAppLib ViewContext pattern)
 - `templates/` — Templar HTML templates (extends @goapplib/BasePage.html)
 - `ts/` — TypeScript source (tsappkit + jsx-dom, builds to `static/`)
+- `shared/compiler/` — Static HTML compiler (framework-agnostic, symlinked into both `app/src/lib/` and `ts/lib/`)
 - `protos/` — Protobuf definitions (source of truth for data models)
 - `static/` — Built CSS/JS + served assets (Go stack)
 - `extension/` — Chrome Extension (Manifest V3, TypeScript + esbuild)
@@ -38,6 +39,7 @@ make run
 | `make tsdeploy` | Build + deploy React app to App Engine |
 | `make prodlogs` | Tail App Engine logs |
 | `make reset` | Print command to clear IndexedDB |
+| `make seed` | Seed test data into IndexedDB (open in browser) |
 | `cd ts && pnpm run build` | Build TypeScript + Tailwind CSS |
 | `cd protos && make setupdev && make buf` | Generate Go/GORM/Datastore/TS from protos |
 | `./stitch-sync/sync.sh all` | Sync designs from Stitch API |

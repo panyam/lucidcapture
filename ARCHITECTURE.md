@@ -31,16 +31,21 @@ Both versions run side-by-side on different ports for comparison during migratio
 - **Host config:** `chrome.storage.sync` stores the target app URL per Chrome profile. Build-time default via esbuild `define` (`--prod` → prod URL)
 - **Data transfer:** content script on `/editor/import` reads `chrome.storage.local` and forwards via `window.postMessage`
 
-### 4. Static HTML Compiler (`app/src/lib/compiler/`) — planned
-- Follows the slyds pattern (see `~/projects/slyds`): inline assets as base64 → single HTML file
-- Player engine (JS) embedded in output handles step navigation, hotspot clicks, keyboard shortcuts
+### 4. Static HTML Compiler (`shared/compiler/`)
+- Shared between React and Go stacks (symlinked into `app/src/lib/compiler/` and `ts/lib/compiler/`)
+- Follows the slyds pattern: inline assets as base64 → single HTML file
+- `compile.ts` assembles HTML with embedded `PLAYER_JS` + `PLAYER_CSS` + `window.__LUCID_DATA__`
+- `serialize.ts` converts Blob screenshots to data URIs
+- `download.ts` triggers browser download via createObjectURL
+- Player engine (286-line vanilla JS IIFE) handles step navigation, hotspot clicks, keyboard shortcuts, timeline, URL hash
 - Output works from `file://` with zero external dependencies
+- "Export HTML" button available on both editor and player pages
 
 ## User Flow
 ```
 Landing Page → Dashboard → Player (view demo) → Editor (modify) → Player (preview)
-                  ↓                                    ↑
-             Create New ──── Extension captures ───────┘
+                  ↓                                    ↑              ↓
+             Create New ──── Extension captures ───────┘         Export HTML
 ```
 
 ## Extension → App Data Flow

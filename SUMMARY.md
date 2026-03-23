@@ -3,7 +3,8 @@
 Creates interactive product demos ("Scenes") from screen recordings. Built with a dual-stack architecture: React + Vite (original) and Go + GoAppLib + tsappkit (migration target), running side-by-side for comparison.
 
 ## Current State
-- **Full capture→edit→play loop working** across tabs and windows
+- **Full capture→edit→play→export loop working** across tabs and windows
+- **Static HTML export:** single self-contained file with embedded player, CSS, screenshots — works from file://
 - **Dual-stack:** React app on :5173, Go stack on :8080 — both render all 4 pages at visual parity
 - **Hybrid capture:** periodic screenshots (2s) + click/scroll/navigation events, background service worker as controller
 - **Editor:** Split components, play/pause, annotations, timing, drag hotspots, edit/view toggle, thumbnail timeline pinned to bottom

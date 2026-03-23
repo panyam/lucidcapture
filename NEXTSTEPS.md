@@ -1,7 +1,6 @@
 # Next Steps
 
 ## Up Next
-- [ ] Phase 6: Static HTML Compiler — Export scene as single self-contained HTML (slyds pattern)
 - [ ] Phase 7: Share Modal + Export — Download, copy link, embed code
 
 ## Go Stack Migration (in parallel)
@@ -40,6 +39,7 @@ See [GitHub Issue #1](https://github.com/panyam/lucidcapture/issues/1) for full 
 - [x] Extension host config — configurable app host per Chrome profile (chrome.storage.sync)
 - [x] Arcade → Scene rename — types, stores, files, UI strings, templates
 - [x] App Engine Go deploy config — app.yaml, .gcloudignore, make deploy
+- [x] Phase 6: Static HTML Compiler — shared compiler in shared/compiler/, Export button on both React + Go editors, /seed endpoint for test data
 
 ## Backlog
 - [ ] Extension hot-reload during development

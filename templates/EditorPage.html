@@ -1,0 +1,87 @@
+{{# include "./BasePage.html" #}}
+{{# include "./partials/SideNav.html" #}}
+
+{{ define "BodySection" }}
+<div class="flex min-h-screen">
+    {{ template "SideNav" . }}
+    <main class="ml-64 flex-1 flex flex-col bg-surface min-w-0 overflow-hidden h-screen"
+          data-component="EditorPage"
+          data-project-id="{{ .ProjectID }}">
+
+        <!-- Title bar (hidden until project loads) -->
+        <div class="px-8 pt-6 pb-2 flex items-center gap-4 hidden" id="editor-title-bar">
+            <input type="text" id="project-title" value=""
+                   class="text-2xl font-black tracking-tight text-on-background bg-transparent focus:outline-none focus:bg-surface-container-low rounded-lg px-2 py-1 -ml-2 transition-colors">
+            <span id="step-count-badge" class="text-xs font-semibold text-slate-400 bg-surface-container-high px-3 py-1 rounded-full">0 steps</span>
+            <div class="ml-auto flex items-center gap-2">
+                <button id="edit-mode-toggle" class="text-xs font-semibold px-4 py-1.5 rounded-full bg-surface-container-high text-slate-500 hover:bg-surface-container-highest transition-colors flex items-center gap-1.5">
+                    <span class="material-symbols-outlined" style="font-size:14px">visibility</span>
+                    Viewing
+                </button>
+                <a id="preview-link" href="#" class="text-xs font-semibold px-4 py-1.5 rounded-full bg-gradient-to-r from-primary to-primary-container text-on-primary flex items-center gap-1.5 hover:shadow-lg transition-shadow hidden">
+                    <span class="material-symbols-outlined" style="font-size:14px;font-variation-settings:'FILL' 1">play_arrow</span>
+                    Preview
+                </a>
+            </div>
+        </div>
+
+        <div class="flex-1 p-8 pt-2 pb-0 flex flex-col min-w-0 overflow-hidden">
+            <!-- Canvas + controls -->
+            <div class="flex-1 flex items-start justify-start min-h-0">
+                <div class="relative w-full max-w-4xl" id="editor-canvas" data-component="EditorCanvas">
+                    <!-- Screenshot + hotspot rendered by EditorCanvas component -->
+                    <div class="relative w-full max-w-5xl bg-inverse-surface rounded-2xl shadow-[0_48px_80px_-4px_rgba(20,27,43,0.12)] overflow-hidden" style="aspect-ratio:16/9">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="text-center text-inverse-on-surface">
+                                <span class="material-symbols-outlined" style="font-size:64px">smart_display</span>
+                                <p class="mt-4 text-sm font-medium opacity-70">Use the Chrome extension to capture steps</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Playback controls -->
+                    <div id="playback-controls" data-component="PlaybackControls" class="hidden">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div id="timeline" data-component="Timeline" class="shrink-0 p-4 mt-auto bg-surface-container-low rounded-xl">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest">Timeline — 0 steps</h3>
+                </div>
+                <div class="flex gap-1.5 overflow-x-auto pb-1">
+                    <div class="flex items-center justify-center w-full h-20 text-xs text-slate-400 font-semibold">
+                        No steps — use the Chrome extension to record
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Tool Sidebar -->
+    <aside id="tool-sidebar" data-component="ToolSidebar" class="w-80 bg-surface-container-lowest p-6 flex flex-col gap-6 overflow-y-auto">
+        <h2 class="text-lg font-bold text-on-background">Editor Tools</h2>
+        <p class="text-sm text-slate-400">Select a step to edit its properties.</p>
+
+        <!-- Keyboard Shortcuts (always visible) -->
+        <div class="bg-gradient-to-br from-primary-fixed to-primary-fixed-dim rounded-xl p-5">
+            <div class="flex items-center gap-2 mb-3">
+                <span class="material-symbols-outlined text-primary" style="font-size:18px">keyboard</span>
+                <p class="text-xs font-bold text-primary uppercase tracking-widest">Shortcuts</p>
+            </div>
+            <div class="space-y-1.5 text-xs text-on-primary-fixed">
+                <div class="flex justify-between"><span>Play / Pause</span><kbd class="font-mono bg-white/30 px-1.5 py-0.5 rounded text-[10px]">Space</kbd></div>
+                <div class="flex justify-between"><span>Previous step</span><kbd class="font-mono bg-white/30 px-1.5 py-0.5 rounded text-[10px]">←</kbd></div>
+                <div class="flex justify-between"><span>Next step</span><kbd class="font-mono bg-white/30 px-1.5 py-0.5 rounded text-[10px]">→</kbd></div>
+                <div class="flex justify-between"><span>Toggle edit mode</span><kbd class="font-mono bg-white/30 px-1.5 py-0.5 rounded text-[10px]">E</kbd></div>
+                <div class="flex justify-between"><span>Delete step</span><kbd class="font-mono bg-white/30 px-1.5 py-0.5 rounded text-[10px]">Del</kbd></div>
+            </div>
+        </div>
+    </aside>
+</div>
+{{ end }}
+
+{{ define "EditorPage" }}
+{{ template "BasePage" . }}
+{{ end }}

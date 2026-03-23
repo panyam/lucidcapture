@@ -1,0 +1,39 @@
+{{# include "./BasePage.html" #}}
+{{# include "./partials/SideNav.html" #}}
+
+{{ define "BodySection" }}
+<div class="flex min-h-screen">
+    {{ template "SideNav" . }}
+    <main class="ml-64 flex-1 p-12 bg-surface">
+        <header class="mb-12">
+            <div class="flex items-end gap-3 mb-2">
+                <h1 class="text-5xl font-black tracking-tighter text-on-background">My Scenes</h1>
+                <span class="font-script text-primary text-2xl rotate-[-5deg] mb-2">curated</span>
+            </div>
+            <p class="text-slate-500 max-w-xl">
+                Manage and organize your interactive product demos. Use the grid below to view recent activity and insights.
+            </p>
+        </header>
+
+        <div id="dashboard-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+             data-component="DashboardGrid">
+            <!-- Project cards will be rendered by tsappkit DashboardGrid component via API -->
+
+            <!-- Create New Card (always present) -->
+            <a href="/editor/new" class="rounded-xl p-3 border-2 border-dashed border-slate-200 hover:border-primary/40 transition-all duration-300 flex flex-col items-center justify-center gap-4 min-h-[280px] group cursor-pointer">
+                <div class="w-16 h-16 rounded-2xl bg-primary-fixed flex items-center justify-center group-hover:bg-primary-fixed-dim transition-colors">
+                    <span class="material-symbols-outlined text-primary" style="font-size:32px">add</span>
+                </div>
+                <div class="text-center">
+                    <h3 class="text-lg font-bold text-on-background mb-1">Create New Scene</h3>
+                    <p class="text-sm text-slate-500">Record an interactive demo</p>
+                </div>
+            </a>
+        </div>
+    </main>
+</div>
+{{ end }}
+
+{{ define "DashboardPage" }}
+{{ template "BasePage" . }}
+{{ end }}

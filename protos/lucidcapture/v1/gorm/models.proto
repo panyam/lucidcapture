@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package lucidcapture.v1;
+
+import "dal/v1/annotations.proto";
+import "lucidcapture/v1/models/models.proto";
+
+option go_package = "github.com/panyam/lucidcapture/gen/gorm;lucidcapturegorm";
+
+message ClickTargetGORM {
+  option (dal.v1.gorm) = { source: "lucidcapture.v1.ClickTarget", implement_scanner: true };
+}
+
+message AnnotationGORM {
+  option (dal.v1.gorm) = { source: "lucidcapture.v1.Annotation", implement_scanner: true };
+}
+
+message ProjectGORM {
+  option (dal.v1.gorm) = { source: "lucidcapture.v1.Project", table: "projects" };
+
+  string id = 1 [(dal.v1.column) = {
+    gorm_tags: ["primaryKey"]
+  }];
+}
+
+message StepGORM {
+  option (dal.v1.gorm) = { source: "lucidcapture.v1.Step", table: "steps" };
+
+  string id = 1 [(dal.v1.column) = {
+    gorm_tags: ["primaryKey"]
+  }];
+
+  string project_id = 2 [(dal.v1.column) = {
+    gorm_tags: ["index"]
+  }];
+
+  int32 order = 3;
+
+  // Nested types as JSON
+  ClickTargetGORM click_target = 4 [(dal.v1.column) = {
+    gorm_tags: ["serializer:json"]
+  }];
+
+  AnnotationGORM annotation = 5 [(dal.v1.column) = {
+    gorm_tags: ["serializer:json"]
+  }];
+}

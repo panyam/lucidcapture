@@ -1,11 +1,23 @@
 import type { RecordingSession, CapturedStep, Message, StateResponse } from './types'
 
+declare const __DEFAULT_APP_HOST__: string
+
 let session: RecordingSession | null = null
 let injectedTabs = new Set<number>()
 let periodicTimer: ReturnType<typeof setInterval> | null = null
 let lastCaptureTime = 0
 
 const PERIODIC_INTERVAL_MS = 2000
+
+/** Get the configured app host URL, falling back to the build-time default. */
+async function getAppHost(): Promise<string> {
+  try {
+    const result = await chrome.storage.sync.get('appHost')
+    return result.appHost || __DEFAULT_APP_HOST__
+  } catch {
+    return __DEFAULT_APP_HOST__
+  }
+}
 
 // Expose for Playwright testing
 ;(globalThis as any).__lucid = {
@@ -247,7 +259,7 @@ async function stopRecording() {
   chrome.action.setBadgeText({ text: '' })
   session = null
 
-  // Use the app URL — defaults to localhost for dev, override for production
-  const APP_URL = 'http://localhost:5173'
-  chrome.tabs.create({ url: `${APP_URL}/editor/import` })
+  // Redirect to the configured app host
+  const appHost = await getAppHost()
+  chrome.tabs.create({ url: `${appHost}/editor/import` })
 }

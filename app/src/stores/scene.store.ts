@@ -1,25 +1,25 @@
 import { create } from 'zustand'
-import type { ArcadeProject, ArcadeStep } from '../types/arcade'
-import * as arcadeDb from '../db/arcade.db'
+import type { SceneProject, SceneStep } from '../types/scene'
+import * as sceneDb from '../db/scene.db'
 
-interface ArcadeState {
-  projects: ArcadeProject[]
-  currentProject: ArcadeProject | null
-  currentSteps: ArcadeStep[]
+interface SceneState {
+  projects: SceneProject[]
+  currentProject: SceneProject | null
+  currentSteps: SceneStep[]
   loading: boolean
 
   // Actions
   loadProjects: () => Promise<void>
   loadProject: (id: string) => Promise<void>
-  createProject: (title: string) => Promise<ArcadeProject>
+  createProject: (title: string) => Promise<SceneProject>
   deleteProject: (id: string) => Promise<void>
-  updateProject: (id: string, updates: Partial<ArcadeProject>) => Promise<void>
-  addStep: (step: ArcadeStep) => Promise<void>
-  updateStep: (id: string, updates: Partial<ArcadeStep>) => Promise<void>
+  updateProject: (id: string, updates: Partial<SceneProject>) => Promise<void>
+  addStep: (step: SceneStep) => Promise<void>
+  updateStep: (id: string, updates: Partial<SceneStep>) => Promise<void>
   deleteStep: (id: string) => Promise<void>
 }
 
-export const useArcadeStore = create<ArcadeState>((set, get) => ({
+export const useSceneStore = create<SceneState>((set, get) => ({
   projects: [],
   currentProject: null,
   currentSteps: [],
@@ -27,15 +27,15 @@ export const useArcadeStore = create<ArcadeState>((set, get) => ({
 
   loadProjects: async () => {
     set({ loading: true })
-    const projects = await arcadeDb.listProjects()
+    const projects = await sceneDb.listProjects()
     set({ projects, loading: false })
   },
 
   loadProject: async (id: string) => {
     set({ loading: true })
     const [project, steps] = await Promise.all([
-      arcadeDb.getProject(id),
-      arcadeDb.getSteps(id),
+      sceneDb.getProject(id),
+      sceneDb.getSteps(id),
     ])
     set({
       currentProject: project ?? null,
@@ -45,13 +45,13 @@ export const useArcadeStore = create<ArcadeState>((set, get) => ({
   },
 
   createProject: async (title: string) => {
-    const project = await arcadeDb.createProject(title)
+    const project = await sceneDb.createProject(title)
     set((s) => ({ projects: [project, ...s.projects] }))
     return project
   },
 
   deleteProject: async (id: string) => {
-    await arcadeDb.deleteProject(id)
+    await sceneDb.deleteProject(id)
     set((s) => ({
       projects: s.projects.filter((p) => p.id !== id),
       currentProject: s.currentProject?.id === id ? null : s.currentProject,
@@ -59,16 +59,16 @@ export const useArcadeStore = create<ArcadeState>((set, get) => ({
     }))
   },
 
-  updateProject: async (id: string, updates: Partial<ArcadeProject>) => {
-    await arcadeDb.updateProject(id, updates)
+  updateProject: async (id: string, updates: Partial<SceneProject>) => {
+    await sceneDb.updateProject(id, updates)
     set((s) => ({
       projects: s.projects.map((p) => (p.id === id ? { ...p, ...updates } : p)),
       currentProject: s.currentProject?.id === id ? { ...s.currentProject, ...updates } : s.currentProject,
     }))
   },
 
-  addStep: async (step: ArcadeStep) => {
-    await arcadeDb.addStep(step)
+  addStep: async (step: SceneStep) => {
+    await sceneDb.addStep(step)
     const { currentProject } = get()
     if (currentProject && step.projectId === currentProject.id) {
       set((s) => {
@@ -87,8 +87,8 @@ export const useArcadeStore = create<ArcadeState>((set, get) => ({
     }
   },
 
-  updateStep: async (id: string, updates: Partial<ArcadeStep>) => {
-    await arcadeDb.updateStep(id, updates)
+  updateStep: async (id: string, updates: Partial<SceneStep>) => {
+    await sceneDb.updateStep(id, updates)
     set((s) => ({
       currentSteps: s.currentSteps.map((step) =>
         step.id === id ? { ...step, ...updates } : step,
@@ -100,7 +100,7 @@ export const useArcadeStore = create<ArcadeState>((set, get) => ({
     const { currentSteps } = get()
     const step = currentSteps.find((s) => s.id === id)
     if (!step) return
-    await arcadeDb.deleteStep(id, step.projectId)
+    await sceneDb.deleteStep(id, step.projectId)
     set((s) => {
       const newSteps = s.currentSteps.filter((s) => s.id !== id)
       return {

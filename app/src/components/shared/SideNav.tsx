@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router'
 import { MaterialIcon } from './MaterialIcon'
 
 const navItems = [
-  { icon: 'video_library', label: 'My Arcades', href: '/dashboard' },
+  { icon: 'video_library', label: 'My Scenes', href: '/dashboard' },
   { icon: 'group', label: 'Shared', href: '#' },
   { icon: 'settings', label: 'Settings', href: '#' },
 ]

@@ -1,0 +1,39 @@
+settings:
+  color_logs: true
+  prefix_logs: true
+
+rules:
+  - name: "go-server"
+    watch:
+      - action: "include"
+        patterns:
+          - "cmd/**/*.go"
+          - "views/**/*.go"
+          - "go.mod"
+          - "go.sum"
+      - action: "exclude"
+        patterns:
+          - "gen/**"
+    commands:
+      - "go build -o ./bin/lucidcapture ./cmd/server && ./bin/lucidcapture"
+
+  - name: "typescript"
+    watch:
+      - action: "include"
+        patterns:
+          - "ts/**/*.ts"
+          - "ts/**/*.tsx"
+      - action: "exclude"
+        patterns:
+          - "ts/gen/**"
+          - "ts/node_modules/**"
+    commands:
+      - "cd ts && pnpm run build"
+
+  - name: "templates"
+    watch:
+      - action: "include"
+        patterns:
+          - "templates/**/*.html"
+    commands:
+      - "echo 'Templates changed — Go server auto-reloads templates'"

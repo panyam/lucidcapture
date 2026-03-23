@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState, useRef } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { SideNav } from '../components/shared/SideNav'
 import { MaterialIcon } from '../components/shared/MaterialIcon'
-import { useArcadeStore } from '../stores/arcade.store'
+import { useSceneStore } from '../stores/scene.store'
 
 function formatDuration(ms: number): string {
   const s = Math.floor(ms / 1000)
@@ -23,7 +23,7 @@ function timeAgo(iso: string): string {
 }
 
 export function DashboardPage() {
-  const { projects, loading, loadProjects, createProject, deleteProject } = useArcadeStore()
+  const { projects, loading, loadProjects, createProject, deleteProject } = useSceneStore()
   const navigate = useNavigate()
   const [menuOpenId, setMenuOpenId] = useState<string | null>(null)
   const menuRef = useRef<HTMLDivElement>(null)
@@ -39,13 +39,13 @@ export function DashboardPage() {
     return () => document.removeEventListener('mousedown', handleClick)
   }, [])
 
-  async function handleDuplicate(arcade: typeof projects[0]) {
-    const newProject = await createProject(`${arcade.title} (Copy)`)
+  async function handleDuplicate(scene: typeof projects[0]) {
+    const newProject = await createProject(`${scene.title} (Copy)`)
     navigate(`/editor/${newProject.id}`)
   }
 
   async function handleDelete(id: string) {
-    if (confirm('Delete this arcade? This cannot be undone.')) {
+    if (confirm('Delete this scene? This cannot be undone.')) {
       await deleteProject(id)
       setMenuOpenId(null)
     }
@@ -66,7 +66,7 @@ export function DashboardPage() {
   }, [projects])
 
   async function handleCreateNew() {
-    const project = await createProject('Untitled Arcade')
+    const project = await createProject('Untitled Scene')
     navigate(`/editor/${project.id}`)
   }
 
@@ -76,7 +76,7 @@ export function DashboardPage() {
       <main className="ml-64 flex-1 p-12 bg-surface">
         <header className="mb-12">
           <div className="flex items-end gap-3 mb-2">
-            <h1 className="text-5xl font-black tracking-tighter text-on-background">My Arcades</h1>
+            <h1 className="text-5xl font-black tracking-tighter text-on-background">My Scenes</h1>
             <span className="font-script text-primary text-2xl rotate-[-5deg] mb-2">curated</span>
           </div>
           <p className="text-slate-500 max-w-xl">
@@ -88,15 +88,15 @@ export function DashboardPage() {
           <p className="text-slate-400">Loading...</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((arcade) => (
+            {projects.map((scene) => (
               <Link
-                key={arcade.id}
-                to={`/play/${arcade.id}`}
+                key={scene.id}
+                to={`/play/${scene.id}`}
                 className="group relative bg-surface-container-lowest rounded-xl p-3 shadow-[0_32px_64px_-4px_rgba(20,27,43,0.04)] hover:shadow-[0_48px_80px_-4px_rgba(20,27,43,0.08)] transition-all duration-300"
               >
                 <div className="aspect-video rounded-lg overflow-hidden relative mb-4 bg-surface-container-high">
-                  {thumbnails.get(arcade.id) ? (
-                    <img src={thumbnails.get(arcade.id)} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  {thumbnails.get(scene.id) ? (
+                    <img src={thumbnails.get(scene.id)} alt="" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-slate-400">
                       <MaterialIcon icon="smart_display" size="48px" />
@@ -106,34 +106,34 @@ export function DashboardPage() {
                     <MaterialIcon icon="play_circle" filled className="text-white" size="48px" />
                   </div>
                   <div className="absolute bottom-3 right-3 glass-panel px-2 py-1 rounded text-[10px] font-bold text-on-background">
-                    {formatDuration(arcade.totalDuration)}
+                    {formatDuration(scene.totalDuration)}
                   </div>
                 </div>
                 <div className="px-2 pb-2">
-                  <h3 className="text-lg font-bold text-on-background mb-1">{arcade.title}</h3>
+                  <h3 className="text-lg font-bold text-on-background mb-1">{scene.title}</h3>
                   <div className="flex items-center justify-between mt-4">
                     <div className="flex items-center gap-4">
                       <div className="flex items-center gap-1.5 text-slate-500">
                         <MaterialIcon icon="layers" size="14px" />
-                        <span className="text-xs font-semibold">{arcade.stepCount} steps</span>
+                        <span className="text-xs font-semibold">{scene.stepCount} steps</span>
                       </div>
                       <div className="flex items-center gap-1.5 text-slate-500">
                         <MaterialIcon icon="edit_calendar" size="14px" />
-                        <span className="text-xs font-semibold">{timeAgo(arcade.updatedAt)}</span>
+                        <span className="text-xs font-semibold">{timeAgo(scene.updatedAt)}</span>
                       </div>
                     </div>
-                    <div className="relative" ref={menuOpenId === arcade.id ? menuRef : undefined}>
+                    <div className="relative" ref={menuOpenId === scene.id ? menuRef : undefined}>
                       <button
                         className="opacity-0 group-hover:opacity-100 transition-opacity text-slate-400 hover:text-slate-600"
                         onClick={(e) => {
                           e.preventDefault()
                           e.stopPropagation()
-                          setMenuOpenId(menuOpenId === arcade.id ? null : arcade.id)
+                          setMenuOpenId(menuOpenId === scene.id ? null : scene.id)
                         }}
                       >
                         <MaterialIcon icon="more_vert" size="20px" />
                       </button>
-                      {menuOpenId === arcade.id && (
+                      {menuOpenId === scene.id && (
                         <div className="absolute right-0 bottom-8 bg-surface-container-lowest rounded-xl shadow-[0_16px_48px_-4px_rgba(20,27,43,0.15)] py-1 z-50 min-w-[160px]">
                           <button
                             className="w-full text-left px-4 py-2.5 text-sm font-medium text-on-background hover:bg-surface-container-low flex items-center gap-3 transition-colors"
@@ -141,7 +141,7 @@ export function DashboardPage() {
                               e.preventDefault()
                               e.stopPropagation()
                               setMenuOpenId(null)
-                              navigate(`/editor/${arcade.id}`)
+                              navigate(`/editor/${scene.id}`)
                             }}
                           >
                             <MaterialIcon icon="edit" size="18px" />
@@ -153,7 +153,7 @@ export function DashboardPage() {
                               e.preventDefault()
                               e.stopPropagation()
                               setMenuOpenId(null)
-                              handleDuplicate(arcade)
+                              handleDuplicate(scene)
                             }}
                           >
                             <MaterialIcon icon="content_copy" size="18px" />
@@ -164,7 +164,7 @@ export function DashboardPage() {
                             onClick={(e) => {
                               e.preventDefault()
                               e.stopPropagation()
-                              handleDelete(arcade.id)
+                              handleDelete(scene.id)
                             }}
                           >
                             <MaterialIcon icon="delete" size="18px" />
@@ -187,7 +187,7 @@ export function DashboardPage() {
                 <MaterialIcon icon="add" className="text-primary" size="32px" />
               </div>
               <div className="text-center">
-                <h3 className="text-lg font-bold text-on-background mb-1">Create New Arcade</h3>
+                <h3 className="text-lg font-bold text-on-background mb-1">Create New Scene</h3>
                 <p className="text-sm text-slate-500">Record an interactive demo</p>
               </div>
             </button>
@@ -198,7 +198,7 @@ export function DashboardPage() {
                 <div>
                   <p className="text-xs font-bold uppercase tracking-widest text-tertiary-fixed-dim mb-2">Summary</p>
                   <h3 className="text-3xl font-black tracking-tight mb-2">
-                    {projects.length} <span className="text-on-tertiary-container">Arcades</span>
+                    {projects.length} <span className="text-on-tertiary-container">Scenes</span>
                   </h3>
                   <p className="text-white/70 text-sm leading-relaxed">
                     {projects.reduce((sum, p) => sum + p.stepCount, 0)} total steps captured across all demos.

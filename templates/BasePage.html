@@ -1,0 +1,67 @@
+<!-- lucidcapture/templates/BasePage.html -->
+{{# namespace "GoalBase" "@goapplib/BasePage.html" #}}
+
+{{ define "LCExtraHeadSection" }}
+    <!-- Lucid Capture Design Tokens (Tailwind v4 @theme) -->
+    <link href="/static/css/app.css" rel="stylesheet">
+    <!-- Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Material Symbols Outlined -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+{{ end }}
+
+{{ define "LCHeaderSection" }}
+    {{ if not .CustomHeader }}
+    <!-- TopNav -->
+    <header class="bg-white/70 backdrop-blur-xl sticky top-0 z-50 shadow-[0_32px_64px_-4px_rgba(20,27,43,0.04)]">
+        <div class="flex justify-between items-center w-full px-8 py-4 max-w-[1920px] mx-auto">
+            <div class="flex items-center gap-12">
+                <a href="/" class="text-2xl font-black tracking-tighter text-blue-800">Lucid Capture</a>
+                <nav class="hidden md:flex items-center gap-8">
+                    <a class="text-slate-500 font-medium hover:text-blue-600 transition-colors" href="/dashboard">Explore</a>
+                    <a class="text-slate-500 font-medium hover:text-blue-600 transition-colors" href="#">Community</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-6">
+                {{ if ne .ActiveTab "" }}
+                <a href="/editor/new" class="bg-gradient-to-r from-primary to-primary-container text-on-primary px-6 py-2.5 rounded-full font-semibold text-sm shadow-lg hover:shadow-primary/20 transition-all active:scale-95 duration-200 flex items-center gap-2">
+                    <span class="material-symbols-outlined" style="font-size:18px;font-variation-settings:'FILL' 1">videocam</span>
+                    Record New
+                </a>
+                {{ end }}
+                <div class="h-10 w-10 rounded-full bg-surface-container-highest overflow-hidden cursor-pointer border-2 border-transparent hover:border-primary transition-all">
+                    <div class="w-full h-full bg-primary-fixed-dim flex items-center justify-center text-on-primary-fixed text-sm font-bold">U</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    {{ end }}
+{{ end }}
+
+{{ define "LCSplashSection" }}
+    <!-- No splash screen -->
+{{ end }}
+
+{{ define "LCCSSSection" }}
+    <!-- CSS loaded via LCExtraHeadSection instead of GoAppLib default -->
+{{ end }}
+
+{{ define "LCHTMXSection" }}
+    <!-- HTMX not used yet — tsappkit handles interactivity -->
+{{ end }}
+
+{{ define "PostBodySection" }}
+    <!-- tsappkit + app JS -->
+    <script type="module" src="/static/js/index.js"></script>
+{{ end }}
+
+{{# extend "GoalBase:BasePage" "BasePage"
+           "GoalBase:SplashScreenSection" "LCSplashSection"
+           "GoalBase:CSSSection" "LCCSSSection"
+           "GoalBase:HTMXSection" "LCHTMXSection"
+           "GoalBase:ExtraHeadSection" "LCExtraHeadSection"
+           "GoalBase:HeaderSection" "LCHeaderSection"
+           "GoalBase:BodySection" "BodySection"
+           "GoalBase:PostScriptsSection" "PostBodySection" #}}

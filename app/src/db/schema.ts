@@ -1,9 +1,9 @@
 import Dexie, { type EntityTable } from 'dexie'
-import type { ArcadeProject, ArcadeStep } from '../types/arcade'
+import type { SceneProject, SceneStep } from '../types/scene'
 
 export const db = new Dexie('lucid-capture') as Dexie & {
-  projects: EntityTable<ArcadeProject, 'id'>
-  steps: EntityTable<ArcadeStep, 'id'>
+  projects: EntityTable<SceneProject, 'id'>
+  steps: EntityTable<SceneStep, 'id'>
 }
 
 db.version(1).stores({

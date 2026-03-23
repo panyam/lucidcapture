@@ -1,0 +1,22 @@
+{
+  "name": "lucidcapture-ts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsup && pnpm run build:css",
+    "build:css": "npx @tailwindcss/cli -i styles.css -o ../static/css/app.css --minify",
+    "dev": "tsup --watch & npx @tailwindcss/cli -i styles.css -o ../static/css/app.css --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@panyam/tsappkit": "link:../locallinks/newstack/goapplib/main/tsappkit",
+    "jsx-dom": "^8.1.4",
+    "tailwindcss": "^4.2.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.2",
+    "tsup": "^8.0.0",
+    "typescript": "^5.9.0"
+  }
+}

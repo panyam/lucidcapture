@@ -4,8 +4,28 @@ const statusDot = document.getElementById('statusDot') as HTMLDivElement
 const statusText = document.getElementById('statusText') as HTMLSpanElement
 const stepCount = document.getElementById('stepCount') as HTMLDivElement
 const actionBtn = document.getElementById('actionBtn') as HTMLButtonElement
+const hostInput = document.getElementById('hostInput') as HTMLInputElement
 
 let isRecording = false
+
+// Load saved host on popup open (profile-specific via chrome.storage.sync)
+chrome.storage.sync.get('appHost', (result) => {
+  hostInput.value = result.appHost || ''
+})
+
+// Save host on blur or Enter — strips trailing slash
+hostInput.addEventListener('blur', saveHost)
+hostInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') { saveHost(); hostInput.blur() }
+})
+
+function saveHost() {
+  const host = hostInput.value.trim().replace(/\/+$/, '')
+  if (host) {
+    chrome.storage.sync.set({ appHost: host })
+    hostInput.value = host
+  }
+}
 
 // Get current state on popup open
 chrome.runtime.sendMessage({ type: 'GET_STATE' }, (response: StateResponse) => {

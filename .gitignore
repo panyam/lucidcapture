@@ -9,3 +9,14 @@ dist/
 tests/screenshots/
 tests/debug_dashboard.png
 .venv/
+
+# Go stack
+bin/
+locallinks/
+*.db
+gen/
+static/uploads/
+templates/templar_modules/
+/server
+*.png
+.playwright-mcp/

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@panyam/tsappkit": "*",
+    "dexie": "^4.3.0",
     "jsx-dom": "^8.1.4",
     "tailwindcss": "^4.2.2"
   },

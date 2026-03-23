@@ -8,6 +8,7 @@ import { ToolSidebar } from '../components/editor/ToolSidebar'
 import { MaterialIcon } from '../components/shared/MaterialIcon'
 import { useSceneStore } from '../stores/scene.store'
 import { waitForPendingSession, convertExtensionSteps } from '../lib/capture/bridge'
+import { serializeSteps, compileToHTML, downloadHTML, safeFilename } from '../lib/compiler'
 import type { StepTransition } from '../types/scene'
 
 export function EditorPage() {
@@ -21,6 +22,7 @@ export function EditorPage() {
   const [importing, setImporting] = useState(false)
   const [playing, setPlaying] = useState(false)
   const [editMode, setEditMode] = useState(false)
+  const [exporting, setExporting] = useState(false)
   const playTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const currentStep = currentSteps[stepIndex]
@@ -144,6 +146,22 @@ export function EditorPage() {
     updateStep(currentStep.id, { transition })
   }
 
+  async function handleExport() {
+    if (!currentProject || currentSteps.length === 0) return
+    setExporting(true)
+    try {
+      const serialized = await serializeSteps(currentSteps)
+      const html = compileToHTML({
+        title: currentProject.title,
+        steps: serialized,
+        compiledAt: new Date().toISOString(),
+      })
+      downloadHTML(html, safeFilename(currentProject.title))
+    } finally {
+      setExporting(false)
+    }
+  }
+
   // ── Rendering ──
 
   if (importing) {
@@ -193,13 +211,23 @@ export function EditorPage() {
                 {editMode ? 'Editing' : 'Viewing'}
               </button>
               {currentSteps.length > 0 && (
-                <Link
-                  to={`/play/${id}`}
-                  className="text-xs font-semibold px-4 py-1.5 rounded-full bg-gradient-to-r from-primary to-primary-container text-on-primary flex items-center gap-1.5 hover:shadow-lg transition-shadow"
-                >
-                  <MaterialIcon icon="play_arrow" filled size="14px" />
-                  Preview
-                </Link>
+                <>
+                  <button
+                    onClick={handleExport}
+                    disabled={exporting}
+                    className="text-xs font-semibold px-4 py-1.5 rounded-full bg-surface-container-high text-slate-500 hover:bg-surface-container-highest transition-colors flex items-center gap-1.5 disabled:opacity-50"
+                  >
+                    <MaterialIcon icon={exporting ? 'sync' : 'download'} size="14px" className={exporting ? 'animate-spin' : ''} />
+                    {exporting ? 'Exporting...' : 'Export HTML'}
+                  </button>
+                  <Link
+                    to={`/play/${id}`}
+                    className="text-xs font-semibold px-4 py-1.5 rounded-full bg-gradient-to-r from-primary to-primary-container text-on-primary flex items-center gap-1.5 hover:shadow-lg transition-shadow"
+                  >
+                    <MaterialIcon icon="play_arrow" filled size="14px" />
+                    Preview
+                  </Link>
+                </>
               )}
             </div>
           </div>

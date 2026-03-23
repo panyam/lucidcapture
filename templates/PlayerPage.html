@@ -17,6 +17,10 @@
                 <span id="player-step-counter" class="text-white/40 text-xs font-semibold"></span>
             </div>
             <div class="flex items-center gap-3">
+                <button class="lc-export-btn text-white/60 hover:text-white text-xs font-semibold px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 transition-colors flex items-center gap-1.5 hidden" data-project-id="{{ .ProjectID }}">
+                    <span class="material-symbols-outlined" style="font-size:14px">download</span>
+                    Export
+                </button>
                 <a id="player-edit-link" href="#" class="text-white/60 hover:text-white text-xs font-semibold px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 transition-colors flex items-center gap-1.5">
                     <span class="material-symbols-outlined" style="font-size:14px">edit</span>
                     Edit

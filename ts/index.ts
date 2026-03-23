@@ -2,12 +2,18 @@
 // LifecycleController discovers and initializes all components on the page.
 
 import { EventBus } from '@panyam/tsappkit'
+import { initExportButtons } from './lib/export'
 
 // Create global event bus
 const eventBus = new EventBus()
 
 // Make accessible for debugging
 ;(globalThis as any).__lucidEventBus = eventBus
+
+// Wire up features
+document.addEventListener('DOMContentLoaded', () => {
+  initExportButtons()
+})
 
 console.log('[LucidCapture] tsappkit initialized')
 

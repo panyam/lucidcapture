@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
 import { MaterialIcon } from '../shared/MaterialIcon'
-import type { ArcadeStep } from '../../types/arcade'
+import type { SceneStep } from '../../types/scene'
 
 interface TimelineProps {
-  steps: ArcadeStep[]
+  steps: SceneStep[]
   currentIndex: number
   playing: boolean
   onSelectStep: (index: number) => void
@@ -55,7 +55,7 @@ export function Timeline({ steps, currentIndex, playing, onSelectStep, onDeleteS
 }
 
 function TimelineThumb({ step, index, isActive, playing, onClick }: {
-  step: ArcadeStep
+  step: SceneStep
   index: number
   isActive: boolean
   playing: boolean

@@ -1,9 +1,9 @@
 import { useMemo, useEffect, useState, useRef, useCallback } from 'react'
 import { MaterialIcon } from '../shared/MaterialIcon'
-import type { ArcadeStep } from '../../types/arcade'
+import type { SceneStep } from '../../types/scene'
 
 interface EditorCanvasProps {
-  step: ArcadeStep | undefined
+  step: SceneStep | undefined
   stepIndex: number
   editMode: boolean
   playing: boolean
@@ -75,7 +75,7 @@ export function EditorCanvas({ step, stepIndex, editMode, playing, onMoveHotspot
 }
 
 function DraggableHotspot({ step, playing, editMode, onDrop }: {
-  step: ArcadeStep
+  step: SceneStep
   playing: boolean
   editMode: boolean
   onDrop: (x: number, y: number) => void

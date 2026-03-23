@@ -6,9 +6,9 @@ import { PlaybackControls } from '../components/editor/PlaybackControls'
 import { Timeline } from '../components/editor/Timeline'
 import { ToolSidebar } from '../components/editor/ToolSidebar'
 import { MaterialIcon } from '../components/shared/MaterialIcon'
-import { useArcadeStore } from '../stores/arcade.store'
+import { useSceneStore } from '../stores/scene.store'
 import { waitForPendingSession, convertExtensionSteps } from '../lib/capture/bridge'
-import type { StepTransition } from '../types/arcade'
+import type { StepTransition } from '../types/scene'
 
 export function EditorPage() {
   const { id } = useParams()
@@ -16,7 +16,7 @@ export function EditorPage() {
   const {
     currentProject, currentSteps, loadProject, createProject,
     addStep, updateStep, deleteStep, updateProject,
-  } = useArcadeStore()
+  } = useSceneStore()
   const [stepIndex, setStepIndex] = useState(0)
   const [importing, setImporting] = useState(false)
   const [playing, setPlaying] = useState(false)
@@ -37,7 +37,7 @@ export function EditorPage() {
         navigate('/dashboard')
         return
       }
-      const project = await createProject('Imported Arcade')
+      const project = await createProject('Imported Scene')
       const steps = await convertExtensionSteps(project.id, session.steps)
       for (const step of steps) {
         if (cancelled) return
@@ -161,7 +161,7 @@ export function EditorPage() {
     ? 'Use the Chrome extension to capture steps'
     : currentSteps.length === 0
       ? 'No steps captured yet'
-      : `Editing ${currentProject?.title ?? 'arcade'}`
+      : `Editing ${currentProject?.title ?? 'scene'}`
 
   return (
     <div className="flex min-h-screen">

@@ -1,5 +1,5 @@
 import { MaterialIcon } from '../shared/MaterialIcon'
-import type { ArcadeStep, StepTransition, StepType } from '../../types/arcade'
+import type { SceneStep, StepTransition, StepType } from '../../types/scene'
 
 function stepTypeIcon(type: StepType): string {
   switch (type) {
@@ -13,7 +13,7 @@ function stepTypeIcon(type: StepType): string {
 }
 
 interface ToolSidebarProps {
-  step: ArcadeStep | undefined
+  step: SceneStep | undefined
   stepIndex: number
   onAnnotationChange: (field: 'title' | 'body', value: string) => void
   onDurationChange: (seconds: number) => void
@@ -41,7 +41,7 @@ export function ToolSidebar({ step, stepIndex, onAnnotationChange, onDurationCha
   )
 }
 
-function StepInfo({ step, stepIndex }: { step: ArcadeStep; stepIndex: number }) {
+function StepInfo({ step, stepIndex }: { step: SceneStep; stepIndex: number }) {
   return (
     <div>
       <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Step {stepIndex + 1}</p>
@@ -62,7 +62,7 @@ function StepInfo({ step, stepIndex }: { step: ArcadeStep; stepIndex: number }) 
   )
 }
 
-function AnnotationEditor({ step, onChange }: { step: ArcadeStep; onChange: (field: 'title' | 'body', value: string) => void }) {
+function AnnotationEditor({ step, onChange }: { step: SceneStep; onChange: (field: 'title' | 'body', value: string) => void }) {
   return (
     <div>
       <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Annotations</p>
@@ -93,7 +93,7 @@ function AnnotationEditor({ step, onChange }: { step: ArcadeStep; onChange: (fie
 }
 
 function TimingEditor({ step, onDurationChange, onTransitionChange }: {
-  step: ArcadeStep
+  step: SceneStep
   onDurationChange: (seconds: number) => void
   onTransitionChange: (transition: StepTransition) => void
 }) {
@@ -137,7 +137,7 @@ function TimingEditor({ step, onDurationChange, onTransitionChange }: {
   )
 }
 
-function HotspotInfo({ step }: { step: ArcadeStep }) {
+function HotspotInfo({ step }: { step: SceneStep }) {
   return (
     <div>
       <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Hotspot</p>

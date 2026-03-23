@@ -1,4 +1,4 @@
-export interface ArcadeProject {
+export interface SceneProject {
   id: string
   title: string
   createdAt: string // ISO 8601
@@ -25,7 +25,7 @@ export interface StepAnnotation {
   position: { x: number; y: number } // viewport ratios
 }
 
-export interface ArcadeStep {
+export interface SceneStep {
   id: string
   projectId: string
   order: number

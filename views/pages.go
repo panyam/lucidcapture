@@ -26,7 +26,7 @@ type DashboardPage struct {
 }
 
 func (p *DashboardPage) Load(r *http.Request, w http.ResponseWriter, app *goal.App[*LucidApp]) (error, bool) {
-	p.Title = "My Arcades"
+	p.Title = "My Scenes"
 	p.ActiveTab = "dashboard"
 
 	// TODO: Load from generated DAL

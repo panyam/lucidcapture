@@ -2,11 +2,11 @@ import { useEffect, useMemo, useState, useCallback, useRef } from 'react'
 import { useParams, Link } from 'react-router'
 import { MaterialIcon } from '../components/shared/MaterialIcon'
 import { Timeline } from '../components/editor/Timeline'
-import { useArcadeStore } from '../stores/arcade.store'
+import { useSceneStore } from '../stores/scene.store'
 
 export function PlayerPage() {
   const { id } = useParams()
-  const { currentProject, currentSteps, loadProject } = useArcadeStore()
+  const { currentProject, currentSteps, loadProject } = useSceneStore()
   const [stepIndex, setStepIndex] = useState(0)
   const [playing, setPlaying] = useState(false)
   const [showControls, setShowControls] = useState(true)

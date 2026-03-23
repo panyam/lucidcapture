@@ -1,4 +1,4 @@
-import type { ArcadeStep } from '../../types/arcade'
+import type { SceneStep } from '../../types/scene'
 
 interface ExtensionStep {
   id: string
@@ -76,12 +76,12 @@ export function waitForPendingSession(timeoutMs = 10000): Promise<PendingSession
 
 /**
  * Convert extension steps (with base64 screenshots) into
- * ArcadeStep objects (with Blob screenshots) for IndexedDB.
+ * SceneStep objects (with Blob screenshots) for IndexedDB.
  */
 export async function convertExtensionSteps(
   projectId: string,
   extensionSteps: ExtensionStep[],
-): Promise<ArcadeStep[]> {
+): Promise<SceneStep[]> {
   return Promise.all(
     extensionSteps.map(async (es, index) => {
       let screenshot: Blob

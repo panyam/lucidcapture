@@ -1,6 +1,6 @@
 import Dexie from 'dexie'
 import { db } from './schema'
-import type { ArcadeProject, ArcadeStep } from '../types/arcade'
+import type { SceneProject, SceneStep } from '../types/scene'
 
 function now() {
   return new Date().toISOString()
@@ -8,16 +8,16 @@ function now() {
 
 // ── Projects ──
 
-export async function listProjects(): Promise<ArcadeProject[]> {
+export async function listProjects(): Promise<SceneProject[]> {
   return db.projects.orderBy('updatedAt').reverse().toArray()
 }
 
-export async function getProject(id: string): Promise<ArcadeProject | undefined> {
+export async function getProject(id: string): Promise<SceneProject | undefined> {
   return db.projects.get(id)
 }
 
-export async function createProject(title: string): Promise<ArcadeProject> {
-  const project: ArcadeProject = {
+export async function createProject(title: string): Promise<SceneProject> {
+  const project: SceneProject = {
     id: crypto.randomUUID(),
     title,
     createdAt: now(),
@@ -30,7 +30,7 @@ export async function createProject(title: string): Promise<ArcadeProject> {
   return project
 }
 
-export async function updateProject(id: string, updates: Partial<ArcadeProject>): Promise<void> {
+export async function updateProject(id: string, updates: Partial<SceneProject>): Promise<void> {
   await db.projects.update(id, { ...updates, updatedAt: now() })
 }
 
@@ -43,18 +43,18 @@ export async function deleteProject(id: string): Promise<void> {
 
 // ── Steps ──
 
-export async function getSteps(projectId: string): Promise<ArcadeStep[]> {
+export async function getSteps(projectId: string): Promise<SceneStep[]> {
   return db.steps.where('[projectId+order]').between([projectId, Dexie.minKey], [projectId, Dexie.maxKey]).toArray()
 }
 
-export async function addStep(step: ArcadeStep): Promise<void> {
+export async function addStep(step: SceneStep): Promise<void> {
   await db.transaction('rw', db.projects, db.steps, async () => {
     await db.steps.add(step)
     await recalcProjectStats(step.projectId)
   })
 }
 
-export async function updateStep(id: string, updates: Partial<ArcadeStep>): Promise<void> {
+export async function updateStep(id: string, updates: Partial<SceneStep>): Promise<void> {
   await db.steps.update(id, updates)
 }
 

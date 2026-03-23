@@ -304,3 +304,15 @@ The app is **"Lucid Capture"** — an Arcade.software clone for creating cinemat
 - These are thin wrappers — they call existing scripts rather than reimplementing logic
 - The variants skill is special: it calls the MCP tool directly but delegates sync to the existing script
 - **Pattern:** Skills as workflow glue — each skill orchestrates existing tools (shell scripts + MCP + git) rather than doing the work itself
+
+**33. Wiring Variants Into Production**
+- Ported the Stitch variant HTML into proper Templar templates (`LandingCompactPage.html`, `LandingTallPage.html`) and React components (`LandingCompactPage.tsx`, `LandingTallPage.tsx`)
+- **Not raw Stitch HTML** — extracted body content, adapted to our template system (extends `BasePage.html`), replaced Stitch CDN images with placeholders, used our design tokens
+- **GoAppLib gotcha:** Template filename must match struct name exactly — `LandingCompactPage` struct looks for `LandingCompactPage.html`, not `LandingCompact.html`. The `define` block name must also match
+- Routes on both stacks:
+  - `/` — original (3-col bento grid)
+  - `/landing/compact` — stacked features, trust logos, multi-col footer
+  - `/landing/tall` — full-width alternating sections, dashboard preview, Cloud Rendering teaser
+  - `/compare` — side-by-side iframes of all 3
+- The compare page is a static HTML on Go (`static/compare.html`) and a React component on React (`ComparePage.tsx`) — both show the same 3 iframes
+- **End-to-end demo pipeline:** Stitch `generate_variants` → async wait → `stitch-sync` pulls HTML → `/stitch-analyse` maps sections → port into Templar/React templates → all variants render through production pipeline with shared design tokens → `/compare` page for visual A/B

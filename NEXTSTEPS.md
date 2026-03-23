@@ -45,6 +45,8 @@ See [GitHub Issue #1](https://github.com/panyam/lucidcapture/issues/1) for full 
 - [x] Arcade → Scene rename — types, stores, files, UI strings, templates
 - [x] App Engine Go deploy config — app.yaml, .gcloudignore, make deploy
 - [x] Phase 6: Static HTML Compiler — shared compiler in shared/compiler/, Export button on both React + Go editors, /seed endpoint for test data
+- [x] Stitch variants — generate_variants on Landing Page, structural analysis, ported compact + tall into Templar + React, /compare page
+- [x] Stitch skills — /stitch-sync, /stitch-diff, /stitch-variants, /stitch-analyse
 
 ## Backlog
 - [ ] Extension hot-reload during development

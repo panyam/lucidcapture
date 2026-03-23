@@ -76,6 +76,11 @@
   },
   {
     "type": "comment",
+    "text": "Main Scene Player Canvas",
+    "depth": 3
+  },
+  {
+    "type": "comment",
     "text": "Subtle Background Glows",
     "depth": 3
   },

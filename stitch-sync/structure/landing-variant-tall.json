@@ -1,0 +1,531 @@
+[
+  {
+    "type": "header",
+    "depth": 2,
+    "layout": [
+      "bg-white",
+      "fixed",
+      "shadow-"
+    ]
+  },
+  {
+    "type": "nav",
+    "depth": 3,
+    "layout": [
+      "flex"
+    ]
+  },
+  {
+    "type": "a",
+    "depth": 6,
+    "href": "#",
+    "text": "Explore"
+  },
+  {
+    "type": "a",
+    "depth": 6,
+    "href": "#",
+    "text": "Community"
+  },
+  {
+    "type": "button",
+    "depth": 5,
+    "layout": [
+      "bg-gradient-to-br",
+      "rounded-full",
+      "shadow-lg"
+    ],
+    "text": "Record New"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "rounded-full",
+      "bg-surface-container-highest"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "img",
+    "depth": 6,
+    "alt": "User profile avatar"
+  },
+  {
+    "type": "main",
+    "depth": 2
+  },
+  {
+    "type": "section",
+    "depth": 3,
+    "layout": [
+      "relative"
+    ]
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex",
+      "flex-col"
+    ],
+    "depth": 4
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex",
+      "rounded-full",
+      "bg-surface-container-low"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "h1",
+    "depth": 5,
+    "text": "Turn your product into \nCinematic Experiences."
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex",
+      "flex-col",
+      "flex-row"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "button",
+    "depth": 6,
+    "layout": [
+      "bg-gradient-to-br",
+      "rounded-full",
+      "shadow-2xl",
+      "shadow-primary"
+    ],
+    "text": "Start Recording for Free"
+  },
+  {
+    "type": "button",
+    "depth": 6,
+    "layout": [
+      "flex",
+      "rounded-full",
+      "bg-surface-container-low"
+    ],
+    "text": "play_circle\n                        See it in action"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-gradient-to-t",
+      "rounded-"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-surface-container-lowest",
+      "rounded-",
+      "shadow-"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "relative",
+      "bg-surface",
+      "rounded-",
+      "aspect-video"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "img",
+    "depth": 8
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "flex",
+      "bg-white",
+      "rounded-full",
+      "shadow-2xl"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "button",
+    "depth": 9,
+    "layout": [
+      "bg-primary",
+      "bg-primary-container",
+      "rounded-full"
+    ],
+    "text": "Finish"
+  },
+  {
+    "type": "section",
+    "depth": 3
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex",
+      "flex-col",
+      "flex-row"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "h2",
+    "depth": 7,
+    "text": "One-Click Recording"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-primary",
+      "rounded-"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "img",
+    "depth": 8,
+    "layout": [
+      "relative",
+      "rounded-",
+      "shadow-2xl"
+    ]
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex",
+      "flex-col",
+      "flex-row-reverse"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "h2",
+    "depth": 7,
+    "text": "Interactive Annotations"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "grid",
+      "grid-cols-2"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-white",
+      "rounded-2xl",
+      "shadow-sm",
+      "flex"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-white",
+      "rounded-2xl",
+      "shadow-sm",
+      "flex"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-white",
+      "rounded-",
+      "shadow-2xl",
+      "relative"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "img",
+    "depth": 9,
+    "layout": [
+      "rounded-"
+    ]
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-secondary",
+      "rounded-2xl",
+      "shadow-lg",
+      "flex"
+    ],
+    "depth": 9
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex",
+      "flex-col",
+      "flex-row"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "h2",
+    "depth": 7,
+    "text": "Seamless Sharing"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-surface-container-low",
+      "rounded-"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "button",
+    "depth": 8,
+    "layout": [
+      "bg-primary",
+      "rounded-xl",
+      "bg-primary-container",
+      "shadow-lg"
+    ],
+    "text": "Copy Share Link"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-primary",
+      "rounded-",
+      "flex",
+      "flex-col"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-white",
+      "rounded-2xl",
+      "flex"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "h3",
+    "depth": 7,
+    "text": "Cloud Rendering"
+  },
+  {
+    "type": "section",
+    "depth": 3,
+    "layout": [
+      "bg-surface-container-low"
+    ],
+    "text": "Trusted by teams at\n\nVELOCITY\nNEXUS\nORBIT\nPRISM\nFLUX"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex",
+      "flex-wrap"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "section",
+    "depth": 3
+  },
+  {
+    "type": "div",
+    "layout": [
+      "rounded-",
+      "bg-gradient-to-br",
+      "relative",
+      "shadow-2xl",
+      "shadow-primary"
+    ],
+    "depth": 4
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-white",
+      "rounded-full"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-secondary",
+      "rounded-full"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "h2",
+    "depth": 5,
+    "layout": [
+      "relative"
+    ],
+    "text": "Ready to showcase your genius?"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex",
+      "flex-col",
+      "flex-row",
+      "relative"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "button",
+    "depth": 6,
+    "layout": [
+      "bg-white",
+      "rounded-full",
+      "shadow-xl",
+      "shadow-2xl"
+    ],
+    "text": "Start Recording for Free"
+  },
+  {
+    "type": "button",
+    "depth": 6,
+    "layout": [
+      "bg-primary-container",
+      "rounded-full",
+      "bg-white"
+    ],
+    "text": "Talk to Sales"
+  },
+  {
+    "type": "footer",
+    "depth": 2,
+    "layout": [
+      "bg-surface-container-low"
+    ]
+  },
+  {
+    "type": "div",
+    "layout": [
+      "grid",
+      "grid-cols-2",
+      "grid-cols-4"
+    ],
+    "depth": 3
+  },
+  {
+    "type": "div",
+    "layout": [
+      "col-span-2",
+      "col-span-1"
+    ],
+    "depth": 4
+  },
+  {
+    "type": "h4",
+    "depth": 5,
+    "text": "Product"
+  },
+  {
+    "type": "a",
+    "depth": 7,
+    "href": "#",
+    "text": "Features"
+  },
+  {
+    "type": "a",
+    "depth": 7,
+    "href": "#",
+    "text": "Showcase"
+  },
+  {
+    "type": "a",
+    "depth": 7,
+    "href": "#",
+    "text": "Pricing"
+  },
+  {
+    "type": "a",
+    "depth": 7,
+    "href": "#",
+    "text": "API"
+  },
+  {
+    "type": "h4",
+    "depth": 5,
+    "text": "Resources"
+  },
+  {
+    "type": "a",
+    "depth": 7,
+    "href": "#",
+    "text": "Documentation"
+  },
+  {
+    "type": "a",
+    "depth": 7,
+    "href": "#",
+    "text": "Community"
+  },
+  {
+    "type": "a",
+    "depth": 7,
+    "href": "#",
+    "text": "Guides"
+  },
+  {
+    "type": "a",
+    "depth": 7,
+    "href": "#",
+    "text": "Help Center"
+  },
+  {
+    "type": "h4",
+    "depth": 5,
+    "text": "Company"
+  },
+  {
+    "type": "a",
+    "depth": 7,
+    "href": "#",
+    "text": "About"
+  },
+  {
+    "type": "a",
+    "depth": 7,
+    "href": "#",
+    "text": "Careers"
+  },
+  {
+    "type": "a",
+    "depth": 7,
+    "href": "#",
+    "text": "Privacy"
+  },
+  {
+    "type": "a",
+    "depth": 7,
+    "href": "#",
+    "text": "Terms"
+  }
+]

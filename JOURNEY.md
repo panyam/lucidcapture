@@ -326,7 +326,19 @@ The app is **"Lucid Capture"** — an Arcade.software clone for creating cinemat
   - Pattern: `{ id, title, reason, deletedAt }` per entry
 - **Recommendation for Stitch team:** (1) Add a `delete_screen` MCP tool, (2) Show screen IDs in the UI, (3) Support screen renaming as a metadata operation (not content edit)
 
-**35. Wiring Variants Into Production**
+**35. Stitch COLOR_SCHEME + REIMAGINE Variants**
+- **Dark mode Editor** — generated 2 color scheme variants:
+  - High contrast: near-black bg, bright purple accents, white text (IDE-like)
+  - Dimmed: soft slate-grey bg, muted accents, off-white text (design tool aesthetic)
+- **Key finding:** This time `generate_variants` returned **synchronously** with full output (screenshots, HTML URLs, expanded prompts). Previous call (Landing Page layout) was async. Difference may be `GEMINI_3_FLASH` model or smaller variant count (2 vs 3)
+- The response included **Stitch's expanded creative briefs** — it turned our one-liner into two distinct, detailed prompts. This is valuable: you can see exactly how the AI interpreted your intent
+- **REIMAGINE Dashboard** — generated 2 radically different paradigms:
+  - Kanban Board: scenes in "Drafts"/"In Review" columns, Activity Snapshot sidebar with view counts
+  - Timeline Storyboard: horizontal chronological layout, scenes at points in time, "Create New" as circular button
+- Both REIMAGINE variants maintained our brand identity (nav, colors, sidebar) while fundamentally changing the layout metaphor — this is the right behavior for design exploration
+- **REIMAGINE vs EXPLORE:** EXPLORE (used earlier for Landing Page) produced variations of the same paradigm. REIMAGINE produced genuinely different paradigms. The creative range slider works as advertised
+
+**36. Wiring Variants Into Production**
 - Ported the Stitch variant HTML into proper Templar templates (`LandingCompactPage.html`, `LandingTallPage.html`) and React components (`LandingCompactPage.tsx`, `LandingTallPage.tsx`)
 - **Not raw Stitch HTML** — extracted body content, adapted to our template system (extends `BasePage.html`), replaced Stitch CDN images with placeholders, used our design tokens
 - **GoAppLib gotcha:** Template filename must match struct name exactly — `LandingCompactPage` struct looks for `LandingCompactPage.html`, not `LandingCompact.html`. The `define` block name must also match

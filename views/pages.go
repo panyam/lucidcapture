@@ -17,6 +17,28 @@ func (p *LandingPage) Load(r *http.Request, w http.ResponseWriter, app *goal.App
 	return nil, false
 }
 
+// LandingCompactPage renders the compact layout variant (Stitch-generated).
+type LandingCompactPage struct {
+	BasePage
+}
+
+func (p *LandingCompactPage) Load(r *http.Request, w http.ResponseWriter, app *goal.App[*LucidApp]) (error, bool) {
+	p.Title = "Lucid Capture — Compact"
+	p.DisableSplashScreen = true
+	return nil, false
+}
+
+// LandingTallPage renders the tall layout variant (Stitch-generated).
+type LandingTallPage struct {
+	BasePage
+}
+
+func (p *LandingTallPage) Load(r *http.Request, w http.ResponseWriter, app *goal.App[*LucidApp]) (error, bool) {
+	p.Title = "Lucid Capture — Tall"
+	p.DisableSplashScreen = true
+	return nil, false
+}
+
 // DashboardPage renders the project list.
 type DashboardPage struct {
 	BasePage

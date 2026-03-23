@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lucid Capture | Professional Product Demos</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-high": "#e1e8fd",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#c1e8ff",
+                        "outline-variant": "#c5c5d9",
+                        "outline": "#757687",
+                        "secondary-container": "#4b67f3",
+                        "inverse-on-surface": "#edf0ff",
+                        "on-secondary-container": "#fffbff",
+                        "surface-container-low": "#f1f3ff",
+                        "primary-container": "#2142e7",
+                        "surface-bright": "#f9f9ff",
+                        "surface-tint": "#2949ec",
+                        "secondary-fixed-dim": "#bac3ff",
+                        "on-secondary-fixed": "#00105a",
+                        "on-tertiary-container": "#91d9ff",
+                        "on-background": "#141b2b",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#444656",
+                        "primary-fixed": "#dee0ff",
+                        "secondary-fixed": "#dee0ff",
+                        "surface-dim": "#d3daef",
+                        "inverse-surface": "#293040",
+                        "secondary": "#2d4bd9",
+                        "tertiary-container": "#006080",
+                        "tertiary-fixed-dim": "#73d1ff",
+                        "surface": "#f9f9ff",
+                        "surface-variant": "#dce2f7",
+                        "inverse-primary": "#bbc3ff",
+                        "tertiary": "#00475f",
+                        "background": "#f9f9ff",
+                        "on-primary-container": "#c7cdff",
+                        "on-primary-fixed-variant": "#002ccd",
+                        "on-secondary-fixed-variant": "#0531c5",
+                        "primary": "#0029c0",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#001e2b",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed": "#000f5d",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#dce2f7",
+                        "on-surface": "#141b2b",
+                        "surface-container": "#e9edff",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "primary-fixed-dim": "#bbc3ff",
+                        "on-tertiary-fixed-variant": "#004d67"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .balig-touch {
+            font-family: 'Inter', sans-serif;
+            font-style: italic;
+        }
+        .ghost-border {
+            outline: 1px solid rgba(197, 197, 217, 0.15);
+        }
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary .expand-icon {
+            transform: rotate(180deg);
+        }
+        .scene-card:hover .scene-overlay {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-background font-body selection:bg-primary-container selection:text-on-primary-container">
+<header class="bg-white/70 backdrop-blur-xl fixed w-full top-0 z-50 shadow-[0_32px_64px_-4px_rgba(20,27,43,0.04)]">
+<nav class="flex justify-between items-center w-full px-8 py-4 max-w-[1920px] mx-auto font-inter tracking-tight">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black tracking-tighter text-blue-800">Lucid Capture</span>
+<div class="hidden md:flex gap-6">
+<a class="text-blue-700 font-bold border-b-2 border-blue-700 transition-colors" href="#">Explore</a>
+<a class="text-slate-500 font-medium hover:text-blue-600 transition-colors" href="#">Community</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-6 py-2.5 rounded-full font-semibold text-sm transition-transform duration-200 hover:scale-105 active:scale-95 shadow-lg">
+                Record New
+            </button>
+<div class="h-10 w-10 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="User profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqOBufEZIfryn8rnQQ3KVfeOmdZJr-HyBUXq2SqfUS0JR-OWnX0-x0BjHe3_kAXsYciL-60XiuRKGgVAhAogrNOPguzEVNQVZDRSro2tHIXn882MCXcErq_ILf7To6yJxRH-avkPm96KghhrDQu_2ULjdNLYKXqmvJgPKAmY7hyrF4d5-aYkVOgq-hmFN3yGeP0bmokC9iuh2-4elk9s-sIMuFBbRvpoVF8npVvg-wXAHdVjmvpV-GuAKALwGo-8QFd61RBIJhmSg"/>
+</div>
+</div>
+</nav>
+</header>
+<main class="mt-16">
+<section class="relative pt-16 pb-20 px-6 overflow-hidden">
+<div class="max-w-7xl mx-auto flex flex-col items-center text-center">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-low mb-6 ghost-border">
+<span class="text-[0.6875rem] font-bold uppercase tracking-widest text-primary">New Release</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span class="text-[0.6875rem] font-medium text-on-surface-variant">v2.0 Cinematic Scenes</span>
+</div>
+<h1 class="text-5xl md:text-7xl font-extrabold tracking-tighter leading-[1.05] mb-6 text-on-background">
+                Turn your product into <br/>
+<span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">Cinematic Experiences.</span>
+</h1>
+<div class="w-full max-w-4xl grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 mt-2">
+<div class="relative aspect-video rounded-xl overflow-hidden shadow-md scene-card border border-surface-container-high bg-surface-container">
+<img alt="Scene 1" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAae4B5agOSEcwtRC82Lv1Ii9d-Z7vkkGkTuXL8XbMeZMoXX_Qcx32FSUCp_VUXbBBFjnnCZlozArtdhkxcDUdENf4gqvK8WSzhylhh-breNhkjX3WEubCrZeCjIqjOI-LSXY38epDr2cfQR4BPlBTW1RiZhyYI5QTyRiUY8WKrpcpGewWAXECOzmn8oJBJFYlw-E28PujqSO0hrxXos0edIRFPz5Hr_Z2r_QgrQv9wDpKWPq2Hzf60_Qa6uusO6k4JkhD8_6HjwQ"/>
+<div class="absolute inset-0 bg-primary/20 flex items-center justify-center text-white font-bold text-xs">Onboarding Scene</div>
+</div>
+<div class="relative aspect-video rounded-xl overflow-hidden shadow-md scene-card border border-surface-container-high bg-surface-container">
+<img alt="Scene 2" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC53mT4QWd0cUGZoswHMoZUK2SmsWqX5OdmU7yGGxphBjJG6mjEQ9Z-ZDXueGrGolai0VLlad_gatL86WWD6uFLF_7XWRb1vgK9sdX5nzxfIOAnXECppixuw4eIlHQOkAkBNFDRmp-VCd-Iw4SLK8IVdgY9_RWbse2H__J9Asx1KCCsQG_yaHN1OTmm7Xg6KW4ABFiAAO7_IZYhSk9yxa_PqcON9VNKrPfFoAb0vmvhK7E2rZKs4D_XoTWQ8OtWuQlXD7fG5dzSJt4"/>
+<div class="absolute inset-0 bg-secondary/20 flex items-center justify-center text-white font-bold text-xs">Checkout Flow</div>
+</div>
+<div class="relative aspect-video rounded-xl overflow-hidden shadow-md scene-card border border-surface-container-high bg-surface-container">
+<img alt="Scene 3" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7eDGC_Nk-2jfR-rcHk8m9qHPLs3q0Ozspvcz3z2Uh_QaKssGX4-oaNF_6RfCYEaUyIVaCHMewBJj7siQRvmLqW6LSi_3_YAvi9UV-e2MW5dx4n9Vses5EtyxyPjf5H8ODQzb86qNS5jAgTNauPwxia4rV5VMuSNt9cWxShjBbqCl9xOwo7VJd2xh0JY5BopadRZu-PWspFbwzFsCe0LPzJwJajjMaRJYYvQSxq1K8uvw2M3I6kMwg4L5-wr45-r7oy7vVd7OH-I0"/>
+<div class="absolute inset-0 bg-primary/20 flex items-center justify-center text-white font-bold text-xs">Analytics Overview</div>
+</div>
+<div class="relative aspect-video rounded-xl overflow-hidden shadow-md scene-card border border-surface-container-high bg-surface-container">
+<img alt="Scene 4" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAae4B5agOSEcwtRC82Lv1Ii9d-Z7vkkGkTuXL8XbMeZMoXX_Qcx32FSUCp_VUXbBBFjnnCZlozArtdhkxcDUdENf4gqvK8WSzhylhh-breNhkjX3WEubCrZeCjIqjOI-LSXY38epDr2cfQR4BPlBTW1RiZhyYI5QTyRiUY8WKrpcpGewWAXECOzmn8oJBJFYlw-E28PujqSO0hrxXos0edIRFPz5Hr_Z2r_QgrQv9wDpKWPq2Hzf60_Qa6uusO6k4JkhD8_6HjwQ"/>
+<div class="absolute inset-0 bg-secondary/20 flex items-center justify-center text-white font-bold text-xs">Team Collab</div>
+</div>
+</div>
+<p class="text-lg text-on-surface-variant max-w-xl mb-10 leading-relaxed">Lucid Capture helps teams record high-fidelity interactive demos that feel like curated cinematic scenes. No editing skills required.</p>
+<div class="flex flex-col sm:flex-row gap-4 items-center">
+<button class="bg-gradient-to-br from-primary to-primary-container text-on-primary px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+                    Start Recording for Free
+                </button>
+<button class="flex items-center gap-2 px-8 py-4 rounded-full font-bold text-lg text-primary hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">play_circle</span>
+                    See it in action
+                </button>
+</div>
+</div>
+</section>
+<section class="py-12 bg-white/50 border-y border-outline-variant/20">
+<div class="max-w-7xl mx-auto px-6 text-center">
+<p class="text-outline font-bold text-[0.6rem] uppercase tracking-widest mb-8">Trusted by teams at</p>
+<div class="flex flex-wrap justify-center items-center gap-10 md:gap-16 opacity-30 grayscale">
+<span class="text-lg font-black">VELOCITY</span>
+<span class="text-lg font-black">NEXUS</span>
+<span class="text-lg font-black">ORBIT</span>
+<span class="text-lg font-black">PRISM</span>
+<span class="text-lg font-black">FLUX</span>
+</div>
+</div>
+</section>
+<section class="py-24 px-6 bg-surface-container-low">
+<div class="max-w-4xl mx-auto">
+<div class="mb-12 text-center">
+<span class="text-[0.6875rem] font-bold uppercase tracking-[0.2em] text-outline mb-2 block">Core Capabilities</span>
+<h2 class="text-4xl md:text-5xl font-extrabold tracking-tight text-on-background">Engineered for Precision.</h2>
+</div>
+<div class="bg-white rounded-[2rem] shadow-xl overflow-hidden ghost-border">
+<details class="group border-b border-surface-container" open="">
+<summary class="flex items-center justify-between p-8 cursor-pointer list-none hover:bg-surface-bright transition-colors">
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 bg-primary-container/10 rounded-xl flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-2xl">radio_button_checked</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-on-background">One-Click Recording</h3>
+<p class="text-sm text-on-surface-variant hidden md:block">Effortless capture of every metadata point.</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant expand-icon transition-transform duration-300">expand_more</span>
+</summary>
+<div class="p-8 pt-0 flex flex-col md:flex-row gap-10 items-center">
+<div class="md:w-1/2">
+<p class="text-on-surface-variant text-lg leading-relaxed">Just hit record. Our engine automatically captures HTML metadata, smooths your cursor, and transforms your workflow into polished scenes instantly. No post-production hassle.</p>
+<div class="mt-6 flex gap-4">
+<span class="text-xs font-bold px-3 py-1 bg-surface-container-high text-primary rounded-full">Automatic HTML Tracking</span>
+<span class="text-xs font-bold px-3 py-1 bg-surface-container-high text-primary rounded-full">Cursor Smoothing</span>
+</div>
+</div>
+<div class="md:w-1/2">
+<img alt="One-Click Feature Illustration" class="rounded-xl shadow-lg border border-surface-container-high" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC53mT4QWd0cUGZoswHMoZUK2SmsWqX5OdmU7yGGxphBjJG6mjEQ9Z-ZDXueGrGolai0VLlad_gatL86WWD6uFLF_7XWRb1vgK9sdX5nzxfIOAnXECppixuw4eIlHQOkAkBNFDRmp-VCd-Iw4SLK8IVdgY9_RWbse2H__J9Asx1KCCsQG_yaHN1OTmm7Xg6KW4ABFiAAO7_IZYhSk9yxa_PqcON9VNKrPfFoAb0vmvhK7E2rZKs4D_XoTWQ8OtWuQlXD7fG5dzSJt4"/>
+</div>
+</div>
+</details>
+<details class="group border-b border-surface-container">
+<summary class="flex items-center justify-between p-8 cursor-pointer list-none hover:bg-surface-bright transition-colors">
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 bg-secondary-container/10 rounded-xl flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-2xl">ios_share</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-on-background">Seamless Sharing</h3>
+<p class="text-sm text-on-surface-variant hidden md:block">Distribute your scenes in seconds.</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant expand-icon transition-transform duration-300">expand_more</span>
+</summary>
+<div class="p-8 pt-0 flex flex-col md:flex-row gap-10 items-center">
+<div class="md:w-1/2">
+<p class="text-on-surface-variant text-lg leading-relaxed">Export your curated scenes to high-res video or embed as an interactive web app with a single secure link. Manage permissions and track engagement in real-time.</p>
+<div class="mt-6 space-y-3">
+<div class="bg-surface-container p-3 rounded-lg flex items-center gap-3">
+<span class="material-symbols-outlined text-sm opacity-50">link</span>
+<span class="text-xs font-mono truncate">lucid.so/scene/shared-29384</span>
+</div>
+<button class="bg-primary text-white w-full py-3 rounded-lg font-bold text-sm">Generate Link</button>
+</div>
+</div>
+<div class="md:w-1/2">
+<div class="bg-primary/5 p-6 rounded-xl flex flex-col items-center">
+<span class="material-symbols-outlined text-5xl text-primary/40 mb-4">cloud_done</span>
+<span class="text-sm font-semibold">Scene Synced Successfully</span>
+</div>
+</div>
+</div>
+</details>
+<details class="group">
+<summary class="flex items-center justify-between p-8 cursor-pointer list-none hover:bg-surface-bright transition-colors">
+<div class="flex items-center gap-6">
+<div class="w-12 h-12 bg-tertiary-container/10 rounded-xl flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary text-2xl">auto_awesome</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-on-background">Interactive Annotations</h3>
+<p class="text-sm text-on-surface-variant hidden md:block">Smart callouts that adapt to user interaction.</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline-variant expand-icon transition-transform duration-300">expand_more</span>
+</summary>
+<div class="p-8 pt-0 flex flex-col md:flex-row gap-10 items-center">
+<div class="md:w-1/2">
+<p class="text-on-surface-variant text-lg leading-relaxed">Guide your viewers with smart callouts that automatically appear when you click. Customize colors, fonts, and timing without managing a complex timeline.</p>
+<div class="flex gap-2 mt-4 flex-wrap">
+<span class="px-3 py-1 bg-white border border-outline-variant/30 rounded-lg text-xs font-semibold text-primary">Smart Blur</span>
+<span class="px-3 py-1 bg-white border border-outline-variant/30 rounded-lg text-xs font-semibold text-primary">Dynamic Tooltips</span>
+<span class="px-3 py-1 bg-white border border-outline-variant/30 rounded-lg text-xs font-semibold text-primary">Keyframe Markers</span>
+</div>
+</div>
+<div class="md:w-1/2 relative">
+<img alt="Annotations" class="rounded-xl shadow-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7eDGC_Nk-2jfR-rcHk8m9qHPLs3q0Ozspvcz3z2Uh_QaKssGX4-oaNF_6RfCYEaUyIVaCHMewBJj7siQRvmLqW6LSi_3_YAvi9UV-e2MW5dx4n9Vses5EtyxyPjf5H8ODQzb86qNS5jAgTNauPwxia4rV5VMuSNt9cWxShjBbqCl9xOwo7VJd2xh0JY5BopadRZu-PWspFbwzFsCe0LPzJwJajjMaRJYYvQSxq1K8uvw2M3I6kMwg4L5-wr45-r7oy7vVd7OH-I0"/>
+<div class="absolute -bottom-4 -right-4 bg-secondary text-white px-3 py-1 rounded-lg text-[0.6rem] font-bold shadow-xl">Auto-Scaling</div>
+</div>
+</div>
+</details>
+</div>
+<p class="text-center mt-8 text-outline text-xs">Explore more features in the documentation →</p>
+</div>
+</section>
+<section class="py-24 px-6">
+<div class="max-w-5xl mx-auto rounded-[3rem] bg-gradient-to-br from-primary to-primary-container p-12 md:p-20 text-center relative overflow-hidden shadow-2xl shadow-primary/30">
+<div class="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full -mr-40 -mt-40 blur-3xl"></div>
+<div class="absolute bottom-0 left-0 w-64 h-64 bg-secondary/20 rounded-full -ml-32 -mb-32 blur-3xl"></div>
+<h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tighter relative z-10">Ready to showcase <br/>your genius?</h2>
+<p class="text-white/80 text-lg mb-10 max-w-xl mx-auto relative z-10">Join 50,000+ creators building the next generation of product walkthroughs with cinematic scenes.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
+<button class="bg-white text-primary px-10 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95">
+                    Start Recording for Free
+                </button>
+<button class="bg-primary-container/20 border border-white/20 text-white px-10 py-4 rounded-full font-bold text-lg backdrop-blur-md">
+                    Talk to Sales
+                </button>
+</div>
+<p class="mt-8 text-white/50 text-xs">No credit card required. Cancel anytime.</p>
+</div>
+</section>
+</main>
+<footer class="bg-surface-container-low py-16 px-6 border-t border-outline-variant/10">
+<div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12">
+<div class="col-span-2 md:col-span-1">
+<span class="text-xl font-black tracking-tighter text-primary block mb-6">Lucid Capture</span>
+<p class="text-on-surface-variant text-sm leading-relaxed max-w-xs">The Digital Curator for modern product teams. Beautiful cinematic scenes in seconds, not hours.</p>
+</div>
+<div>
+<h4 class="font-bold text-sm mb-6">Product</h4>
+<ul class="space-y-4 text-sm text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">Scenes Library</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Showcase</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Pricing</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Updates</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-sm mb-6">Resources</h4>
+<ul class="space-y-4 text-sm text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">Documentation</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Community</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Help Center</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-sm mb-6">Company</h4>
+<ul class="space-y-4 text-sm text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">About Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Privacy</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto pt-12 mt-12 border-t border-outline-variant/20 flex justify-between items-center">
+<p class="text-[0.6rem] text-outline uppercase font-bold tracking-widest">© 2024 Lucid Capture. Cinematic Demo Engine.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-outline text-lg cursor-pointer hover:text-primary">public</span>
+<span class="material-symbols-outlined text-outline text-lg cursor-pointer hover:text-primary">hub</span>
+</div>
+</div>
+</footer>
+
+</body></html>

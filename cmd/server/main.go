@@ -43,6 +43,15 @@ func main() {
 	goal.Register[*views.EditorPage](app, mux, "/editor/{id}")
 	goal.Register[*views.PlayerPage](app, mux, "/play/{id}")
 
+	// Stitch-generated layout variants
+	goal.Register[*views.LandingCompactPage](app, mux, "/landing/compact")
+	goal.Register[*views.LandingTallPage](app, mux, "/landing/tall")
+
+	// Compare page (side-by-side iframes)
+	mux.HandleFunc("GET /compare", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./static/compare.html")
+	})
+
 	// Static files
 	mux.Handle("/static/", http.StripPrefix("/static", http.FileServer(http.Dir("./static"))))
 

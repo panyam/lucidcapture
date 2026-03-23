@@ -29,9 +29,10 @@ ext:
 ext-watch:
 	cd extension && pnpm run watch
 
-ext-zip: ext
+ext-zip:
+	cd extension && node build.mjs --prod
 	cd extension && zip -r ../lucid-capture-extension.zip manifest.json popup/ dist/ icons/ -x "*.DS_Store"
-	@echo "Created lucid-capture-extension.zip"
+	@echo "Created lucid-capture-extension.zip (prod default: lucidcapture.appspot.com)"
 
 # ── Stitch Design Sync ──
 

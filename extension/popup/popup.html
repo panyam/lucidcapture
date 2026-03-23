@@ -79,6 +79,33 @@
       color: white;
     }
     .btn-stop:hover { background: #93000a; }
+    .host-section {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid #dce2f7;
+    }
+    .host-label {
+      font-size: 10px;
+      color: #757687;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .host-input {
+      width: 100%;
+      padding: 7px 10px;
+      border: 1px solid #c5c5d9;
+      border-radius: 8px;
+      font-size: 12px;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: #141b2b;
+      background: #fff;
+    }
+    .host-input:focus {
+      outline: none;
+      border-color: #0029c0;
+    }
   </style>
 </head>
 <body>
@@ -92,6 +119,11 @@
   <div class="step-count" id="stepCount">0</div>
   <div class="step-label">Steps captured</div>
   <button id="actionBtn" class="btn-record">Start Recording</button>
+
+  <div class="host-section">
+    <div class="host-label">App Host</div>
+    <input type="text" id="hostInput" class="host-input" placeholder="https://lucidcapture.appspot.com">
+  </div>
 
   <script src="../dist/popup/popup.js"></script>
 </body>

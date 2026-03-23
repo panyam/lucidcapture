@@ -305,7 +305,16 @@ The app is **"Lucid Capture"** — an Arcade.software clone for creating cinemat
 - The variants skill is special: it calls the MCP tool directly but delegates sync to the existing script
 - **Pattern:** Skills as workflow glue — each skill orchestrates existing tools (shell scripts + MCP + git) rather than doing the work itself
 
-**33. Wiring Variants Into Production**
+**33. Proto Code Generation + SceneStore**
+- Ran `cd protos && make setupdev && make buf` — generated Go protobuf types, GORM DAL, Datastore DAL, Connect RPC stubs, and TypeScript protobuf types
+- Built `services/store.go` — `SceneStore` interface abstracting project/step CRUD (following lilbattle's `GameStorageProvider` pattern)
+- Built `services/gormbe/store.go` — GORM implementation using the generated `ProjectGORMDAL` and `StepGORMDAL`
+- Backend selection in `main.go` via `LC_STORAGE` env var: `gorm` (SQLite), `datastore` (TODO), empty (IndexedDB only)
+- **Default is IndexedDB-only** — both React and Go stacks read from browser IndexedDB. Set `LC_STORAGE=gorm` to enable server-side SQLite
+- **IndexedDB is per-origin** — `localhost:5173` and `localhost:8080` have separate databases. Use `/seed` to populate each independently
+- **Storage split planned** (#6): metadata on server, screenshots in IndexedDB. This is the intermediate step before full server-side persistence with login
+
+**34. Wiring Variants Into Production**
 - Ported the Stitch variant HTML into proper Templar templates (`LandingCompactPage.html`, `LandingTallPage.html`) and React components (`LandingCompactPage.tsx`, `LandingTallPage.tsx`)
 - **Not raw Stitch HTML** — extracted body content, adapted to our template system (extends `BasePage.html`), replaced Stitch CDN images with placeholders, used our design tokens
 - **GoAppLib gotcha:** Template filename must match struct name exactly — `LandingCompactPage` struct looks for `LandingCompactPage.html`, not `LandingCompact.html`. The `define` block name must also match

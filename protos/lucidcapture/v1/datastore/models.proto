@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package lucidcapture.v1;
+
+import "dal/v1/annotations.proto";
+import "lucidcapture/v1/models/models.proto";
+
+option go_package = "github.com/panyam/lucidcapture/gen/datastore;lucidcapturedatastore";
+
+message ClickTargetDatastore {
+  option (dal.v1.datastore_options) = { source: "lucidcapture.v1.ClickTarget" };
+}
+
+message AnnotationDatastore {
+  option (dal.v1.datastore_options) = { source: "lucidcapture.v1.Annotation" };
+}
+
+message ProjectDatastore {
+  option (dal.v1.datastore_options) = { source: "lucidcapture.v1.Project", kind: "Project" };
+
+  string id = 1 [(dal.v1.column) = {
+    datastore_tags: ["-"]
+  }];
+}
+
+message StepDatastore {
+  option (dal.v1.datastore_options) = { source: "lucidcapture.v1.Step", kind: "Step" };
+
+  string id = 1 [(dal.v1.column) = {
+    datastore_tags: ["-"]
+  }];
+
+  string project_id = 2;
+
+  ClickTargetDatastore click_target = 3 [(dal.v1.column) = {
+    datastore_tags: ["flatten"]
+  }];
+
+  AnnotationDatastore annotation = 4 [(dal.v1.column) = {
+    datastore_tags: ["flatten"]
+  }];
+}

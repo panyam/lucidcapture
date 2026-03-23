@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package lucidcapture.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/panyam/lucidcapture/gen/go/lucidcapture/v1/models";
+
+// Project represents an interactive product demo.
+message Project {
+  google.protobuf.Timestamp created_at = 1;
+  google.protobuf.Timestamp updated_at = 2;
+
+  string id = 3;
+  string title = 4;
+  int32 step_count = 5;
+  int32 total_duration = 6; // milliseconds
+  string privacy = 7;      // public, private, passcode
+}
+
+// Step represents a single captured interaction within a project.
+message Step {
+  google.protobuf.Timestamp created_at = 1;
+  google.protobuf.Timestamp updated_at = 2;
+
+  string id = 3;
+  string project_id = 4;
+  int32 order = 5;
+  string type = 6;            // click, scroll, input, periodic, navigation
+  string screenshot_path = 7; // server-side file path
+  int32 duration = 8;         // milliseconds
+  string transition = 9;      // fade, slide, none
+  string url = 10;
+  int32 viewport_width = 11;
+  int32 viewport_height = 12;
+
+  ClickTarget click_target = 13;
+  Annotation annotation = 14;
+}
+
+// ClickTarget describes where the user clicked on the page.
+message ClickTarget {
+  double x = 1; // viewport ratio 0-1
+  double y = 2; // viewport ratio 0-1
+  string selector = 3;
+  string label = 4;
+}
+
+// Annotation is an editor-added callout on a step.
+message Annotation {
+  string title = 1;
+  string body = 2;
+  double x = 3; // viewport ratio 0-1
+  double y = 4; // viewport ratio 0-1
+}
+
+// ImportSession is what the Chrome extension sends to the server.
+message ImportSession {
+  string id = 1;
+  repeated ImportStep steps = 2;
+  int64 captured_at = 3; // unix ms
+}
+
+// ImportStep is a single step from the extension before server processing.
+message ImportStep {
+  string id = 1;
+  string type = 2;
+  int64 timestamp = 3;
+  string url = 4;
+  int32 viewport_width = 5;
+  int32 viewport_height = 6;
+  string screenshot = 7; // base64 data URI
+  ClickTarget click_target = 8;
+}

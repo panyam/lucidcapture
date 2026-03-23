@@ -1,0 +1,106 @@
+syntax = "proto3";
+
+package lucidcapture.v1;
+
+import "lucidcapture/v1/models/models.proto";
+import "google/protobuf/field_mask.proto";
+
+option go_package = "github.com/panyam/lucidcapture/gen/go/lucidcapture/v1/services";
+
+// ProjectsService manages interactive demo projects and their steps.
+service ProjectsService {
+  // Projects
+  rpc CreateProject(CreateProjectRequest) returns (CreateProjectResponse);
+  rpc GetProject(GetProjectRequest) returns (GetProjectResponse);
+  rpc ListProjects(ListProjectsRequest) returns (ListProjectsResponse);
+  rpc UpdateProject(UpdateProjectRequest) returns (UpdateProjectResponse);
+  rpc DeleteProject(DeleteProjectRequest) returns (DeleteProjectResponse);
+
+  // Steps
+  rpc GetSteps(GetStepsRequest) returns (GetStepsResponse);
+  rpc UpdateStep(UpdateStepRequest) returns (UpdateStepResponse);
+  rpc DeleteStep(DeleteStepRequest) returns (DeleteStepResponse);
+
+  // Import from Chrome extension
+  rpc ImportSession(ImportSessionRequest) returns (ImportSessionResponse);
+}
+
+// ── Project RPCs ──
+
+message CreateProjectRequest {
+  string title = 1;
+}
+
+message CreateProjectResponse {
+  Project project = 1;
+}
+
+message GetProjectRequest {
+  string id = 1;
+}
+
+message GetProjectResponse {
+  Project project = 1;
+  repeated Step steps = 2;
+}
+
+message ListProjectsRequest {
+  int32 page_size = 1;
+  string page_token = 2;
+}
+
+message ListProjectsResponse {
+  repeated Project projects = 1;
+  string next_page_token = 2;
+}
+
+message UpdateProjectRequest {
+  Project project = 1;
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateProjectResponse {
+  Project project = 1;
+}
+
+message DeleteProjectRequest {
+  string id = 1;
+}
+
+message DeleteProjectResponse {}
+
+// ── Step RPCs ──
+
+message GetStepsRequest {
+  string project_id = 1;
+}
+
+message GetStepsResponse {
+  repeated Step steps = 1;
+}
+
+message UpdateStepRequest {
+  Step step = 1;
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message UpdateStepResponse {
+  Step step = 1;
+}
+
+message DeleteStepRequest {
+  string project_id = 1;
+  string step_id = 2;
+}
+
+message DeleteStepResponse {}
+
+// ── Import ──
+
+message ImportSessionRequest {
+  ImportSession session = 1;
+}
+
+message ImportSessionResponse {
+  Project project = 1;
+}

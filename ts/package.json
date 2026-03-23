@@ -1,0 +1,19 @@
+{
+  "name": "lucidcapture-ts",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@panyam/tsappkit": "link:../locallinks/newstack/goapplib/main/tsappkit",
+    "jsx-dom": "^8.1.4"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "typescript": "^5.9.0"
+  }
+}

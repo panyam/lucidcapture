@@ -98,6 +98,11 @@ reset:
 	@echo ""
 	@echo "Then reload the page."
 
+seed:
+	@echo "Open in your browser to seed test data:"
+	@echo "  http://localhost:8080/seed   (Go stack)"
+	@echo "  http://localhost:5173/seed   (React — needs static/seed.html served)"
+
 # ── Clean ──
 
 clean:

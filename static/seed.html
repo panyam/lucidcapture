@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html><head><title>Seeding...</title>
+<script src="https://unpkg.com/dexie@4.0.11/dist/dexie.min.js"></script>
+</head>
+<body><p id="status">Seeding test data...</p>
+<script>
+(async function() {
+  var db = new Dexie('lucid-capture');
+  db.version(1).stores({
+    projects: 'id, updatedAt, title',
+    steps: 'id, projectId, [projectId+order]'
+  });
+
+  var pid = 'seed-' + Date.now();
+  var now = new Date().toISOString();
+
+  // Create a tiny 1x1 JPEG as screenshot placeholder
+  var b = atob('/9j/4AAQSkZJRgABAQEASABIAAD/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2f/2wBDARESEhgVGC8aGC9nQTtBZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2f/wAARCAABAAEDASIAAhEBAxEB/8QAFAABAAAAAAAAAAAAAAAAAAAACf/EABQQAQAAAAAAAAAAAAAAAAAAAAD/xAAUAQEAAAAAAAAAAAAAAAAAAAAA/8QAFBEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AKwA//9k=');
+  var a = new Uint8Array(b.length);
+  for (var i = 0; i < b.length; i++) a[i] = b.charCodeAt(i);
+  var screenshot = new Blob([a], { type: 'image/jpeg' });
+
+  await db.projects.put({
+    id: pid, title: 'Test Scene', createdAt: now, updatedAt: now,
+    stepCount: 3, totalDuration: 9000, privacy: 'public'
+  });
+
+  for (var i = 0; i < 3; i++) {
+    await db.steps.put({
+      id: pid + '-s' + i, projectId: pid, order: i, type: 'click',
+      screenshot: screenshot,
+      clickTarget: { x: 0.3 + i * 0.2, y: 0.4, selector: '#btn' + i, label: 'Button ' + (i+1) },
+      annotation: { title: 'Step ' + (i+1), body: 'Click button ' + (i+1), position: { x: 0.5, y: 0.3 } },
+      duration: 3000, transition: 'fade', url: 'https://example.com'
+    });
+  }
+
+  document.getElementById('status').textContent = 'Done! Redirecting to editor...';
+  window.location.href = '/editor/' + pid;
+})();
+</script>
+</body></html>

@@ -58,6 +58,11 @@ func main() {
 	mux.HandleFunc("GET /api/projects/{id}/steps/{stepId}/screenshot", lucidApp.ServeScreenshot)
 	mux.HandleFunc("POST /api/import", lucidApp.HandleImport)
 
+	// Dev-only: seed test data into IndexedDB
+	mux.HandleFunc("GET /seed", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./static/seed.html")
+	})
+
 	// Start
 	port := envOr("PORT", "8080")
 	addr := ":" + port

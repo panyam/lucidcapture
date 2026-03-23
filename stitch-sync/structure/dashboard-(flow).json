@@ -91,7 +91,7 @@
       "flex"
     ],
     "href": "#",
-    "text": "video_library\nMy Scenes"
+    "text": "video_library\nMy Arcades"
   },
   {
     "type": "a",
@@ -102,7 +102,7 @@
       "flex"
     ],
     "href": "#",
-    "text": "group\nMy Scenes"
+    "text": "group\nShared"
   },
   {
     "type": "a",
@@ -113,7 +113,7 @@
       "flex"
     ],
     "href": "#",
-    "text": "settings\nMy Scenes"
+    "text": "settings\nSettings"
   },
   {
     "type": "div",
@@ -153,7 +153,7 @@
   {
     "type": "h1",
     "depth": 6,
-    "text": "My Scenes"
+    "text": "My Arcades"
   },
   {
     "type": "comment",

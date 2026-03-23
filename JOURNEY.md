@@ -265,3 +265,13 @@ The app is **"Lucid Capture"** — an Arcade.software clone for creating cinemat
 - **`chrome.storage.sync` is per-profile** — perfect for per-environment extension config
 - **Shared code via symlinks** — `shared/compiler/` symlinked into both build pipelines avoids duplication while preserving `git mv` history
 - **Design drift is a feature, not a bug** — the tooling makes it visible and trackable. Fix naming inconsistencies immediately, defer feature gaps to backlog
+
+**30. Stitch generate_variants — Async Behavior**
+- Called `generate_variants` on the Landing Page with EXPLORE creative range, LAYOUT aspect, 3 variants
+- The MCP call returned immediately with no output — appeared to fail
+- Checked `list_screens` right after — no new screens. Assumed failure
+- **But it worked** — checking again a few minutes later, 3 new Landing Page variants appeared (heights 11224, 6306, ~6264) with different layout arrangements
+- **Key learning:** The MCP `generate_variants` tool returns immediately while generation happens asynchronously. The [Stitch SDK](https://github.com/google-labs-code/stitch-sdk) masks this with `await screen.variants()` which polls internally, but the raw MCP tool doesn't
+- **Practical implication:** After calling `generate_variants` (or `edit_screens`), wait 2-5 minutes then call `list_screens` to see results. Don't retry — the "DO NOT RETRY" warning is correct
+- **Observation:** The MCP tool description for `generate_screen_from_text` explicitly says "try to get the screen with get_screen method later" — `generate_variants` should have similar guidance but doesn't
+- Also generated new Dashboard and Dashboard (Flow) variant screens as a side effect of the earlier `edit_screens` rename — Stitch creates copies rather than modifying in place

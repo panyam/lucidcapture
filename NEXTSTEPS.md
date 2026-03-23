@@ -1,7 +1,12 @@
 # Next Steps
 
 ## Up Next
-- [ ] Phase 7: Share Modal + Export — Download, copy link, embed code
+- [ ] Phase 7: Share Modal + Export — Download, copy link, embed code (blocked: needs server-side storage for shareable links/embed)
+
+## Demo Prep
+- Two demos planned: (1) Stitch evaluation (pros/cons/tooling), (2) Lucid Capture product demo
+- JOURNEY.md captures learnings for both — the Stitch story arc is: design → code → drift detection → bidirectional sync
+- Stitch demo narrative: what works (tokens, MCP, generation), what's missing (component tree, diffable output), what we built to compensate (extract-structure.sh, sync pipeline)
 
 ## Go Stack Migration (in parallel)
 - [ ] Generate proto code: `cd protos && make setupdev && make buf`
@@ -47,7 +52,7 @@ See [GitHub Issue #1](https://github.com/panyam/lucidcapture/issues/1) for full 
 - [ ] Undo/redo in editor
 - [ ] Bulk step select/delete
 - [ ] Editor Grid View (from Stitch design) — project picker mode
-- [ ] Scene Details page (from Stitch design) — metadata, analytics, download
+- [ ] Scene Details page (#5) — project overview between Dashboard and Editor (from Stitch design)
 - [ ] Phase 2: Static Pages — Polish all screens to match Stitch screenshots
 - [ ] Phase 8: Design Token Pipeline — Automated Stitch → Tailwind config generation
 - [ ] Phase 9: Testing — pytest + Playwright e2e tests

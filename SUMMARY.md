@@ -21,7 +21,8 @@ Creates interactive product demos ("Scenes") from screen recordings. Built with 
 - Protobuf definitions are the source of truth for all data models
 - Chrome extension required for 3P site capture (same-origin policy)
 - Background service worker owns all recording state — content scripts are dumb event reporters
-- Slyds-pattern static HTML export (single self-contained file) — planned
+- Slyds-pattern static HTML export (single self-contained file) — done
+- Shared compiler at `shared/compiler/` — symlinked into both React and Go stacks
 - Deterministic scripts over LLM calls for design sync
 - Dexie.js over raw IDB (learned from excaliframe's verbose patterns)
 - TypeScript + esbuild for extension

@@ -178,3 +178,90 @@ The app is **"Lucid Capture"** — an Arcade.software clone for creating cinemat
 - **Corporate MDM blocks all Chrome variants** (stable + canary) via `com.google.chrome` plist. Chromium and Brave use different plist domains and are unaffected
 - **pnpm** everywhere (not npm) — per project convention
 - **Deterministic scripts > LLM calls** — the stitch-sync pipeline is pure shell/curl/jq, no AI in the loop
+
+### Session 2 — 2026-03-22/23
+
+**20. Go Stack Migration — Side-by-Side Architecture**
+- Goal: migrate from React/Vite to Go stack (GoAppLib + Templar + tsappkit) while keeping both running for comparison
+- This doubles as a **real-world stress test for the stack** — every friction point becomes a stack improvement ticket
+- Scaffolded: `cmd/server/main.go`, `views/`, `templates/`, `ts/`, `protos/`
+- **Protobuf-first data models** — `protos/lucidcapture/v1/` with models, GORM sidecar, Datastore sidecar, and ProjectsService RPC definitions
+- Following lilbattle's exact patterns: `buf.gen.yaml`, protoc-gen-dal annotations, `BasePage` wrapping `goal.BasePage`, `locallinks/` symlink to `~/newstack`
+- Key decision: protos are the source of truth for all data models — never hand-write Go model structs
+
+**21. Templar Template Vendoring**
+- GoAppLib's `BasePage.html` is the base layout — our templates extend it via `{{# namespace "GoalBase" "@goapplib/BasePage.html" #}}`
+- `@goapplib` references resolve through `templar.yaml` config → vendored into `templates/templar_modules/goapplib/`
+- Initially tried manual copy/symlink dance for deploys — **wrong approach**
+- Correct approach (from lilbattle): `templar get` vendors the templates, commit them to git, deploys just work
+- Had to override GoAppLib's default `CSSSection`, `HTMXSection`, and `SplashScreenSection` blocks — otherwise it loads `/static/css/tailwind.css` (404) and HTMX (not needed)
+
+**22. Tailwind v4 CSS Build for Go Stack**
+- React app uses `@tailwindcss/vite` plugin — CSS is built as part of Vite's pipeline
+- Go stack needs its own build: `ts/styles.css` → `static/css/app.css` via `@tailwindcss/cli`
+- Critical: `@source "../templates/**/*.html"` directive tells Tailwind to scan Go templates for class names
+- The raw `@import "tailwindcss"` CSS is NOT servable directly — browser rejects it with MIME type errors
+- tsup config needs `noExternal: [/.*/]` to bundle tsappkit + jsx-dom into the output (not left as unresolved imports)
+
+**23. Visual Parity Verification with Playwright**
+- Used Playwright MCP to take screenshots of all 4 pages on both `:5173` (React) and `:8080` (Go)
+- Landing page: pixel-perfect match on first try after CSS fix
+- Dashboard: pixel-perfect match
+- Editor: minor difference — Go showed title bar unconditionally vs React hiding it when no project loaded. Fixed with conditional `{{ if eq .ProjectID "new" }} hidden{{ end }}`
+- Player: **Go version was actually better** — showed controls (Edit/Close/prev/play/next) in empty state while React showed a dead-end loading screen. Ported the improvement back to React
+
+**24. Arcade → Scene Rename**
+- "Arcade" is Arcade.software's brand — we need our own noun. Evaluated: Capture, Scene, Clip, Flow, Tour, Reel, Lucid
+- Chose **"Scene"** — natural language ("capture a scene"), cinematic theme, works at every touchpoint
+- Systematic rename across both stacks: types (`SceneProject`, `SceneStep`), store (`useSceneStore`), files (`scene.ts`, `scene.db.ts`, `scene.store.ts`), UI strings ("My Scenes", "Create New Scene"), Go templates, Go views
+- Used `git mv` to preserve history on file renames
+
+**25. Extension Host Configuration**
+- Extension had hardcoded `localhost:5173` redirect after recording stops
+- Problem: need to support React dev (:5173), Go dev (:8080), and prod (appspot.com)
+- Solution: `chrome.storage.sync` stores the target app URL per Chrome profile
+  - Popup shows an editable "App Host" text field (persists on blur/Enter)
+  - `chrome.storage.sync` is profile-specific — work profile can point to localhost, personal to prod
+  - esbuild `--prod` flag bakes in prod URL as build-time default via `define: { '__DEFAULT_APP_HOST__': ... }`
+  - `make ext` → dev default, `make ext-zip` → prod default
+
+**26. Phase 6: Static HTML Compiler**
+- Core loop completed: capture → edit → **export**
+- Compiler infrastructure was already scaffolded (`player-engine.ts`, `player.css.ts`, `icons.ts`, `types.ts`)
+- Built: `compile.ts` (HTML assembler), `serialize.ts` (Blob→data URI), `download.ts` (browser download trigger)
+- **Shared compiler** at `shared/compiler/` — symlinked into both `app/src/lib/compiler/` and `ts/lib/compiler/`
+- Both React and Go editors share the same compilation code (tsup resolves symlinks at build time)
+- Go stack export uses `lc-export-btn` CSS class + `data-project-id` attribute — any page can be an export page
+- `player-engine.ts` is a 286-line vanilla JS IIFE that reads `window.__LUCID_DATA__` — handles playback, hotspots, timeline, keyboard shortcuts, URL hash navigation
+- All resources inlined: CSS in `<style>`, JS in `<script>`, screenshots as `data:image/jpeg;base64,...`
+- Output works from `file://` with zero external dependencies
+- Added `/seed` endpoint to Go server for test data (uses Dexie to seed IndexedDB client-side)
+
+**27. Design Drift Detection — Code vs Stitch**
+- After building the app, we noticed Stitch designs and our implementation had diverged:
+  - Stitch had a "Scene Details" page (metadata, analytics, tags) that we never built — our flow skips from Dashboard straight to Player
+  - Stitch's SideNav had Collections, Shared, Archived, Trash — ours has placeholder links
+  - Stitch's TopNav had Library, Analytics, Settings — ours has Explore + Community
+  - Stitch had a mobile bottom nav — we have no responsive design yet
+- **How we detected this:** The `extract-structure.sh` tool we built earlier produces diffable JSON outlines of each Stitch screen. By comparing the structure JSON (headings, buttons, links, layout patterns) against our actual templates, we can see exactly which sections of the design we've implemented vs. skipped
+- **Bidirectional sync in action:** When we renamed "Arcade" → "Scene" in code, we pushed the change back to Stitch via `edit_screens` MCP, then pulled the updated designs via `stitch-sync/sync.sh all`. The sync produced new `scene-*` screens alongside the old `arcade-*` ones (Stitch created copies rather than renaming). Dashboard and editor HTML content now says "My Scenes"
+- **Key insight:** Stitch's HTML output aligns more closely with Templar templates than JSX — both produce plain HTML with Tailwind classes. The design-sync pipeline could potentially diff/patch Templar templates directly instead of going through JSX conversion
+- **Gap tracking pattern:** Design divergence is inevitable during development. The tooling chain (structure extraction → diff → sync → verify) makes it manageable. Each gap is either "intentionally deferred" (Scene Details → backlog) or "should fix" (naming inconsistency → fixed immediately)
+
+**28. App Engine Deploy Config**
+- `app.yaml` at repo root: `runtime: go124`, `main: ./cmd/server`, `max_instances: 2`
+- `.gcloudignore` aggressively excludes: `app/`, `extension/`, `locallinks/`, `tests/`, `stitch-sync/`, `docs/`
+- `make deploy` builds TS/CSS, runs `templar get` to vendor templates, then `gcloud app deploy`
+- `make tsdeploy` for legacy React deploy (separate `app/app.yaml` with `nodejs22` runtime)
+- `make prodlogs` tails App Engine logs
+- No server-side storage yet — IndexedDB only. Datastore sidecar protos ready for when we add it
+
+**29. Key Learnings — Session 2**
+- **Side-by-side migration works** — running both versions on different ports catches UX improvements (player controls) and regressions immediately
+- **Protos first, always** — tried to hand-write Go model structs, got corrected. Protobuf definitions are the single source of truth
+- **Templar vendoring via `templar get`** — don't manually copy template modules, use the CLI (same as lilbattle)
+- **Tailwind v4 needs a build step even for Go** — the `@import "tailwindcss"` source CSS is not raw-servable
+- **`noExternal` in tsup** — must bundle all dependencies into the output for browser consumption
+- **`chrome.storage.sync` is per-profile** — perfect for per-environment extension config
+- **Shared code via symlinks** — `shared/compiler/` symlinked into both build pipelines avoids duplication while preserving `git mv` history
+- **Design drift is a feature, not a bug** — the tooling makes it visible and trackable. Fix naming inconsistencies immediately, defer feature gaps to backlog

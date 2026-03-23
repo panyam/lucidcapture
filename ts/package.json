@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@panyam/tsappkit": "link:../locallinks/newstack/goapplib/main/tsappkit",
+    "@panyam/tsappkit": "*",
     "jsx-dom": "^8.1.4",
     "tailwindcss": "^4.2.2"
   },

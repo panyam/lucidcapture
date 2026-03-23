@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@panyam/tsappkit':
-        specifier: link:../locallinks/newstack/goapplib/main/tsappkit
-        version: link:../locallinks/newstack/goapplib/main/tsappkit
+        specifier: '*'
+        version: 0.0.5
       jsx-dom:
         specifier: ^8.1.4
         version: 8.1.6
@@ -201,6 +201,14 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
+
+  '@panyam/tsappkit@0.0.5':
+    resolution: {integrity: sha512-bKBRgbxzE5ifnrpevcXcMsWkmMlQslvpeIDQ+aCB3zzu4DAjP0gYd8bs+u/DmHhiHKYVO7Ez22Rbtbchs7WiEw==}
+    peerDependencies:
+      ace-builds: ^1.0.0
+    peerDependenciesMeta:
+      ace-builds:
+        optional: true
 
   '@parcel/watcher-android-arm64@2.5.6':
     resolution: {integrity: sha512-YQxSS34tPF/6ZG7r/Ih9xy+kP/WwediEUsqmtf0cuCV5TPPKw/PQHRhueUo6JdeFJaqV3pyjm0GdYjZotbRt/A==}
@@ -916,6 +924,8 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
+
+  '@panyam/tsappkit@0.0.5': {}
 
   '@parcel/watcher-android-arm64@2.5.6':
     optional: true

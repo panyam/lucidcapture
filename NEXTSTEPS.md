@@ -1,7 +1,8 @@
 # Next Steps
 
 ## Up Next
-- [ ] Phase 7: Share Modal + Export — Download, copy link, embed code (blocked: needs server-side storage for shareable links/embed)
+- [ ] Split storage (#6): metadata on server (SQLite/Datastore), screenshots in IndexedDB
+- [ ] Phase 7: Share Modal + Export — Download, copy link, embed code (blocked: needs #6 + login)
 
 ## Demo Prep
 - Two demos planned: (1) Stitch evaluation (pros/cons/tooling), (2) Lucid Capture product demo
@@ -9,8 +10,8 @@
 - Stitch demo narrative: what works (tokens, MCP, generation), what's missing (component tree, diffable output), what we built to compensate (extract-structure.sh, sync pipeline)
 
 ## Go Stack Migration (in parallel)
-- [ ] Generate proto code: `cd protos && make setupdev && make buf`
-- [ ] Wire generated DAL into `views/api.go`
+- [x] Generate proto code: `cd protos && make setupdev && make buf`
+- [x] Wire generated DAL into `views/api.go` — SceneStore interface + GORM backend
 - [ ] Build tsappkit components (DashboardGrid, EditorCanvas, Timeline, PlaybackControls, ToolSidebar, PlayerView)
 - [ ] Wire EventBus for cross-component state
 - [ ] Port keyboard shortcuts to tsappkit KeyboardShortcutManager
@@ -47,6 +48,8 @@ See [GitHub Issue #1](https://github.com/panyam/lucidcapture/issues/1) for full 
 - [x] Phase 6: Static HTML Compiler — shared compiler in shared/compiler/, Export button on both React + Go editors, /seed endpoint for test data
 - [x] Stitch variants — generate_variants on Landing Page, structural analysis, ported compact + tall into Templar + React, /compare page
 - [x] Stitch skills — /stitch-sync, /stitch-diff, /stitch-variants, /stitch-analyse
+- [x] Proto code generation — Go, GORM DAL, Datastore DAL, Connect, TypeScript
+- [x] SceneStore interface + GORM backend — storage-agnostic API handlers, backend selected via LC_STORAGE env
 
 ## Backlog
 - [ ] Extension hot-reload during development

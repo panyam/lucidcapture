@@ -22,7 +22,7 @@ func main() {
 	// "gorm" (default for local dev), "datastore" (App Engine), "" (IndexedDB only)
 	lucidApp := &views.LucidApp{}
 
-	storageBE := envOr("LC_STORAGE", "gorm")
+	storageBE := envOr("LC_STORAGE", "")
 	switch storageBE {
 	case "gorm":
 		dbPath := envOr("LC_DB_PATH", "./lucidcapture.db")

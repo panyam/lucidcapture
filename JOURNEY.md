@@ -275,3 +275,32 @@ The app is **"Lucid Capture"** — an Arcade.software clone for creating cinemat
 - **Practical implication:** After calling `generate_variants` (or `edit_screens`), wait 2-5 minutes then call `list_screens` to see results. Don't retry — the "DO NOT RETRY" warning is correct
 - **Observation:** The MCP tool description for `generate_screen_from_text` explicitly says "try to get the screen with get_screen method later" — `generate_variants` should have similar guidance but doesn't
 - Also generated new Dashboard and Dashboard (Flow) variant screens as a side effect of the earlier `edit_screens` rename — Stitch creates copies rather than modifying in place
+
+**31. Stitch Variants — Structural Analysis**
+- After variants landed, we built a `/stitch-analyse` skill to compare Stitch-generated HTML against our existing templates
+- Used a Python HTML parser to extract section outlines (headings, buttons, semantic elements) from both the variant and our template
+- Produced a **section mapping table** showing exactly what maps, what's new, and what differs:
+
+| Section | Our Landing Page | Compact Variant | Tall Variant |
+|---------|-----------------|-----------------|--------------|
+| Hero | h1 + 2 buttons (Record, See How) | h1 + badge + 2 buttons | h1 + 2 buttons + dashboard preview |
+| Trust logos | Missing | "Trusted by teams at" + 5 logos | Same — VELOCITY, NEXUS, ORBIT, PRISM, FLUX |
+| Features | 3-column bento grid (h3 x3) | Stacked list with descriptions | Full-width alternating sections (h2 each) + extra "Cloud Rendering" |
+| CTA | 1 link button | 2 buttons (Record + Talk to Sales) | 2 buttons (same) |
+| Footer | 1-line (brand + copyright) | Multi-column: Product/Resources/Company | Multi-column: Product/Resources/Company + API/Terms links |
+
+- **Key insight for porting:** The variants use the same Tailwind utility classes as our design tokens (`bg-primary`, `text-on-background`, etc.) because Stitch generates with Tailwind. This means the body content drops directly into our Templar templates with minimal adaptation — just swap out CDN images and ensure our `@theme` tokens cover the classes used
+- **What doesn't transfer cleanly:** Stitch's `lh3.googleusercontent.com` hosted images (profile photos, screenshots) need placeholder replacement. HTML comments used as section markers (`<!-- TopNavBar -->`) are Stitch-internal and not semantic
+- Built proper Templar templates (`LandingCompact.html`, `LandingTall.html`) that extend our `BasePage.html` with each variant's body content — same nav, fonts, design tokens, just different layouts
+- Created `/compare` page showing all 3 variants side-by-side in iframes
+- **Demo narrative:** "Stitch generated 3 layout variants → we analyzed them structurally → ported them into our production template system → all 3 render through the same Go/React pipeline with our design tokens"
+
+**32. Stitch Skills for Claude Code**
+- Created 4 skills in `.claude/skills/` to stay in the agent workflow:
+  - `/stitch-sync` — runs `./stitch-sync/sync.sh all`, shows git diff summary
+  - `/stitch-diff` — shows uncommitted sync changes with structure-level analysis
+  - `/stitch-variants` — calls `generate_variants` MCP, handles async (tells user to sync later)
+  - `/stitch-analyse` — compares Stitch HTML against our templates, produces section mapping table and porting checklist
+- These are thin wrappers — they call existing scripts rather than reimplementing logic
+- The variants skill is special: it calls the MCP tool directly but delegates sync to the existing script
+- **Pattern:** Skills as workflow glue — each skill orchestrates existing tools (shell scripts + MCP + git) rather than doing the work itself

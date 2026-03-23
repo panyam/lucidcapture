@@ -1,5 +1,5 @@
 {
-  "_comment": "Screens intentionally deleted from Stitch. Check this file before re-syncing to avoid re-importing deleted screens. Add entries here when deleting screens from the Stitch UI.",
+  "_comment": "Screens intentionally deleted from Stitch. Sync script skips these IDs. Stitch uses UUID screen IDs that are never reused, so tombstoning by ID is safe.",
   "deleted": [
     {
       "id": "e0c62e39df2549e291699bcb58a9c8a2",

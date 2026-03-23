@@ -346,7 +346,15 @@ The app is **"Lucid Capture"** — an Arcade.software clone for creating cinemat
 - **SideNav was the worst offender** — all `slate-*` hardcoded colors. After replacing with token colors, it responds to dark mode automatically without needing any `dark:` prefixed classes
 - **Key lesson: use design token colors everywhere** — elements using `bg-surface`, `text-on-background` etc. get dark mode for free. Only elements with hardcoded colors need `dark:` overrides. This means the more consistently we use tokens, the less dark mode work there is
 
-**37. Wiring Variants Into Production**
+**37. Pushing Dark Mode Back to Stitch — Limitations**
+- Tried to push our dark mode implementation back to Stitch as a design system update
+- **Stitch has no concept of themes** — every screen is a single-state artifact. No way to say "this screen has light and dark variants that share the same layout"
+- If we created dark versions as separate screens, every layout change would need to be applied to both light and dark versions — a maintenance nightmare
+- **Tried `edit_screens` to update just the design system docs** — asked it to only add a dark mode note without changing the layout. Stitch created a new screen copy ("Dashboard with Dark Mode Docs") anyway. Even "documentation-only" edits create copies
+- **Conclusion:** Dark mode is a code-level concern (CSS custom properties), not a design-level concern (separate screens). Stitch screens stay as the light canonical design. Our dark palette is derived from Stitch variants but lives entirely in code
+- **Recommendation for Stitch team:** (1) Support theme variants per screen (light/dark/high-contrast as states of the same screen, not separate screens), (2) Allow editing the project-level design system documentation without creating screen copies, (3) Add a `designMd` field to the project-level API, not just per-screen
+
+**38. Wiring Variants Into Production**
 - Ported the Stitch variant HTML into proper Templar templates (`LandingCompactPage.html`, `LandingTallPage.html`) and React components (`LandingCompactPage.tsx`, `LandingTallPage.tsx`)
 - **Not raw Stitch HTML** — extracted body content, adapted to our template system (extends `BasePage.html`), replaced Stitch CDN images with placeholders, used our design tokens
 - **GoAppLib gotcha:** Template filename must match struct name exactly — `LandingCompactPage` struct looks for `LandingCompactPage.html`, not `LandingCompact.html`. The `define` block name must also match

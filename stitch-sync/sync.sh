@@ -47,6 +47,9 @@ sync_manifest() {
   screens_json=$(stitch_list_screens "${PROJECT_ID}")
   echo "${screens_json}" | stitch_extract_manifest | jq --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" '. + {syncedAt: $ts, projectId: "'"${PROJECT_ID}"'"}' > "${OUT_DIR}/screen-manifest.json"
   echo "   Saved screen-manifest.json"
+
+  # Remove tombstone entries for screens that no longer exist in Stitch
+  prune_tombstones
 }
 
 sync_screens() {
@@ -124,6 +127,31 @@ sync_screenshots() {
       echo "   ${slug} — no screenshot available, skipping"
     fi
   done
+}
+
+prune_tombstones() {
+  if [[ ! -f "${TOMBSTONES}" || ! -f "${OUT_DIR}/screen-manifest.json" ]]; then
+    return
+  fi
+
+  # Get all screen IDs currently in Stitch
+  local live_ids
+  live_ids=$(jq -r '.screens[].id' "${OUT_DIR}/screen-manifest.json" 2>/dev/null)
+
+  # Filter tombstones to only keep IDs that still exist in Stitch
+  local pruned
+  pruned=$(jq --argjson live "$(echo "${live_ids}" | jq -R . | jq -s .)" \
+    '.deleted = [.deleted[] | select(.id as $id | $live | index($id))]' \
+    "${TOMBSTONES}")
+
+  local before after
+  before=$(jq '.deleted | length' "${TOMBSTONES}")
+  after=$(echo "${pruned}" | jq '.deleted | length')
+
+  if [[ "${before}" != "${after}" ]]; then
+    echo "${pruned}" | jq '.' > "${TOMBSTONES}"
+    echo "=> Pruned tombstones: ${before} → ${after} (removed $(( before - after )) stale entries)"
+  fi
 }
 
 # Main

@@ -84,6 +84,12 @@
       "title": "User Flow Map",
       "reason": "Empty screen — 0 height, no content, no screenshot",
       "deletedAt": "2026-03-23"
+    },
+    {
+      "id": "3f9e7eb9592749c08b99bebc14552e43",
+      "title": "Dashboard (with Dark Mode Docs)",
+      "reason": "Unwanted copy — edit_screens created new screen when we tried to update design system docs only",
+      "deletedAt": "2026-03-23"
     }
   ]
 }

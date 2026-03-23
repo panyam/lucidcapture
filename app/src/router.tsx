@@ -3,6 +3,7 @@ import { TopNav } from './components/shared/TopNav'
 import { LandingPage } from './pages/LandingPage'
 import { LandingCompactPage } from './pages/LandingCompactPage'
 import { LandingTallPage } from './pages/LandingTallPage'
+import { ComparePage } from './pages/ComparePage'
 import { DashboardPage } from './pages/DashboardPage'
 import { EditorPage } from './pages/EditorPage'
 import { PlayerPage } from './pages/PlayerPage'
@@ -11,8 +12,9 @@ export function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Player is full-screen, no TopNav */}
+        {/* Full-screen pages — no TopNav */}
         <Route path="/play/:id" element={<PlayerPage />} />
+        <Route path="/compare" element={<ComparePage />} />
         {/* All other pages get TopNav */}
         <Route path="*" element={
           <>

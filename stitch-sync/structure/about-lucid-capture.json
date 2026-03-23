@@ -1,0 +1,603 @@
+[
+  {
+    "type": "comment",
+    "text": "TopNavBar",
+    "depth": 2
+  },
+  {
+    "type": "nav",
+    "depth": 2,
+    "layout": [
+      "sticky"
+    ]
+  },
+  {
+    "type": "a",
+    "depth": 5,
+    "href": "#",
+    "text": "Explore"
+  },
+  {
+    "type": "a",
+    "depth": 5,
+    "href": "#",
+    "text": "Community"
+  },
+  {
+    "type": "a",
+    "depth": 5,
+    "href": "#",
+    "text": "About"
+  },
+  {
+    "type": "button",
+    "depth": 5,
+    "layout": [
+      "rounded-full"
+    ],
+    "text": "notifications"
+  },
+  {
+    "type": "button",
+    "depth": 5,
+    "layout": [
+      "rounded-full"
+    ],
+    "text": "settings"
+  },
+  {
+    "type": "button",
+    "depth": 5,
+    "layout": [
+      "bg-gradient-to-br",
+      "rounded-full",
+      "shadow-lg",
+      "shadow-primary"
+    ],
+    "text": "Create Scene"
+  },
+  {
+    "type": "main",
+    "depth": 2
+  },
+  {
+    "type": "comment",
+    "text": "Hero Section",
+    "depth": 3
+  },
+  {
+    "type": "section",
+    "depth": 3,
+    "layout": [
+      "relative"
+    ]
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-surface-container-low",
+      "rounded-bl-"
+    ],
+    "depth": 4
+  },
+  {
+    "type": "div",
+    "layout": [
+      "grid",
+      "grid-cols-2"
+    ],
+    "depth": 4
+  },
+  {
+    "type": "h1",
+    "depth": 6,
+    "text": "The Art of Software Cinema."
+  },
+  {
+    "type": "div",
+    "layout": [
+      "aspect-video",
+      "bg-surface-container-highest",
+      "rounded-xl",
+      "shadow",
+      "relative"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "img",
+    "depth": 7,
+    "alt": "Cinematic workplace setup with high-end monitors"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-gradient-to-t"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "comment",
+    "text": "Floating Annotation",
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "rounded-xl",
+      "shadow"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "comment",
+    "text": "Our Mission: The Bento Grid",
+    "depth": 3
+  },
+  {
+    "type": "section",
+    "depth": 3,
+    "layout": [
+      "bg-surface-container-low"
+    ]
+  },
+  {
+    "type": "h2",
+    "depth": 6,
+    "text": "Our Mission"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "grid",
+      "grid-cols-1",
+      "grid-cols-12"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "comment",
+    "text": "Bento Item 1",
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "col-span-8",
+      "bg-surface-container-lowest",
+      "rounded-xl",
+      "shadow",
+      "flex",
+      "flex-col"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "h3",
+    "depth": 8,
+    "text": "From Static to Cinematic"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-primary-container",
+      "rounded-full"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-surface-container-high",
+      "rounded-full"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "comment",
+    "text": "Bento Item 2",
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "col-span-4",
+      "bg-primary",
+      "rounded-xl",
+      "shadow",
+      "relative"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "h3",
+    "depth": 8,
+    "text": "Invisible Precision"
+  },
+  {
+    "type": "comment",
+    "text": "Bento Item 3",
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "col-span-5",
+      "bg-surface-container-high",
+      "rounded-xl"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "h3",
+    "depth": 7,
+    "text": "Gallery Standard"
+  },
+  {
+    "type": "comment",
+    "text": "Bento Item 4",
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "col-span-7",
+      "bg-surface-container-lowest",
+      "rounded-xl",
+      "shadow",
+      "flex"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-secondary-container",
+      "rounded-full",
+      "flex"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "h3",
+    "depth": 8,
+    "text": "4K Master Delivery"
+  },
+  {
+    "type": "comment",
+    "text": "Why Scenes? Section",
+    "depth": 3
+  },
+  {
+    "type": "section",
+    "depth": 3
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex",
+      "flex-col",
+      "flex-row"
+    ],
+    "depth": 4
+  },
+  {
+    "type": "div",
+    "layout": [
+      "grid",
+      "grid-cols-2"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "aspect-square",
+      "rounded-xl",
+      "bg-surface-container-highest"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "img",
+    "depth": 8,
+    "alt": "Code on a screen with beautiful bokeh"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "aspect-square",
+      "rounded-xl",
+      "bg-surface-container-highest"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "img",
+    "depth": 8,
+    "alt": "UI Design elements floating"
+  },
+  {
+    "type": "h2",
+    "depth": 6,
+    "text": "Why Scenes?"
+  },
+  {
+    "type": "h3",
+    "depth": 6,
+    "text": "Because a Demo is just a record, but a Scene is a statement."
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-primary",
+      "rounded-full",
+      "flex"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "h4",
+    "depth": 9,
+    "text": "Intentional Focus"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-primary",
+      "rounded-full",
+      "flex"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "h4",
+    "depth": 9,
+    "text": "Tonal Consistency"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-primary",
+      "rounded-full",
+      "flex"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "h4",
+    "depth": 9,
+    "text": "Cinematic Pacing"
+  },
+  {
+    "type": "comment",
+    "text": "The Team: Editorial Portraits",
+    "depth": 3
+  },
+  {
+    "type": "section",
+    "depth": 3,
+    "layout": [
+      "bg-surface-container"
+    ]
+  },
+  {
+    "type": "h2",
+    "depth": 7,
+    "text": "The Team"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "grid",
+      "grid-cols-1",
+      "grid-cols-3"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "comment",
+    "text": "Team Member 1",
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "aspect-",
+      "rounded-xl",
+      "bg-surface-container-highest",
+      "shadow"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "img",
+    "depth": 8,
+    "alt": "Founder Portrait"
+  },
+  {
+    "type": "h4",
+    "depth": 7,
+    "text": "Marcus Thorne"
+  },
+  {
+    "type": "comment",
+    "text": "Team Member 2",
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "aspect-",
+      "rounded-xl",
+      "bg-surface-container-highest",
+      "shadow"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "img",
+    "depth": 8,
+    "alt": "Lead Engineer Portrait"
+  },
+  {
+    "type": "h4",
+    "depth": 7,
+    "text": "Elena Vance"
+  },
+  {
+    "type": "comment",
+    "text": "Team Member 3",
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "aspect-",
+      "rounded-xl",
+      "bg-surface-container-highest",
+      "shadow"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "img",
+    "depth": 8,
+    "alt": "Motion Designer Portrait"
+  },
+  {
+    "type": "h4",
+    "depth": 7,
+    "text": "Julian Koster"
+  },
+  {
+    "type": "comment",
+    "text": "CTA Section",
+    "depth": 3
+  },
+  {
+    "type": "section",
+    "depth": 3
+  },
+  {
+    "type": "h2",
+    "depth": 5,
+    "text": "Ready to Curate Your First Scene?"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex",
+      "flex-col",
+      "flex-row"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "button",
+    "depth": 6,
+    "layout": [
+      "bg-gradient-to-br",
+      "rounded-full",
+      "shadow-xl",
+      "shadow-primary"
+    ],
+    "text": "Start Capturing"
+  },
+  {
+    "type": "button",
+    "depth": 6,
+    "layout": [
+      "bg-surface-container-highest",
+      "fixed",
+      "rounded-full"
+    ],
+    "text": "View Showreel"
+  },
+  {
+    "type": "comment",
+    "text": "Footer (Using Shell Logic)",
+    "depth": 2
+  },
+  {
+    "type": "footer",
+    "depth": 2,
+    "layout": [
+      "bg-surface-container-low"
+    ]
+  },
+  {
+    "type": "div",
+    "layout": [
+      "grid",
+      "grid-cols-4"
+    ],
+    "depth": 3
+  },
+  {
+    "type": "h5",
+    "depth": 5,
+    "text": "Platform"
+  },
+  {
+    "type": "a",
+    "depth": 7,
+    "href": "#",
+    "text": "Explore Scenes"
+  },
+  {
+    "type": "a",
+    "depth": 7,
+    "href": "#",
+    "text": "The Editor"
+  },
+  {
+    "type": "a",
+    "depth": 7,
+    "href": "#",
+    "text": "Pricing"
+  },
+  {
+    "type": "h5",
+    "depth": 5,
+    "text": "Company"
+  },
+  {
+    "type": "a",
+    "depth": 7,
+    "href": "#",
+    "text": "About Us"
+  },
+  {
+    "type": "a",
+    "depth": 7,
+    "href": "#",
+    "text": "Community"
+  },
+  {
+    "type": "a",
+    "depth": 7,
+    "href": "#",
+    "text": "Privacy Policy"
+  },
+  {
+    "type": "h5",
+    "depth": 5,
+    "text": "Support"
+  },
+  {
+    "type": "a",
+    "depth": 7,
+    "href": "#",
+    "text": "Help Center"
+  },
+  {
+    "type": "a",
+    "depth": 7,
+    "href": "#",
+    "text": "Contact"
+  }
+]

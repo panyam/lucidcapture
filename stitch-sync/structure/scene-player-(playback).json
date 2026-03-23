@@ -1,0 +1,325 @@
+[
+  {
+    "type": "comment",
+    "text": "Top Navigation Shell (Injected from Shared Components)",
+    "depth": 2
+  },
+  {
+    "type": "nav",
+    "depth": 2,
+    "layout": [
+      "fixed",
+      "flex",
+      "bg-transparent"
+    ]
+  },
+  {
+    "type": "a",
+    "depth": 5,
+    "href": "#",
+    "text": "Showcase"
+  },
+  {
+    "type": "a",
+    "depth": 5,
+    "href": "#",
+    "text": "Library"
+  },
+  {
+    "type": "a",
+    "depth": 5,
+    "href": "#",
+    "text": "Collections"
+  },
+  {
+    "type": "button",
+    "depth": 5,
+    "layout": [
+      "bg-white",
+      "rounded-full"
+    ],
+    "text": "share"
+  },
+  {
+    "type": "button",
+    "depth": 5,
+    "layout": [
+      "bg-white",
+      "rounded-full"
+    ],
+    "text": "more_vert"
+  },
+  {
+    "type": "button",
+    "depth": 4,
+    "layout": [
+      "bg-secondary",
+      "rounded-full",
+      "shadow-"
+    ],
+    "text": "Edit"
+  },
+  {
+    "type": "comment",
+    "text": "Main Arcade Player Canvas",
+    "depth": 2
+  },
+  {
+    "type": "main",
+    "depth": 2,
+    "layout": [
+      "flex-1",
+      "relative",
+      "flex",
+      "bg-gradient-to-br"
+    ]
+  },
+  {
+    "type": "comment",
+    "text": "Subtle Background Glows",
+    "depth": 3
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-primary",
+      "rounded-full"
+    ],
+    "depth": 3
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-secondary",
+      "rounded-full"
+    ],
+    "depth": 3
+  },
+  {
+    "type": "comment",
+    "text": "Video Player Container",
+    "depth": 3
+  },
+  {
+    "type": "div",
+    "layout": [
+      "relative",
+      "aspect-video",
+      "rounded-xl",
+      "shadow-"
+    ],
+    "depth": 3
+  },
+  {
+    "type": "comment",
+    "text": "Content Image (The Screenshot)",
+    "depth": 4
+  },
+  {
+    "type": "img",
+    "depth": 4,
+    "alt": "Interactive dashboard preview"
+  },
+  {
+    "type": "comment",
+    "text": "Interactive Hotspot",
+    "depth": 4
+  },
+  {
+    "type": "div",
+    "layout": [
+      "rounded-full",
+      "bg-secondary",
+      "flex"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "comment",
+    "text": "Tooltip",
+    "depth": 5
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "rounded-lg",
+      "shadow-xl"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "comment",
+    "text": "Foreground Overlays",
+    "depth": 4
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-gradient-to-t"
+    ],
+    "depth": 4
+  },
+  {
+    "type": "comment",
+    "text": "Player Status Indicators",
+    "depth": 4
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "flex"
+    ],
+    "depth": 4
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex",
+      "rounded-full"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "div",
+    "layout": [
+      "rounded-full",
+      "bg-error"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "comment",
+    "text": "Cinematic Vignette",
+    "depth": 4
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "shadow-"
+    ],
+    "depth": 4
+  },
+  {
+    "type": "comment",
+    "text": "Cinematic Controls Bar",
+    "depth": 2
+  },
+  {
+    "type": "footer",
+    "depth": 2,
+    "layout": [
+      "fixed"
+    ]
+  },
+  {
+    "type": "div",
+    "layout": [
+      "rounded-2xl",
+      "shadow-",
+      "flex",
+      "flex-col"
+    ],
+    "depth": 3
+  },
+  {
+    "type": "comment",
+    "text": "Progress Track",
+    "depth": 4
+  },
+  {
+    "type": "div",
+    "layout": [
+      "relative",
+      "bg-on-surface-variant",
+      "rounded-full"
+    ],
+    "depth": 4
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-gradient-to-r",
+      "rounded-full",
+      "relative"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-white",
+      "rounded-full",
+      "shadow-lg"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "comment",
+    "text": "Transport Controls",
+    "depth": 5
+  },
+  {
+    "type": "button",
+    "depth": 6,
+    "text": "play_circle"
+  },
+  {
+    "type": "button",
+    "depth": 7,
+    "text": "skip_previous"
+  },
+  {
+    "type": "button",
+    "depth": 7,
+    "text": "skip_next"
+  },
+  {
+    "type": "comment",
+    "text": "Secondary Actions",
+    "depth": 5
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-on-surface-variant",
+      "rounded-full"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-on-surface-variant",
+      "bg-primary"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "button",
+    "depth": 6,
+    "text": "fullscreen"
+  },
+  {
+    "type": "button",
+    "depth": 6,
+    "text": "settings"
+  },
+  {
+    "type": "comment",
+    "text": "Playback Navigation Layer (BottomNavBar Mapping)",
+    "depth": 2
+  },
+  {
+    "type": "comment",
+    "text": "Suppressed for Player View to prioritize cinematic focus per rules",
+    "depth": 2
+  }
+]

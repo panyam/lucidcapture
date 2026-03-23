@@ -91,7 +91,7 @@
       "flex"
     ],
     "href": "#",
-    "text": "video_library\nMy Arcades"
+    "text": "video_library\nMy Scenes"
   },
   {
     "type": "a",
@@ -153,7 +153,7 @@
   {
     "type": "h1",
     "depth": 6,
-    "text": "My Arcades"
+    "text": "My Scenes"
   },
   {
     "type": "comment",

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About Lucid Capture | The Digital Curator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary-container": "#006080",
+                        "surface-tint": "#2949ec",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#2142e7",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#d3daef",
+                        "primary-fixed": "#dee0ff",
+                        "on-secondary-container": "#fffbff",
+                        "inverse-primary": "#bbc3ff",
+                        "on-surface": "#141b2b",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#001e2b",
+                        "on-secondary-fixed-variant": "#0531c5",
+                        "background": "#f9f9ff",
+                        "secondary-fixed": "#dee0ff",
+                        "tertiary-fixed": "#c1e8ff",
+                        "surface-container-highest": "#dce2f7",
+                        "secondary": "#2d4bd9",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#edf0ff",
+                        "surface-bright": "#f9f9ff",
+                        "inverse-surface": "#293040",
+                        "on-primary-fixed-variant": "#002ccd",
+                        "outline-variant": "#c5c5d9",
+                        "surface": "#f9f9ff",
+                        "secondary-container": "#4b67f3",
+                        "on-tertiary-container": "#91d9ff",
+                        "primary-fixed-dim": "#bbc3ff",
+                        "surface-variant": "#dce2f7",
+                        "on-primary-container": "#c7cdff",
+                        "surface-container": "#e9edff",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed": "#00105a",
+                        "on-surface-variant": "#444656",
+                        "primary": "#0029c0",
+                        "surface-container-high": "#e1e8fd",
+                        "tertiary-fixed-dim": "#73d1ff",
+                        "on-tertiary-fixed-variant": "#004d67",
+                        "secondary-fixed-dim": "#bac3ff",
+                        "surface-container-low": "#f1f3ff",
+                        "on-primary-fixed": "#000f5d",
+                        "tertiary": "#00475f",
+                        "on-background": "#141b2b",
+                        "error": "#ba1a1a",
+                        "outline": "#757687",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a"
+                    },
+                    fontFamily: {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(249, 249, 255, 0.7);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+        }
+        .ghost-border {
+            outline: 1px solid rgba(197, 197, 217, 0.15);
+        }
+        .editorial-shadow {
+            box-shadow: 0 32px 64px -4px rgba(20, 27, 43, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopNavBar -->
+<nav class="w-full top-0 sticky z-50 bg-[#F9F9FF] dark:bg-[#141B2B]">
+<div class="flex justify-between items-center px-8 py-4 w-full max-w-[1920px] mx-auto">
+<div class="text-2xl font-black tracking-tighter text-[#0029C0] dark:text-[#F9F9FF]">
+                Lucid Capture
+            </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-[#141B2B]/60 dark:text-[#DCE2F7]/60 hover:text-[#0029C0] font-['Inter'] font-medium text-sm tracking-tight transition-colors" href="#">Explore</a>
+<a class="text-[#141B2B]/60 dark:text-[#DCE2F7]/60 hover:text-[#0029C0] font-['Inter'] font-medium text-sm tracking-tight transition-colors" href="#">Community</a>
+<a class="text-[#0029C0] dark:text-[#2142E7] font-bold border-b-2 border-[#0029C0] pb-1 font-['Inter'] text-sm tracking-tight" href="#">About</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined p-2 text-[#141B2B]/70 hover:bg-[#DCE2F7]/30 rounded-full transition-colors" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined p-2 text-[#141B2B]/70 hover:bg-[#DCE2F7]/30 rounded-full transition-colors" data-icon="settings">settings</button>
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-6 py-2.5 rounded-full font-bold text-sm tracking-tight active:scale-95 duration-200 shadow-lg shadow-primary/20">
+                    Create Scene
+                </button>
+</div>
+</div>
+</nav>
+<main class="max-w-[1920px] mx-auto">
+<!-- Hero Section -->
+<section class="relative px-8 pt-20 pb-32 overflow-hidden">
+<div class="absolute top-0 right-0 -z-10 w-2/3 h-full bg-surface-container-low opacity-50 rounded-bl-[10rem]"></div>
+<div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+<div>
+<span class="inline-block px-3 py-1 bg-primary/10 text-primary text-[0.6875rem] font-bold tracking-[0.15em] uppercase rounded mb-6">About the Platform</span>
+<h1 class="text-[3.5rem] leading-[1.1] font-black tracking-tighter text-on-surface mb-8">
+                        The Art of <br/><span class="text-primary">Software Cinema.</span>
+</h1>
+<p class="text-lg text-on-surface-variant leading-relaxed max-w-md">
+                        We don't just record screens. We curate digital spaces. Lucid Capture is built for those who believe software demos deserve the same production value as high-end cinema.
+                    </p>
+</div>
+<div class="relative">
+<div class="aspect-video bg-surface-container-highest rounded-xl overflow-hidden editorial-shadow ghost-border relative">
+<img alt="Cinematic workplace setup with high-end monitors" class="w-full h-full object-cover" data-alt="Close-up of a high-end minimalist workstation" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7-r8hDEK2hdtlgIhabFpp6MlFZVnTLrl2I--3E97nbsxxAWsv6IXRym5PngpCq953b5kySwtl7N2UszJX-_bowJ9ot-967ssCY-mi5fX6f67B98PfeJiI1_R6LH6eHpDMQs2mKCijwfQ9R__oamY8I_GzpvG0X3Ist63y8guGj4kK-89HdNZ38gm7ObcMnMj0aMa262H9NH9tui50Yfn2hBtcu_rRy4Ci5eY72pNyRry2AWj9ttE9mT4bXHsgbdWLC4x8ds69b_4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent"></div>
+</div>
+<!-- Floating Annotation -->
+<div class="absolute -bottom-8 -left-8 glass-panel ghost-border rounded-xl p-6 editorial-shadow max-w-xs">
+<p class="font-['Balig_Script',_cursive] text-primary text-xl mb-1">Precision matters</p>
+<p class="text-sm text-on-surface-variant italic">Every frame in a Scene is automatically enhanced with tonal depth and adaptive lighting.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Our Mission: The Bento Grid -->
+<section class="px-8 py-24 bg-surface-container-low">
+<div class="max-w-6xl mx-auto">
+<div class="mb-16">
+<h2 class="text-sm font-bold tracking-[0.2em] uppercase text-primary mb-2">Our Mission</h2>
+<p class="text-3xl font-bold tracking-tight">Redefining Digital Narrative</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Bento Item 1 -->
+<div class="md:col-span-8 bg-surface-container-lowest p-10 rounded-xl ghost-border editorial-shadow flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-primary text-4xl mb-6" data-icon="auto_awesome">auto_awesome</span>
+<h3 class="text-2xl font-bold mb-4">From Static to Cinematic</h3>
+<p class="text-on-surface-variant leading-relaxed text-lg max-w-2xl">
+                                Traditional screen recordings are cluttered and distracting. Our mission is to strip away the noise and focus on the essence of your product. By turning demos into "Scenes," we create a curated journey that respects the viewer's attention and elevates the brand's authority.
+                            </p>
+</div>
+<div class="mt-12 flex gap-4">
+<div class="h-1 w-24 bg-primary-container rounded-full"></div>
+<div class="h-1 w-12 bg-surface-container-high rounded-full"></div>
+</div>
+</div>
+<!-- Bento Item 2 -->
+<div class="md:col-span-4 bg-primary text-white p-10 rounded-xl editorial-shadow relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="text-xl font-bold mb-4">Invisible Precision</h3>
+<p class="text-white/80 text-sm leading-relaxed">
+                                Our algorithms handle the lighting, the focus, and the motion blur. You handle the storytelling.
+                            </p>
+</div>
+<div class="absolute -bottom-10 -right-10 opacity-20">
+<span class="material-symbols-outlined text-[10rem]" data-icon="curate">browse</span>
+</div>
+</div>
+<!-- Bento Item 3 -->
+<div class="md:col-span-5 bg-surface-container-high p-8 rounded-xl ghost-border">
+<h3 class="font-bold mb-3">Gallery Standard</h3>
+<p class="text-sm text-on-surface-variant">We treat every software interface as a high-end gallery exhibit, ensuring clarity and aesthetic prestige.</p>
+</div>
+<!-- Bento Item 4 -->
+<div class="md:col-span-7 bg-surface-container-lowest p-8 rounded-xl ghost-border editorial-shadow flex items-center gap-8">
+<div class="w-24 h-24 bg-secondary-container/10 rounded-full flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-secondary text-3xl" data-icon="videocam">videocam</span>
+</div>
+<div>
+<h3 class="font-bold mb-2">4K Master Delivery</h3>
+<p class="text-sm text-on-surface-variant">Uncompressed fidelity for the most demanding visual professionals.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Why Scenes? Section -->
+<section class="px-8 py-32">
+<div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-20 items-center">
+<div class="w-full md:w-1/2 order-2 md:order-1">
+<div class="grid grid-cols-2 gap-4">
+<div class="aspect-square rounded-xl bg-surface-container-highest overflow-hidden ghost-border">
+<img alt="Code on a screen with beautiful bokeh" class="w-full h-full object-cover" data-alt="Abstract code on a dark screen with vibrant colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqkgznDxyNEgZnr98miPViR39uC_GOB1EPproXiDCWiPqfkdfEh9MpJ6GQx_6uEIF6Jltdx8WDtzdfRhHeTqAMaWoipC_QbeGDDyv0G3BfGa_PKZ2wVQkiytpTxdDO1FA5Yr05zgbJdn2Z4HJm8OdrmpNjwt0xfg3z1OA2r0zzZb8JA-RbDT3OzwY97e3cCsrsiyYlARPU4pY8fF2-nzFEg5a7eCQtnUjfAkntoaXGYoMvDQB1CaAC0j-B2yM4kXIoG2xAZhr36kc"/>
+</div>
+<div class="aspect-square rounded-xl bg-surface-container-highest overflow-hidden mt-8 ghost-border">
+<img alt="UI Design elements floating" class="w-full h-full object-cover" data-alt="High quality UI design mockups on a table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACASYJF9bfzIXf93FEjl6Th9OKIegn4tu7ULIckP1CBNiM8Y4WRb-1VE4fk7zD379AC6dYDijl-anb_FFEF6aG_V9Nw9bBTB0bHYvhKVCtZcZYhcR22P8VwHVD1YdK6zEkqMlQUMLP9YORyIhhpM_ROpHRrsLG2oijoMXjRvGkvOQV45qaev0N9qm3LnQ92I-N3Occbi0sVIwKsasLdLC2afheZHY0r6XNz8w4_U-tJn4VLNwAbpG3eEkolDo6FAgqYLpXT-vS9i0"/>
+</div>
+</div>
+</div>
+<div class="w-full md:w-1/2 order-1 md:order-2">
+<h2 class="text-sm font-bold tracking-[0.2em] uppercase text-primary mb-4">Why Scenes?</h2>
+<h3 class="text-4xl font-black tracking-tighter mb-8 leading-tight">Because a Demo is just a <span class="text-primary italic">record</span>, but a Scene is a <span class="text-secondary italic">statement</span>.</h3>
+<ul class="space-y-8">
+<li class="flex gap-6">
+<div class="shrink-0 w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="filter_center_focus">filter_center_focus</span>
+</div>
+<div>
+<h4 class="font-bold text-lg mb-1">Intentional Focus</h4>
+<p class="text-on-surface-variant text-sm">Automated depth-of-field that guides the viewer's eye exactly where it needs to be.</p>
+</div>
+</li>
+<li class="flex gap-6">
+<div class="shrink-0 w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="palette">palette</span>
+</div>
+<div>
+<h4 class="font-bold text-lg mb-1">Tonal Consistency</h4>
+<p class="text-on-surface-variant text-sm">Unified color grading that matches your brand identity across every captured interaction.</p>
+</div>
+</li>
+<li class="flex gap-6">
+<div class="shrink-0 w-12 h-12 bg-primary/5 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="speed">speed</span>
+</div>
+<div>
+<h4 class="font-bold text-lg mb-1">Cinematic Pacing</h4>
+<p class="text-on-surface-variant text-sm">Intelligent time-remapping that smooths out loading states and emphasizes key actions.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- The Team: Editorial Portraits -->
+<section class="px-8 py-24 bg-surface-container">
+<div class="max-w-6xl mx-auto">
+<div class="flex justify-between items-end mb-16">
+<div>
+<h2 class="text-sm font-bold tracking-[0.2em] uppercase text-primary mb-2">The Team</h2>
+<p class="text-3xl font-bold tracking-tight">Curated by Creators</p>
+</div>
+<p class="max-w-xs text-sm text-on-surface-variant italic">
+                        A collective of designers, engineers, and cinematographers based in the digital ether.
+                    </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<!-- Team Member 1 -->
+<div class="group">
+<div class="aspect-[3/4] rounded-xl bg-surface-container-highest mb-6 overflow-hidden ghost-border editorial-shadow transition-transform duration-500 group-hover:-translate-y-2">
+<img alt="Founder Portrait" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Professional headshot of a creative director" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6SeoVSizOUSAuJrtt1uX-ly1MQQnyRLhgHyLbFCWg7DVhcgb6GAmLg8mxs1uTFSfMLD3UGa_uRgMXX7vpyy8t8Ls0UwbU8NWB_RSdyVrrJuw0fewvDyRReH-GFNlhE83OWCCTmF--ChiP_SNkqWfHH7Yd5PvcPG1xGTDaBn0nSk2mdSmLJV5QfDUFfXJcfO4PAbbHSnPUoUQCgx7otlE0bj4Y4YZcp9ezWFQaHQzjFIM9oN1gHr0k0dgMhQ0Rc0daqKRCAabxxfw"/>
+</div>
+<h4 class="text-xl font-bold">Marcus Thorne</h4>
+<p class="text-primary text-sm font-semibold mb-3">Creative Director</p>
+<p class="text-on-surface-variant text-sm leading-relaxed">Obsessed with the intersection of light and digital interfaces.</p>
+</div>
+<!-- Team Member 2 -->
+<div class="group">
+<div class="aspect-[3/4] rounded-xl bg-surface-container-highest mb-6 overflow-hidden ghost-border editorial-shadow transition-transform duration-500 group-hover:-translate-y-2">
+<img alt="Lead Engineer Portrait" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Professional portrait of a female software engineer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBeIYqAoqMrbwbqyMpOQjRxnWgxmkgaXK7HI8Sl7n8YQcPn7YmaB5vw6bz2xIGx2wJdJowmoni_tVS2HYxE0w7JljPG-UW83Q0JSo8KErac7NVHCBc-vyXFqJ2OseBotM9fjY-77-0VGuiMGOXtgBYNXUotJgCkuc2Opfgj1pdON2ZmSpG4TdVH_i_wkehgwAQRtX1HbkIdZFdj6EIYVfVFNf4HEH1aLK9ocISu4FX68GvcnA56Se-qgWyNpFVIBY0ldDhms_o2aSE"/>
+</div>
+<h4 class="text-xl font-bold">Elena Vance</h4>
+<p class="text-primary text-sm font-semibold mb-3">Lead Architect</p>
+<p class="text-on-surface-variant text-sm leading-relaxed">Building the engine that renders 4K scenes in real-time browser environments.</p>
+</div>
+<!-- Team Member 3 -->
+<div class="group">
+<div class="aspect-[3/4] rounded-xl bg-surface-container-highest mb-6 overflow-hidden ghost-border editorial-shadow transition-transform duration-500 group-hover:-translate-y-2">
+<img alt="Motion Designer Portrait" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Professional portrait of a male motion designer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLXQ8POQOoC-GphLPIoYdxAqDucP-agt2fGrCc51IceEjdguNIEoqOrdvdQeTewedr1xW9JUlHKLXSKFC-kuqA_I0ben0_8hAxQ1V8n43QmRVIjCD_3Tmz_Mp1_GQkMUxbrINLxORZHU7X1i3ObG10zs8BPfr05amFt_PiKDbZxtGn0KlPffRC97gDAk9Y-IOR6WbvhhHdXrm7NiJtEkD3dAi1FQAS6cWyKpyy0AiT370NonhwvWa0omYqgPHJz3YZf_bggIVAedA"/>
+</div>
+<h4 class="text-xl font-bold">Julian Koster</h4>
+<p class="text-primary text-sm font-semibold mb-3">Motion Lead</p>
+<p class="text-on-surface-variant text-sm leading-relaxed">Crafting the signature physics and easing of the Lucid capture engine.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="px-8 py-32 text-center">
+<div class="max-w-3xl mx-auto">
+<h2 class="text-[3.5rem] font-black tracking-tighter mb-8 leading-none">Ready to Curate Your First Scene?</h2>
+<div class="flex flex-col md:flex-row justify-center gap-6">
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-10 py-4 rounded-full font-bold text-lg shadow-xl shadow-primary/30 active:scale-95 transition-all">
+                        Start Capturing
+                    </button>
+<button class="bg-surface-container-highest text-on-primary-fixed-variant px-10 py-4 rounded-full font-bold text-lg active:scale-95 transition-all">
+                        View Showreel
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Using Shell Logic) -->
+<footer class="bg-surface-container-low px-8 py-16">
+<div class="max-w-[1920px] mx-auto grid md:grid-cols-4 gap-12 border-t-0">
+<div class="md:col-span-1">
+<div class="text-xl font-black tracking-tighter text-primary mb-6">Lucid Capture</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                    Elevating the standard of software demonstration through digital curation.
+                </p>
+</div>
+<div>
+<h5 class="font-bold text-sm mb-6">Platform</h5>
+<ul class="space-y-4 text-sm text-on-surface-variant/70">
+<li><a class="hover:text-primary transition-colors" href="#">Explore Scenes</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">The Editor</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Pricing</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold text-sm mb-6">Company</h5>
+<ul class="space-y-4 text-sm text-on-surface-variant/70">
+<li><a class="text-primary font-bold" href="#">About Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Community</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold text-sm mb-6">Support</h5>
+<ul class="space-y-4 text-sm text-on-surface-variant/70">
+<li><a class="hover:text-primary transition-colors" href="#">Help Center</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
+<li class="flex items-center gap-2 text-primary font-bold">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+                        Pro Plan Active
+                    </li>
+</ul>
+</div>
+</div>
+<div class="max-w-[1920px] mx-auto mt-16 pt-8 text-center text-[0.6875rem] text-on-surface-variant/40 uppercase tracking-widest">
+            © 2024 Lucid Capture. All frames reserved.
+        </div>
+</footer>
+</body></html>

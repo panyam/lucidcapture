@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head><title>Scene Player (Playback)</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#73d1ff",
+              "secondary": "#2d4bd9",
+              "on-background": "#141b2b",
+              "surface-container-high": "#e1e8fd",
+              "surface": "#f9f9ff",
+              "inverse-primary": "#bbc3ff",
+              "secondary-container": "#4b67f3",
+              "on-tertiary-fixed": "#001e2b",
+              "on-secondary-fixed": "#00105a",
+              "tertiary": "#00475f",
+              "background": "#f9f9ff",
+              "on-surface-variant": "#444656",
+              "error": "#ba1a1a",
+              "surface-dim": "#d3daef",
+              "secondary-fixed-dim": "#bac3ff",
+              "outline": "#757687",
+              "on-primary": "#ffffff",
+              "on-tertiary-fixed-variant": "#004d67",
+              "on-error": "#ffffff",
+              "error-container": "#ffdad6",
+              "on-primary-container": "#c7cdff",
+              "on-tertiary-container": "#91d9ff",
+              "tertiary-fixed": "#c1e8ff",
+              "surface-tint": "#2949ec",
+              "surface-container-low": "#f1f3ff",
+              "on-secondary-fixed-variant": "#0531c5",
+              "tertiary-container": "#006080",
+              "surface-variant": "#dce2f7",
+              "on-primary-fixed-variant": "#002ccd",
+              "on-error-container": "#93000a",
+              "surface-bright": "#f9f9ff",
+              "outline-variant": "#c5c5d9",
+              "on-surface": "#141b2b",
+              "primary-container": "#2142e7",
+              "secondary-fixed": "#dee0ff",
+              "on-primary-fixed": "#000f5d",
+              "surface-container": "#e9edff",
+              "inverse-on-surface": "#edf0ff",
+              "inverse-surface": "#293040",
+              "primary-fixed": "#dee0ff",
+              "primary": "#0029c0",
+              "on-tertiary": "#ffffff",
+              "on-secondary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed-dim": "#bbc3ff",
+              "on-secondary-container": "#fffbff",
+              "surface-container-highest": "#dce2f7"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hotspot-pulse {
+            box-shadow: 0 0 0 0 rgba(45, 75, 217, 0.7);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(45, 75, 217, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 15px rgba(45, 75, 217, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(45, 75, 217, 0); }
+        }
+        .glass-panel {
+            background: rgba(249, 249, 255, 0.7);
+            backdrop-filter: blur(40px);
+        }
+        body {
+            background-color: #0c0f18; /* Overriding for cinematic feel as requested */
+        }
+    </style>
+</head>
+<body class="font-body text-on-surface overflow-hidden h-screen w-screen flex flex-col">
+<!-- Top Navigation Shell (Injected from Shared Components) -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-6 w-full bg-transparent">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tighter text-white">Lucid Capture</span>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-slate-500 hover:text-white transition-colors font-medium tracking-tight" href="#">Showcase</a>
+<a class="text-white font-bold border-b-2 border-secondary font-medium tracking-tight" href="#">Library</a>
+<a class="text-slate-500 hover:text-white transition-colors font-medium tracking-tight" href="#">Collections</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex gap-2">
+<button class="p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+<button class="p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<button class="bg-secondary text-white px-6 py-2 rounded-full font-semibold text-sm hover:shadow-[0_0_20px_rgba(45,75,217,0.4)] active:scale-95 transition-all">
+                Edit
+            </button>
+</div>
+</nav>
+<!-- Main Arcade Player Canvas -->
+<main class="flex-1 relative w-full h-full flex items-center justify-center p-4 md:p-12 overflow-hidden bg-gradient-to-br from-[#0c0f18] via-[#141b2b] to-[#0c0f18]">
+<!-- Subtle Background Glows -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="absolute bottom-0 right-0 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-[100px] pointer-events-none"></div>
+<!-- Video Player Container -->
+<div class="relative w-full max-w-6xl aspect-video rounded-xl overflow-hidden shadow-[0_32px_128px_rgba(0,0,0,0.6)] group">
+<!-- Content Image (The Screenshot) -->
+<img alt="Interactive dashboard preview" class="w-full h-full object-cover" data-alt="High fidelity software dashboard with complex data visualizations" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwCUn41tuC__KlgfPQR7ME0_j0ZZmznK9keUBKCI6jBjjxcPXuz36bwGXa00NpkzAyLd-q8oOT6JwW7Yqn3uvkpnSNBVbd3Fn-Nj5T3dzdRaNuRGbVmNJqzXy36hXjDgid3Ob11rxKQD8O-wHRUYPRE51ffWmwSccBAJPAkUU3pgOWQAFY-0aG69HaLffVwX23YiQBche2TE-y3TpD-Fv_IsDcAcT3YYMgHh4qfsyZzAYUICfKBn3Le5Qy5zr_iD2aCXrhUZwjdqc"/>
+<!-- Interactive Hotspot -->
+<div class="absolute top-[42%] left-[68%] -translate-x-1/2 -translate-y-1/2 z-20">
+<div class="hotspot-pulse w-12 h-12 rounded-full border-4 border-white/50 bg-secondary flex items-center justify-center cursor-pointer hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-white text-xl" data-icon="touch_app">touch_app</span>
+</div>
+<!-- Tooltip -->
+<div class="absolute top-full left-1/2 -translate-x-1/2 mt-4 px-4 py-2 glass-panel rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 whitespace-nowrap">
+<p class="text-[10px] font-bold uppercase tracking-widest text-primary mb-1">Interactive Step</p>
+<p class="text-sm font-semibold text-on-background">Click to filter by Region</p>
+</div>
+</div>
+<!-- Foreground Overlays -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none"></div>
+<!-- Player Status Indicators -->
+<div class="absolute top-6 left-6 flex items-center gap-3">
+<div class="flex items-center gap-2 px-3 py-1.5 glass-panel rounded-full border border-white/10">
+<div class="w-2 h-2 rounded-full bg-error animate-pulse"></div>
+<span class="text-[11px] font-bold tracking-widest uppercase text-on-surface">Live Preview</span>
+</div>
+</div>
+<!-- Cinematic Vignette -->
+<div class="absolute inset-0 shadow-[inset_0_0_100px_rgba(0,0,0,0.4)] pointer-events-none"></div>
+</div>
+</main>
+<!-- Cinematic Controls Bar -->
+<footer class="fixed bottom-12 left-1/2 -translate-x-1/2 w-full max-w-4xl px-8 z-50">
+<div class="glass-panel rounded-2xl p-4 shadow-[0_16px_48px_rgba(0,0,0,0.4)] border border-white/10 flex flex-col gap-4">
+<!-- Progress Track -->
+<div class="relative w-full h-1.5 bg-on-surface-variant/20 rounded-full cursor-pointer group/track overflow-hidden">
+<div class="absolute inset-y-0 left-0 w-[64%] bg-gradient-to-r from-primary to-secondary rounded-full relative">
+<div class="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg scale-0 group-hover/track:scale-100 transition-transform border-4 border-secondary"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<!-- Transport Controls -->
+<div class="flex items-center gap-6">
+<button class="text-on-surface hover:text-primary transition-colors active:scale-90">
+<span class="material-symbols-outlined text-3xl" data-icon="play_circle" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+</button>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined" data-icon="skip_previous">skip_previous</span>
+</button>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined" data-icon="skip_next">skip_next</span>
+</button>
+</div>
+<div class="h-4 w-px bg-outline-variant/30 mx-2"></div>
+<div class="text-[12px] font-mono tracking-tighter text-on-surface-variant">
+<span class="text-on-surface font-bold">01:42</span> / 02:30
+                    </div>
+</div>
+<!-- Secondary Actions -->
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 group/vol cursor-pointer">
+<span class="material-symbols-outlined text-on-surface-variant group-hover/vol:text-on-surface" data-icon="volume_up">volume_up</span>
+<div class="w-16 h-1 bg-on-surface-variant/20 rounded-full overflow-hidden">
+<div class="w-[70%] h-full bg-on-surface-variant group-hover/vol:bg-primary"></div>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined" data-icon="fullscreen">fullscreen</span>
+</button>
+<button class="text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</div>
+</div>
+</footer>
+<!-- Playback Navigation Layer (BottomNavBar Mapping) -->
+<!-- Suppressed for Player View to prioritize cinematic focus per rules -->
+</body></html>

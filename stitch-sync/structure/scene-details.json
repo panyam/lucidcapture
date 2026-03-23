@@ -1,0 +1,629 @@
+[
+  {
+    "type": "comment",
+    "text": "TopNavBar",
+    "depth": 2
+  },
+  {
+    "type": "nav",
+    "depth": 2,
+    "layout": [
+      "fixed",
+      "flex",
+      "bg-slate-50",
+      "bg-slate-950"
+    ]
+  },
+  {
+    "type": "a",
+    "depth": 5,
+    "href": "#",
+    "text": "Dashboard"
+  },
+  {
+    "type": "a",
+    "depth": 5,
+    "href": "#",
+    "text": "Library"
+  },
+  {
+    "type": "a",
+    "depth": 5,
+    "href": "#",
+    "text": "Analytics"
+  },
+  {
+    "type": "a",
+    "depth": 5,
+    "href": "#",
+    "text": "Settings"
+  },
+  {
+    "type": "button",
+    "depth": 4,
+    "text": "Edit Scene"
+  },
+  {
+    "type": "button",
+    "depth": 4,
+    "layout": [
+      "bg-primary",
+      "rounded-full"
+    ],
+    "text": "Share"
+  },
+  {
+    "type": "comment",
+    "text": "SideNavBar",
+    "depth": 2
+  },
+  {
+    "type": "aside",
+    "depth": 2,
+    "layout": [
+      "fixed",
+      "bg-slate-50",
+      "bg-slate-950",
+      "flex",
+      "flex-col",
+      "flex"
+    ]
+  },
+  {
+    "type": "div",
+    "layout": [
+      "rounded-xl",
+      "bg-surface-container-highest",
+      "flex"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "img",
+    "depth": 6,
+    "alt": "User Profile"
+  },
+  {
+    "type": "button",
+    "depth": 3,
+    "layout": [
+      "flex",
+      "bg-primary",
+      "rounded-xl",
+      "shadow-lg",
+      "shadow-primary"
+    ],
+    "text": "add\n            New Capture"
+  },
+  {
+    "type": "nav",
+    "depth": 3,
+    "layout": [
+      "flex-1"
+    ]
+  },
+  {
+    "type": "a",
+    "depth": 4,
+    "layout": [
+      "flex",
+      "bg-slate-200",
+      "bg-slate-800",
+      "rounded-lg"
+    ],
+    "href": "#",
+    "text": "history\nRecent"
+  },
+  {
+    "type": "a",
+    "depth": 4,
+    "layout": [
+      "flex",
+      "bg-blue-50",
+      "bg-blue-900",
+      "rounded-lg"
+    ],
+    "href": "#",
+    "text": "folder_special\nCollections"
+  },
+  {
+    "type": "a",
+    "depth": 4,
+    "layout": [
+      "flex",
+      "bg-slate-200",
+      "bg-slate-800",
+      "rounded-lg"
+    ],
+    "href": "#",
+    "text": "share\nShared"
+  },
+  {
+    "type": "a",
+    "depth": 4,
+    "layout": [
+      "flex",
+      "bg-slate-200",
+      "bg-slate-800",
+      "rounded-lg"
+    ],
+    "href": "#",
+    "text": "inventory_2\nArchived"
+  },
+  {
+    "type": "a",
+    "depth": 4,
+    "layout": [
+      "flex",
+      "bg-slate-200",
+      "bg-slate-800",
+      "rounded-lg"
+    ],
+    "href": "#",
+    "text": "delete\nTrash"
+  },
+  {
+    "type": "a",
+    "depth": 4,
+    "layout": [
+      "flex",
+      "bg-slate-200",
+      "bg-slate-800",
+      "rounded-lg"
+    ],
+    "href": "#",
+    "text": "help\nHelp"
+  },
+  {
+    "type": "a",
+    "depth": 4,
+    "layout": [
+      "flex",
+      "bg-slate-200",
+      "bg-slate-800",
+      "rounded-lg"
+    ],
+    "href": "#",
+    "text": "chat_bubble\nFeedback"
+  },
+  {
+    "type": "comment",
+    "text": "Main Content Canvas",
+    "depth": 2
+  },
+  {
+    "type": "main",
+    "depth": 2
+  },
+  {
+    "type": "comment",
+    "text": "Breadcrumbs & Focus Action",
+    "depth": 4
+  },
+  {
+    "type": "comment",
+    "text": "Header Section",
+    "depth": 4
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex",
+      "flex-col",
+      "flex-row"
+    ],
+    "depth": 4
+  },
+  {
+    "type": "h1",
+    "depth": 6,
+    "text": "Scene Details"
+  },
+  {
+    "type": "button",
+    "depth": 6,
+    "layout": [
+      "flex",
+      "bg-gradient-to-br",
+      "rounded-full",
+      "shadow-xl",
+      "shadow-primary"
+    ],
+    "text": "edit_square\n                        Edit Recording"
+  },
+  {
+    "type": "button",
+    "depth": 6,
+    "layout": [
+      "flex",
+      "bg-surface-container-highest",
+      "fixed",
+      "rounded-full",
+      "bg-surface-container-high"
+    ],
+    "text": "share\n                        Share"
+  },
+  {
+    "type": "button",
+    "depth": 6,
+    "layout": [
+      "flex",
+      "bg-surface-container-low",
+      "rounded-full",
+      "bg-surface-container-high"
+    ],
+    "text": "more_horiz"
+  },
+  {
+    "type": "comment",
+    "text": "Bento Layout Content",
+    "depth": 4
+  },
+  {
+    "type": "div",
+    "layout": [
+      "grid",
+      "grid-cols-12"
+    ],
+    "depth": 4
+  },
+  {
+    "type": "comment",
+    "text": "Central Video Preview Area",
+    "depth": 5
+  },
+  {
+    "type": "div",
+    "layout": [
+      "col-span-12",
+      "col-span-8"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "div",
+    "layout": [
+      "relative",
+      "aspect-video",
+      "bg-black",
+      "rounded-3xl",
+      "shadow-2xl"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "img",
+    "depth": 7,
+    "alt": "Video Preview"
+  },
+  {
+    "type": "comment",
+    "text": "Video Controls Overlay",
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "flex",
+      "bg-black"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "button",
+    "depth": 8,
+    "layout": [
+      "flex",
+      "bg-white",
+      "rounded-full"
+    ],
+    "text": "play_arrow"
+  },
+  {
+    "type": "comment",
+    "text": "Mini Timeline",
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "rounded-2xl",
+      "flex"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex-1",
+      "bg-surface-container-high",
+      "rounded-full",
+      "relative"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-primary",
+      "rounded-full"
+    ],
+    "depth": 9
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-white",
+      "shadow-lg"
+    ],
+    "depth": 9
+  },
+  {
+    "type": "comment",
+    "text": "Tags Section",
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-surface-container-lowest",
+      "rounded-3xl"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "h3",
+    "depth": 7,
+    "text": "Project Tags"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex",
+      "flex-wrap"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "button",
+    "depth": 8,
+    "layout": [
+      "flex",
+      "rounded-full",
+      "bg-surface-container-low"
+    ],
+    "text": "add"
+  },
+  {
+    "type": "comment",
+    "text": "Sidebar Widgets",
+    "depth": 5
+  },
+  {
+    "type": "div",
+    "layout": [
+      "col-span-12",
+      "col-span-4"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "comment",
+    "text": "Analytics Mini-Widget",
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-surface-container-lowest",
+      "rounded-3xl"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "h3",
+    "depth": 9,
+    "text": "Recent Insights"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex",
+      "bg-primary",
+      "rounded-xl"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "comment",
+    "text": "Simplified Trend Line (SVG)",
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex-1",
+      "bg-surface-container-low",
+      "rounded-t-lg",
+      "bg-primary"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex-1",
+      "bg-surface-container-low",
+      "rounded-t-lg",
+      "bg-primary"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex-1",
+      "bg-surface-container-low",
+      "rounded-t-lg",
+      "bg-primary"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex-1",
+      "bg-surface-container-low",
+      "rounded-t-lg",
+      "bg-primary"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex-1",
+      "bg-surface-container-low",
+      "rounded-t-lg",
+      "bg-primary"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex-1",
+      "bg-primary",
+      "rounded-t-lg"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "div",
+    "layout": [
+      "flex-1",
+      "bg-primary-container",
+      "rounded-t-lg"
+    ],
+    "depth": 8
+  },
+  {
+    "type": "comment",
+    "text": "Transcription / Metadata Card",
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "bg-surface-container-low",
+      "rounded-3xl"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "h3",
+    "depth": 7,
+    "text": "Quick Metadata"
+  },
+  {
+    "type": "button",
+    "depth": 8,
+    "layout": [
+      "flex",
+      "bg-primary",
+      "rounded-xl"
+    ],
+    "text": "download\n                                Download Raw Clip"
+  },
+  {
+    "type": "comment",
+    "text": "Editorial Note",
+    "depth": 6
+  },
+  {
+    "type": "div",
+    "layout": [
+      "relative",
+      "bg-primary",
+      "rounded-3xl"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "h4",
+    "depth": 8,
+    "text": "Quick Tip"
+  },
+  {
+    "type": "comment",
+    "text": "Abstract decoration",
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-white",
+      "rounded-full"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "comment",
+    "text": "Bottom Navigation (Mobile Only)",
+    "depth": 2
+  },
+  {
+    "type": "nav",
+    "depth": 2,
+    "layout": [
+      "fixed",
+      "bg-slate-50",
+      "flex"
+    ]
+  },
+  {
+    "type": "a",
+    "depth": 3,
+    "layout": [
+      "flex",
+      "flex-col"
+    ],
+    "href": "#",
+    "text": "dashboard\nDash"
+  },
+  {
+    "type": "a",
+    "depth": 3,
+    "layout": [
+      "flex",
+      "flex-col"
+    ],
+    "href": "#",
+    "text": "video_library\nLibrary"
+  },
+  {
+    "type": "a",
+    "depth": 3,
+    "layout": [
+      "flex",
+      "flex-col"
+    ],
+    "href": "#",
+    "text": "analytics\nData"
+  },
+  {
+    "type": "a",
+    "depth": 3,
+    "layout": [
+      "flex",
+      "flex-col"
+    ],
+    "href": "#",
+    "text": "settings\nSettings"
+  }
+]

@@ -16,7 +16,7 @@ locallinks/
 *.db
 gen/
 static/uploads/
-templates/templar_modules/
+# templar_modules/ is committed (vendored by `templar get`)
 /server
 *.png
 .playwright-mcp/

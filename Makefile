@@ -46,12 +46,8 @@ sync-manifest:
 
 deploy: checklinks
 	cd ts && pnpm run build
-	rm -rf templates/templar_modules/goapplib
-	mkdir -p templates/templar_modules
-	cp -r locallinks/newstack/goapplib/main/templates templates/templar_modules/goapplib
+	cd templates && templar get
 	gcloud app deploy app.yaml --project=lucidcapture --quiet
-	rm -rf templates/templar_modules/goapplib
-	cd templates/templar_modules && ln -sf ../../locallinks/newstack/goapplib/main/templates goapplib
 	@echo "Deployed! https://lucidcapture.appspot.com"
 
 tsdeploy: build

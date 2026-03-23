@@ -111,33 +111,24 @@ export function PlayerPage() {
   // Progress
   const progress = currentSteps.length > 0 ? ((stepIndex + 1) / currentSteps.length) * 100 : 0
 
-  if (currentSteps.length === 0) {
-    return (
-      <div className="min-h-screen bg-inverse-surface flex items-center justify-center">
-        <div className="text-center text-inverse-on-surface">
-          <MaterialIcon icon="smart_display" size="64px" />
-          <p className="mt-4 text-lg font-semibold">Loading demo...</p>
-        </div>
-      </div>
-    )
-  }
-
   return (
     <div
-      className="min-h-screen bg-inverse-surface flex flex-col cursor-none"
+      className="min-h-screen bg-inverse-surface flex flex-col"
       onMouseMove={handleMouseMove}
-      style={{ cursor: showControls ? 'default' : 'none' }}
+      style={{ cursor: showControls || currentSteps.length === 0 ? 'default' : 'none' }}
     >
       {/* Top bar — fades in/out */}
-      <div className={`fixed top-0 left-0 right-0 z-50 transition-opacity duration-500 ${showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+      <div className={`fixed top-0 left-0 right-0 z-50 transition-opacity duration-500 ${showControls || currentSteps.length === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         <div className="flex items-center justify-between px-6 py-4">
           <div className="flex items-center gap-3">
             <span className="text-white/90 text-lg font-black tracking-tight">
-              {currentProject?.title ?? 'Demo'}
+              {currentProject?.title ?? 'Loading...'}
             </span>
-            <span className="text-white/40 text-xs font-semibold">
-              Step {stepIndex + 1} of {currentSteps.length}
-            </span>
+            {currentSteps.length > 0 && (
+              <span className="text-white/40 text-xs font-semibold">
+                Step {stepIndex + 1} of {currentSteps.length}
+              </span>
+            )}
           </div>
           <div className="flex items-center gap-3">
             <Link
@@ -170,7 +161,7 @@ export function PlayerPage() {
           className="relative w-full max-w-5xl rounded-2xl overflow-hidden shadow-2xl"
           style={aspectRatio ? { aspectRatio: `${aspectRatio}` } : { aspectRatio: '16/9' }}
         >
-          {screenshotUrl && (
+          {screenshotUrl ? (
             <img
               src={screenshotUrl}
               alt={`Step ${stepIndex + 1}`}
@@ -183,6 +174,13 @@ export function PlayerPage() {
                 }
               }}
             />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="text-center text-inverse-on-surface">
+                <MaterialIcon icon="smart_display" size="64px" />
+                <p className="mt-4 text-lg font-semibold">Loading demo...</p>
+              </div>
+            </div>
           )}
 
           {/* Hotspot — click to advance */}
@@ -245,7 +243,7 @@ export function PlayerPage() {
       </div>
 
       {/* Bottom controls + timeline — fades in/out */}
-      <div className={`fixed bottom-0 left-0 right-0 z-50 transition-opacity duration-500 ${showControls ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+      <div className={`fixed bottom-0 left-0 right-0 z-50 transition-opacity duration-500 ${showControls || currentSteps.length === 0 ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         {currentSteps.length > 1 && (
           <div className="px-8 mb-2">
             <Timeline

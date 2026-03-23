@@ -7,6 +7,7 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   target: 'es2022',
+  noExternal: [/.*/],
   esbuildOptions(options) {
     options.jsx = 'automatic'
     options.jsxImportSource = 'jsx-dom'

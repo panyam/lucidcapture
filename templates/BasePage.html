@@ -40,12 +40,27 @@
     {{ end }}
 {{ end }}
 
+{{ define "LCSplashSection" }}
+    <!-- No splash screen -->
+{{ end }}
+
+{{ define "LCCSSSection" }}
+    <!-- CSS loaded via LCExtraHeadSection instead of GoAppLib default -->
+{{ end }}
+
+{{ define "LCHTMXSection" }}
+    <!-- HTMX not used yet — tsappkit handles interactivity -->
+{{ end }}
+
 {{ define "PostBodySection" }}
     <!-- tsappkit + app JS -->
     <script type="module" src="/static/js/index.js"></script>
 {{ end }}
 
 {{# extend "GoalBase:BasePage" "BasePage"
+           "GoalBase:SplashScreenSection" "LCSplashSection"
+           "GoalBase:CSSSection" "LCCSSSection"
+           "GoalBase:HTMXSection" "LCHTMXSection"
            "GoalBase:ExtraHeadSection" "LCExtraHeadSection"
            "GoalBase:HeaderSection" "LCHeaderSection"
            "GoalBase:BodySection" "BodySection"

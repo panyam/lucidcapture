@@ -8,9 +8,9 @@
           data-component="EditorPage"
           data-project-id="{{ .ProjectID }}">
 
-        <!-- Title bar -->
-        <div class="px-8 pt-6 pb-2 flex items-center gap-4" id="editor-title-bar">
-            <input type="text" id="project-title" value="Loading..."
+        <!-- Title bar (hidden until project loads) -->
+        <div class="px-8 pt-6 pb-2 flex items-center gap-4 hidden" id="editor-title-bar">
+            <input type="text" id="project-title" value=""
                    class="text-2xl font-black tracking-tight text-on-background bg-transparent focus:outline-none focus:bg-surface-container-low rounded-lg px-2 py-1 -ml-2 transition-colors">
             <span id="step-count-badge" class="text-xs font-semibold text-slate-400 bg-surface-container-high px-3 py-1 rounded-full">0 steps</span>
             <div class="ml-auto flex items-center gap-2">
@@ -34,7 +34,7 @@
                         <div class="absolute inset-0 flex items-center justify-center">
                             <div class="text-center text-inverse-on-surface">
                                 <span class="material-symbols-outlined" style="font-size:64px">smart_display</span>
-                                <p class="mt-4 text-sm font-medium opacity-70">Loading editor...</p>
+                                <p class="mt-4 text-sm font-medium opacity-70">Use the Chrome extension to capture steps</p>
                             </div>
                         </div>
                     </div>

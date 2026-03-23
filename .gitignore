@@ -18,3 +18,5 @@ gen/
 static/uploads/
 templates/templar_modules/
 /server
+*.png
+.playwright-mcp/

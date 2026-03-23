@@ -61,6 +61,38 @@
   --radius-xl: 1.25rem;
 }
 
+/* Dark theme — applied when <html class="dark"> */
+@theme dark {
+  --color-background: #0f1219;
+  --color-surface: #0f1219;
+  --color-surface-bright: #1a1f2e;
+  --color-surface-dim: #0a0d14;
+  --color-surface-variant: #1e2330;
+  --color-surface-container: #151a25;
+  --color-surface-container-high: #1c2133;
+  --color-surface-container-highest: #232940;
+  --color-surface-container-low: #111520;
+  --color-surface-container-lowest: #0a0d14;
+  --color-on-background: #e2e4f0;
+  --color-on-surface: #e2e4f0;
+  --color-on-surface-variant: #c5c5d9;
+  --color-primary: #7b93ff;
+  --color-primary-container: #4f6eff;
+  --color-primary-fixed: #1a2466;
+  --color-primary-fixed-dim: #2d3d80;
+  --color-on-primary: #000d4d;
+  --color-on-primary-container: #bbc3ff;
+  --color-outline: #8a8b9d;
+  --color-outline-variant: #3a3c4e;
+  --color-inverse-surface: #e2e4f0;
+  --color-inverse-on-surface: #1a1f2e;
+  --color-inverse-primary: #0029c0;
+  --color-error: #ff6b6b;
+  --color-error-container: #4d1313;
+  --color-on-error: #1a0000;
+  --color-on-error-container: #ffb4b4;
+}
+
 /* Custom utilities matching Stitch HTML */
 @utility glass-panel {
   background: rgba(255, 255, 255, 0.7);

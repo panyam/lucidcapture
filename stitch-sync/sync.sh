@@ -16,6 +16,17 @@ source "${SCRIPT_DIR}/stitch-api.sh"
 
 PROJECT_ID="9522660877005191774"
 OUT_DIR="${SCRIPT_DIR}"
+TOMBSTONES="${SCRIPT_DIR}/tombstones.json"
+
+# Check if a screen ID is tombstoned (intentionally deleted)
+is_tombstoned() {
+  local screen_id="$1"
+  if [[ -f "${TOMBSTONES}" ]]; then
+    jq -e --arg id "${screen_id}" '.deleted[] | select(.id == $id)' "${TOMBSTONES}" > /dev/null 2>&1
+    return $?
+  fi
+  return 1
+}
 
 sync_manifest() {
   echo "=> Syncing manifest + design tokens..."
@@ -51,11 +62,17 @@ sync_screens() {
   local count
   count=$(jq '.screens | length' "${manifest}")
   for i in $(seq 0 $((count - 1))); do
-    local title url slug
+    local title url slug screen_id
     title=$(jq -r ".screens[$i].title" "${manifest}")
     url=$(jq -r ".screens[$i].htmlUrl" "${manifest}")
     device=$(jq -r ".screens[$i].deviceType" "${manifest}")
+    screen_id=$(jq -r ".screens[$i].id" "${manifest}")
     slug=$(echo "${title}" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
+
+    # Skip tombstoned screens
+    if is_tombstoned "${screen_id}"; then
+      continue
+    fi
 
     # Append device type if mobile to disambiguate
     if [[ "${device}" == "MOBILE" ]]; then
@@ -84,11 +101,17 @@ sync_screenshots() {
   local count
   count=$(jq '.screens | length' "${manifest}")
   for i in $(seq 0 $((count - 1))); do
-    local title url slug
+    local title url slug screen_id
     title=$(jq -r ".screens[$i].title" "${manifest}")
     url=$(jq -r ".screens[$i].screenshotUrl" "${manifest}")
     device=$(jq -r ".screens[$i].deviceType" "${manifest}")
+    screen_id=$(jq -r ".screens[$i].id" "${manifest}")
     slug=$(echo "${title}" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
+
+    # Skip tombstoned screens
+    if is_tombstoned "${screen_id}"; then
+      continue
+    fi
 
     if [[ "${device}" == "MOBILE" ]]; then
       slug="${slug}-mobile"

@@ -1,0 +1,89 @@
+{
+  "_comment": "Screens intentionally deleted from Stitch. Check this file before re-syncing to avoid re-importing deleted screens. Add entries here when deleting screens from the Stitch UI.",
+  "deleted": [
+    {
+      "id": "e0c62e39df2549e291699bcb58a9c8a2",
+      "title": "Arcade Details",
+      "reason": "Replaced by 'Scene Details' after Arcade→Scene rename",
+      "deletedAt": "2026-03-23"
+    },
+    {
+      "id": "cbf1ede0bcdd43398d9d9f7c8ab43eda",
+      "title": "Arcade Player (Playback)",
+      "reason": "Replaced by 'Scene Player (Playback)' after rename",
+      "deletedAt": "2026-03-23"
+    },
+    {
+      "id": "fd43e5c2c71342dfa8c9f8e90e2d4352",
+      "title": "Arcade Player (Playback)",
+      "reason": "Duplicate of above — edit_screens created a copy",
+      "deletedAt": "2026-03-23"
+    },
+    {
+      "id": "f012cf2a192f4f7a907cd3875a27f2e5",
+      "title": "Arcade Player (View Only)",
+      "reason": "Replaced by 'Scene Player (View Only)' after rename",
+      "deletedAt": "2026-03-23"
+    },
+    {
+      "id": "dcc5a7cdbcb444c48ccf661ef295aa3c",
+      "title": "Dashboard",
+      "reason": "Duplicate — edit_screens created copy during rename",
+      "deletedAt": "2026-03-23"
+    },
+    {
+      "id": "4ef448ab967541c682264e310439dc68",
+      "title": "Dashboard",
+      "reason": "Duplicate — edit_screens created copy during rename",
+      "deletedAt": "2026-03-23"
+    },
+    {
+      "id": "040e109266a448dbb1edf69412785bf0",
+      "title": "Dashboard (Flow)",
+      "reason": "Duplicate — edit_screens created copy during rename",
+      "deletedAt": "2026-03-23"
+    },
+    {
+      "id": "3e8f5cc7cfb34b91935e0de674fea046",
+      "title": "Dashboard (Flow)",
+      "reason": "Duplicate — edit_screens created copy during rename",
+      "deletedAt": "2026-03-23"
+    },
+    {
+      "id": "41601ba1d0664a99b83cfa9b178c3c4b",
+      "title": "Editor",
+      "reason": "Duplicate desktop editor — edit_screens created copy",
+      "deletedAt": "2026-03-23"
+    },
+    {
+      "id": "f5864203ae0f42a0acba2b41f703f628",
+      "title": "Editor",
+      "reason": "Duplicate desktop editor — edit_screens created copy",
+      "deletedAt": "2026-03-23"
+    },
+    {
+      "id": "d9c33ab30c51462b9741b477c62d341a",
+      "title": "Landing Page",
+      "reason": "Duplicate variant (6264px) — similar to compact (6306px), not used",
+      "deletedAt": "2026-03-23"
+    },
+    {
+      "id": "60a853b82f0e47569bd3b8fc5313295c",
+      "title": "Landing Page",
+      "reason": "Duplicate original (9896px) — generate_variants created copy",
+      "deletedAt": "2026-03-23"
+    },
+    {
+      "id": "54e1fab5de074a6185c98440c693248e",
+      "title": "Scene Player (Playback)",
+      "reason": "Duplicate — edit_screens created copy during rename",
+      "deletedAt": "2026-03-23"
+    },
+    {
+      "id": "5d639881f7444f008a14b8d448696b55",
+      "title": "User Flow Map",
+      "reason": "Empty screen — 0 height, no content, no screenshot",
+      "deletedAt": "2026-03-23"
+    }
+  ]
+}

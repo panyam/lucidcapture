@@ -314,7 +314,19 @@ The app is **"Lucid Capture"** — an Arcade.software clone for creating cinemat
 - **IndexedDB is per-origin** — `localhost:5173` and `localhost:8080` have separate databases. Use `/seed` to populate each independently
 - **Storage split planned** (#6): metadata on server, screenshots in IndexedDB. This is the intermediate step before full server-side persistence with login
 
-**34. Wiring Variants Into Production**
+**34. Screen Proliferation + Tombstoning**
+- After multiple `edit_screens` and `generate_variants` calls, Stitch had 29 screens — many duplicates
+- **Root cause:** `edit_screens` creates copies instead of editing in place. `generate_variants` creates new screens with the same title. Over time, this causes screen proliferation
+- Audited all screens: found 14 to delete (4 obsolete "Arcade" pre-rename, 9 duplicates from edits/variants, 1 empty)
+- **Stitch MCP has no `delete_screen` tool** — cleanup must be done manually in the Stitch UI
+- **Stitch UI doesn't prominently show screen IDs** — makes it hard to match programmatic IDs to visual screens
+- **Tombstoning pattern:** Created `stitch-sync/tombstones.json` — a checked-in file listing intentionally deleted screen IDs with reasons and dates
+  - Teams can share this: if someone deletes a screen in Stitch, the tombstone tells others it was intentional (not a sync error)
+  - The sync script should read tombstones and skip downloading those screens
+  - Pattern: `{ id, title, reason, deletedAt }` per entry
+- **Recommendation for Stitch team:** (1) Add a `delete_screen` MCP tool, (2) Show screen IDs in the UI, (3) Support screen renaming as a metadata operation (not content edit)
+
+**35. Wiring Variants Into Production**
 - Ported the Stitch variant HTML into proper Templar templates (`LandingCompactPage.html`, `LandingTallPage.html`) and React components (`LandingCompactPage.tsx`, `LandingTallPage.tsx`)
 - **Not raw Stitch HTML** — extracted body content, adapted to our template system (extends `BasePage.html`), replaced Stitch CDN images with placeholders, used our design tokens
 - **GoAppLib gotcha:** Template filename must match struct name exactly — `LandingCompactPage` struct looks for `LandingCompactPage.html`, not `LandingCompact.html`. The `define` block name must also match

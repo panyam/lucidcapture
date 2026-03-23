@@ -338,7 +338,15 @@ The app is **"Lucid Capture"** — an Arcade.software clone for creating cinemat
 - Both REIMAGINE variants maintained our brand identity (nav, colors, sidebar) while fundamentally changing the layout metaphor — this is the right behavior for design exploration
 - **REIMAGINE vs EXPLORE:** EXPLORE (used earlier for Landing Page) produced variations of the same paradigm. REIMAGINE produced genuinely different paradigms. The creative range slider works as advertised
 
-**36. Wiring Variants Into Production**
+**36. Dark Mode Implementation — Gotchas**
+- **Tailwind v4 `@theme dark` is NOT conditional** — it's a theme layer name that overrides values unconditionally. Using `@theme dark { --color-surface: #0f1219; }` makes the dark value the *only* value. Fix: use `.dark { --color-surface: ...; }` as a regular CSS block
+- **Tailwind v4 `dark:` variant defaults to `@media (prefers-color-scheme: dark)`** — but we use class-based toggling (`.dark` on `<html>`). Fix: add `@variant dark (&:where(.dark, .dark *));` at the top of the CSS file
+- **The `.dark` CSS variable override is incredibly powerful** — because all our design tokens use CSS custom properties (`--color-surface`, `--color-on-background`, etc.), overriding them in a `.dark` selector automatically switches every element that uses `bg-surface`, `text-on-background`, etc. We got dark mode for the entire page "for free" just by defining the dark palette
+- **But hardcoded colors don't respond** — elements using `bg-white`, `bg-slate-50`, `text-slate-500` etc. instead of design tokens remain light. Fix: replace with token-based colors (`bg-surface-container-low`, `text-on-surface-variant`)
+- **SideNav was the worst offender** — all `slate-*` hardcoded colors. After replacing with token colors, it responds to dark mode automatically without needing any `dark:` prefixed classes
+- **Key lesson: use design token colors everywhere** — elements using `bg-surface`, `text-on-background` etc. get dark mode for free. Only elements with hardcoded colors need `dark:` overrides. This means the more consistently we use tokens, the less dark mode work there is
+
+**37. Wiring Variants Into Production**
 - Ported the Stitch variant HTML into proper Templar templates (`LandingCompactPage.html`, `LandingTallPage.html`) and React components (`LandingCompactPage.tsx`, `LandingTallPage.tsx`)
 - **Not raw Stitch HTML** — extracted body content, adapted to our template system (extends `BasePage.html`), replaced Stitch CDN images with placeholders, used our design tokens
 - **GoAppLib gotcha:** Template filename must match struct name exactly — `LandingCompactPage` struct looks for `LandingCompactPage.html`, not `LandingCompact.html`. The `define` block name must also match

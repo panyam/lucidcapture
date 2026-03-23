@@ -50,6 +50,9 @@ See [GitHub Issue #1](https://github.com/panyam/lucidcapture/issues/1) for full 
 - [x] Stitch skills — /stitch-sync, /stitch-diff, /stitch-variants, /stitch-analyse
 - [x] Proto code generation — Go, GORM DAL, Datastore DAL, Connect, TypeScript
 - [x] SceneStore interface + GORM backend — storage-agnostic API handlers, backend selected via LC_STORAGE env
+- [x] Dark mode: Header/TopNav (#7) — theme toggle, dark @theme tokens, localStorage persistence
+- [x] Dark mode: SideNav (#8) — replaced hardcoded slate colors with design tokens
+- [x] Screen tombstoning — sync script skips deleted screens, tombstones.json checked in for team sharing
 
 ## Backlog
 - [ ] Extension hot-reload during development

@@ -75,6 +75,10 @@ Local stack development uses replace directives in `go.mod` pointing to `localli
 - Colors defined via Tailwind v4 `@theme` block:
   - React: `app/src/index.css`
   - Go: `ts/styles.css` (compiled to `static/css/app.css`)
+- **Dark mode**: `.dark` class on `<html>` overrides CSS custom properties. Toggle button in header, persisted via localStorage
+  - Dark palette defined as `.dark { --color-surface: ...; }` (NOT `@theme dark` — that's unconditional)
+  - Must add `@variant dark (&:where(.dark, .dark *));` for Tailwind v4 class-based dark mode
+  - **Always use design token colors** (`bg-surface`, `text-on-background`) not hardcoded (`bg-white`, `text-slate-500`) — token-based elements get dark mode for free
 - **No-Line Rule**: Never use `border` utilities for layout separation — use background color shifts between surface tiers
 - Custom utilities: `glass-panel` (frosted glass), `ghost-border` (subtle outline)
 - Fonts: Inter (body), Balig Script (decorative annotations)

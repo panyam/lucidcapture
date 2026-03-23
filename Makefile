@@ -1,4 +1,4 @@
-.PHONY: dev build ext ext-watch ext-zip sync clean gh-pages godev gobuild
+.PHONY: dev build ext ext-watch ext-zip sync clean gh-pages godev gobuild tsbuild
 
 NUM_LINKED_GOMODS=$(shell cat go.mod 2>/dev/null | grep -v "^//" | grep replace | wc -l | sed -e "s/ *//g")
 
@@ -17,6 +17,9 @@ run:
 
 godev:
 	cd cmd/server && go run .
+
+tsbuild:
+	cd ts && pnpm run build
 
 gobuild:
 	go build -o ./bin/lucidcapture ./cmd/server
@@ -44,11 +47,13 @@ sync-manifest:
 
 # ── Deploy ──
 
-deploy: checklinks
-	cd ts && pnpm run build
+deploy: checklinks tsbuild
 	cd templates && templar get
 	gcloud app deploy app.yaml --project=lucidcapture --quiet
 	@echo "Deployed! https://lucidcapture.appspot.com"
+
+tsbuild:
+	cd ts && pnpm run build
 
 tsdeploy: build
 	@cp docs/privacy.html app/dist/privacy.html

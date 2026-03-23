@@ -14,7 +14,7 @@ tests/debug_dashboard.png
 bin/
 locallinks/
 *.db
-gen/
+# gen/ is committed (deterministic output from protos)
 static/uploads/
 # templar_modules/ is committed (vendored by `templar get`)
 /server

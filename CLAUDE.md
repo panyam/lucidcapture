@@ -2,12 +2,24 @@
 
 ## Quick Start
 ```bash
-cd app && pnpm install && pnpm run dev   # http://localhost:5173
-./stitch-sync/sync.sh all                # Pull latest designs from Stitch
+# React app (port 5173)
+cd app && pnpm install && pnpm run dev
+
+# Go stack app (port 8080)
+cd ts && pnpm install && pnpm run build
+make run
+
+# Both run side-by-side for comparison during migration
 ```
 
 ## Project Structure
-- `app/` — React + Vite + Tailwind (pnpm, not npm)
+- `app/` — React + Vite + Tailwind (pnpm, not npm) — original frontend
+- `cmd/server/` — Go entry point (GoAppLib server)
+- `views/` — Go page handlers (GoAppLib ViewContext pattern)
+- `templates/` — Templar HTML templates (extends @goapplib/BasePage.html)
+- `ts/` — TypeScript source (tsappkit + jsx-dom, builds to `static/`)
+- `protos/` — Protobuf definitions (source of truth for data models)
+- `static/` — Built CSS/JS + served assets (Go stack)
 - `extension/` — Chrome Extension (Manifest V3, TypeScript + esbuild)
 - `stitch-sync/` — Design sync infrastructure (shell scripts, no LLM)
 - `tests/` — pytest + Playwright e2e tests
@@ -16,21 +28,42 @@ cd app && pnpm install && pnpm run dev   # http://localhost:5173
 ## Key Commands
 | Command | What |
 |---------|------|
-| `cd app && pnpm run dev` | Start dev server |
-| `cd app && pnpm run build` | Production build |
+| `make dev` | Start React dev server (:5173) |
+| `make run` | Start Go stack server (:8080) |
+| `make build` | Production build (React) |
+| `make gobuild` | Build Go binary → `bin/lucidcapture` |
+| `make ext` | Build Chrome extension (dev, default: localhost:5173) |
+| `make ext-zip` | Build + zip for Chrome Web Store (prod default) |
+| `make deploy` | Build + deploy Go stack to App Engine |
+| `make tsdeploy` | Build + deploy React app to App Engine |
+| `make prodlogs` | Tail App Engine logs |
+| `make reset` | Print command to clear IndexedDB |
+| `cd ts && pnpm run build` | Build TypeScript + Tailwind CSS |
+| `cd protos && make setupdev && make buf` | Generate Go/GORM/Datastore/TS from protos |
 | `./stitch-sync/sync.sh all` | Sync designs from Stitch API |
-| `./stitch-sync/sync.sh manifest` | Sync just tokens + screen list |
-| `cd extension && pnpm run build` | Build Chrome extension → `dist/` |
-| `cd extension && pnpm run watch` | Watch mode for extension dev |
-| `make ext` | Build extension (shortcut) |
-| `make ext-zip` | Build + zip for Chrome Web Store upload |
-| `make deploy` | Build + deploy to App Engine (lucidcapture.appspot.com) |
 | `make gh-pages` | Deploy privacy policy to GitHub Pages |
 | `make install` | Install all dependencies (app + extension) |
 
+## Naming Convention
+- Individual demo items are called **"Scenes"** (not "Arcades")
+- Types: `SceneProject`, `SceneStep`, `useSceneStore`
+- Files: `scene.ts`, `scene.db.ts`, `scene.store.ts`
+- UI: "My Scenes", "Create New Scene", "Untitled Scene"
+
+## Dual-Stack Architecture
+Both versions run side-by-side during migration:
+- **React** (`app/`) — port 5173, `make dev`
+- **Go** (root) — port 8080, `make run`
+
+Go stack uses: GoAppLib (routing), Templar (templates), tsappkit (frontend components), jsx-dom (JSX without React). See [Stackfile.md](Stackfile.md) for versions.
+
+Local stack development uses replace directives in `go.mod` pointing to `locallinks/newstack/`. Run `make resymlink` to set up.
+
 ## Design System
 - Source of truth: `stitch-sync/design-tokens.json` and `stitch-sync/design-system.md`
-- Colors are defined in `app/src/index.css` via Tailwind v4 `@theme` block
+- Colors defined via Tailwind v4 `@theme` block:
+  - React: `app/src/index.css`
+  - Go: `ts/styles.css` (compiled to `static/css/app.css`)
 - **No-Line Rule**: Never use `border` utilities for layout separation — use background color shifts between surface tiers
 - Custom utilities: `glass-panel` (frosted glass), `ghost-border` (subtle outline)
 - Fonts: Inter (body), Balig Script (decorative annotations)
@@ -40,9 +73,22 @@ cd app && pnpm install && pnpm run dev   # http://localhost:5173
 | Var | Purpose |
 |-----|---------|
 | `VIBESTITCH_API_KEY` | Stitch REST API key (required for sync scripts) |
+| `PORT` | Go server port (default: 8080) |
+| `LC_TEMPLATES_DIR` | Go template directory (default: ./templates) |
+| `GH_PERSONAL_TOKEN` | GitHub API token (for `gh` CLI) |
+
+## Extension Host Config
+- Extension popup has an "App Host" text field — configurable per Chrome profile (`chrome.storage.sync`)
+- `make ext` builds with default `http://localhost:5173`
+- `make ext-zip` builds with default `https://lucidcapture.appspot.com`
+- esbuild `--prod` flag controls the build-time default via `__DEFAULT_APP_HOST__`
 
 ## Gotchas
 - Tailwind v4 uses CSS `@theme` blocks, not `tailwind.config.js` — the Stitch HTML uses CDN Tailwind v3, so class names match but config format differs
+- **Go Tailwind CSS requires build step**: `ts/styles.css` → `static/css/app.css` via `@tailwindcss/cli`. The `@source` directive scans `templates/**/*.html` for classes
+- **Templar @goapplib resolution**: templates use `@goapplib/BasePage.html` namespace. Resolved via `templates/templar.yaml` + `templates/templar_modules/goapplib` (symlink to locallinks for dev, copied for deploy)
+- **tsup noExternal**: tsappkit + jsx-dom must be bundled into the output (`noExternal: [/.*/]`), not left as external imports
+- **GoAppLib BasePage blocks to override**: CSSSection, HTMXSection, SplashScreenSection — otherwise you get 404s for `/static/css/tailwind.css` and load HTMX unnecessarily
 - Stitch MCP is configured in user scope (`~/.claude.json`), not in the repo
 - `.mcp.json` is gitignored (contains API key when set at project scope)
 - Use `pnpm`, not `npm`
@@ -56,8 +102,9 @@ cd app && pnpm install && pnpm run dev   # http://localhost:5173
 - **Cross-tab recording requires `host_permissions`**: `activeTab` only grants access on user click of extension icon. `"host_permissions": ["<all_urls>"]` is needed for `scripting.executeScript` on tabs the user switches to during recording
 - **Background is the recording controller**: periodic timer, tab/window lifecycle, screenshots all owned by the service worker. Content scripts are dumb event reporters (clicks, scrolls) — they die on page navigation and get re-injected
 - **Hotspot animation**: 2.5s `cubic-bezier(0.25, 0.1, 0.25, 1)` transition on `left`/`top` for smooth gliding between steps. Disabled during drag in edit mode
+- **Deploy template vendoring**: `make deploy` copies goapplib templates as real files (replacing symlink) before `gcloud app deploy`, then restores the symlink after
 
 ## Architecture
 See [ARCHITECTURE.md](ARCHITECTURE.md) for design decisions and component hierarchy.
 See [PLAN.md](PLAN.md) for implementation phases and build sequence.
-See [JOURNEY.md](JOURNEY.md) for session-by-session progress log (demo slides).
+See [JOURNEY.md](JOURNEY.md) for session-by-session progress log.

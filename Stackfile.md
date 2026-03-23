@@ -15,4 +15,11 @@
 |---------|-----|
 | jsx-dom | JSX → real DOM (no React runtime) |
 | tailwindcss | CSS utilities (works with Go templates) |
-| gorm + sqlite | Local dev database |
+| @tailwindcss/cli | Builds ts/styles.css → static/css/app.css |
+
+## Planned (not yet wired)
+
+| Package | Why |
+|---------|-----|
+| gorm + sqlite | Local dev database (when server-side persistence is added) |
+| protoc-gen-dal-datastore | App Engine Datastore (prod persistence) |

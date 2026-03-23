@@ -3,6 +3,7 @@ app/
 
 # Dev tooling
 locallinks/
+locallinks/newstack
 node_modules/
 ts/node_modules/
 .git/

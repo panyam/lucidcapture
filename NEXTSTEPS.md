@@ -1,8 +1,20 @@
 # Next Steps
 
 ## Up Next
-- [ ] Phase 6: Static HTML Compiler — Export arcade as single self-contained HTML (slyds pattern)
+- [ ] Phase 6: Static HTML Compiler — Export scene as single self-contained HTML (slyds pattern)
 - [ ] Phase 7: Share Modal + Export — Download, copy link, embed code
+
+## Go Stack Migration (in parallel)
+- [ ] Generate proto code: `cd protos && make setupdev && make buf`
+- [ ] Wire generated DAL into `views/api.go`
+- [ ] Build tsappkit components (DashboardGrid, EditorCanvas, Timeline, PlaybackControls, ToolSidebar, PlayerView)
+- [ ] Wire EventBus for cross-component state
+- [ ] Port keyboard shortcuts to tsappkit KeyboardShortcutManager
+- [ ] Rewire extension import to POST to Go backend (eliminate postMessage bridge)
+- [ ] Wire OneAuth for login/signup
+- [ ] Feature parity verification → delete `app/`
+
+See [GitHub Issue #1](https://github.com/panyam/lucidcapture/issues/1) for full migration plan with phases.
 
 ## Done
 - [x] Phase 1: Foundation — Vite + React + Tailwind + design tokens + routing + shared components
@@ -23,6 +35,11 @@
 - [x] HTML structure extraction — extract-structure.sh for diffable design change detection
 - [x] Chrome Web Store prep — listing, privacy policy, icons, gh-pages deployment
 - [x] Stitch sync infrastructure — stitch-api.sh, sync.sh, design-tokens.json, screen-manifest.json
+- [x] Go stack scaffold — GoAppLib + Templar + tsappkit + protobuf definitions + devloop
+- [x] Visual parity — all 4 pages render identically on both :5173 and :8080
+- [x] Extension host config — configurable app host per Chrome profile (chrome.storage.sync)
+- [x] Arcade → Scene rename — types, stores, files, UI strings, templates
+- [x] App Engine Go deploy config — app.yaml, .gcloudignore, make deploy
 
 ## Backlog
 - [ ] Extension hot-reload during development
@@ -30,7 +47,7 @@
 - [ ] Undo/redo in editor
 - [ ] Bulk step select/delete
 - [ ] Editor Grid View (from Stitch design) — project picker mode
-- [ ] Arcade Details page (from Stitch design) — metadata, analytics, download
+- [ ] Scene Details page (from Stitch design) — metadata, analytics, download
 - [ ] Phase 2: Static Pages — Polish all screens to match Stitch screenshots
 - [ ] Phase 8: Design Token Pipeline — Automated Stitch → Tailwind config generation
 - [ ] Phase 9: Testing — pytest + Playwright e2e tests

@@ -12,29 +12,11 @@ import (
 	gotl "github.com/panyam/goutils/template"
 	tmplr "github.com/panyam/templar"
 	"github.com/panyam/lucidcapture/views"
-	"gorm.io/driver/sqlite"
-	"gorm.io/gorm"
 )
 
 func main() {
-	// Database
-	dbPath := envOr("LC_DB_PATH", "./lucidcapture.db")
-	db, err := gorm.Open(sqlite.Open(dbPath), &gorm.Config{})
-	if err != nil {
-		log.Fatalf("Failed to open database: %v", err)
-	}
-	// TODO: AutoMigrate generated GORM models once protos are generated
-	// db.AutoMigrate(&gorm_models.ProjectGORM{}, &gorm_models.StepGORM{})
-
-	// Upload directory for screenshots
-	uploadDir := envOr("LC_UPLOAD_DIR", "./static/uploads")
-	os.MkdirAll(uploadDir, 0755)
-
-	// App context
-	lucidApp := &views.LucidApp{
-		DB:        db,
-		UploadDir: uploadDir,
-	}
+	// App context — no server-side storage yet (data lives in IndexedDB)
+	lucidApp := &views.LucidApp{}
 
 	// Templates — use Templar source loader with templar.yaml for @goapplib resolution
 	templatesDir := envOr("LC_TEMPLATES_DIR", "./templates")
@@ -52,7 +34,7 @@ func main() {
 	// GoAppLib app
 	app := goal.NewApp(lucidApp, templates)
 
-	// Routes — following lilbattle pattern
+	// Routes
 	mux := http.NewServeMux()
 
 	// Pages
@@ -64,7 +46,7 @@ func main() {
 	// Static files
 	mux.Handle("/static/", http.StripPrefix("/static", http.FileServer(http.Dir("./static"))))
 
-	// API routes (JSON, not template-rendered)
+	// API routes (stubs — data lives in IndexedDB for now)
 	mux.HandleFunc("GET /api/projects", apiHandler(lucidApp.ListProjects))
 	mux.HandleFunc("POST /api/projects", apiHandler(lucidApp.CreateProject))
 	mux.HandleFunc("GET /api/projects/{id}", apiHandler(lucidApp.GetProject))

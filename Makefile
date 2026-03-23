@@ -44,13 +44,23 @@ sync-manifest:
 
 # ── Deploy ──
 
-deploy: build
+deploy: checklinks
+	cd ts && pnpm run build
+	rm -rf templates/templar_modules/goapplib
+	mkdir -p templates/templar_modules
+	cp -r locallinks/newstack/goapplib/main/templates templates/templar_modules/goapplib
+	gcloud app deploy app.yaml --project=lucidcapture --quiet
+	rm -rf templates/templar_modules/goapplib
+	cd templates/templar_modules && ln -sf ../../locallinks/newstack/goapplib/main/templates goapplib
+	@echo "Deployed! https://lucidcapture.appspot.com"
+
+tsdeploy: build
 	@cp docs/privacy.html app/dist/privacy.html
 	cd app && gcloud app deploy app.yaml --project=lucidcapture --quiet
 	@echo "Deployed! https://lucidcapture.appspot.com"
 
-godeploy: checklinks gobuild
-	@echo "TODO: Deploy Go stack to App Engine"
+prodlogs:
+	gcloud app logs tail -s default --project lucidcapture
 
 gh-pages:
 	@echo "Deploying privacy policy to gh-pages..."
@@ -82,6 +92,15 @@ checklinks:
 	@if [ x"${NUM_LINKED_GOMODS}" != "x0" ]; then	\
 		echo "You are trying to deploy with symlinks. Remove them first and make sure versions exist" && false ;	\
 	fi
+
+# ── Data ──
+
+reset:
+	@echo "Paste this in your browser console (on the Lucid Capture tab):"
+	@echo ""
+	@echo "  indexedDB.deleteDatabase('lucid-capture')"
+	@echo ""
+	@echo "Then reload the page."
 
 # ── Clean ──
 

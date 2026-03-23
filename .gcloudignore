@@ -1,0 +1,26 @@
+# React app (not needed for Go deploy)
+app/
+
+# Dev tooling
+locallinks/
+node_modules/
+ts/node_modules/
+.git/
+.venv/
+tests/
+stitch-sync/
+docs/
+extension/
+
+# Build artifacts
+bin/
+*.db
+*.zip
+*.png
+
+# Config
+.env
+.env.*
+.mcp.json
+.devloop.yaml
+.playwright-mcp/

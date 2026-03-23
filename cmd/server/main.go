@@ -11,12 +11,33 @@ import (
 	goal "github.com/panyam/goapplib"
 	gotl "github.com/panyam/goutils/template"
 	tmplr "github.com/panyam/templar"
+	"github.com/panyam/lucidcapture/services/gormbe"
 	"github.com/panyam/lucidcapture/views"
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
 )
 
 func main() {
-	// App context — no server-side storage yet (data lives in IndexedDB)
+	// Storage backend — selected via LC_STORAGE env var
+	// "gorm" (default for local dev), "datastore" (App Engine), "" (IndexedDB only)
 	lucidApp := &views.LucidApp{}
+
+	storageBE := envOr("LC_STORAGE", "gorm")
+	switch storageBE {
+	case "gorm":
+		dbPath := envOr("LC_DB_PATH", "./lucidcapture.db")
+		db, err := gorm.Open(sqlite.Open(dbPath), &gorm.Config{})
+		if err != nil {
+			log.Fatalf("Failed to open database: %v", err)
+		}
+		lucidApp.Store = gormbe.NewStore(db)
+		log.Printf("Storage: GORM (SQLite: %s)", dbPath)
+	case "datastore":
+		// TODO: wire datastore backend
+		log.Println("Storage: Datastore (not implemented yet — falling back to IndexedDB only)")
+	default:
+		log.Println("Storage: none (IndexedDB only)")
+	}
 
 	// Templates — use Templar source loader with templar.yaml for @goapplib resolution
 	templatesDir := envOr("LC_TEMPLATES_DIR", "./templates")

@@ -2,13 +2,12 @@ package views
 
 import (
 	goal "github.com/panyam/goapplib"
-	"gorm.io/gorm"
+	"github.com/panyam/lucidcapture/services"
 )
 
 // LucidApp is the application context, accessible via app.Context in views.
 type LucidApp struct {
-	DB        *gorm.DB // nil until server-side persistence is wired up
-	UploadDir string
+	Store services.SceneStore // nil when using client-side IndexedDB only
 }
 
 // BasePage wraps goal.BasePage for app-specific helpers.

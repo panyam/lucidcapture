@@ -155,8 +155,8 @@ export function PlayerPage() {
         </div>
       </div>
 
-      {/* Main canvas */}
-      <div className="flex-1 flex items-center justify-center p-8">
+      {/* Main canvas — padded to clear fixed header and footer */}
+      <div className="flex-1 flex items-center justify-center px-8 pt-16 pb-36">
         <div
           className="relative w-full max-w-5xl rounded-2xl overflow-hidden shadow-2xl"
           style={aspectRatio ? { aspectRatio: `${aspectRatio}` } : { aspectRatio: '16/9' }}

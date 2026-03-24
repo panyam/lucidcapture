@@ -233,31 +233,32 @@ export function EditorPage() {
           </div>
         )}
 
-        <div className="flex-1 p-8 pt-2 pb-0 flex flex-col min-w-0 overflow-hidden">
-          {/* Canvas + controls wrapper */}
-          <div className="flex-1 flex items-start justify-start min-h-0">
-            <div className="relative w-full max-w-4xl">
-              <EditorCanvas
-                step={currentStep}
-                stepIndex={stepIndex}
-                editMode={editMode}
-                playing={playing}
-                onMoveHotspot={handleMoveHotspot}
-                emptyMessage={emptyMessage}
-              />
-              <PlaybackControls
-                stepIndex={stepIndex}
-                totalSteps={currentSteps.length}
-                playing={playing}
-                onFirst={() => { setStepIndex(0); stopPlaying() }}
-                onPrev={() => { setStepIndex((i) => Math.max(0, i - 1)); stopPlaying() }}
-                onNext={() => { setStepIndex((i) => Math.min(currentSteps.length - 1, i + 1)); stopPlaying() }}
-                onLast={() => { setStepIndex(currentSteps.length - 1); stopPlaying() }}
-                onTogglePlay={togglePlay}
-              />
-            </div>
+        {/* Center: canvas fills remaining space (BorderLayout pattern) */}
+        <div className="flex-1 flex items-center justify-center p-4 overflow-hidden" style={{ minHeight: 0 }}>
+          <div className="relative w-full h-full max-w-5xl flex items-center justify-center">
+            <EditorCanvas
+              step={currentStep}
+              stepIndex={stepIndex}
+              editMode={editMode}
+              playing={playing}
+              onMoveHotspot={handleMoveHotspot}
+              emptyMessage={emptyMessage}
+            />
+            <PlaybackControls
+              stepIndex={stepIndex}
+              totalSteps={currentSteps.length}
+              playing={playing}
+              onFirst={() => { setStepIndex(0); stopPlaying() }}
+              onPrev={() => { setStepIndex((i) => Math.max(0, i - 1)); stopPlaying() }}
+              onNext={() => { setStepIndex((i) => Math.min(currentSteps.length - 1, i + 1)); stopPlaying() }}
+              onLast={() => { setStepIndex(currentSteps.length - 1); stopPlaying() }}
+              onTogglePlay={togglePlay}
+            />
           </div>
+        </div>
 
+        {/* South: timeline pinned to bottom */}
+        <div className="shrink-0">
           <Timeline
             steps={currentSteps}
             currentIndex={stepIndex}

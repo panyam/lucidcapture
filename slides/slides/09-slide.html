@@ -1,0 +1,25 @@
+<div class="slide">
+  <h1>Design Tokens → Tailwind Theme</h1>
+  <p>Stitch exports <strong>structured JSON</strong> with 48 named colors, fonts, spacing:</p>
+  <pre>
+{
+  "primary": "#0029c0",
+  "surface": "#f9f9ff",
+  "on_background": "#141b2b",
+  "surface_container_high": "#e1e8fd"
+  ...
+}
+  </pre>
+  <p>Drives the Tailwind <code>@theme</code> block in both React and Go stacks:</p>
+  <pre>
+@theme {
+  --color-primary: #0029c0;
+  --color-surface: #f9f9ff;
+}
+  </pre>
+  <p><strong>One source of truth</strong> → both stacks use identical colors.</p>
+  <div class="speaker-notes">
+    <h3>Talking Points (1.5 min)</h3>
+    <p>This is Stitch's strongest feature. The tokens are structured, diffable, and directly usable. No manual color picking. When the tokens change, git diff shows exactly what shifted.</p>
+  </div>
+</div>

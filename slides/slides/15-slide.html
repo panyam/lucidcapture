@@ -1,0 +1,24 @@
+<div class="slide">
+  <h1>Edit = Copy (Screen Proliferation)</h1>
+  <p><code>edit_screens</code> creates <strong>new screens</strong> instead of editing in place.</p>
+  <ul>
+    <li>Renamed "Arcade" → "Scene" on 6 screens → got 6 new copies</li>
+    <li>Generated 3 layout variants → 3 new screens with same title</li>
+    <li>After a few sessions: <strong>29 screens</strong>, 14 were duplicates</li>
+  </ul>
+  <p style="margin-top: 15px;"><strong>Our fix:</strong> Tombstoning</p>
+  <pre>
+// stitch-sync/tombstones.json — checked into git
+{
+  "deleted": [
+    { "id": "e0c62e39...", "title": "Arcade Details",
+      "reason": "Replaced by Scene Details", "deletedAt": "2026-03-23" }
+  ]
+}
+  </pre>
+  <p>Sync script skips tombstoned IDs. Teams share deletion decisions via git.</p>
+  <div class="speaker-notes">
+    <h3>Talking Points (1.5 min)</h3>
+    <p>No delete_screen API exists. No rename API. Screen IDs in Stitch UI are hard to find. We built tombstoning as a coordination mechanism — when someone deletes a screen, the tombstone file tells everyone else it was intentional. The sync script auto-prunes stale tombstones.</p>
+  </div>
+</div>

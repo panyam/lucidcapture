@@ -1,0 +1,24 @@
+<div class="slide">
+  <h1>Dark Mode from Variant Analysis</h1>
+  <p>Generated a dark Editor variant → extracted the color mapping → CSS variable override:</p>
+  <pre>
+/* Light tokens (default) */
+@theme {
+  --color-surface: #f9f9ff;
+  --color-on-background: #141b2b;
+}
+
+/* Dark override — .dark on &lt;html&gt; */
+.dark {
+  --color-surface: #0f1219;
+  --color-on-background: #e2e4f0;
+}
+  </pre>
+  <div class="highlight">
+    <p>Every element using token colors (<code>bg-surface</code>, <code>text-on-background</code>) gets dark mode <strong>for free</strong>. No <code>dark:</code> classes needed.</p>
+  </div>
+  <div class="speaker-notes">
+    <h3>Talking Points (1.5 min)</h3>
+    <p>This is the power of design tokens + CSS custom properties. Stitch gave us the dark palette via generate_variants. We extracted it into a .dark {} override. Every element using token-based colors automatically switched. Only hardcoded colors (slate-*, white) needed manual fixes.</p>
+  </div>
+</div>

@@ -34,12 +34,14 @@ export function LandingPage() {
           </div>
         </div>
 
-        {/* Hero Visual Placeholder */}
-        <div className="mt-16 max-w-4xl mx-auto rounded-2xl bg-surface-container-low shadow-[0_48px_80px_-4px_rgba(20,27,43,0.08)] overflow-hidden aspect-video flex items-center justify-center">
-          <div className="text-center text-slate-400">
-            <MaterialIcon icon="play_circle" size="64px" />
-            <p className="mt-4 text-sm font-medium">Interactive Demo Preview</p>
-          </div>
+        {/* Hero — embedded Lucid Capture demo (Lucid Capture demos itself) */}
+        <div className="mt-16 max-w-4xl mx-auto rounded-2xl shadow-[0_48px_80px_-4px_rgba(20,27,43,0.08)] overflow-hidden aspect-video">
+          <iframe
+            src="/demo.html"
+            title="Interactive Demo Preview"
+            className="w-full h-full border-none"
+            loading="lazy"
+          />
         </div>
       </section>
 

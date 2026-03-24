@@ -52,9 +52,6 @@ deploy: checklinks tsbuild
 	gcloud app deploy app.yaml --project=lucidcapture --quiet
 	@echo "Deployed! https://lucidcapture.appspot.com"
 
-tsbuild:
-	cd ts && pnpm run build
-
 tsdeploy: build
 	@cp docs/privacy.html app/dist/privacy.html
 	cd app && gcloud app deploy app.yaml --project=lucidcapture --quiet

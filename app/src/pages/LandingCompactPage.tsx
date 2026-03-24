@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import { MaterialIcon } from '../components/shared/MaterialIcon'
+import { Footer } from '../components/shared/Footer'
 
 export function LandingCompactPage() {
   return (
@@ -94,44 +95,7 @@ export function LandingCompactPage() {
         </div>
       </section>
 
-      {/* Footer — multi-column */}
-      <footer className="px-8 py-16 bg-surface-container-low">
-        <div className="max-w-[1920px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-            <div>
-              <span className="text-lg font-black tracking-tighter text-on-background mb-4 block">Lucid Capture</span>
-              <p className="text-sm text-slate-500 leading-relaxed">Create interactive product demos that captivate your audience.</p>
-            </div>
-            <div>
-              <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Product</h4>
-              <div className="space-y-2 text-sm text-slate-500">
-                <Link to="/dashboard" className="block hover:text-primary transition-colors">Scenes Library</Link>
-                <a href="#" className="block hover:text-primary transition-colors">Showcase</a>
-                <a href="#" className="block hover:text-primary transition-colors">Pricing</a>
-              </div>
-            </div>
-            <div>
-              <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Resources</h4>
-              <div className="space-y-2 text-sm text-slate-500">
-                <a href="#" className="block hover:text-primary transition-colors">Documentation</a>
-                <a href="#" className="block hover:text-primary transition-colors">Community</a>
-                <a href="#" className="block hover:text-primary transition-colors">Help Center</a>
-              </div>
-            </div>
-            <div>
-              <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Company</h4>
-              <div className="space-y-2 text-sm text-slate-500">
-                <a href="#" className="block hover:text-primary transition-colors">About Us</a>
-                <a href="#" className="block hover:text-primary transition-colors">Careers</a>
-                <a href="#" className="block hover:text-primary transition-colors">Privacy</a>
-              </div>
-            </div>
-          </div>
-          <div className="pt-8 flex justify-between items-center" style={{ borderTop: '1px solid rgba(197,197,217,0.3)' }}>
-            <p className="text-xs text-slate-400">&copy; 2026 Lucid Capture. Built with Stitch + Claude.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }

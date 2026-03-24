@@ -12,6 +12,7 @@
 ## Go Stack Migration (in parallel)
 - [x] Generate proto code: `cd protos && make setupdev && make buf`
 - [x] Wire generated DAL into `views/api.go` — SceneStore interface + GORM backend
+- [ ] **Hybrid store primitive for GoAppLib/tsappkit** — server renders templates, client loads data (IndexedDB/API). Excaliframe has this pattern — lift into a reusable primitive. Needed before tsappkit components can work with real data
 - [ ] Build tsappkit components (DashboardGrid, EditorCanvas, Timeline, PlaybackControls, ToolSidebar, PlayerView)
 - [ ] Wire EventBus for cross-component state
 - [ ] Port keyboard shortcuts to tsappkit KeyboardShortcutManager

@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import { MaterialIcon } from '../components/shared/MaterialIcon'
+import { Footer } from '../components/shared/Footer'
 
 export function LandingPage() {
   return (
@@ -106,13 +107,7 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="px-8 py-12 bg-surface-container-low">
-        <div className="max-w-[1920px] mx-auto flex justify-between items-center">
-          <span className="text-lg font-black tracking-tighter text-slate-400">Lucid Capture</span>
-          <p className="text-xs text-slate-400">&copy; 2026 Lucid Capture. Built with Stitch + Claude.</p>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }

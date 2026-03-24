@@ -354,7 +354,22 @@ The app is **"Lucid Capture"** — an Arcade.software clone for creating cinemat
 - **Conclusion:** Dark mode is a code-level concern (CSS custom properties), not a design-level concern (separate screens). Stitch screens stay as the light canonical design. Our dark palette is derived from Stitch variants but lives entirely in code
 - **Recommendation for Stitch team:** (1) Support theme variants per screen (light/dark/high-contrast as states of the same screen, not separate screens), (2) Allow editing the project-level design system documentation without creating screen copies, (3) Add a `designMd` field to the project-level API, not just per-screen
 
-**38. Wiring Variants Into Production**
+**38. Stitch-First Component Design — Footer**
+- Wanted to extract the duplicated footer into a shared component (React + Go)
+- Tried a **Stitch-first approach**: generate a standalone "Footer Component" screen in Stitch, then sync and port
+- **Stitch can't generate isolated components** — even when asked for "a component, not a full page, maximum 200px tall", it created a 2048px full-page screen. The footer is in there but wrapped in a full layout
+- **All is not lost:** Despite the full-page wrapper, the actual `<footer>` HTML was excellent:
+  - Clean `<footer>` semantic tag (not buried in divs)
+  - Used design token colors (`bg-surface-container-low`, `text-on-surface-variant`, `hover:text-primary`)
+  - Included `dark:` variants already (from our design system context!)
+  - Proper multi-column grid layout with responsive breakpoints
+  - Added a brand tagline we hadn't thought of: "Curating cinematic product experiences with invisible precision"
+- **Extraction pattern:** Generate a screen for the component → download HTML → extract the semantic element (`<footer>`, `<nav>`, `<aside>`) → port into shared component file
+- Created `app/src/components/shared/Footer.tsx` (React) and `templates/partials/Footer.html` (Go template)
+- Landing pages now import `<Footer />` instead of duplicating footer markup
+- **Recommendation for Stitch:** Add a "component mode" that generates isolated HTML fragments without the full-page wrapper — useful for design systems that define reusable parts
+
+**39. Wiring Variants Into Production**
 - Ported the Stitch variant HTML into proper Templar templates (`LandingCompactPage.html`, `LandingTallPage.html`) and React components (`LandingCompactPage.tsx`, `LandingTallPage.tsx`)
 - **Not raw Stitch HTML** — extracted body content, adapted to our template system (extends `BasePage.html`), replaced Stitch CDN images with placeholders, used our design tokens
 - **GoAppLib gotcha:** Template filename must match struct name exactly — `LandingCompactPage` struct looks for `LandingCompactPage.html`, not `LandingCompact.html`. The `define` block name must also match

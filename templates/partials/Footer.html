@@ -1,0 +1,44 @@
+{{ define "Footer" }}
+<footer class="w-full bg-surface-container-low dark:bg-surface-container transition-colors">
+    <div class="max-w-[1920px] mx-auto px-8 py-10">
+        <div class="flex flex-col md:flex-row justify-between items-start gap-8 mb-8">
+            <div class="flex-shrink-0">
+                <span class="text-lg font-black tracking-tighter text-on-background">Lucid Capture</span>
+                <p class="mt-2 text-xs text-on-surface-variant max-w-[200px] leading-relaxed">
+                    Curating cinematic product experiences with invisible precision.
+                </p>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-8 md:gap-16">
+                <div class="flex flex-col gap-3">
+                    <span class="text-[10px] uppercase tracking-widest font-extrabold text-primary">Product</span>
+                    <nav class="flex flex-col gap-2">
+                        <a href="/dashboard" class="text-sm text-on-surface-variant hover:text-primary transition-colors">Scenes Library</a>
+                        <a href="#" class="text-sm text-on-surface-variant hover:text-primary transition-colors">Showcase</a>
+                        <a href="#" class="text-sm text-on-surface-variant hover:text-primary transition-colors">Pricing</a>
+                    </nav>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <span class="text-[10px] uppercase tracking-widest font-extrabold text-primary">Resources</span>
+                    <nav class="flex flex-col gap-2">
+                        <a href="#" class="text-sm text-on-surface-variant hover:text-primary transition-colors">Documentation</a>
+                        <a href="#" class="text-sm text-on-surface-variant hover:text-primary transition-colors">Community</a>
+                        <a href="#" class="text-sm text-on-surface-variant hover:text-primary transition-colors">Help Center</a>
+                    </nav>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <span class="text-[10px] uppercase tracking-widest font-extrabold text-primary">Company</span>
+                    <nav class="flex flex-col gap-2">
+                        <a href="#" class="text-sm text-on-surface-variant hover:text-primary transition-colors">About</a>
+                        <a href="#" class="text-sm text-on-surface-variant hover:text-primary transition-colors">Careers</a>
+                        <a href="#" class="text-sm text-on-surface-variant hover:text-primary transition-colors">Privacy</a>
+                        <a href="#" class="text-sm text-on-surface-variant hover:text-primary transition-colors">Terms</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="pt-6 flex justify-between items-center" style="border-top: 1px solid rgba(197,197,217,0.3)">
+            <p class="text-xs text-on-surface-variant">&copy; 2026 Lucid Capture. Built with Stitch + Claude.</p>
+        </div>
+    </div>
+</footer>
+{{ end }}

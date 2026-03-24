@@ -54,6 +54,11 @@ See [GitHub Issue #1](https://github.com/panyam/lucidcapture/issues/1) for full 
 - [x] Dark mode: Header/TopNav (#7) — theme toggle, dark @theme tokens, localStorage persistence
 - [x] Dark mode: SideNav (#8) — replaced hardcoded slate colors with design tokens
 - [x] Screen tombstoning — sync script skips deleted screens, tombstones.json checked in for team sharing
+- [x] Shared Footer component — Stitch-first design, extracted from generated screen, used across all landing pages
+- [x] Embedded demo in landing hero — compiled HTML player plays inline (Lucid Capture demos itself)
+- [x] Editor layout fix — BorderLayout pattern, calc(100vh - 60px) for TopNav offset, timeline fully visible
+- [x] Player layout fix — padding to clear fixed header/footer overlays
+- [x] Presentation slides — 24-slide slyds deck with custom hacker theme, background images, speaker notes
 
 ## Backlog
 - [ ] Extension hot-reload during development

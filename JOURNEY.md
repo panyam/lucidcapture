@@ -369,7 +369,15 @@ The app is **"Lucid Capture"** — an Arcade.software clone for creating cinemat
 - Landing pages now import `<Footer />` instead of duplicating footer markup
 - **Recommendation for Stitch:** Add a "component mode" that generates isolated HTML fragments without the full-page wrapper — useful for design systems that define reusable parts
 
-**39. Wiring Variants Into Production**
+**39. Editor/Player Layout Fixes**
+- Editor timeline was clipped at the bottom — root cause: TopNav renders above EditorPage, so `h-screen` (100vh) overflowed by ~60px
+- Fix: `calc(100vh - 60px)` on the editor outer div, ToolSidebar gets `shrink-0 min-height:0` to scroll within viewport
+- Applied the BorderLayout pattern from GoAppLib: North (title bar) → Center (canvas, flex-1 min-h-0) → South (timeline, shrink-0)
+- Player had similar issue: fixed header/footer overlapping canvas. Fix: `pt-16 pb-36` padding to clear the fixed overlays
+- Embedded demo in landing hero — the compiled HTML player plays inline as an iframe. Lucid Capture demos itself on its own landing page
+- **Lesson:** When a page renders below a sticky/fixed nav, `h-screen` is wrong — it's 100vh from viewport top, not from where content starts. Use `calc(100vh - navHeight)` or restructure so the nav is inside the h-screen container
+
+**40. Wiring Variants Into Production**
 - Ported the Stitch variant HTML into proper Templar templates (`LandingCompactPage.html`, `LandingTallPage.html`) and React components (`LandingCompactPage.tsx`, `LandingTallPage.tsx`)
 - **Not raw Stitch HTML** — extracted body content, adapted to our template system (extends `BasePage.html`), replaced Stitch CDN images with placeholders, used our design tokens
 - **GoAppLib gotcha:** Template filename must match struct name exactly — `LandingCompactPage` struct looks for `LandingCompactPage.html`, not `LandingCompact.html`. The `define` block name must also match

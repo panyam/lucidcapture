@@ -1,23 +1,8 @@
 <div class="slide">
   <h1>The Pipeline</h1>
-  <pre>
-Stitch (design tool)
-  │  MCP: get_screen, list_screens
-  ↓
-./stitch-sync/sync.sh        ← deterministic, no LLM
-  ├── design-tokens.json      → Tailwind @theme
-  ├── html/                   → reference per screen
-  ├── structure/              → diffable JSON outlines
-  └── screenshots/            → visual reference
-  │
-  ↓  implement in code
-  │
-  ↓  MCP: edit_screens        ← push changes back
-Stitch (updated)
-  </pre>
-  <p style="opacity: 0.7;">Bidirectional. Deterministic scripts. Git-versioned.</p>
+  <img src="images/pipeline.svg" alt="Stitch to production pipeline" style="width: 100%; max-height: 70vh; object-fit: contain; margin-top: 10px;">
   <div class="speaker-notes">
     <h3>Talking Points (1 min)</h3>
-    <p>Key decision: the sync pipeline is pure shell/curl/jq. No AI in the loop for sync. LLM is only for generating and editing screens. This makes it repeatable and version-controllable.</p>
+    <p>Walk through the diagram. Key decision: the sync pipeline is pure shell/curl/jq. No AI in the loop for sync. LLM is only for generating and editing screens via MCP. Claude Code skills orchestrate the workflow from the terminal.</p>
   </div>
 </div>

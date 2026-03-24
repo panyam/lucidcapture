@@ -7,7 +7,7 @@
     <tr><td>Diffable design changes</td><td>Screenshots (volatile) or HTML (noisy)</td></tr>
     <tr><td>Semantic element IDs</td><td>HTML comments like &lt;!-- TopNavBar --&gt;</td></tr>
   </table>
-  <p style="margin-top: 15px;"><strong>Our fix:</strong> Built <code>extract-structure.sh</code> — parses HTML into diffable JSON outlines capturing headings, buttons, links, layout classes.</p>
+  <p style="margin-top: 15px;"><strong>The fix:</strong> Built <code>extract-structure.sh</code> — parses HTML into diffable JSON outlines capturing headings, buttons, links, layout classes.</p>
   <div class="speaker-notes">
     <h3>Talking Points (1.5 min)</h3>
     <p>This is Stitch's biggest gap. Screenshots are volatile (pixel-level styling = false positives), HTML diffs are noisy (Tailwind class reordering). We needed a middle layer — structural outlines that capture WHAT changed without the noise of HOW it looks.</p>

@@ -1,7 +1,7 @@
 <div class="slide">
   <h1>No Themes, No Components</h1>
   <table>
-    <tr><th>Limitation</th><th>Impact</th><th>Our workaround</th></tr>
+    <tr><th>Limitation</th><th>Impact</th><th>The workaround</th></tr>
     <tr><td>No light/dark theme variants</td><td>Can't represent dark mode in Stitch</td><td>Dark palette lives in code (CSS variables)</td></tr>
     <tr><td>Can't generate components</td><td>Asked for 200px footer, got 2048px page</td><td>Extract &lt;footer&gt; from full-page screen</td></tr>
     <tr><td>Async without tracking</td><td>generate_variants returns before screens exist</td><td>Wait 2-5 min, then sync</td></tr>
@@ -9,6 +9,6 @@
   </table>
   <div class="speaker-notes">
     <h3>Talking Points (1.5 min)</h3>
-    <p>Each of these is a concrete gap we hit during development. The component generation one is particularly frustrating — Stitch always wraps output in a full page. But the extraction pattern (generate screen → extract semantic element → port to component) works.</p>
+    <p>Each of these is a concrete gap hit during development. The component generation one is particularly frustrating — Stitch always wraps output in a full page. But the extraction pattern (generate screen → extract semantic element → port to component) works.</p>
   </div>
 </div>

@@ -6,7 +6,7 @@
     <li>Generated 3 layout variants → 3 new screens with same title</li>
     <li>After a few sessions: <strong>29 screens</strong>, 14 were duplicates</li>
   </ul>
-  <p style="margin-top: 15px;"><strong>Our fix:</strong> Tombstoning</p>
+  <p style="margin-top: 15px;"><strong>The fix:</strong> Tombstoning</p>
   <pre>
 // stitch-sync/tombstones.json — checked into git
 {
@@ -19,6 +19,6 @@
   <p>Sync script skips tombstoned IDs. Teams share deletion decisions via git.</p>
   <div class="speaker-notes">
     <h3>Talking Points (1.5 min)</h3>
-    <p>No delete_screen API exists. No rename API. Screen IDs in Stitch UI are hard to find. We built tombstoning as a coordination mechanism — when someone deletes a screen, the tombstone file tells everyone else it was intentional. The sync script auto-prunes stale tombstones.</p>
+    <p>No delete_screen API exists. No rename API. Screen IDs in Stitch UI are hard to find. Built tombstoning as a coordination mechanism — when someone deletes a screen, the tombstone file tells everyone else it was intentional. The sync script auto-prunes stale tombstones.</p>
   </div>
 </div>

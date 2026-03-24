@@ -22,7 +22,7 @@ interface ToolSidebarProps {
 
 export function ToolSidebar({ step, stepIndex, onAnnotationChange, onDurationChange, onTransitionChange }: ToolSidebarProps) {
   return (
-    <aside className="w-80 bg-surface-container-lowest p-6 flex flex-col gap-6 overflow-y-auto">
+    <aside className="w-80 shrink-0 bg-surface-container-lowest p-6 flex flex-col gap-6 overflow-y-auto" style={{ minHeight: 0 }}>
       <h2 className="text-lg font-bold text-on-background">Editor Tools</h2>
 
       {step ? (

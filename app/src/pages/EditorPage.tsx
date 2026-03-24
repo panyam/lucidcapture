@@ -182,7 +182,7 @@ export function EditorPage() {
       : `Editing ${currentProject?.title ?? 'scene'}`
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex overflow-hidden" style={{ height: 'calc(100vh - 60px)' }}>
       <SideNav />
       <main className="ml-64 flex-1 flex flex-col bg-surface min-w-0 min-h-0">
         {/* Title bar */}

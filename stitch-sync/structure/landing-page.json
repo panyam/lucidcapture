@@ -1,15 +1,10 @@
 [
   {
-    "type": "comment",
-    "text": "Top Navigation Shell",
-    "depth": 2
-  },
-  {
     "type": "header",
     "depth": 2,
     "layout": [
       "bg-white",
-      "sticky",
+      "fixed",
       "shadow-"
     ]
   },
@@ -53,16 +48,11 @@
   {
     "type": "img",
     "depth": 6,
-    "alt": "User profile avatar"
+    "alt": "User profile"
   },
   {
     "type": "main",
     "depth": 2
-  },
-  {
-    "type": "comment",
-    "text": "Hero Section",
-    "depth": 3
   },
   {
     "type": "section",
@@ -96,6 +86,115 @@
   {
     "type": "div",
     "layout": [
+      "grid",
+      "grid-cols-2",
+      "grid-cols-4"
+    ],
+    "depth": 5
+  },
+  {
+    "type": "div",
+    "layout": [
+      "relative",
+      "aspect-video",
+      "rounded-xl",
+      "shadow-md",
+      "bg-surface-container"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "img",
+    "depth": 7,
+    "alt": "Scene 1"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-primary",
+      "flex"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
+      "relative",
+      "aspect-video",
+      "rounded-xl",
+      "shadow-md",
+      "bg-surface-container"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "img",
+    "depth": 7,
+    "alt": "Scene 2"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-secondary",
+      "flex"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
+      "relative",
+      "aspect-video",
+      "rounded-xl",
+      "shadow-md",
+      "bg-surface-container"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "img",
+    "depth": 7,
+    "alt": "Scene 3"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-primary",
+      "flex"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
+      "relative",
+      "aspect-video",
+      "rounded-xl",
+      "shadow-md",
+      "bg-surface-container"
+    ],
+    "depth": 6
+  },
+  {
+    "type": "img",
+    "depth": 7,
+    "alt": "Scene 4"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-secondary",
+      "flex"
+    ],
+    "depth": 7
+  },
+  {
+    "type": "div",
+    "layout": [
       "flex",
       "flex-col",
       "flex-row"
@@ -121,79 +220,23 @@
       "rounded-full",
       "bg-surface-container-low"
     ],
-    "text": "play_circle\n                        See it in action"
+    "text": "play_circle\n                    See it in action"
   },
   {
-    "type": "comment",
-    "text": "Hero Visual: The \"App Showcase\"",
-    "depth": 4
-  },
-  {
-    "type": "div",
+    "type": "section",
+    "depth": 3,
     "layout": [
-      "absolute",
-      "bg-gradient-to-t",
-      "rounded-"
+      "bg-white"
     ],
-    "depth": 5
+    "text": "Trusted by teams at\n\nVELOCITY\nNEXUS\nORBIT\nPRISM\nFLUX"
   },
   {
     "type": "div",
     "layout": [
-      "bg-surface-container-lowest",
-      "rounded-",
-      "shadow-"
-    ],
-    "depth": 5
-  },
-  {
-    "type": "div",
-    "layout": [
-      "relative",
-      "bg-surface",
-      "rounded-xl",
-      "aspect-video"
-    ],
-    "depth": 6
-  },
-  {
-    "type": "img",
-    "depth": 7
-  },
-  {
-    "type": "comment",
-    "text": "Floating Recording UI (Glassmorphism)",
-    "depth": 7
-  },
-  {
-    "type": "div",
-    "layout": [
-      "absolute",
       "flex",
-      "bg-white",
-      "rounded-full",
-      "shadow-2xl"
+      "flex-wrap"
     ],
-    "depth": 7
-  },
-  {
-    "type": "button",
-    "depth": 8,
-    "layout": [
-      "bg-primary",
-      "rounded-full"
-    ],
-    "text": "Finish"
-  },
-  {
-    "type": "comment",
-    "text": "Balig Script Annotation",
-    "depth": 7
-  },
-  {
-    "type": "comment",
-    "text": "Features Bento Grid",
-    "depth": 3
+    "depth": 5
   },
   {
     "type": "section",
@@ -210,208 +253,117 @@
   {
     "type": "div",
     "layout": [
-      "grid",
-      "grid-cols-1",
-      "grid-cols-12"
+      "bg-white",
+      "rounded-",
+      "shadow-xl"
     ],
     "depth": 5
-  },
-  {
-    "type": "comment",
-    "text": "Feature 1: One-Click Recording",
-    "depth": 6
-  },
-  {
-    "type": "div",
-    "layout": [
-      "col-span-8",
-      "bg-surface-container-lowest",
-      "rounded-",
-      "flex",
-      "flex-col",
-      "relative"
-    ],
-    "depth": 6
   },
   {
     "type": "div",
     "layout": [
       "bg-primary-container",
-      "rounded-2xl",
+      "rounded-xl",
       "flex"
     ],
-    "depth": 8
+    "depth": 9
   },
   {
     "type": "h3",
-    "depth": 8,
+    "depth": 10,
     "text": "One-Click Recording"
   },
   {
-    "type": "img",
-    "depth": 8,
-    "layout": [
-      "rounded-tl-3xl",
-      "shadow-2xl"
-    ]
-  },
-  {
-    "type": "comment",
-    "text": "Feature 2: Seamless Sharing",
-    "depth": 6
-  },
-  {
     "type": "div",
     "layout": [
-      "col-span-4",
-      "bg-primary",
-      "rounded-",
       "flex",
-      "flex-col"
+      "flex-col",
+      "flex-row"
     ],
-    "depth": 6
+    "depth": 7
+  },
+  {
+    "type": "img",
+    "depth": 9,
+    "layout": [
+      "rounded-xl",
+      "shadow-lg"
+    ],
+    "alt": "One-Click Feature Illustration"
   },
   {
     "type": "div",
     "layout": [
-      "bg-white",
-      "rounded-2xl",
+      "bg-secondary-container",
+      "rounded-xl",
       "flex"
     ],
-    "depth": 8
+    "depth": 9
   },
   {
     "type": "h3",
-    "depth": 8,
+    "depth": 10,
     "text": "Seamless Sharing"
   },
   {
     "type": "div",
     "layout": [
       "flex",
-      "flex-col"
+      "flex-col",
+      "flex-row"
     ],
     "depth": 7
   },
   {
     "type": "div",
     "layout": [
-      "bg-white",
-      "rounded-xl",
+      "bg-surface-container",
+      "rounded-lg",
       "flex"
     ],
-    "depth": 8
+    "depth": 10
   },
   {
     "type": "button",
-    "depth": 8,
+    "depth": 10,
     "layout": [
-      "bg-white",
-      "rounded-xl"
+      "bg-primary",
+      "rounded-lg"
     ],
-    "text": "Copy Link"
-  },
-  {
-    "type": "comment",
-    "text": "Feature 3: Interactive Annotations",
-    "depth": 6
+    "text": "Generate Link"
   },
   {
     "type": "div",
     "layout": [
-      "col-span-12",
-      "bg-surface-container-highest",
-      "rounded-",
+      "bg-primary",
+      "rounded-xl",
       "flex",
-      "flex-col",
-      "flex-row"
+      "flex-col"
     ],
-    "depth": 6
+    "depth": 9
   },
   {
     "type": "div",
     "layout": [
       "bg-tertiary-container",
-      "rounded-2xl",
+      "rounded-xl",
       "flex"
     ],
-    "depth": 8
+    "depth": 9
   },
   {
     "type": "h3",
-    "depth": 8,
+    "depth": 10,
     "text": "Interactive Annotations"
   },
   {
     "type": "div",
     "layout": [
-      "bg-white",
-      "rounded-lg",
-      "shadow-sm"
+      "flex",
+      "flex-col",
+      "flex-row"
     ],
-    "depth": 9
-  },
-  {
-    "type": "div",
-    "layout": [
-      "bg-white",
-      "rounded-lg",
-      "shadow-sm"
-    ],
-    "depth": 9
-  },
-  {
-    "type": "div",
-    "layout": [
-      "bg-white",
-      "rounded-lg",
-      "shadow-sm"
-    ],
-    "depth": 9
-  },
-  {
-    "type": "div",
-    "layout": [
-      "bg-white",
-      "rounded-2xl",
-      "shadow-xl"
-    ],
-    "depth": 8
-  },
-  {
-    "type": "img",
-    "depth": 9,
-    "layout": [
-      "rounded-xl"
-    ]
-  },
-  {
-    "type": "comment",
-    "text": "Floating Element",
-    "depth": 8
-  },
-  {
-    "type": "div",
-    "layout": [
-      "absolute",
-      "bg-secondary",
-      "rounded-xl",
-      "shadow-lg"
-    ],
-    "depth": 8
-  },
-  {
-    "type": "comment",
-    "text": "Social Proof / Tonal Layering",
-    "depth": 3
-  },
-  {
-    "type": "section",
-    "depth": 3,
-    "layout": [
-      "bg-surface"
-    ],
-    "text": "Trusted by teams at\n\nVELOCITY\nNEXUS\nORBIT\nPRISM\nFLUX"
+    "depth": 7
   },
   {
     "type": "div",
@@ -419,12 +371,26 @@
       "flex",
       "flex-wrap"
     ],
-    "depth": 5
+    "depth": 9
   },
   {
-    "type": "comment",
-    "text": "Final CTA Section",
-    "depth": 3
+    "type": "img",
+    "depth": 9,
+    "layout": [
+      "rounded-xl",
+      "shadow-lg"
+    ],
+    "alt": "Annotations"
+  },
+  {
+    "type": "div",
+    "layout": [
+      "absolute",
+      "bg-secondary",
+      "rounded-lg",
+      "shadow-xl"
+    ],
+    "depth": 9
   },
   {
     "type": "section",
@@ -498,11 +464,6 @@
     "text": "Talk to Sales"
   },
   {
-    "type": "comment",
-    "text": "Footer",
-    "depth": 2
-  },
-  {
     "type": "footer",
     "depth": 2,
     "layout": [
@@ -535,7 +496,7 @@
     "type": "a",
     "depth": 7,
     "href": "#",
-    "text": "Features"
+    "text": "Scenes Library"
   },
   {
     "type": "a",
@@ -553,7 +514,7 @@
     "type": "a",
     "depth": 7,
     "href": "#",
-    "text": "API"
+    "text": "Updates"
   },
   {
     "type": "h4",
@@ -576,12 +537,6 @@
     "type": "a",
     "depth": 7,
     "href": "#",
-    "text": "Guides"
-  },
-  {
-    "type": "a",
-    "depth": 7,
-    "href": "#",
     "text": "Help Center"
   },
   {
@@ -593,7 +548,7 @@
     "type": "a",
     "depth": 7,
     "href": "#",
-    "text": "About"
+    "text": "About Us"
   },
   {
     "type": "a",
@@ -606,11 +561,5 @@
     "depth": 7,
     "href": "#",
     "text": "Privacy"
-  },
-  {
-    "type": "a",
-    "depth": 7,
-    "href": "#",
-    "text": "Terms"
   }
 ]

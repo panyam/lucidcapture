@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* Colors from Stitch design-tokens.json */
   --color-background: #f9f9ff;
@@ -62,7 +64,7 @@
 }
 
 /* Dark theme — applied when <html class="dark"> */
-@theme dark {
+.dark {
   --color-background: #0f1219;
   --color-surface: #0f1219;
   --color-surface-bright: #1a1f2e;

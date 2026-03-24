@@ -182,9 +182,9 @@ export function EditorPage() {
       : `Editing ${currentProject?.title ?? 'scene'}`
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex h-screen overflow-hidden">
       <SideNav />
-      <main className="ml-64 flex-1 flex flex-col bg-surface min-w-0 overflow-hidden h-screen">
+      <main className="ml-64 flex-1 flex flex-col bg-surface min-w-0 min-h-0">
         {/* Title bar */}
         {currentProject && (
           <div className="px-8 pt-6 pb-2 flex items-center gap-4">

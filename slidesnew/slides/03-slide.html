@@ -1,17 +1,38 @@
-<div class="slide">
+<div class="slide" style="padding: 24px;">
   <h1>Opening Stitch for the First Time</h1>
-  <h3>🔴 LIVE DEMO</h3>
-  <ul>
-    <li>Open <em>stitch.withgoogle.com</em></li>
-    <li>Show an existing project with screens</li>
-    <li>Click through: design system, tokens, screens list</li>
-    <li>Show the HTML output for one screen</li>
-  </ul>
-  <div class="highlight">
-    <p>"It generates a full design system — tokens, fonts, spacing — and screens that follow it. Not just one page, a <strong>system</strong>."</p>
+  <div style="flex: 1; display: flex; align-items: center; justify-content: center; margin-top: 12px;">
+    <video
+      id="stitch-walkthrough-video"
+      src="videos/StartingStitch.mov"
+      controls
+      style="width: 100%; max-height: 65vh; border-radius: 12px; box-shadow: 0 12px 40px rgba(0,0,0,0.4); background: #0a0d14;"
+      poster="images/screenshots/stitch-walkthrough-poster.png"
+    >
+      Your browser does not support video.
+    </video>
   </div>
+  <p style="margin-top: 12px; opacity: 0.5; font-size: 0.85em; text-align: center;">
+    Click to play — or skip to next slide for the live version
+  </p>
   <div class="speaker-notes">
-    <h3>Live demo (2 min)</h3>
-    <p>Open Stitch, show the project. Click a screen, show the design tokens panel, show the HTML output. Point out: structured JSON tokens, consistent naming, the designMd spec. This is more than a screenshot → code tool.</p>
+    <h3>VIDEO or LIVE DEMO (2 min)</h3>
+    <p>This video shows: opening Stitch, the project with screens, clicking through design tokens, viewing HTML output. Pre-recorded so you don't wait for page loads.</p>
+    <h3>To record this video:</h3>
+    <ol>
+      <li>Open QuickTime → File → New Screen Recording</li>
+      <li>Go to stitch.withgoogle.com</li>
+      <li>Open the project, click through screens, show design system panel</li>
+      <li>Show the HTML output for one screen</li>
+      <li>Save as videos/StartingStitch.mov (or .mov)</li>
+    </ol>
+    <h3>If doing live instead:</h3>
+    <p>Skip the video, switch to browser, walk through Stitch UI live.</p>
+    <h3>Talking points while video plays:</h3>
+    <ul>
+      <li>"This is Stitch — Google's AI design tool from Labs"</li>
+      <li>"Notice the design system panel — structured tokens, not just colors"</li>
+      <li>"Each screen uses the same tokens, fonts, spacing"</li>
+      <li>"The HTML output uses Tailwind classes — familiar territory"</li>
+    </ul>
   </div>
 </div>

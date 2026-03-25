@@ -1,16 +1,27 @@
 <div class="slide">
-  <h1>Structural Analysis</h1>
-  <p>"How do you compare a Stitch variant against your existing implementation?"</p>
-  <table>
-    <tr><th>Section</th><th>Original</th><th>Compact Variant</th><th>Tall Variant</th></tr>
-    <tr><td>Hero</td><td>h1 + 2 buttons</td><td>h1 + badge + 2 buttons</td><td>h1 + dashboard preview</td></tr>
-    <tr><td>Trust logos</td><td>Missing</td><td>5 brand names</td><td>Same</td></tr>
-    <tr><td>Features</td><td>3-col bento grid</td><td>Stacked list</td><td>Full-width sections</td></tr>
-    <tr><td>CTA</td><td>1 button</td><td>2 buttons</td><td>2 buttons</td></tr>
-    <tr><td>Footer</td><td>1-line</td><td>Multi-column</td><td>Multi-column + API link</td></tr>
-  </table>
-  <p style="margin-top: 10px; opacity: 0.7;">Built <code>extract-structure.sh</code> to produce this — parses HTML into diffable JSON outlines.</p>
+  <h1>Generating Variants</h1>
+  <h3>🔴 LIVE DEMO</h3>
+  <p>"What if I want different layouts for the same page?"</p>
+  <pre>
+// In Cursor chat:
+"Generate 3 layout variants of the Landing Page 
+ with EXPLORE creative range"
+
+// Stitch returns immediately — generation is async
+// Wait 2-5 minutes, then sync:
+./stitch-sync/sync.sh all
+  </pre>
+  <p style="margin-top: 15px;">Then open the <strong>/compare</strong> page — all 3 layouts side-by-side.</p>
   <div class="speaker-notes">
-    <p>Show the table. "Stitch doesn't give you a component tree, so we built a tool that extracts headings, buttons, links, and layout classes into diffable JSON. This lets you see WHAT changed structurally, not just pixel diffs."</p>
+    <h3>DEMO STEPS (3 min)</h3>
+    <ol>
+      <li>In Cursor chat: "Generate 3 layout variants of the Landing Page in my Stitch project with EXPLORE creative range"</li>
+      <li>Stitch call returns — "generation is async, takes 2-5 min"</li>
+      <li>While waiting: "Let me show you some variants already generated..."</li>
+      <li>Open localhost:5173/compare — show 3 layouts side-by-side</li>
+      <li>"Original bento grid, compact stacked, tall full-width sections"</li>
+      <li>"Also tried REIMAGINE — got a Kanban board and a Timeline storyboard. Genuinely different paradigms."</li>
+      <li>Show the Kanban/Timeline screenshots if available</li>
+    </ol>
   </div>
 </div>

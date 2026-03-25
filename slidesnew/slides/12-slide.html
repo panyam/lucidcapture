@@ -1,25 +1,30 @@
 <div class="slide">
-  <h1>First Sync: Pulling Designs</h1>
-  <h3>🔴 LIVE DEMO</h3>
-  <ul>
-    <li>Ask Cursor: <em>"Get the design tokens from my Stitch project"</em></li>
-    <li>Show the structured JSON response — 48 named colors, fonts, spacing</li>
-    <li>Ask: <em>"List all screens"</em> — screen titles, dimensions, device types</li>
-    <li>Ask: <em>"Download the Dashboard screen HTML"</em></li>
-  </ul>
-  <div class="highlight">
-    <p>"Structured data, not screenshots. Diffable, version-controllable, automatable."</p>
+  <h1>First Try: Prompting for Each Sync</h1>
+  <h3>🔴 LIVE DEMO (or video)</h3>
+  <p>"With MCP set up, tried the obvious approach — ask Cursor to sync:"</p>
+  <pre>
+> "Get the design tokens from my Stitch project 
+   and save them as design-tokens.json"
+
+> "Download all screen HTML files from Stitch 
+   and save to stitch-sync/html/"
+
+> "Extract the structural outline of each screen 
+   into diffable JSON"
+  </pre>
+  <p style="margin-top: 15px;">It works. Each prompt takes 30-60 seconds. For 10 screens that's 10 minutes of waiting.</p>
+  <div class="highlight" style="margin-top: 10px;">
+    <p>And you have to do this <strong>every time</strong> the design changes.</p>
   </div>
   <div class="speaker-notes">
-    <h3>DEMO STEPS (2 min)</h3>
+    <h3>DEMO STEPS (1.5 min)</h3>
     <ol>
-      <li>In Cursor chat: "Get the design tokens from my Stitch project 9522660877005191774"</li>
-      <li>Show the JSON response — point out named colors, the consistency</li>
-      <li>"These map directly to Tailwind @theme variables"</li>
-      <li>In chat: "List all screens in this project"</li>
-      <li>Show the screen list with titles and dimensions</li>
-      <li>In chat: "Get the HTML for the Dashboard screen"</li>
-      <li>Show the HTML — Tailwind classes, semantic structure</li>
+      <li>In Cursor chat: "Get the design tokens from my Stitch project and save as stitch-sync/design-tokens.json"</li>
+      <li>Wait for it to run the MCP call, process, save...</li>
+      <li>"See? It works. But it took 45 seconds for ONE file."</li>
+      <li>"Now imagine doing this for 10 screens, every time something changes."</li>
+      <li>Pause. "There's a better way."</li>
     </ol>
+    <p>Alternative: show a pre-recorded video of this prompt running if you don't want to wait live.</p>
   </div>
 </div>

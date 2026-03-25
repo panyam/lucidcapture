@@ -1,16 +1,26 @@
 <div class="slide">
-  <h1>What Broke</h1>
-  <table>
-    <tr><th>Problem</th><th>Impact</th><th>Fix</th></tr>
-    <tr><td><strong>Edit = Copy</strong></td><td>29 screens, 14 duplicates</td><td>Tombstoning — <code>tombstones.json</code> checked into git</td></tr>
-    <tr><td><strong>No component tree</strong></td><td>Only flat HTML, no semantic diff</td><td><code>extract-structure.sh</code> → diffable JSON</td></tr>
-    <tr><td><strong>No themes</strong></td><td>Can't represent light/dark in Stitch</td><td>Dark palette lives in code (CSS variables)</td></tr>
-    <tr><td><strong>Can't generate components</strong></td><td>Asked for 200px footer, got 2048px page</td><td>Extract &lt;footer&gt; from full-page screen</td></tr>
-    <tr><td><strong>Async without tracking</strong></td><td>generate_variants returns before done</td><td>Wait 2-5 min, then sync</td></tr>
-    <tr><td><strong>No delete/rename API</strong></td><td>Manual cleanup in Stitch UI</td><td>Tombstone file + auto-prune in sync</td></tr>
-  </table>
+  <h1>Bidirectional Sync</h1>
+  <h3>🔴 LIVE DEMO</h3>
+  <p>"Renamed 'Arcade' to 'Scene' in the codebase. Pushed it back to Stitch:"</p>
+  <pre>
+// In Cursor chat:
+"Edit the Dashboard and Editor screens in Stitch — 
+ rename all instances of Arcade to Scene"
+
+// MCP: edit_screens call
+// Then pull back:
+./stitch-sync/sync.sh all
+git diff stitch-sync/structure/
+# dashboard.json: "My Arcades" → "My Scenes" ✓
+  </pre>
+  <p>Design stays in sync with code. Not the other way around.</p>
   <div class="speaker-notes">
-    <h3>Talking points (2 min)</h3>
-    <p>Go through each row. The tombstoning one is the most interesting for teams — "when someone deletes a screen, the tombstone file tells everyone else it was intentional. Checked into git, sync script respects it."</p>
+    <h3>DEMO STEPS (1.5 min)</h3>
+    <ol>
+      <li>Show the git diff of the rename in stitch-sync/structure/</li>
+      <li>"Code decision → push to design → pull back → verify"</li>
+      <li>"Most teams do design → code. This is code → design → code."</li>
+      <li>BUT: "edit_screens created copies instead of editing in place. More on that..."</li>
+    </ol>
   </div>
 </div>

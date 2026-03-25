@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" fill="none">
+  <rect width="1280" height="720" fill="#0f1219"/>
+  <text x="640" y="320" text-anchor="middle" fill="#7b93ff" font-family="system-ui" font-size="48" font-weight="700">▶ Stitch UI Walkthrough</text>
+  <text x="640" y="380" text-anchor="middle" fill="#c5c5d9" font-family="system-ui" font-size="20">(record with QuickTime and save as videos/stitch-walkthrough.mp4)</text>
+</svg>

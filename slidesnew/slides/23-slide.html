@@ -1,26 +1,16 @@
 <div class="slide">
-  <h1>Bidirectional Sync</h1>
-  <h3>🔴 LIVE DEMO</h3>
-  <p>"Renamed 'Arcade' to 'Scene' in the codebase. Pushed it back to Stitch:"</p>
-  <pre>
-// In Cursor chat:
-"Edit the Dashboard and Editor screens in Stitch — 
- rename all instances of Arcade to Scene"
-
-// MCP: edit_screens call
-// Then pull back:
-./stitch-sync/sync.sh all
-git diff stitch-sync/structure/
-# dashboard.json: "My Arcades" → "My Scenes" ✓
-  </pre>
-  <p>Design stays in sync with code. Not the other way around.</p>
+  <h1>Structural Analysis</h1>
+  <p>"How to compare a Stitch variant against the existing implementation?"</p>
+  <table>
+    <tr><th>Section</th><th>Original</th><th>Compact Variant</th><th>Tall Variant</th></tr>
+    <tr><td>Hero</td><td>h1 + 2 buttons</td><td>h1 + badge + 2 buttons</td><td>h1 + dashboard preview</td></tr>
+    <tr><td>Trust logos</td><td>Missing</td><td>5 brand names</td><td>Same</td></tr>
+    <tr><td>Features</td><td>3-col bento grid</td><td>Stacked list</td><td>Full-width sections</td></tr>
+    <tr><td>CTA</td><td>1 button</td><td>2 buttons</td><td>2 buttons</td></tr>
+    <tr><td>Footer</td><td>1-line</td><td>Multi-column</td><td>Multi-column + API link</td></tr>
+  </table>
+  <p style="margin-top: 10px; opacity: 0.7;">Built <code>extract-structure.sh</code> — parses HTML into diffable JSON outlines. <code>/stitch-analyse</code> produces this table.</p>
   <div class="speaker-notes">
-    <h3>DEMO STEPS (1.5 min)</h3>
-    <ol>
-      <li>Show the git diff of the rename in stitch-sync/structure/</li>
-      <li>"Code decision → push to design → pull back → verify"</li>
-      <li>"Most teams do design → code. This is code → design → code."</li>
-      <li>BUT: "edit_screens created copies instead of editing in place. More on that..."</li>
-    </ol>
+    <p>"Stitch doesn't give you a component tree, so built a tool that extracts headings, buttons, links, layout classes into diffable JSON. This lets you see WHAT changed structurally, not just pixel diffs."</p>
   </div>
 </div>

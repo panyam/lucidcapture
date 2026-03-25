@@ -13,8 +13,8 @@
         <code style="font-size: 1.1em; color: #7b93ff;">/stitch-sync</code>
         <span style="font-size: 0.7em; background: rgba(115,209,255,0.15); color: #73d1ff; padding: 2px 8px; border-radius: 4px;">READ-ONLY</span>
       </div>
-      <p style="margin-top: 8px; font-size: 0.85em;">Pull designs from Stitch, show git diff of what changed. Runs <code>sync.sh</code> under the hood — deterministic, no LLM in the loop.</p>
-      <p style="margin-top: 6px; font-size: 0.75em; opacity: 0.5;">Undo: <code>git checkout stitch-sync/</code></p>
+      <p style="margin-top: 8px; font-size: 0.85em;">Pull designs from Stitch, show git diff. Runs <code>sync.sh</code> — deterministic, no LLM in the loop.</p>
+      <p style="margin-top: 4px; font-size: 0.75em; opacity: 0.5;">Undo: <code>git checkout stitch-sync/</code></p>
     </div>
     
     <!-- /stitch-diff -->
@@ -23,45 +23,44 @@
         <code style="font-size: 1.1em; color: #7b93ff;">/stitch-diff</code>
         <span style="font-size: 0.7em; background: rgba(115,209,255,0.15); color: #73d1ff; padding: 2px 8px; border-radius: 4px;">READ-ONLY</span>
       </div>
-      <p style="margin-top: 8px; font-size: 0.85em;">Structural diff — compares JSON outlines, not raw HTML. Shows new sections, removed elements, text changes. Ignores Tailwind class noise.</p>
-      <p style="margin-top: 6px; font-size: 0.75em; opacity: 0.5;">No side effects — analysis only</p>
+      <p style="margin-top: 8px; font-size: 0.85em;">Structural diff — JSON outlines, not raw HTML. New sections, removed elements. Ignores Tailwind noise.</p>
+      <p style="margin-top: 4px; font-size: 0.75em; opacity: 0.5;">No side effects — analysis only</p>
     </div>
     
     <!-- /stitch-variants -->
     <div style="background: rgba(123,147,255,0.06); border: 1px solid rgba(255,179,71,0.15); border-radius: 10px; padding: 14px;">
       <div style="display: flex; justify-content: space-between; align-items: center;">
-        <code style="font-size: 1.1em; color: #7b93ff;">/stitch-variants</code>
+        <code style="font-size: 1.1em; color: #7b93ff;">/stitch-variants <span style="opacity:0.5">&lt;screen&gt;</span></code>
         <span style="font-size: 0.7em; background: rgba(255,179,71,0.15); color: #ffb347; padding: 2px 8px; border-radius: 4px;">WRITES TO STITCH</span>
       </div>
-      <p style="margin-top: 8px; font-size: 0.85em;">Generate layout, color, or font variants via MCP. Creates new screens in Stitch (async — 2-5 min). Run <code>/stitch-sync</code> after to pull results.</p>
-      <p style="margin-top: 6px; font-size: 0.75em; opacity: 0.5;">Undo: tombstone the unwanted screen IDs</p>
+      <p style="margin-top: 8px; font-size: 0.85em;">Generate layout, color, or font variants. Args: screen title, aspect (layout/color), creative range (explore/reimagine), count (1-5).</p>
+      <p style="margin-top: 4px; font-size: 0.75em; opacity: 0.5;">Undo: tombstone unwanted screen IDs</p>
     </div>
     
     <!-- /stitch-analyse -->
     <div style="background: rgba(123,147,255,0.06); border: 1px solid rgba(123,147,255,0.15); border-radius: 10px; padding: 14px;">
       <div style="display: flex; justify-content: space-between; align-items: center;">
-        <code style="font-size: 1.1em; color: #7b93ff;">/stitch-analyse</code>
+        <code style="font-size: 1.1em; color: #7b93ff;">/stitch-analyse <span style="opacity:0.5">&lt;screen&gt; &lt;template&gt;</span></code>
         <span style="font-size: 0.7em; background: rgba(115,209,255,0.15); color: #73d1ff; padding: 2px 8px; border-radius: 4px;">READ-ONLY</span>
       </div>
-      <p style="margin-top: 8px; font-size: 0.85em;">Compare Stitch HTML against your templates. Produces a section mapping table — what maps, what's new, what differs. Porting checklist for implementation.</p>
-      <p style="margin-top: 6px; font-size: 0.75em; opacity: 0.5;">No side effects — analysis only</p>
+      <p style="margin-top: 8px; font-size: 0.85em;">Compare Stitch HTML against your template. Section mapping table — what maps, what's new, what differs. Porting checklist.</p>
+      <p style="margin-top: 4px; font-size: 0.75em; opacity: 0.5;">No side effects — analysis only</p>
     </div>
   </div>
   
-  <p style="margin-top: 12px; text-align: center; opacity: 0.5; font-size: 0.85em;">
-    Each command is a markdown file in <code>.cursor/commands/</code> — checked into git, shared with the team.
+  <p style="margin-top: 10px; text-align: center; opacity: 0.5; font-size: 0.85em;">
+    Markdown files in <code>.cursor/commands/</code> — checked into git, shared with the team.
   </p>
   
   <div class="speaker-notes">
     <h3>Key moment (1.5 min)</h3>
-    <p>"Principle #1 was: write a script, not a prompt. Principle #2 is the same at the workflow level — write a Cursor command, not a chat message."</p>
-    <p>Walk through the 2x2 grid:</p>
+    <p>"Principle #1: write a script. Principle #2: write a Cursor command."</p>
+    <p>Walk through the grid:</p>
     <ul>
-      <li>"stitch-sync and stitch-diff are read-only — safe to run anytime, undo with git checkout"</li>
-      <li>"stitch-variants WRITES to Stitch — creates new screens. Undo by tombstoning"</li>
-      <li>"stitch-analyse is read-only analysis — gives you the porting checklist"</li>
+      <li>"3 of 4 are read-only. The write operation has explicit undo (tombstoning). Intentional."</li>
+      <li>"stitch-variants takes arguments — which screen, what kind of variant, how creative"</li>
+      <li>"stitch-analyse takes two paths — the Stitch HTML and your template — and produces a mapping table"</li>
     </ul>
-    <p>"Notice: 3 of 4 are read-only. The write operation has explicit undo (tombstoning). This is intentional — be careful about what changes the design system."</p>
-    <p>"These are just markdown files in .cursor/commands/. Clone the repo, open Cursor, type / — they're there."</p>
+    <p>"These are just markdown files. Clone the repo, open Cursor, type / — they're there."</p>
   </div>
 </div>

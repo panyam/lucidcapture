@@ -1,9 +1,47 @@
-<div class="slide section-slide">
-  <h1>Going Deeper</h1>
-  <p style="font-size: 1.1em; margin-top: 20px; opacity: 0.7; color: #7b93ff;">
-    Variants, structural analysis, and what else broke
-  </p>
+<div class="slide" style="padding: 20px;">
+  <h1>Full Cycle: Stitch → Code</h1>
+  <h3>🔴 LIVE DEMO</h3>
+  <p>"Let's add an About page. This time, starting in Stitch's UI — not MCP."</p>
+  
+  <div style="display: flex; gap: 16px; margin-top: 12px;">
+    <div style="flex: 1;">
+      <table style="font-size: 0.85em;">
+        <tr><th>#</th><th>Step</th><th>Where</th></tr>
+        <tr><td>1</td><td>Generate "About" screen</td><td>Stitch UI</td></tr>
+        <tr><td>2</td><td><code>./stitch-sync/sync.sh all</code></td><td>Terminal</td></tr>
+        <tr><td>3</td><td><code>./stitch-sync/sync.sh status</code></td><td>Terminal</td></tr>
+        <tr><td>4</td><td><code>/stitch-analyse about</code></td><td>Cursor</td></tr>
+        <tr><td>5</td><td>"Convert to React component"</td><td>Cursor</td></tr>
+        <tr><td>6</td><td>Check browser — live reload</td><td>Browser</td></tr>
+        <tr><td>7</td><td><code>git commit</code></td><td>Terminal</td></tr>
+      </table>
+      <div class="highlight" style="margin-top: 12px; font-size: 0.85em;">
+        <p>"Design in Stitch → sync deterministically → analyse structurally → build with AI → commit. Full loop."</p>
+      </div>
+    </div>
+    <div style="flex: 1;">
+      <video src="videos/FullCycleDemo.mov" controls
+        style="width: 100%; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.4); background: #0a0d14;">
+      </video>
+      <p style="opacity: 0.5; font-size: 0.8em; text-align: center; margin-top: 6px;">
+        (or do it live — each step takes seconds)
+      </p>
+    </div>
+  </div>
+  
   <div class="speaker-notes">
-    <p>Transition. "Now that the pipeline and skills are in place, let's push Stitch further."</p>
+    <h3>DEMO STEPS (3 min)</h3>
+    <ol>
+      <li>Switch to Stitch browser tab — generate an About screen using the Stitch UI (text prompt in Stitch, not MCP)</li>
+      <li>"This time the design starts in Stitch, not in code. Let's bring it down."</li>
+      <li>Terminal: ./stitch-sync/sync.sh all — show it downloading the new screen</li>
+      <li>Terminal: ./stitch-sync/sync.sh status — "About" appears in the list ✓</li>
+      <li>Cursor: /stitch-analyse — show the structural outline of the new screen</li>
+      <li>Cursor: "Convert stitch-sync/html/about.html into a React component at src/pages/About.tsx using our design tokens. Add a route at /about"</li>
+      <li>Browser: show /about page with live reload</li>
+      <li>Terminal: git add -A && git commit -m "Add About page from Stitch design"</li>
+      <li>"7 steps. Design to production. Deterministic sync, structural analysis, AI for the creative work, git for versioning."</li>
+    </ol>
+    <p>If doing pre-recorded: save as videos/FullCycleDemo.mov</p>
   </div>
 </div>

@@ -1,16 +1,19 @@
 <div class="slide">
-  <h1>What Broke</h1>
+  <h1>Stitch Gaps Summary</h1>
   <table>
-    <tr><th>Problem</th><th>Impact</th><th>Fix</th></tr>
-    <tr><td><strong>Edit = Copy</strong></td><td>29 screens, 14 duplicates</td><td>Tombstoning — <code>tombstones.json</code> checked into git</td></tr>
-    <tr><td><strong>No component tree</strong></td><td>Only flat HTML, no semantic diff</td><td><code>extract-structure.sh</code> → diffable JSON</td></tr>
-    <tr><td><strong>No themes</strong></td><td>Can't represent light/dark in Stitch</td><td>Dark palette lives in code (CSS variables)</td></tr>
-    <tr><td><strong>Can't generate components</strong></td><td>Asked for 200px footer, got 2048px page</td><td>Extract &lt;footer&gt; from full-page screen</td></tr>
-    <tr><td><strong>Async without tracking</strong></td><td>generate_variants returns before done</td><td>Wait 2-5 min, then sync</td></tr>
-    <tr><td><strong>No delete/rename API</strong></td><td>Manual cleanup in Stitch UI</td><td>Tombstone file + auto-prune in sync</td></tr>
+    <tr><th>Gap</th><th>Impact</th><th>Workaround</th></tr>
+    <tr><td><strong>Edit = Copy</strong></td><td>Screen proliferation</td><td>Tombstoning (<code>tombstones.json</code>)</td></tr>
+    <tr><td><strong>No component tree</strong></td><td>Only flat HTML output</td><td><code>extract-structure.sh</code> → diffable JSON</td></tr>
+    <tr><td><strong>No themes</strong></td><td>Can't represent light/dark</td><td>CSS variable override in code</td></tr>
+    <tr><td><strong>Can't generate components</strong></td><td>Always wraps in full page</td><td>Extract semantic element from page</td></tr>
+    <tr><td><strong>Async without tracking</strong></td><td>No operation ID for variants</td><td>Wait + sync</td></tr>
+    <tr><td><strong>No version history</strong></td><td>Can't diff or rollback in Stitch</td><td>Git + sync.sh + tombstones</td></tr>
   </table>
+  <div class="highlight" style="margin-top: 12px;">
+    <p>Every gap has a workaround. Most are shell scripts + a JSON file. <strong>The tooling layer is the product</strong> — Stitch alone isn't enough, but Stitch + tooling is genuinely useful.</p>
+  </div>
   <div class="speaker-notes">
-    <h3>Talking points (2 min)</h3>
-    <p>Go through each row. The tombstoning one is the most interesting for teams — "when someone deletes a screen, the tombstone file tells everyone else it was intentional. Checked into git, sync script respects it."</p>
+    <p>Quick pass through the table. "Every one of these was a real problem hit during development. Every one has a workaround. The workarounds are small — shell scripts, JSON files, Cursor commands. Together they make Stitch usable for real projects."</p>
+    <p>"The last row is key: no version history in Stitch. Git + sync + tombstones IS the version history. That's engineering discipline applied to a design tool."</p>
   </div>
 </div>

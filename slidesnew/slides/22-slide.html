@@ -1,24 +1,48 @@
 <div class="slide">
-  <h1>Generating Variants</h1>
-  <h3>🔴 LIVE DEMO</h3>
-  <p>"What if different layouts are needed for the same page?"</p>
-  <pre>
-// In Cursor: /stitch-variants
-// Or in chat:
-"Generate 3 layout variants of the Dashboard 
- with EXPLORE creative range"
-
-// Async — wait 2-5 min, then:
-/stitch-sync
-  </pre>
-  <p style="margin-top: 15px;">Also tried <strong>REIMAGINE</strong> — got a Kanban board and a Timeline storyboard. Genuinely different paradigms, not just tweaks.</p>
+  <h1>Tombstoning: .gitignore for Design Screens</h1>
+  <div style="display: flex; gap: 20px;">
+    <div style="flex: 1;">
+      <p>Stitch has no <code>delete_screen</code> API. Edits create copies. Variants multiply. After a few sessions:</p>
+      <ul>
+        <li>29 screens, 14 were duplicates</li>
+        <li>All with the same title</li>
+        <li>No way to tell which is "current"</li>
+      </ul>
+      <p style="margin-top: 15px;"><strong>The fix:</strong> a checked-in tombstone file.</p>
+      <pre style="font-size: 0.8em;">
+// stitch-sync/tombstones.json
+{
+  "deleted": [{
+    "id": "e0c62e39...",
+    "title": "Dashboard (old copy)",
+    "reason": "Replaced by rename",
+    "deletedAt": "2026-03-23"
+  }]
+}
+      </pre>
+    </div>
+    <div style="flex: 1;">
+      <p><strong>How it works:</strong></p>
+      <ul>
+        <li><code>sync.sh</code> skips tombstoned IDs</li>
+        <li><code>sync.sh status</code> shows active screens</li>
+        <li><code>sync.sh status-all</code> reveals hidden ones</li>
+        <li>Tombstones auto-prune when screens are deleted from Stitch</li>
+      </ul>
+      <div class="highlight" style="margin-top: 15px;">
+        <p><strong>Why checked into git?</strong><br>
+        When someone tombstones a screen, the team sees it in the commit. "Why was this deleted?" — the <code>reason</code> field answers. Coordination via version control, not Slack messages.</p>
+      </div>
+      <p style="margin-top: 10px; opacity: 0.5; font-size: 0.85em;">
+        Stitch uses UUID screen IDs — never reused. Safe to tombstone permanently.
+      </p>
+    </div>
+  </div>
   <div class="speaker-notes">
-    <h3>DEMO STEPS (2 min)</h3>
-    <ol>
-      <li>Type /stitch-variants in Cursor (or use chat)</li>
-      <li>"Generation is async — takes 2-5 min"</li>
-      <li>While waiting, show pre-generated variant screenshots</li>
-      <li>"EXPLORE gives variations of the same paradigm. REIMAGINE gives entirely new ones."</li>
-    </ol>
+    <h3>Talking points (2 min)</h3>
+    <p>"This is the most engineer-friendly concept in the whole pipeline. It's .gitignore for design screens."</p>
+    <p>"No delete API? Fine — we track deletions ourselves. The tombstone file is checked into git, so everyone on the team knows which screens are intentionally gone."</p>
+    <p>"Run status to see what's active. Run status-all to see the full picture including tombstoned. The sync script respects tombstones — it won't download dead screens."</p>
+    <p>"This is the kind of governance Figma gives you with team libraries and approvals. We built it with a JSON file and 20 lines of bash."</p>
   </div>
 </div>

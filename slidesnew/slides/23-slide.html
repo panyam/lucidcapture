@@ -1,16 +1,35 @@
 <div class="slide">
-  <h1>Structural Analysis</h1>
-  <p>"How to compare a Stitch variant against the existing implementation?"</p>
-  <table>
-    <tr><th>Section</th><th>Original</th><th>Compact Variant</th><th>Tall Variant</th></tr>
-    <tr><td>Hero</td><td>h1 + 2 buttons</td><td>h1 + badge + 2 buttons</td><td>h1 + dashboard preview</td></tr>
-    <tr><td>Trust logos</td><td>Missing</td><td>5 brand names</td><td>Same</td></tr>
-    <tr><td>Features</td><td>3-col bento grid</td><td>Stacked list</td><td>Full-width sections</td></tr>
-    <tr><td>CTA</td><td>1 button</td><td>2 buttons</td><td>2 buttons</td></tr>
-    <tr><td>Footer</td><td>1-line</td><td>Multi-column</td><td>Multi-column + API link</td></tr>
-  </table>
-  <p style="margin-top: 10px; opacity: 0.7;">Built <code>extract-structure.sh</code> — parses HTML into diffable JSON outlines. <code>/stitch-analyse</code> produces this table.</p>
+  <h1>Variant Generation</h1>
+  <h3>🔴 LIVE DEMO (or pre-recorded)</h3>
+  <p>"/stitch-variants Dashboard — layout, explore, 3 variants"</p>
+  <div style="display: flex; gap: 16px; margin-top: 12px;">
+    <div style="flex: 1;">
+      <table style="font-size: 0.85em;">
+        <tr><th>Mode</th><th>What it does</th></tr>
+        <tr><td><strong>EXPLORE</strong></td><td>Variations of the same paradigm</td></tr>
+        <tr><td><strong>REIMAGINE</strong></td><td>Entirely new paradigms (Kanban, Timeline...)</td></tr>
+      </table>
+      <p style="margin-top: 12px; font-size: 0.85em;">Aspects: <code>LAYOUT</code>, <code>COLOR_SCHEME</code>, <code>IMAGES</code>, <code>TEXT_FONT</code>, <code>TEXT_CONTENT</code></p>
+      <div class="highlight" style="margin-top: 12px; font-size: 0.85em;">
+        <p>Async — returns before screens are ready. Wait 2-5 min, then <code>/stitch-sync</code>.</p>
+        <p>Each variant = new screen. Tombstone the ones you don't want.</p>
+      </div>
+    </div>
+    <div style="flex: 1;">
+      <p style="font-size: 0.85em; opacity: 0.7;">Variant screenshots (pre-generated):</p>
+      <img src="images/screenshots/app-landing-light.png" alt="Landing variant" 
+        style="width: 100%; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); max-height: 35vh; object-fit: cover;">
+    </div>
+  </div>
   <div class="speaker-notes">
-    <p>"Stitch doesn't give you a component tree, so built a tool that extracts headings, buttons, links, layout classes into diffable JSON. This lets you see WHAT changed structurally, not just pixel diffs."</p>
+    <h3>DEMO (2 min)</h3>
+    <ol>
+      <li>In Cursor: /stitch-variants Dashboard</li>
+      <li>"It's async — generating in the background"</li>
+      <li>"While we wait, here are some variants already generated..."</li>
+      <li>Show pre-captured variant screenshots</li>
+      <li>"REIMAGINE gave us a Kanban board and Timeline — genuinely different layouts"</li>
+      <li>"Each variant is a new screen — tombstone the ones you don't want"</li>
+    </ol>
   </div>
 </div>

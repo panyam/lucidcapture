@@ -1,26 +1,17 @@
 <div class="slide">
-  <h1>Bidirectional Sync</h1>
-  <h3>🔴 LIVE DEMO</h3>
-  <p>"Renamed 'Arcade' to 'Scene' in the codebase. Pushed it back to Stitch:"</p>
-  <pre>
-// In Cursor chat:
-"Edit the Dashboard and Editor screens in Stitch — 
- rename all instances of Arcade to Scene"
-
-// MCP: edit_screens call
-// Then pull back:
-./stitch-sync/sync.sh all
-git diff stitch-sync/structure/
-# dashboard.json: "My Arcades" → "My Scenes" ✓
-  </pre>
-  <p>Design stays in sync with code. Not the other way around.</p>
+  <h1>Structural Analysis</h1>
+  <p><code>/stitch-analyse Dashboard src/pages/Dashboard.tsx</code></p>
+  <table style="font-size: 0.9em;">
+    <tr><th>Section</th><th>Stitch Design</th><th>Your Code</th><th>Status</th></tr>
+    <tr><td>Hero heading</td><td>h1 "Your Actions"</td><td>h1 "Your Actions"</td><td style="color:#73d1ff">✓ Match</td></tr>
+    <tr><td>Task grid</td><td>3-col card grid</td><td>3-col card grid</td><td style="color:#73d1ff">✓ Match</td></tr>
+    <tr><td>Calendar section</td><td>Full calendar widget</td><td>—</td><td style="color:#ffb347">⚠ Missing</td></tr>
+    <tr><td>Footer</td><td>Multi-column</td><td>Single line</td><td style="color:#ffb347">⚠ Differs</td></tr>
+    <tr><td>Mobile nav</td><td>Bottom tab bar</td><td>—</td><td style="color:#ff6b6b">✗ Not built</td></tr>
+  </table>
+  <p style="margin-top: 12px; opacity: 0.7;">Built with <code>extract-structure.sh</code> — parses HTML into diffable JSON. No screenshots, no pixel diffs. Just structure.</p>
   <div class="speaker-notes">
-    <h3>DEMO STEPS (1.5 min)</h3>
-    <ol>
-      <li>Show the git diff of the rename in stitch-sync/structure/</li>
-      <li>"Code decision → push to design → pull back → verify"</li>
-      <li>"Most teams do design → code. This is code → design → code."</li>
-      <li>BUT: "edit_screens created copies instead of editing in place. More on that..."</li>
-    </ol>
+    <p>"This is how you track design drift. The analyse command compares what Stitch has vs what you built. Match, differs, or missing — at a glance."</p>
+    <p>"No screenshots needed. No pixel diffing. Just headings, buttons, links, layout classes — extracted into JSON, compared structurally."</p>
   </div>
 </div>

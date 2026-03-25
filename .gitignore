@@ -19,4 +19,6 @@ static/uploads/
 # templar_modules/ is committed (vendored by `templar get`)
 /server
 *.png
+*.mov
+*.mp4
 .playwright-mcp/

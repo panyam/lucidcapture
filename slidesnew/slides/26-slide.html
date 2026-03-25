@@ -1,9 +1,33 @@
-<div class="slide section-slide">
-  <h1>The Honest Take</h1>
-  <p style="font-size: 1.1em; margin-top: 20px; opacity: 0.7; color: #7b93ff;">
-    Who should (and shouldn't) use this
+<div class="slide server-bg">
+  <h1>Principle #3</h1>
+  <div style="text-align: center; margin-top: 40px;">
+    <p style="font-size: 1.5em; font-weight: 900; color: #7b93ff; line-height: 1.4; max-width: 750px; margin: 0 auto;">
+      "Version everything. Trust nothing."
+    </p>
+  </div>
+  <div style="margin-top: 30px; display: flex; gap: 24px; justify-content: center;">
+    <div style="text-align: center; flex: 1; max-width: 200px;">
+      <p style="font-size: 1.5em;">📁</p>
+      <p style="font-size: 0.85em;"><strong>Sync deterministically</strong></p>
+      <p style="font-size: 0.75em; opacity: 0.6;">curl + jq, not LLM<br>Same input → same output</p>
+    </div>
+    <div style="text-align: center; flex: 1; max-width: 200px;">
+      <p style="font-size: 1.5em;">⊘</p>
+      <p style="font-size: 0.85em;"><strong>Track deletions explicitly</strong></p>
+      <p style="font-size: 0.75em; opacity: 0.6;">tombstones.json<br>Checked into git</p>
+    </div>
+    <div style="text-align: center; flex: 1; max-width: 200px;">
+      <p style="font-size: 1.5em;">🔍</p>
+      <p style="font-size: 0.85em;"><strong>Diff structurally</strong></p>
+      <p style="font-size: 0.75em; opacity: 0.6;">JSON outlines, not pixels<br>Headings, buttons, links</p>
+    </div>
+  </div>
+  <p style="margin-top: 24px; text-align: center; opacity: 0.6; font-size: 0.9em;">
+    "If it's not in git, it didn't happen."
   </p>
   <div class="speaker-notes">
-    <p>Transition to the honest assessment.</p>
+    <h3>Key moment (1 min)</h3>
+    <p>"Stitch has no version history, no branching, no rollback. So we built our own — with tools engineers already trust: git, JSON files, shell scripts."</p>
+    <p>"This is the meta-lesson: when a design tool doesn't have the governance features you need, build them in your layer. Don't wait for the vendor. The sync script, the tombstone file, the structural extractor — together they ARE the version history."</p>
   </div>
 </div>

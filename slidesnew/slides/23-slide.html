@@ -1,35 +1,31 @@
-<div class="slide">
+<div class="slide" style="padding: 20px;">
   <h1>Variant Generation</h1>
-  <h3>🔴 LIVE DEMO (or pre-recorded)</h3>
-  <p>"/stitch-variants Dashboard — layout, explore, 3 variants"</p>
-  <div style="display: flex; gap: 16px; margin-top: 12px;">
-    <div style="flex: 1;">
-      <table style="font-size: 0.85em;">
+  <div style="display: flex; gap: 12px; margin-top: 8px;">
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
+      <table style="font-size: 0.8em;">
         <tr><th>Mode</th><th>What it does</th></tr>
         <tr><td><strong>EXPLORE</strong></td><td>Variations of the same paradigm</td></tr>
-        <tr><td><strong>REIMAGINE</strong></td><td>Entirely new paradigms (Kanban, Timeline...)</td></tr>
+        <tr><td><strong>REIMAGINE</strong></td><td>Entirely new paradigms</td></tr>
       </table>
-      <p style="margin-top: 12px; font-size: 0.85em;">Aspects: <code>LAYOUT</code>, <code>COLOR_SCHEME</code>, <code>IMAGES</code>, <code>TEXT_FONT</code>, <code>TEXT_CONTENT</code></p>
-      <div class="highlight" style="margin-top: 12px; font-size: 0.85em;">
-        <p>Async — returns before screens are ready. Wait 2-5 min, then <code>/stitch-sync</code>.</p>
-        <p>Each variant = new screen. Tombstone the ones you don't want.</p>
-      </div>
-    </div>
-    <div style="flex: 1;">
+      <p style="font-size: 0.8em; opacity: 0.7;">Aspects: layout, color, images, fonts, content</p>
       <video src="videos/VariantsDemo.mov" controls
         style="width: 100%; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); background: #0a0d14;">
       </video>
+    </div>
+    <div style="flex: 1.2; display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+      <img src="videos/Variant1.png" alt="Variant 1" style="width:100%; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.3);">
+      <img src="videos/Variant2.png" alt="Variant 2" style="width:100%; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.3);">
+      <img src="videos/Variant3.png" alt="Variant 3" style="width:100%; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.3);">
+      <img src="videos/Variant4.png" alt="Variant 4" style="width:100%; border-radius:6px; box-shadow:0 2px 8px rgba(0,0,0,0.3);">
     </div>
   </div>
   <div class="speaker-notes">
     <h3>DEMO (2 min)</h3>
     <ol>
-      <li>In Cursor: /stitch-variants Dashboard</li>
-      <li>"It's async — generating in the background"</li>
-      <li>"While we wait, here are some variants already generated..."</li>
-      <li>Show pre-captured variant screenshots</li>
-      <li>"REIMAGINE gave us a Kanban board and Timeline — genuinely different layouts"</li>
-      <li>"Each variant is a new screen — tombstone the ones you don't want"</li>
+      <li>Play the video showing variant generation flow</li>
+      <li>Point to the 4 screenshots: "These are the actual outputs — same content, different layouts"</li>
+      <li>"REIMAGINE gave genuinely different paradigms, not just reshuffled cards"</li>
+      <li>"Each variant = new screen in Stitch. Tombstone the ones you don't want."</li>
     </ol>
   </div>
 </div>

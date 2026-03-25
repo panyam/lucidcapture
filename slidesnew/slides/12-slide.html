@@ -1,30 +1,39 @@
 <div class="slide">
-  <h1>First Try: Prompting for Each Sync</h1>
+  <h1>First Try: The Stitch-Provided Prompt</h1>
   <h3>🔴 LIVE DEMO (or video)</h3>
-  <p>"With MCP set up, tried the obvious approach — ask Cursor to sync:"</p>
-  <pre>
-> "Get the design tokens from my Stitch project 
-   and save them as design-tokens.json"
+  <p>"Stitch actually gives you a ready-made prompt to paste into your AI assistant:"</p>
+  <pre style="font-size: 0.8em;">
+## Stitch Instructions
+Get the images and code for the following 
+Stitch project's screens:
 
-> "Download all screen HTML files from Stitch 
-   and save to stitch-sync/html/"
+## Project
+ID: 318752153730476218
 
-> "Extract the structural outline of each screen 
-   into diffable JSON"
+## Screens:
+1. Dashboard
+   ID: asset-stub-assets-1f58...
+2. Editor
+   ID: asset-stub-assets-6f33...
+
+Use a utility like `curl -L` to download 
+the hosted URLs.
   </pre>
-  <p style="margin-top: 15px;">It works. Each prompt takes 30-60 seconds. For 10 screens that's 10 minutes of waiting.</p>
-  <div class="highlight" style="margin-top: 10px;">
-    <p>And you have to do this <strong>every time</strong> the design changes.</p>
-  </div>
+  <p style="margin-top: 10px;">Paste into Cursor → it downloads everything. Not bad. But...</p>
+  <ul>
+    <li>Takes 30-60 seconds per screen (LLM processes each one)</li>
+    <li>Have to re-paste the prompt every time the design changes</li>
+    <li>Output varies between runs (non-deterministic)</li>
+  </ul>
   <div class="speaker-notes">
     <h3>DEMO STEPS (1.5 min)</h3>
     <ol>
-      <li>In Cursor chat: "Get the design tokens from my Stitch project and save as stitch-sync/design-tokens.json"</li>
-      <li>Wait for it to run the MCP call, process, save...</li>
-      <li>"See? It works. But it took 45 seconds for ONE file."</li>
-      <li>"Now imagine doing this for 10 screens, every time something changes."</li>
-      <li>Pause. "There's a better way."</li>
+      <li>Show the Stitch UI where it gives you the prompt (the "Use with AI" button or similar)</li>
+      <li>Copy the prompt, paste into Cursor chat</li>
+      <li>Watch it run — downloading screens one by one</li>
+      <li>"It works! But it took a minute. And I'd have to do this every time something changes."</li>
+      <li>"Which brings us to..."</li>
     </ol>
-    <p>Alternative: show a pre-recorded video of this prompt running if you don't want to wait live.</p>
+    <p>Alternative: show a pre-recorded video if you don't want to wait live.</p>
   </div>
 </div>

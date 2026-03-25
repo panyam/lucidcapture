@@ -15,7 +15,7 @@
     <div style="text-align: center;">
       <p style="font-size: 2em;">⚡</p>
       <p><strong>Script (written once by the LLM)</strong></p>
-      <p style="font-size: 0.85em;">2 sec total<br>Deterministic (curl + jq)<br>Same input → same output, every time</p>
+      <p style="font-size: 0.85em;">2 sec total<br>Deterministic (curl + jq)<br>Kinda like MCP, but lightweight</p>
     </div>
   </div>
   <p style="margin-top: 30px; text-align: center; opacity: 0.6; font-size: 0.9em;">
@@ -24,8 +24,8 @@
   <div class="speaker-notes">
     <h3>Key moment (1 min)</h3>
     <p>"The LLM is great at writing the sync script. But using it to BE the sync script is not the best use of tokens or time."</p>
-    <p>"More importantly — how do you ensure determinism? The script calls curl and jq directly. The Stitch REST API, not the LLM, processes the data. Same API call, same response, same file. Every time."</p>
-    <p>"If the LLM is in the loop, you get slightly different output each run. Different JSON formatting, different field ordering, maybe it summarizes something. The script gives you exact reproducibility — which means git diff actually works."</p>
+    <p>"Think of it as MCP-lite — the script calls the same Stitch API that MCP calls, but directly via curl. No LLM in the loop means deterministic output. Same API call, same response, same file. Every time. Git diff actually works."</p>
+    <p>"MCP is for the creative stuff — generating screens, editing designs, exploring variants. The script is for the mechanical stuff — syncing, downloading, extracting structure."</p>
     <p>Transition: "So asked Cursor to write this sync script..."</p>
   </div>
 </div>

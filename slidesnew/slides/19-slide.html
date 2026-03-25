@@ -1,0 +1,26 @@
+<div class="slide">
+  <h1>Bidirectional Sync</h1>
+  <h3>🔴 LIVE DEMO</h3>
+  <p>"Renamed 'Arcade' to 'Scene' in the codebase. Pushed it back to Stitch:"</p>
+  <pre>
+// In Cursor chat:
+"Edit the Dashboard and Editor screens in Stitch — 
+ rename all instances of Arcade to Scene"
+
+// MCP: edit_screens call
+// Then pull back:
+./stitch-sync/sync.sh all
+git diff stitch-sync/structure/
+# dashboard.json: "My Arcades" → "My Scenes" ✓
+  </pre>
+  <p>Design stays in sync with code. Not the other way around.</p>
+  <div class="speaker-notes">
+    <h3>DEMO STEPS (1.5 min)</h3>
+    <ol>
+      <li>Show the git diff of the rename in stitch-sync/structure/</li>
+      <li>"Code decision → push to design → pull back → verify"</li>
+      <li>"Most teams do design → code. This is code → design → code."</li>
+      <li>BUT: "edit_screens created copies instead of editing in place. More on that..."</li>
+    </ol>
+  </div>
+</div>

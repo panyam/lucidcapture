@@ -1,0 +1,29 @@
+<div class="slide">
+  <h1>MCP Setup in Cursor</h1>
+  <h3>🔴 LIVE DEMO</h3>
+  <pre>
+// .cursor/mcp.json
+{
+  "mcpServers": {
+    "stitch": {
+      "url": "https://stitch.googleapis.com/mcp",
+      "headers": {
+        "x-goog-api-key": "$VIBESTITCH_API_KEY"
+      }
+    }
+  }
+}
+  </pre>
+  <p>One config file. Restart Cursor. Stitch tools appear in the AI chat.</p>
+  <div class="speaker-notes">
+    <h3>DEMO STEPS (2 min)</h3>
+    <ol>
+      <li>Open Cursor settings → MCP servers</li>
+      <li>Show the config above (or paste it)</li>
+      <li>Restart Cursor</li>
+      <li>In Cursor chat, type: "list my Stitch screens"</li>
+      <li>Show the tools appearing: get_project, list_screens, etc.</li>
+      <li>"That's it. No SDK, no npm install, no API wrapper. Just a URL."</li>
+    </ol>
+  </div>
+</div>

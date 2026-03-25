@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" fill="none">
+  <style>
+    text { font-family: 'Inter', system-ui, sans-serif; }
+    .label { font-size: 13px; fill: #c5c5d9; }
+    .title { font-size: 15px; fill: #e2e4f0; font-weight: 700; }
+    .mini { font-size: 10px; fill: #8a8b9d; font-family: 'JetBrains Mono', monospace; }
+    .accent { fill: #7b93ff; }
+    .box { rx: 10; ry: 10; stroke-width: 1.5; }
+    .arrow { stroke: #4f6eff; stroke-width: 2; marker-end: url(#arrowhead); }
+    .arrow-back { stroke: #73d1ff; stroke-width: 1.5; stroke-dasharray: 6,4; marker-end: url(#arrowhead-cyan); }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#4f6eff"/>
+    </marker>
+    <marker id="arrowhead-cyan" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6" fill="#73d1ff"/>
+    </marker>
+  </defs>
+
+  <!-- Stitch Box -->
+  <rect x="30" y="20" width="200" height="90" class="box" fill="#1c2133" stroke="#4f6eff"/>
+  <text x="130" y="50" text-anchor="middle" class="title accent">Google Stitch</text>
+  <text x="130" y="70" text-anchor="middle" class="mini">get_screen, list_screens</text>
+  <text x="130" y="84" text-anchor="middle" class="mini">generate_variants</text>
+
+  <!-- Arrow down: Stitch → Sync -->
+  <line x1="130" y1="110" x2="130" y2="155" class="arrow"/>
+  <text x="145" y="138" class="mini">MCP</text>
+
+  <!-- Sync Script Box -->
+  <rect x="30" y="160" width="200" height="70" class="box" fill="#1c2133" stroke="#3a3c4e"/>
+  <text x="130" y="185" text-anchor="middle" class="title">sync.sh</text>
+  <text x="130" y="205" text-anchor="middle" class="mini">deterministic, no LLM</text>
+
+  <!-- Arrow down: Sync → Local -->
+  <line x1="130" y1="230" x2="130" y2="275" class="arrow"/>
+
+  <!-- Local Files Box -->
+  <rect x="30" y="280" width="200" height="120" class="box" fill="#1c2133" stroke="#3a3c4e"/>
+  <text x="130" y="305" text-anchor="middle" class="title">stitch-sync/</text>
+  <text x="50" y="325" class="mini">design-tokens.json</text>
+  <text x="50" y="340" class="mini">html/*.html</text>
+  <text x="50" y="355" class="mini">structure/*.json</text>
+  <text x="50" y="370" class="mini">tombstones.json</text>
+  <text x="50" y="385" class="mini">screenshots/*.png</text>
+
+  <!-- Arrow right: Local → Code -->
+  <line x1="230" y1="340" x2="330" y2="340" class="arrow"/>
+  <text x="265" y="333" class="mini">extract</text>
+
+  <!-- Code Implementation Box -->
+  <rect x="335" y="280" width="230" height="120" class="box" fill="#1c2133" stroke="#7b93ff"/>
+  <text x="450" y="305" text-anchor="middle" class="title accent">Implementation</text>
+  <text x="355" y="325" class="mini">@theme { --color-primary: ... }</text>
+  <text x="355" y="340" class="mini">templates/*.html</text>
+  <text x="355" y="355" class="mini">app/src/pages/*.tsx</text>
+  <text x="355" y="370" class="mini">shared/compiler/</text>
+  <text x="355" y="385" class="mini">ts/components/</text>
+
+  <!-- Arrow right: Code → Output -->
+  <line x1="565" y1="340" x2="640" y2="340" class="arrow"/>
+  <text x="585" y="333" class="mini">build</text>
+
+  <!-- Output Box -->
+  <rect x="645" y="280" width="220" height="120" class="box" fill="#1c2133" stroke="#3a3c4e"/>
+  <text x="755" y="305" text-anchor="middle" class="title">Production</text>
+  <text x="665" y="325" class="mini">:5173 React + Vite</text>
+  <text x="665" y="340" class="mini">:8080 Go SSR + Tailwind</text>
+  <text x="665" y="355" class="mini">Dark mode toggle</text>
+  <text x="665" y="370" class="mini">Export HTML (single file)</text>
+  <text x="665" y="385" class="mini">/compare (3 variants)</text>
+
+  <!-- Arrow back: Code → Stitch (bidirectional) -->
+  <path d="M 450 280 L 450 60 L 230 60" class="arrow-back"/>
+  <text x="340" y="52" class="mini" fill="#73d1ff">edit_screens MCP (push back)</text>
+
+  <!-- Claude Code Skills Box -->
+  <rect x="335" y="160" width="230" height="70" class="box" fill="#1c2133" stroke="#73d1ff"/>
+  <text x="450" y="185" text-anchor="middle" class="title" fill="#73d1ff">Claude Code Skills</text>
+  <text x="355" y="205" class="mini">/stitch-sync  /stitch-variants</text>
+  <text x="355" y="218" class="mini">/stitch-analyse  /stitch-dark-mode</text>
+
+  <!-- Arrow: Skills → Sync -->
+  <line x1="335" y1="195" x2="230" y2="195" class="arrow-back"/>
+
+  <!-- Arrow: Skills → Code -->
+  <line x1="450" y1="230" x2="450" y2="275" class="arrow"/>
+</svg>

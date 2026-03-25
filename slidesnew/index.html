@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building with Google Stitch</title>
+  <link rel="stylesheet" href="slyds.css">
+  <link rel="stylesheet" href="theme.css">
+</head>
+<body>
+  <div class="slideshow-container">
+    {{# include "slides/01-title.html" #}}
+    {{# include "slides/02-slide.html" #}}
+    {{# include "slides/03-slide.html" #}}
+    {{# include "slides/04-slide.html" #}}
+    {{# include "slides/05-slide.html" #}}
+    {{# include "slides/06-slide.html" #}}
+    {{# include "slides/07-slide.html" #}}
+    {{# include "slides/08-slide.html" #}}
+    {{# include "slides/09-slide.html" #}}
+    {{# include "slides/10-slide.html" #}}
+    {{# include "slides/11-slide.html" #}}
+    {{# include "slides/12-slide.html" #}}
+    {{# include "slides/13-slide.html" #}}
+    {{# include "slides/14-slide.html" #}}
+    {{# include "slides/15-slide.html" #}}
+    {{# include "slides/16-slide.html" #}}
+    {{# include "slides/17-slide.html" #}}
+    {{# include "slides/18-slide.html" #}}
+    {{# include "slides/19-slide.html" #}}
+    {{# include "slides/20-slide.html" #}}
+    {{# include "slides/21-slide.html" #}}
+    {{# include "slides/22-slide.html" #}}
+    {{# include "slides/23-slide.html" #}}
+    {{# include "slides/24-slide.html" #}}
+    {{# include "slides/25-slide.html" #}}
+    {{# include "slides/26-closing.html" #}}
+    <div class="navigation">
+      <button class="nav-button" onclick="changeSlide(-1)" id="prevBtn">&#10094; Prev</button>
+      <div class="slide-counter"><span id="slideNum">1</span> / <span id="totalSlides"></span></div>
+      <button class="nav-button" onclick="changeSlide(1)" id="nextBtn">Next &#10095;</button>
+      <button class="notes-btn" onclick="openNotesWindow()" title="Speaker Notes">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+      </button>
+    </div>
+  </div>
+  <script src="slyds.js"></script>
+</body>
+</html>

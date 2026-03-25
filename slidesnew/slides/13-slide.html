@@ -1,0 +1,32 @@
+<div class="slide">
+  <h1>Building the Sync Script</h1>
+  <h3>🔴 LIVE DEMO</h3>
+  <p>"Instead of asking Cursor every time, built a deterministic sync script:"</p>
+  <pre>
+./stitch-sync/sync.sh all
+
+=> Syncing manifest + design tokens...
+   Saved design-tokens.json
+   Saved screen-manifest.json
+=> Syncing screen HTML...
+   dashboard.html (DESKTOP)
+   editor.html (DESKTOP)
+   landing-page.html (DESKTOP)
+=> Extracting HTML structure...
+   dashboard.json (64 elements)
+   editor.json (83 elements)
+  </pre>
+  <p style="opacity: 0.7;">"Pure shell/curl/jq. No LLM in the sync loop. Deterministic and repeatable."</p>
+  <div class="speaker-notes">
+    <h3>DEMO STEPS (1.5 min)</h3>
+    <ol>
+      <li>Open terminal in the project</li>
+      <li>Run: ./stitch-sync/sync.sh all</li>
+      <li>Show the output — manifest, HTML files, screenshots, structure</li>
+      <li>Run: ls stitch-sync/ — show the directory structure</li>
+      <li>Run: cat stitch-sync/design-tokens.json | head -20</li>
+      <li>"This JSON drives the Tailwind @theme block. One source of truth."</li>
+      <li>Run: git diff stitch-sync/ — "every change is trackable"</li>
+    </ol>
+  </div>
+</div>

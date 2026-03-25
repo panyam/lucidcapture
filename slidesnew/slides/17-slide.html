@@ -1,35 +1,38 @@
-<div class="slide" style="padding: 20px;">
+<div class="slide" style="padding: 16px;">
   <h1>"Design Changed. Now What?"</h1>
   
-  <div style="display: flex; gap: 16px; margin-top: 8px;">
-    <!-- Left: Code → Stitch flow -->
-    <div style="flex: 1; display: flex; flex-direction: column; gap: 8px;">
-      <h3 style="margin: 0;">Step 1: Change in code</h3>
+  <div style="display: flex; gap: 12px; margin-top: 4px;">
+    <!-- Left: Code → Stitch rename flow -->
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
+      <h3 style="margin: 0; font-size: 0.75em;">1. Rename in code</h3>
       <video src="videos/RenamingTaskToActions.mov" controls
-        style="width: 100%; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.3); background: #0a0d14;">
+        style="width: 100%; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); background: #0a0d14; max-height: 18vh;">
       </video>
       
-      <h3 style="margin: 0;">Step 2: Push to Stitch</h3>
+      <h3 style="margin: 0; font-size: 0.75em;">2. Push to Stitch via MCP</h3>
       <video src="videos/PushingTaskToActionsRenameToStitch.mov" controls
-        style="width: 100%; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.3); background: #0a0d14;">
+        style="width: 100%; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); background: #0a0d14; max-height: 18vh;">
       </video>
     </div>
     
-    <!-- Right: Result + problem -->
-    <div style="flex: 0.8; display: flex; flex-direction: column; gap: 12px;">
-      <h3 style="margin: 0;">Step 3: What happened in Stitch</h3>
-      <img src="videos/StitchAfterTaskToActionsRename.png" alt="Stitch showing duplicate screens"
-        style="width: 100%; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.3);">
-      
-      <div class="highlight" style="margin-top: 8px;">
-        <p><code>edit_screens</code> created a <strong>copy</strong> instead of editing in place. Every edit = a new screen.</p>
+    <!-- Middle: Stitch result -->
+    <div style="flex: 0.7; display: flex; flex-direction: column; gap: 6px;">
+      <h3 style="margin: 0; font-size: 0.75em;">3. Stitch created copies!</h3>
+      <img src="videos/StitchAfterTaskToActionsRename.png" alt="Duplicate screens"
+        style="width: 100%; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);">
+      <div class="highlight" style="padding: 8px 12px; font-size: 0.8em;">
+        <p><code>edit_screens</code> = copy, not edit. Screen proliferation.</p>
       </div>
-      
-      <p style="opacity: 0.6; font-size: 0.85em; margin-top: 4px;">
-        "And the other direction? Change in Stitch, sync to code — how do you know <em>what</em> changed? Screenshots are volatile. HTML diffs are noise."
-      </p>
-      <p style="opacity: 0.6; font-size: 0.85em;">
-        Both directions need tooling. →
+    </div>
+
+    <!-- Right: Sync + diff demo -->
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
+      <h3 style="margin: 0; font-size: 0.75em;">4. Sync and see the damage</h3>
+      <video src="videos/SyncDiffDemo.mov" controls
+        style="width: 100%; border-radius: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); background: #0a0d14; flex: 1; min-height: 0;">
+      </video>
+      <p style="opacity: 0.6; font-size: 0.8em; margin: 0;">
+        "Running these commands manually every time? We need skills." →
       </p>
     </div>
   </div>
@@ -37,11 +40,11 @@
   <div class="speaker-notes">
     <h3>DEMO FLOW (3 min)</h3>
     <ol>
-      <li>Play first video: "Changed 'Tasks' to 'Actions' in the code"</li>
-      <li>Play second video: "Asked Cursor to push this rename to Stitch via MCP"</li>
-      <li>Point to screenshot: "Look at Stitch now — there are duplicate screens. edit_screens created copies."</li>
-      <li>"What about the other direction? If someone changes the design in Stitch, how do you know what changed when you sync? HTML diffs are full of noise — class reordering, whitespace. You need structural diffing."</li>
-      <li>"Both directions have problems. Both need tooling. Which brings us to..."</li>
+      <li>Play video 1: "Renamed Tasks to Actions in code"</li>
+      <li>Play video 2: "Pushed to Stitch via MCP"</li>
+      <li>Point to screenshot: "Stitch created duplicate screens"</li>
+      <li>Play video 4: "Sync, check status, see the diffs — duplicates visible, HTML noise vs structural clarity"</li>
+      <li>"Doing this manually every time is painful. Which brings us to..."</li>
     </ol>
   </div>
 </div>

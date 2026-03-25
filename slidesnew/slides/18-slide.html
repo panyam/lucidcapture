@@ -1,27 +1,28 @@
-<div class="slide">
-  <h1>Generating Variants</h1>
-  <h3>🔴 LIVE DEMO</h3>
-  <p>"What if I want different layouts for the same page?"</p>
-  <pre>
-// In Cursor chat:
-"Generate 3 layout variants of the Landing Page 
- with EXPLORE creative range"
-
-// Stitch returns immediately — generation is async
-// Wait 2-5 minutes, then sync:
-./stitch-sync/sync.sh all
-  </pre>
-  <p style="margin-top: 15px;">Then open the <strong>/compare</strong> page — all 3 layouts side-by-side.</p>
+<div class="slide server-bg">
+  <h1>Principle #2</h1>
+  <div style="text-align: center; margin-top: 40px;">
+    <p style="font-size: 1.5em; font-weight: 900; color: #7b93ff; line-height: 1.4; max-width: 750px; margin: 0 auto;">
+      "Build skills, not prompts."
+    </p>
+  </div>
+  <div style="margin-top: 30px;">
+    <table>
+      <tr><th>Cursor Command</th><th>What It Does</th></tr>
+      <tr><td><code>/stitch-sync</code></td><td>Pull designs + show what changed</td></tr>
+      <tr><td><code>/stitch-diff</code></td><td>Structural diff against last commit</td></tr>
+      <tr><td><code>/stitch-variants</code></td><td>Generate layout/color variants via MCP</td></tr>
+      <tr><td><code>/stitch-analyse</code></td><td>Compare Stitch HTML vs your templates</td></tr>
+    </table>
+  </div>
+  <p style="margin-top: 20px; text-align: center; opacity: 0.6; font-size: 0.9em;">
+    Each command is a markdown file in <code>.cursor/commands/</code>.<br>
+    Orchestrates scripts + MCP. Reusable across projects.
+  </p>
   <div class="speaker-notes">
-    <h3>DEMO STEPS (3 min)</h3>
-    <ol>
-      <li>In Cursor chat: "Generate 3 layout variants of the Landing Page in my Stitch project with EXPLORE creative range"</li>
-      <li>Stitch call returns — "generation is async, takes 2-5 min"</li>
-      <li>While waiting: "Let me show you some variants already generated..."</li>
-      <li>Open localhost:5173/compare — show 3 layouts side-by-side</li>
-      <li>"Original bento grid, compact stacked, tall full-width sections"</li>
-      <li>"Also tried REIMAGINE — got a Kanban board and a Timeline storyboard. Genuinely different paradigms."</li>
-      <li>Show the Kanban/Timeline screenshots if available</li>
-    </ol>
+    <h3>Key moment (1.5 min)</h3>
+    <p>"Principle #1 was: write a script, not a prompt. Principle #2 is the same idea at the workflow level — write a Cursor command, not a chat message."</p>
+    <p>"Each command is just a markdown file. It tells the AI: run this script, call this MCP tool, show this diff. The AI orchestrates, the tools do the work."</p>
+    <p>"These commands are checked into git. New team member clones the repo, opens Cursor, types /stitch-sync — it just works."</p>
+    <p>Show .cursor/commands/ directory briefly if time allows.</p>
   </div>
 </div>

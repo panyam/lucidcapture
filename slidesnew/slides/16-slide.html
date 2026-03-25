@@ -1,26 +1,30 @@
 <div class="slide">
-  <h1>Tokens → Tailwind Theme</h1>
-  <pre>
-// stitch-sync/design-tokens.json (from Stitch)
-{ "primary": "#0029c0", "surface": "#f9f9ff", 
-  "on_background": "#141b2b" ... }
+  <h1>"Build Me an App"</h1>
+  <h3>🔴 LIVE DEMO (or video)</h3>
+  <p>With tokens synced, one prompt to Cursor:</p>
+  <pre style="font-size: 0.85em;">
+"I have design files synced from Google Stitch 
+in stitch-sync/. Set up a frontend project that:
 
-// app/src/index.css (drives both React + Go stacks)
-@theme {
-  --color-primary: #0029c0;
-  --color-surface: #f9f9ff;
-  --color-on-background: #141b2b;
-}
+1. Uses the tokens from stitch-sync/design-tokens.json 
+   as the color/font theme
+2. Converts screen HTML in stitch-sync/html/ into 
+   typed components
+3. Has hot reload so I can iterate fast
+4. Uses TypeScript throughout
 
-// Dark mode — one CSS override, everything switches
-.dark {
-  --color-surface: #0f1219;
-  --color-on-background: #e2e4f0;
-}
+Start with just the landing page."
   </pre>
-  <p>48 named colors. One source of truth. Dark mode for free.</p>
+  <p style="margin-top: 10px; opacity: 0.7;">No stack specified. Let the assistant pick. Intent, not implementation.</p>
   <div class="speaker-notes">
-    <h3>Talking point (1 min)</h3>
-    <p>Show how the tokens flow from Stitch JSON to CSS custom properties. "Every element using bg-surface or text-on-background automatically switches in dark mode. No dark: classes needed."</p>
+    <h3>DEMO STEPS (2 min)</h3>
+    <ol>
+      <li>Paste the prompt into Cursor chat</li>
+      <li>It scaffolds Vite + React + Tailwind (or whatever it picks)</li>
+      <li>Show the @theme block using Stitch tokens</li>
+      <li>Show the app running with hot reload</li>
+      <li>"Every color comes from Stitch. Change a token, it updates live."</li>
+    </ol>
+    <p>Alternative: show pre-recorded video of the app running. Quick — 30 sec. The app isn't the point.</p>
   </div>
 </div>

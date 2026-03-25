@@ -1,16 +1,24 @@
 <div class="slide">
-  <h1>What Broke</h1>
-  <table>
-    <tr><th>Problem</th><th>Impact</th><th>Fix</th></tr>
-    <tr><td><strong>Edit = Copy</strong></td><td>29 screens, 14 duplicates</td><td>Tombstoning — <code>tombstones.json</code> checked into git</td></tr>
-    <tr><td><strong>No component tree</strong></td><td>Only flat HTML, no semantic diff</td><td><code>extract-structure.sh</code> → diffable JSON</td></tr>
-    <tr><td><strong>No themes</strong></td><td>Can't represent light/dark in Stitch</td><td>Dark palette lives in code (CSS variables)</td></tr>
-    <tr><td><strong>Can't generate components</strong></td><td>Asked for 200px footer, got 2048px page</td><td>Extract &lt;footer&gt; from full-page screen</td></tr>
-    <tr><td><strong>Async without tracking</strong></td><td>generate_variants returns before done</td><td>Wait 2-5 min, then sync</td></tr>
-    <tr><td><strong>No delete/rename API</strong></td><td>Manual cleanup in Stitch UI</td><td>Tombstone file + auto-prune in sync</td></tr>
-  </table>
+  <h1>Generating Variants</h1>
+  <h3>🔴 LIVE DEMO</h3>
+  <p>"What if different layouts are needed for the same page?"</p>
+  <pre>
+// In Cursor: /stitch-variants
+// Or in chat:
+"Generate 3 layout variants of the Dashboard 
+ with EXPLORE creative range"
+
+// Async — wait 2-5 min, then:
+/stitch-sync
+  </pre>
+  <p style="margin-top: 15px;">Also tried <strong>REIMAGINE</strong> — got a Kanban board and a Timeline storyboard. Genuinely different paradigms, not just tweaks.</p>
   <div class="speaker-notes">
-    <h3>Talking points (2 min)</h3>
-    <p>Go through each row. The tombstoning one is the most interesting for teams — "when someone deletes a screen, the tombstone file tells everyone else it was intentional. Checked into git, sync script respects it."</p>
+    <h3>DEMO STEPS (2 min)</h3>
+    <ol>
+      <li>Type /stitch-variants in Cursor (or use chat)</li>
+      <li>"Generation is async — takes 2-5 min"</li>
+      <li>While waiting, show pre-generated variant screenshots</li>
+      <li>"EXPLORE gives variations of the same paradigm. REIMAGINE gives entirely new ones."</li>
+    </ol>
   </div>
 </div>

@@ -1,9 +1,30 @@
-<div class="slide section-slide">
-  <h1>Making It Useful</h1>
-  <p style="font-size: 1.1em; margin-top: 20px; opacity: 0.7; color: #7b93ff;">
-    Variants, bidirectional sync, and what broke
-  </p>
+<div class="slide">
+  <h1>"Design Changed. Now What?"</h1>
+  <p>Made a change in code. Want to push it back to Stitch so the design stays in sync.</p>
+  <pre>
+// In Cursor chat:
+"Edit the Dashboard screen in Stitch — 
+ rename 'Tasks' to 'Actions'"
+
+// Stitch MCP: edit_screens → ✅ done!
+
+// Sync to see the result:
+./stitch-sync/sync.sh all
+
+// Check what happened:
+ls stitch-sync/html/
+  </pre>
+  <div class="highlight" style="margin-top: 15px;">
+    <p>Wait... there are <strong>two</strong> Dashboard screens now. <code>edit_screens</code> created a <strong>copy</strong> instead of editing in place.</p>
+  </div>
+  <p style="margin-top: 10px; opacity: 0.7;">After a few rounds: 29 screens, 14 duplicates. Screen proliferation is real.</p>
   <div class="speaker-notes">
-    <p>Transition to the more advanced Stitch features and the problems encountered.</p>
+    <h3>DEMO STEPS (1.5 min)</h3>
+    <ol>
+      <li>Show the edit_screens call in Cursor</li>
+      <li>Run sync — show the duplicate screen appearing</li>
+      <li>"Every edit creates a copy. Every variant creates new screens. They all have the same title."</li>
+      <li>"This is when I realized I needed better tooling..."</li>
+    </ol>
   </div>
 </div>

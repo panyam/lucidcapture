@@ -1,17 +1,16 @@
 <div class="slide">
-  <h1>Who This IS For</h1>
-  <ul>
-    <li>Backend engineers who need a frontend</li>
-    <li>Teams without a dedicated designer (or with an overloaded one)</li>
-    <li>Anyone who's been pasting screenshots into an LLM and it <em>mostly</em> works</li>
-  </ul>
-  <div class="highlight" style="margin-top: 20px;">
-    <p>Stitch gets you <strong>80% there</strong> — with a real design system, not just a page.<br>
-    The last 20% happens in code, where you're comfortable.</p>
-  </div>
-  <p style="margin-top: 15px;"><strong>For teams:</strong> MCP makes the design system shared infrastructure — tokens, sync, change detection, tombstoning. Works with any AI coding tool that supports MCP.</p>
+  <h1>What Broke</h1>
+  <table>
+    <tr><th>Problem</th><th>Impact</th><th>Fix</th></tr>
+    <tr><td><strong>Edit = Copy</strong></td><td>29 screens, 14 duplicates</td><td>Tombstoning — <code>tombstones.json</code> checked into git</td></tr>
+    <tr><td><strong>No component tree</strong></td><td>Only flat HTML, no semantic diff</td><td><code>extract-structure.sh</code> → diffable JSON</td></tr>
+    <tr><td><strong>No themes</strong></td><td>Can't represent light/dark in Stitch</td><td>Dark palette lives in code (CSS variables)</td></tr>
+    <tr><td><strong>Can't generate components</strong></td><td>Asked for 200px footer, got 2048px page</td><td>Extract &lt;footer&gt; from full-page screen</td></tr>
+    <tr><td><strong>Async without tracking</strong></td><td>generate_variants returns before done</td><td>Wait 2-5 min, then sync</td></tr>
+    <tr><td><strong>No delete/rename API</strong></td><td>Manual cleanup in Stitch UI</td><td>Tombstone file + auto-prune in sync</td></tr>
+  </table>
   <div class="speaker-notes">
-    <h3>Talking points (1.5 min)</h3>
-    <p>Core thesis. "For solo devs, screenshots + LLM is faster. Stitch + MCP shines when you need SYSTEM-level consistency — tokens everyone reads from, change detection that catches drift, bidirectional sync."</p>
+    <h3>Talking points (2 min)</h3>
+    <p>Go through each row. The tombstoning one is the most interesting for teams — "when someone deletes a screen, the tombstone file tells everyone else it was intentional. Checked into git, sync script respects it."</p>
   </div>
 </div>

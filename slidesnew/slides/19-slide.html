@@ -1,16 +1,8 @@
 <div class="slide">
-  <h1>Structural Analysis</h1>
-  <p>"How do you compare a Stitch variant against your existing implementation?"</p>
-  <table>
-    <tr><th>Section</th><th>Original</th><th>Compact Variant</th><th>Tall Variant</th></tr>
-    <tr><td>Hero</td><td>h1 + 2 buttons</td><td>h1 + badge + 2 buttons</td><td>h1 + dashboard preview</td></tr>
-    <tr><td>Trust logos</td><td>Missing</td><td>5 brand names</td><td>Same</td></tr>
-    <tr><td>Features</td><td>3-col bento grid</td><td>Stacked list</td><td>Full-width sections</td></tr>
-    <tr><td>CTA</td><td>1 button</td><td>2 buttons</td><td>2 buttons</td></tr>
-    <tr><td>Footer</td><td>1-line</td><td>Multi-column</td><td>Multi-column + API link</td></tr>
-  </table>
-  <p style="margin-top: 10px; opacity: 0.7;">Built <code>extract-structure.sh</code> to produce this — parses HTML into diffable JSON outlines.</p>
+  <h1>The Pipeline</h1>
+  <img src="images/pipeline.svg" alt="Stitch to production pipeline" style="width: 100%; max-height: 70vh; object-fit: contain; margin-top: 10px;">
   <div class="speaker-notes">
-    <p>Show the table. "Stitch doesn't give you a component tree, so we built a tool that extracts headings, buttons, links, and layout classes into diffable JSON. This lets you see WHAT changed structurally, not just pixel diffs."</p>
+    <h3>Explain (1 min)</h3>
+    <p>Walk through the diagram. Key points: Stitch → sync.sh (deterministic) → local files → implementation → production. The bidirectional arrow: edit_screens pushes code decisions back to Stitch. Cursor custom commands orchestrate from the terminal.</p>
   </div>
 </div>

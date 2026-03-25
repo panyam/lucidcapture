@@ -1,9 +1,16 @@
-<div class="slide section-slide">
-  <h1>The Honest Take</h1>
-  <p style="font-size: 1.1em; margin-top: 20px; opacity: 0.7; color: #7b93ff;">
-    Who should (and shouldn't) use this
-  </p>
+<div class="slide">
+  <h1>Structural Analysis</h1>
+  <p>"How to compare a Stitch variant against the existing implementation?"</p>
+  <table>
+    <tr><th>Section</th><th>Original</th><th>Compact Variant</th><th>Tall Variant</th></tr>
+    <tr><td>Hero</td><td>h1 + 2 buttons</td><td>h1 + badge + 2 buttons</td><td>h1 + dashboard preview</td></tr>
+    <tr><td>Trust logos</td><td>Missing</td><td>5 brand names</td><td>Same</td></tr>
+    <tr><td>Features</td><td>3-col bento grid</td><td>Stacked list</td><td>Full-width sections</td></tr>
+    <tr><td>CTA</td><td>1 button</td><td>2 buttons</td><td>2 buttons</td></tr>
+    <tr><td>Footer</td><td>1-line</td><td>Multi-column</td><td>Multi-column + API link</td></tr>
+  </table>
+  <p style="margin-top: 10px; opacity: 0.7;">Built <code>extract-structure.sh</code> — parses HTML into diffable JSON outlines. <code>/stitch-analyse</code> produces this table.</p>
   <div class="speaker-notes">
-    <p>Transition to the honest assessment.</p>
+    <p>"Stitch doesn't give you a component tree, so built a tool that extracts headings, buttons, links, layout classes into diffable JSON. This lets you see WHAT changed structurally, not just pixel diffs."</p>
   </div>
 </div>

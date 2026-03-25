@@ -49,5 +49,12 @@
     </div>
   </div>
   <script src="slyds.js"></script>
+  <script>
+    // Set all videos to 2x playback by default
+    document.querySelectorAll('video').forEach(function(v) {
+      v.playbackRate = 2;
+      v.addEventListener('loadedmetadata', function() { this.playbackRate = 2; });
+    });
+  </script>
 </body>
 </html>

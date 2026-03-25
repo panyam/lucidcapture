@@ -17,13 +17,26 @@
   <p>One config file. Restart Cursor. Stitch tools appear in the AI chat.</p>
   <div class="speaker-notes">
     <h3>DEMO STEPS (2 min)</h3>
+    <h3>BEFORE THE DEMO — set up the project:</h3>
+    <pre>
+cd ~/work/misc/stitchdemo
+./setup.sh                    # prompts for project ID + API key
+# OR:
+./setup.sh PROJECT_ID API_KEY  # non-interactive
+source .env.local              # load API key
+./stitch-sync/sync.sh all      # pull initial designs
+    </pre>
+    <h3>To change project mid-demo:</h3>
+    <pre>
+echo "NEW_PROJECT_ID" > stitch-sync/project.conf
+./stitch-sync/sync.sh all
+    </pre>
+    <h3>During demo:</h3>
     <ol>
-      <li>Open Cursor settings → MCP servers</li>
-      <li>Show the config above (or paste it)</li>
-      <li>Restart Cursor</li>
-      <li>In Cursor chat, type: "list my Stitch screens"</li>
+      <li>Open Cursor, show .cursor/mcp.json</li>
+      <li>In Cursor chat: "list my Stitch screens"</li>
       <li>Show the tools appearing: get_project, list_screens, etc.</li>
-      <li>"That's it. No SDK, no npm install, no API wrapper. Just a URL."</li>
+      <li>"One config file. No SDK, no npm install."</li>
     </ol>
   </div>
 </div>

@@ -1,27 +1,31 @@
 <div class="slide server-bg">
   <h1>Principle #1</h1>
   <div style="text-align: center; margin-top: 40px;">
-    <p style="font-size: 1.6em; font-weight: 900; color: #7b93ff; line-height: 1.4; max-width: 700px; margin: 0 auto;">
-      "Don't prompt an LLM to solve a problem when you can ask it to write a tool."
+    <p style="font-size: 1.5em; font-weight: 900; color: #7b93ff; line-height: 1.4; max-width: 750px; margin: 0 auto;">
+      "Don't use LLM tokens for a job a shell script can do."
     </p>
   </div>
   <div style="margin-top: 40px; display: flex; gap: 40px; justify-content: center;">
     <div style="text-align: center; opacity: 0.5;">
       <p style="font-size: 2em;">🐌</p>
-      <p><strong>Prompting</strong></p>
-      <p style="font-size: 0.85em;">45 sec per file<br>Manual every time<br>Non-deterministic</p>
+      <p><strong>Prompting each time</strong></p>
+      <p style="font-size: 0.85em;">45 sec per file<br>Non-deterministic<br>Burns tokens on repetition</p>
     </div>
     <div style="text-align: center; font-size: 2em; align-self: center;">→</div>
     <div style="text-align: center;">
       <p style="font-size: 2em;">⚡</p>
-      <p><strong>Tool</strong></p>
-      <p style="font-size: 0.85em;">2 sec for everything<br>One command<br>Deterministic, repeatable</p>
+      <p><strong>Script (written once by the LLM)</strong></p>
+      <p style="font-size: 0.85em;">2 sec total<br>Deterministic (curl + jq)<br>Same input → same output, every time</p>
     </div>
   </div>
+  <p style="margin-top: 30px; text-align: center; opacity: 0.6; font-size: 0.9em;">
+    The LLM writes the tool. The tool does the work. No tokens burned on repetition.
+  </p>
   <div class="speaker-notes">
     <h3>Key moment (1 min)</h3>
-    <p>"The LLM is great at writing the sync script. It's terrible at BEING the sync script. Ask it once to write the tool, then use the tool forever."</p>
-    <p>"This is a general principle for working with AI coding assistants — don't repeat prompts. Extract patterns into scripts, skills, commands."</p>
-    <p>Then transition: "So I asked Cursor to write a sync script..."</p>
+    <p>"The LLM is great at writing the sync script. But using it to BE the sync script is not the best use of tokens or time."</p>
+    <p>"More importantly — how do you ensure determinism? The script calls curl and jq directly. The Stitch REST API, not the LLM, processes the data. Same API call, same response, same file. Every time."</p>
+    <p>"If the LLM is in the loop, you get slightly different output each run. Different JSON formatting, different field ordering, maybe it summarizes something. The script gives you exact reproducibility — which means git diff actually works."</p>
+    <p>Transition: "So asked Cursor to write this sync script..."</p>
   </div>
 </div>

@@ -6,10 +6,10 @@ require (
 	cloud.google.com/go/datastore v1.21.0
 	connectrpc.com/connect v1.19.1
 	github.com/google/uuid v1.6.0
-	github.com/panyam/goapplib v0.0.34
+	github.com/panyam/goapplib v0.0.35
 	github.com/panyam/goutils v0.1.13
 	github.com/panyam/protoc-gen-dal v0.0.10
-	github.com/panyam/templar v0.0.31
+	github.com/panyam/templar v0.0.32
 	google.golang.org/grpc v1.78.0
 	google.golang.org/protobuf v1.36.11
 	gorm.io/driver/sqlite v1.6.0
@@ -51,7 +51,7 @@ require (
 )
 
 // Local stack development — comment out before deploying
-// replace github.com/panyam/goapplib v0.0.34 => ./locallinks/newstack/goapplib/main
+// replace github.com/panyam/goapplib v0.0.35 => ./locallinks/newstack/goapplib/main
 
 // replace github.com/panyam/goutils v0.1.13 => ./locallinks/newstack/goutils/master
 

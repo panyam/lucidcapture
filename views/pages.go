@@ -39,6 +39,17 @@ func (p *LandingTallPage) Load(r *http.Request, w http.ResponseWriter, app *goal
 	return nil, false
 }
 
+// PrivacyPage renders the privacy policy.
+type PrivacyPage struct {
+	BasePage
+}
+
+func (p *PrivacyPage) Load(r *http.Request, w http.ResponseWriter, app *goal.App[*LucidApp]) (error, bool) {
+	p.Title = "Privacy Policy — Lucid Capture"
+	p.DisableSplashScreen = true
+	return nil, false
+}
+
 // DashboardPage renders the project list.
 type DashboardPage struct {
 	BasePage

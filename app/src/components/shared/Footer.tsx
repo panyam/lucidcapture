@@ -33,7 +33,7 @@ export function Footer() {
               <nav className="flex flex-col gap-2">
                 <a href="#" className="text-sm text-on-surface-variant hover:text-primary transition-colors">About</a>
                 <a href="#" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Careers</a>
-                <a href="#" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Privacy</a>
+                <a href="/privacy" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Privacy</a>
                 <a href="#" className="text-sm text-on-surface-variant hover:text-primary transition-colors">Terms</a>
               </nav>
             </div>

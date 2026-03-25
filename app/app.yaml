@@ -4,11 +4,6 @@ automatic_scaling:
   max_instances: 2
 
 handlers:
-  # Privacy policy
-  - url: /privacy.html
-    static_files: dist/privacy.html
-    upload: dist/privacy.html
-
   # Static assets (JS, CSS, images)
   - url: /assets
     static_dir: dist/assets

@@ -88,6 +88,9 @@ func main() {
 	mux.HandleFunc("GET /api/projects/{id}/steps/{stepId}/screenshot", lucidApp.ServeScreenshot)
 	mux.HandleFunc("POST /api/import", lucidApp.HandleImport)
 
+	// Privacy policy
+	goal.Register[*views.PrivacyPage](app, mux, "/privacy", goal.WithTemplate("PrivacyPage:BasePage"))
+
 	// Dev-only: seed test data into IndexedDB
 	mux.HandleFunc("GET /seed", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "./static/seed.html")

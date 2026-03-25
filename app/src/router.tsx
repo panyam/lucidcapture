@@ -7,6 +7,7 @@ import { ComparePage } from './pages/ComparePage'
 import { DashboardPage } from './pages/DashboardPage'
 import { EditorPage } from './pages/EditorPage'
 import { PlayerPage } from './pages/PlayerPage'
+import { PrivacyPage } from './pages/PrivacyPage'
 
 export function AppRouter() {
   return (
@@ -25,6 +26,7 @@ export function AppRouter() {
               <Route path="/landing/tall" element={<LandingTallPage />} />
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/editor/:id" element={<EditorPage />} />
+              <Route path="/privacy" element={<PrivacyPage />} />
             </Routes>
           </>
         } />
